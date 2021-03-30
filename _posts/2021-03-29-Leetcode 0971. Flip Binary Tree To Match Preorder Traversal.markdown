@@ -1,3 +1,23 @@
+---
+layout: post
+usemathjax: true
+---
+
+#### Problem statement:
+
+You are given the root of a binary tree with `n` nodes, where each node is uniquely assigned a value from `1` to `n`. You are also given a sequence of n values voyage, which is the desired pre-order traversal of the binary tree.
+
+Any node in the binary tree can be flipped by swapping its left and right subtrees. For example, flipping node 1 will have the following effect:
+
+<img src="https://assets.leetcode.com/uploads/2021/02/15/fliptree.jpg" alt="closed_paren" title="Closed Parenthesis" width="250"/>
+
+Flip the smallest number of nodes so that the pre-order traversal of the tree matches voyage.
+
+Return a list of the values of all flipped nodes. You may return the answer in any order. If it is impossible to flip the nodes in the tree to make the pre-order traversal match voyage, return the list [-1].
+
+#### Solution:
+
+
 For me it was not medium problem, more like hard. First of all it is asked in problem statement to find the minimum number of flips, however in fact we do not have choice: I think everything is determenistic here. The first thing you need to think about when you see tree, it is dfs or bfs. Let us choose recursive dfs, it is usally easier to code and understand.
 
 1. `self.ans` is our list with flipped nodes.
@@ -11,9 +31,12 @@ For me it was not medium problem, more like hard. First of all it is asked in pr
 5. Traverse children in right direction and run `dfs(child)`.
 6. In the end, run `dfs(root)` and check if we have `None` inside, if we have it means that at one moment of time we have impossible option and we need to return `[-1]`. In opposite case we return `self.ans`.
 
-**Complexity**: What we did here is just traversed our tree, using dfs, so time complexity is `O(n)`, where `n` is number of nodes in tree. Space complexity is potentially `O(n)` as well.
+#### Complexity:
+What we did here is just traversed our tree, using dfs, so time complexity is `O(n)`, where `n` is number of nodes in tree. Space complexity is potentially `O(n)` as well.
 
-```
+#### Code
+
+```python
 class Solution:
     def flipMatchVoyage(self, root, voyage):
         self.ans, self.ind = [], 0
