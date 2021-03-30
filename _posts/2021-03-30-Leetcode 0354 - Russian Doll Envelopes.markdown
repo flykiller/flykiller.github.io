@@ -1,6 +1,6 @@
 ### Problem statement:
 
-You are given a 2D array of integers envelopes where \texttt{envelopes[i] = [wi, hi]} represents the width and the height of an envelope.
+You are given a 2D array of integers envelopes where `envelopes[i] = [wi, hi]` represents the width and the height of an envelope.
 
 One envelope can fit into another if and only if both the width and height of one envelope is greater than the width and height of the other envelope.
 
