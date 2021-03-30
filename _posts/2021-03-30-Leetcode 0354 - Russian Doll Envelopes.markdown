@@ -15,7 +15,7 @@ Return the maximum number of envelopes can you Russian doll (i.e., put one insid
 
 There is
 
-$$O(n^2)$$ 
+<img src="https://render.githubusercontent.com/render/math?math=e^{i +\pi} =x+1">
 
 solution, if we use similar idea of Problems **300** and **368**, because
  we want to find the longest increasing sub-sequence. Actually we can done exactly the same as in **300**,
