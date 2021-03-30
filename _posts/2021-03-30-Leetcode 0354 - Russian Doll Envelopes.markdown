@@ -13,7 +13,7 @@ Return the maximum number of envelopes can you Russian doll (i.e., put one insid
 
 #### Solution:
 
-There is $O(n^2)$ solution, if we use similar idea of Problems **300** and **368**, because
+There is \(O(n^2)\) solution, if we use similar idea of Problems **300** and **368**, because
  we want to find the longest increasing sub-sequence. Actually we can done exactly the same as in **300**,
  but when we sort we put envelopes with equal first elements $$[6,8], [6,7]$$ it this **opposite order** 
 : in this way we make sure that or longest increasing subsequence works like it is 
