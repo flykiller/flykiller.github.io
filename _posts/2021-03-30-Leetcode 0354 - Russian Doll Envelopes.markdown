@@ -13,20 +13,17 @@ Return the maximum number of envelopes can you Russian doll (i.e., put one insid
 
 #### Solution:
 
-There is
-
-<img src="https://render.githubusercontent.com/render/math?math=e^{i +\pi} =x+1">
-
-solution, if we use similar idea of Problems **300** and **368**, because
- we want to find the longest increasing sub-sequence. Actually we can done exactly the same as in **300**,
- but when we sort we put envelopes with equal first elements $$[6,8], [6,7]$$ it this **opposite order** 
+There is <img src="https://render.githubusercontent.com/render/math?math={O(n^2)}"> solution, if we use similar idea of Problems **300** and **368**, because we want to find the longest increasing sub-sequence. Actually we can done exactly the same as in **300**,
+ but when we sort we put envelopes with equal first elements `[6,8], [6,7]` it this **opposite order** 
 : in this way we make sure that or longest increasing subsequence works like it is 
 and we put into our `dp` table the second elements. For example if we have envelopes 
-$$[1,3],[3,5],[6,8],[6,7],[8,4],[9,5]$$, we work with $$[3,5,8,7,4,5]$$ and look for longest increasing 
+`[1,3],[3,5],[6,8],[6,7],[8,4],[9,5]`, we work with `[3,5,8,7,4,5]` and look for longest increasing 
 sequence here.
 
 #### Complexity:
-Time complexity is $$O(n\log n)$$ to sort our data, space complexity is $$O(n)$$.
+Time complexity is <img src="https://render.githubusercontent.com/render/math?math={O(n\log n)}">
+ to sort our data, space complexity is
+<img src="https://render.githubusercontent.com/render/math?math={O(n)}">
 
 ```python
 class Solution:
