@@ -1,4 +1,9 @@
-### Problem statement:
+---
+layout: post
+usemathjax: true
+---
+
+#### Problem statement:
 
 You are given a 2D array of integers envelopes where `envelopes[i] = [wi, hi]` represents the width and the height of an envelope.
 
@@ -6,9 +11,20 @@ One envelope can fit into another if and only if both the width and height of on
 
 Return the maximum number of envelopes can you Russian doll (i.e., put one inside the other).
 
-### Solution:
+#### Solution:
 
-```
+There is $$O(n^2)$$ solution, if we use similar idea of Problems **300** and **368**, because
+ we want to find the longest increasing sub-sequence. Actually we can done exactly the same as in **300**,
+ but when we sort we put envelopes with equal first elements $$[6,8], [6,7]$$ it this **opposite order** 
+: in this way we make sure that or longest increasing subsequence works like it is 
+and we put into our `dp` table the second elements. For example if we have envelopes 
+$$[1,3],[3,5],[6,8],[6,7],[8,4],[9,5]$$, we work with $$[3,5,8,7,4,5]$$ and look for longest increasing 
+sequence here.
+
+#### Complexity:
+Time complexity is $$O(n\log n)$$ to sort our data, space complexity is $$O(n)$$.
+
+```python
 class Solution:
     def maxEnvelopes(self, envelopes):
         nums = sorted(envelopes, key = lambda x: [x[0], -x[1]])    
