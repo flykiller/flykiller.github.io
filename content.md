@@ -1779,7 +1779,7 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 1465</font></th>
     <td class="tg-0lax"> <a href="/Leetcode Problems/1466/"> <font color = blue>1466</font> </a></td>
     <td class="tg-0lax"> <a href="/Leetcode Problems/1467/"> <font color = blue>1467</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1468/"> <font color = blue>1468</font> </a></td>
+    <th class="tg-0lax"><font color = lightgray> 1468</font></th>
     <th class="tg-0lax"><font color = lightgray> 1469</font></th>
     <th class="tg-0lax"><font color = lightgray> 1470</font></th>
     <th class="tg-0lax"><font color = lightgray> 1471</font></th>
@@ -1789,7 +1789,7 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 1475</font></th>
     <th class="tg-0lax"><font color = lightgray> 1476</font></th>
     <th class="tg-0lax"><font color = lightgray> 1477</font></th>
-    <th class="tg-0lax"><font color = lightgray> 1478</font></th>
+    <td class="tg-0lax"> <a href="/Leetcode Problems/1478/"> <font color = blue>1478</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1479</font></th>
     <th class="tg-0lax"><font color = lightgray> 1480</font></th>
   </tr>
