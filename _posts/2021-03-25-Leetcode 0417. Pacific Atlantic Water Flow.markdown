@@ -1,0 +1,35 @@
+---
+layout: post
+usemathjax: true
+---
+
+Let us reverse logic in this problem. Instead of looking for places from which one or another ocean can be reached, we will start from ocean and move in **increasing** way, not decreasing. So, we do the following
+1. Start from `pacific` ocean: all nodes with one of coordinates equal to `0`, and perform `bfs` from all these cells: we put them into queue and then as usual popleft element and add its neigbours if we can: that is we did not visit it yet, and such that new value is more or equal to the old one. In the end my function return all visited cells.
+2. Start from `atlantic` ocean and do exactly the same logic.
+3. Finally, intersect two sets we get on previous two steps and return it (even though it is set, not list, leetcode allows to do it)
+
+**Complexity**: time and space complexity is `O(mn)`: we perform bfs twice and then did intersection of sets.
+
+```
+class Solution:
+    def pacificAtlantic(self, M):
+        if not M or not M[0]: return []
+        
+        m, n = len(M[0]), len(M)
+        def bfs(starts):
+            queue = deque(starts)
+            visited = set(starts)
+            while queue:
+                x, y = queue.popleft()
+                for dx, dy in [(x, y+1), (x, y-1), (x-1, y), (x+1, y)]:
+                    if 0 <= dx < n and 0 <= dy < m and (dx, dy) not in visited and M[dx][dy] >= M[x][y]:
+                        queue.append((dx, dy))
+                        visited.add((dx, dy))
+                        
+            return visited
+        
+        pacific  = [(0, i) for i in range(m)]   + [(i, 0) for i in range(1,n)]
+        atlantic = [(n-1, i) for i in range(m)] + [(i, m-1) for i in range(n-1)]
+        
+        return bfs(pacific) & bfs(atlantic)
+```

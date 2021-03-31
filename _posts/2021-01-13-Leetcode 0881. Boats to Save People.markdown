@@ -1,0 +1,28 @@
+---
+layout: post
+usemathjax: true
+---
+
+The key intuition here is that:
+1. Every person must be saved.
+2. For each person it is better to find another person with **biggest** weight, such that sum of their weights is no more than limit. Indeed, if we put another person, we will have subproblem A, which is always worse than if we put biggest one (subproblem B): every solution of B can be also used to solve A as well, but not the opposite. 
+
+So, let us sort our people by weight and use two pointers technique to allocate them to boats:
+1. If `people[beg] + people[end] <= limit`, then we can put these two persons in one boat, so we move `beg` to the right, `end` to the left and increment `ans` by one.
+2. In opposite case it means, that person with smallest weight and with biggest weight so far can not be put in one boat, so, we need to decrease weight: movint `end` pointer one step to the left.
+
+**Complexity**: time complexity is `O(n log n)`, because we sorted our data and then we have `O(n)` for two-pointers approach. Space complexity is `O(n)`.
+
+```
+class Solution:
+    def numRescueBoats(self, people, limit):
+        people.sort()
+        beg, end, ans = 0, len(people) - 1, 0
+        while beg <= end:
+            if people[beg] + people[end] <= limit:
+                beg += 1
+            ans += 1
+            end -= 1
+                
+        return ans
+```

@@ -1,0 +1,31 @@
+---
+layout: post
+usemathjax: true
+---
+
+Not very difficult problem, you just need to be careful and use idea of masks here. For example for word `heLLO` I define mask like this `h*ll*`, that is put all letters to lower case and replace all vowels to `*`. Why it is good idea to do it? Because if two words have the same mask, it means, that one of them is correction of another. We need to check `3` cases:
+
+1. If `query` word in original `wordlist`, we just return this word.
+2. If `query.lower()` word in `d1`: dictionary for words without corrections, which is correspondence between word and its lower case, for example `heLlO: hello`. If we found `query` in this dictionary, by problem statement we need to return the first such match in the wordlist: that is why when we define `d1`, we from the end and rewrite matches if we have more than one.
+3. Finally, if `mask(query)` in dictionary `d2`, we return `d2[mask(query)]`. Note, that we defined `d2` also from the end.
+
+**Complexity**: it is `O(M + N)`, where `M` is total length of words in `wordlist` and `M` is total length of words in `queries`, because we process each word from `wordlist` no more than `3` times and each word from query `1` time.
+
+```
+class Solution:
+    def spellchecker(self, wordlist, queries):
+        def mask(w):
+            return "".join('*' if c in 'aeiou' else c for c in w.lower())
+        
+        d0 = set(wordlist)
+        d1 = {w.lower(): w for w in wordlist[::-1]}
+        d2 = {mask(w): w for w in wordlist[::-1]}
+        
+        def solve(query):
+            if query in d0: return query
+            if query.lower() in d1: return d1[query.lower()]
+            if mask(query) in d2: return d2[mask(query)]
+            return ""
+        
+        return [solve(q) for q in queries]
+```

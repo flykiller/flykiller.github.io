@@ -1,0 +1,29 @@
+---
+layout: post
+usemathjax: true
+---
+
+In this problem we need to traverse tree, using either bfs of dfs and for each node we need to calculate its level. You can choose any of these two methods, here I do it, using **bfs**.
+
+1. First, we put `root` into our queue (using `deque` python library).
+2. On each iteration we extract all nodes from queue from the left and put all children to the rigtht. In this way on each step we will have one full level.
+3. Evaluate average of elements in list and add it to final `result`.
+
+**Complexity**: time complexity is `O(n)`, we need to traverse all our tree. Space complexity is `O(w + h)`: there will be at most `O(w)` elements in our queue each moment of time, where `w` is width of tree; also final answer will have size `O(h)`.
+
+```
+class Solution:
+    def averageOfLevels(self, root):
+        queue = deque([root])
+        result = []
+        
+        while queue:
+            level = []
+            for i in range(len(queue)):
+                node = queue.popleft()
+                level.append(node.val)
+                if node.left:  queue.append(node.left)
+                if node.right: queue.append(node.right)
+            result.append(sum(level)/len(level))
+        return result
+```

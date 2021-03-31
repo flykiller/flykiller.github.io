@@ -1,0 +1,47 @@
+---
+layout: post
+usemathjax: true
+---
+
+It is quite classical problem, where you need to use the idea of topological sort. As I already have code for topological sort, I reuse it here.
+
+See **Problem 0207. Course Schedule** for more details about how it works.
+
+In this problem, let us solve it in two steps:
+1. Check if we have loops, using topological sort, and if we do not have, return `-1`. immedietly.
+2. Usy dynamic programming to find the **longest** path in our graph, it is what in fact we asked.
+
+#### Complexity
+Time complexity is `O(E + V)` for both steps, space complexity is the same to keep `Graph` and `Visaited`.
+
+#### Code
+
+```python
+class Solution:
+    def minimumSemesters(self, n, relations):
+        def dfs(start):
+            if Visited[start] == 1:
+                self.FoundCycle = 1           # loop is found
+            if Visited[start] == 0:           # node is not visited yet, visit it
+                Visited[start] = 1            # color current node as gray
+                for neib in Graph[start]:     # visit all its neibours
+                    dfs(neib)
+                Visited[start] = 2            # color current node as black
+        
+        Graph = defaultdict(set)
+        for i, j in relations:
+            Graph[i].add(j)
+
+        Visited = [0] * (n+1)
+        self.FoundCycle = 0
+        
+        for i in range(n):
+            if self.FoundCycle == 1: return -1
+            if Visited[i] == 0: dfs(i)
+     
+        @lru_cache(None)
+        def dp(node):
+            return max([dp(i) + 1 for i in Graph[node]] or [1])
+        
+        return max(dp(i) for i in range(1, n+1))
+```

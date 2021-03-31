@@ -1,0 +1,23 @@
+---
+layout: post
+usemathjax: true
+---
+
+Let us calculate number in two steps:
+
+1. We know that `I` equal to `1`, `V` equal to `5` and so on, so let us just iterate over string and add value to final answer.
+2. There is something we need to fix now, for example if we have `IX`, it is equal to `9`, but we added `11`, so we need to subtract `2`. Similar for `IV`, `XL, XC, CD, CM`.
+
+**Complexity**: time and space complexity is just `O(1)`, because string length is always no more than `10`. Imagine now, that we can have `k` different symbols for powers of `10` and `5` multiplied by power of `10`. Then first pass wil be `O(k)` and the second is also `O(k)`: we check all `O(k)` pairs of adjacent elements and check if they are in `fix` dictionary, so final time and space complexity in general case will be `O(k)`.
+
+```
+class Solution:
+    def romanToInt(self, s):
+        dic = {"I":1, "V":5, "X":10, "L": 50, "C": 100, "D": 500, "M": 1000}
+        fix = {"IX": 2, "IV": 2, "XL": 20, "XC": 20, "CD": 200, "CM": 200}
+        ans = 0
+        for elem in s: ans += dic[elem]
+        for i, j in zip(s, s[1:]):
+            if i + j in fix: ans -= fix[i + j]
+        return ans  
+```

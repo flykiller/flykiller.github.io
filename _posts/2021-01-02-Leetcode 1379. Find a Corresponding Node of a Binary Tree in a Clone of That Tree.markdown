@@ -1,0 +1,30 @@
+---
+layout: post
+usemathjax: true
+---
+
+Let us find path to our node in `original` tree and write it down to `self.path` list: `0` for left turn and `1` for right turn. Let us use `dfs` function, which returns if given node is in path between root and given `node`.
+1. We need to stop if we reached `None` node, in this case we return `False`. If we met `node == target`, then we return `True`.
+2. Visit left and right nodes: `L = dfs(node.left)` and `R = dfs(node.right)`. 
+3. If both of them are `False`, it means we do not need to visit any of them, we do nothing. If one of them is `True` and another is `False`, then we need to choose the one with target. It can not happen, that both of them are `True`.
+4. Finally, we create empty `self.path`, run our `dfs` and what we will have in the end is path to `target` node, but in reversed order. So, we start with `cloned` node and follow this path.
+
+**Complexity**: time complexity is `O(n)` to potentially visit all nodes (I think there is not way to improve it, because we do not have parent links, so we need to find `target` node at least). Space complexity is `O(h)`.
+
+```
+class Solution:
+    def getTargetCopy(self, original, cloned, target):
+        def dfs(node):
+            if not node: return False
+            if node == target: return True
+            L, R = dfs(node.left), dfs(node.right)
+            if L or R: self.path += [0] if L else [1]
+            return L or R
+        
+        self.path = []
+        dfs(original)
+        for i in self.path[::-1]:
+            cloned = cloned.left if i == 0 else cloned.right
+        
+        return cloned
+```

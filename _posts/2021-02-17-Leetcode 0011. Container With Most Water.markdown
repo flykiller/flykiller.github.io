@@ -1,0 +1,48 @@
+---
+layout: post
+usemathjax: true
+---
+
+We take two pointers, one at the beginning and one at the end of the array constituting the length of the lines.
+
+Futher, we maintain a variable `max_area` to store the maximum area obtained till now.  At every step, we find out the area formed between them, update `max_area` and move the pointer pointing to the shorter line towards the other end by one step. We can visualize eliminating logic in the following way: imagine, that we have matrix of `O(n^2)` possible options, and each time we make a step we eliminate either row or column, that is why it is enough to make `O(n)` steps. 
+
+**Complexity**: Time complexity is `O(n)`, space is `O(1)`.
+
+Imagine example, given in problem statement `[1, 8, 6, 2, 5, 4, 8, 3, 7]`. Let us denote by `X` point we already fully considered, that is such point, that for any other point we already checked all `n-1` possible containers. At the first step we choose smallest, between `1` and `7` and mark `1` as fully visited:
+
+`[X, 8, 6, 2, 5, 4, 8, 3, 7]`
+
+Why we can do it: because among all containers which have `1` as one of endpoints, the biggest one is the longest one: heights of these containers can be `1` or less and length can be `7` or less.
+
+Next step, we choose smallest between `8` and `7` and mark it by `X` as well, so we have:
+
+`[X, 8, 6, 2, 5, 4, 8, 3, X]`
+
+Why again we can mark last element by `X`? Because we have pairs of indexes: `[0, 7], [1, 7], [2, 7], [3, 7], [4, 7], [5, 7], [6, 7]`. First one no need to consider, we already did it, for the other pairs we can say that its heights is no more than `7` and length is no more than `6`. 
+
+Let us know consider general case:
+
+`[X, X, X, ..., X, beg, . . . . . . . , end, X, X, X, X, ... X]`
+
+We have the following **invariant** (property which kept on each step) here: all points, marked as `X` already fully finished. Imagine now, that `beg < end`. Then we can mark `beg` as fully visited, if we check container `[beg, end]`. Why? There are `3` types of containers we can create, where one endpoint is equal to `beg`, the other endpoint can be:
+
+1. Point from the first group of `X`, but in this case we can say it is already checked, because one of its ends marked with `X`.
+2. Point from the last group of `X`, but it is exaclty the same logic here.
+3. Point in between `beg` and `end`. But in this case, length of this container will always be less or equal to `end - beg` and height of this container will be always less or equal to `height[beg]`. So, checking container `[beg, end]` we have the biggest possible option for containers, where one endpoint is `beg` and another is betweeen `beg` and `end`.
+
+We have absolutely the same logic if `beg > end`. Also, if we have `beg = end`, then we can move **any** of them, we still will keep our invariant.
+
+```
+class Solution:
+    def maxArea(self, height):
+        max_area, beg, end = 0, 0, len(height) - 1
+        while beg < end:
+            max_area = max(max_area, min(height[beg], height[end]) * (end - beg))
+            if height[beg] < height[end]:
+                beg += 1
+            else:
+                end -= 1
+        return max_area
+```
+

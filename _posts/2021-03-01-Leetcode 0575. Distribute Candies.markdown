@@ -1,0 +1,19 @@
+---
+layout: post
+usemathjax: true
+---
+
+Alice needs to eat exactly `n//2` candies and the question is how many types she can eat. There are two restrictions we have here:
+
+1. `len(Counter(candies))` is how many candies type we have at all, and we can not eat more than this number types of candies.
+2. `len(candies)//2` is exaclty how many candies Alice must eat, so we can not eat more than this number (she can eat less and then eat any other candies to have exactly the half).
+
+Notice also, that these two conditions are **sufficient and enough**: strategy is the following: first eat one candy of each type until it is possible and then if we have eaten less than half, eat any candies to make it half.
+
+**Complexity**: time complexity is `O(n)`, where `n` is total number of candies, space complexity is also `O(n)`.
+
+```
+class Solution:
+    def distributeCandies(self, candies):
+        return min(len(candies)//2, len(Counter(candies)))
+```

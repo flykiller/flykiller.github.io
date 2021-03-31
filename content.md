@@ -119,7 +119,7 @@ permalink: /content/
     <th class="tg-0lax">0081</th>
     <th class="tg-0lax">0082</th>
     <th class="tg-0lax">0083</th>
-    <th class="tg-0lax">0084</th>
+    <td class="tg-0lax"> <a href="/Leetcode Problems/0084/">0084</a></td> 
     <th class="tg-0lax">0085</th>
     <th class="tg-0lax">0086</th>
     <th class="tg-0lax">0087</th>

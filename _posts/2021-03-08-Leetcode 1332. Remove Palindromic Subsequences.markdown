@@ -1,0 +1,20 @@
+---
+layout: post
+usemathjax: true
+---
+
+Please note, that we deal with **subsequence**, not subarrays, so we can delete any amount of symbols on each step, not only adjacent ones!
+
+There can be basically `3` different answers for this problem:
+
+1. We return `0`, if string is already empty, we do not need to do anything.
+2. If string is palindrome itself and it is not empty, we return `1`.
+3. Finally, if two previous cases are not true, we can first delete all letters `a` and then all letters `b`, so we return `2`.
+
+**Complexity**: time complexity is `O(n)`, we need to check if the string is palindrome. Space complexity is `O(n)`, because here I create `s[::-1]` string, which can be reduced to `O(1)` space.
+
+```
+class Solution:
+    def removePalindromeSub(self, s):
+        return 0 if s == "" else 1 if s==s[::-1] else 2
+```
