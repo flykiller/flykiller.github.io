@@ -13,11 +13,11 @@
 <meta property="og:description" content="What we can do here is to generate numbers between 1 and 7 and this makes this problems both easy and difficult. Easy, because you do not have a lot of choice what to do, difficult, because we need to use not very big number of generations. Can we use one number between 1 and 7 to generate number between 1 and 10? I do not think so, we have very small choice. Can we use 2? Yes, we can, here is the strategy: Generate a from 1 to 7 and b from 1 to 7, then we have 7x7 = 49 options. Let us create number c = (a-1)*7 + b-1, then we can show that c is number between 0 and 48: substitute all possible values for a and b and you will see. Now, let us divide these number into groups: [0,9]; [10;19]; [20;29]; [30;39]; [40;48]. If we get into one of the first four group we are happy: there is ten number in each group, so we just return c%10 + 1. If we are in the fifth group, we are not happy, there are only 9 numbers in this group and we need 10, use 9 is not fair. So in these case, we say, that our experiment was not working, and we just start it all over again! That is all." />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-01T13:22:12+02:00" />
+<meta property="article:published_time" content="2021-04-01T17:17:30+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0470. Implement Rand10() Using Rand7()" />
 <script type="application/ld+json">
-{"url":"/leetcode/0470.html","@type":"BlogPosting","headline":"Leetcode 0470. Implement Rand10() Using Rand7()","dateModified":"2021-04-01T13:22:12+02:00","datePublished":"2021-04-01T13:22:12+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0470.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"What we can do here is to generate numbers between 1 and 7 and this makes this problems both easy and difficult. Easy, because you do not have a lot of choice what to do, difficult, because we need to use not very big number of generations. Can we use one number between 1 and 7 to generate number between 1 and 10? I do not think so, we have very small choice. Can we use 2? Yes, we can, here is the strategy: Generate a from 1 to 7 and b from 1 to 7, then we have 7x7 = 49 options. Let us create number c = (a-1)*7 + b-1, then we can show that c is number between 0 and 48: substitute all possible values for a and b and you will see. Now, let us divide these number into groups: [0,9]; [10;19]; [20;29]; [30;39]; [40;48]. If we get into one of the first four group we are happy: there is ten number in each group, so we just return c%10 + 1. If we are in the fifth group, we are not happy, there are only 9 numbers in this group and we need 10, use 9 is not fair. So in these case, we say, that our experiment was not working, and we just start it all over again! That is all.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0470.html","@type":"BlogPosting","headline":"Leetcode 0470. Implement Rand10() Using Rand7()","dateModified":"2021-04-01T17:17:30+02:00","datePublished":"2021-04-01T17:17:30+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0470.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"What we can do here is to generate numbers between 1 and 7 and this makes this problems both easy and difficult. Easy, because you do not have a lot of choice what to do, difficult, because we need to use not very big number of generations. Can we use one number between 1 and 7 to generate number between 1 and 10? I do not think so, we have very small choice. Can we use 2? Yes, we can, here is the strategy: Generate a from 1 to 7 and b from 1 to 7, then we have 7x7 = 49 options. Let us create number c = (a-1)*7 + b-1, then we can show that c is number between 0 and 48: substitute all possible values for a and b and you will see. Now, let us divide these number into groups: [0,9]; [10;19]; [20;29]; [30;39]; [40;48]. If we get into one of the first four group we are happy: there is ten number in each group, so we just return c%10 + 1. If we are in the fifth group, we are not happy, there are only 9 numbers in this group and we need 10, use 9 is not fair. So in these case, we say, that our experiment was not working, and we just start it all over again! That is all.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -59,7 +59,7 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0470. Implement Rand10() Using Rand7()</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-01T13:22:12+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-01T17:17:30+02:00" itemprop="datePublished">
         Apr 1, 2021
       </time></p>
   </header>
@@ -119,3 +119,15 @@
 </body>
 
 </html>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+The first part is used to enable inline equation.

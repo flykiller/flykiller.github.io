@@ -4,20 +4,20 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>Leetcode 0832. Flipping an Image | Dmitry Babichev algorithms</title>
+<title>Leetcode 0001. Two Sum | Dmitry Babichev algorithms</title>
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="Leetcode 0832. Flipping an Image" />
+<meta property="og:title" content="Leetcode 0001. Two Sum" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Let us do exactly what is asked in this problem: for each row: flip the image horizontally, then invert it. Quick way to get 0 from 1 and 1 from 0 is to use 1^q (however tests are so small, so difference is not very big)." />
-<meta property="og:description" content="Let us do exactly what is asked in this problem: for each row: flip the image horizontally, then invert it. Quick way to get 0 from 1 and 1 from 0 is to use 1^q (however tests are so small, so difference is not very big)." />
+<meta name="description" content="Problem statement" />
+<meta property="og:description" content="Problem statement" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-04-01T17:17:30+02:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Leetcode 0832. Flipping an Image" />
+<meta property="twitter:title" content="Leetcode 0001. Two Sum" />
 <script type="application/ld+json">
-{"url":"/leetcode/0832.html","@type":"BlogPosting","headline":"Leetcode 0832. Flipping an Image","dateModified":"2021-04-01T17:17:30+02:00","datePublished":"2021-04-01T17:17:30+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0832.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Let us do exactly what is asked in this problem: for each row: flip the image horizontally, then invert it. Quick way to get 0 from 1 and 1 from 0 is to use 1^q (however tests are so small, so difference is not very big).","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0001.html","@type":"BlogPosting","headline":"Leetcode 0001. Two Sum","dateModified":"2021-04-01T17:17:30+02:00","datePublished":"2021-04-01T17:17:30+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0001.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -53,28 +53,53 @@
       <div class="wrapper">
         <span>[
   
+    
+    <a href="/tag/hash-table"><code class="highligher-rouge"><nobr>hash-table</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/sort"><code class="highligher-rouge"><nobr>sort</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/two pointers"><code class="highligher-rouge"><nobr>two pointers</nobr></code>&nbsp;</a>
+  
 ]</span>
 
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Leetcode 0832. Flipping an Image</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Leetcode 0001. Two Sum</h1>
     <p class="post-meta"><time class="dt-published" datetime="2021-04-01T17:17:30+02:00" itemprop="datePublished">
         Apr 1, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Let us do exactly what is asked in this problem: for each row: flip the image horizontally, then invert it. Quick way to get <code class="language-plaintext highlighter-rouge">0</code> from <code class="language-plaintext highlighter-rouge">1</code> and <code class="language-plaintext highlighter-rouge">1</code> from <code class="language-plaintext highlighter-rouge">0</code> is to use <code class="language-plaintext highlighter-rouge">1^q</code> (however tests are so small, so difference is not very big).</p>
+    <h4 id="problem-statement">Problem statement</h4>
 
-<p><strong>Complexity</strong>: time complexity is <code class="language-plaintext highlighter-rouge">O(mn)</code>, where <code class="language-plaintext highlighter-rouge">m</code>, <code class="language-plaintext highlighter-rouge">n</code> are sizes of image. Space complexity is also <code class="language-plaintext highlighter-rouge">O(mn)</code> if we count output and <code class="language-plaintext highlighter-rouge">O(1)</code> space if we do not count. Note, that if we allowed to modify original image, than we can have <code class="language-plaintext highlighter-rouge">O(1)</code> space.</p>
+<p><a href="https://leetcode.com/problems/two-sum"> <font color="blue">https://leetcode.com/problems/two-sum</font></a></p>
 
+<h4 id="solution">Solution</h4>
+
+<p>There are different approaches to this problem: bruteforce with <code class="language-plaintext highlighter-rouge">O(n^2)</code>, sorting of data + 2 pointers with <code class="language-plaintext highlighter-rouge">O(n log n)</code> complexity.</p>
+
+<p>Finally, we can use hash table to achieve <code class="language-plaintext highlighter-rouge">O(n)</code> complexity. The idea is for each number <code class="language-plaintext highlighter-rouge">k</code> try to find number <code class="language-plaintext highlighter-rouge">target - k</code>.</p>
+
+<h4 id="complexity">Complexity</h4>
+<p>Time complexity is <code class="language-plaintext highlighter-rouge">O(n)</code>, however space complexity is also <code class="language-plaintext highlighter-rouge">O(n)</code>. I think it is not possible to have <code class="language-plaintext highlighter-rouge">O(n)/O(1)</code> complexity solution.</p>
+
+<h4 id="code">Code</h4>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">flipAndInvertImage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[[</span><span class="mi">1</span><span class="o">^</span><span class="n">q</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">row</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">A</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">twoSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+            <span class="n">checkNum</span> <span class="o">=</span> <span class="n">target</span> <span class="o">-</span> <span class="n">num</span>
+            <span class="k">if</span> <span class="n">checkNum</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">d</span><span class="p">[</span><span class="n">checkNum</span><span class="p">]]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">d</span><span class="p">[</span><span class="n">num</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
 </code></pre></div></div>
 
-  </div><a class="u-url" href="/leetcode/0832.html" hidden></a>
+  </div><a class="u-url" href="/leetcode/0001.html" hidden></a>
 </article>
 
 
