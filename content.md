@@ -21,193 +21,193 @@ permalink: /content/
 <tbody>
   <tr>
     <th class="tg-0lax"><font color = lightgray> 0001</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0002/"> <font color = blue>0002</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0003/"> <font color = blue>0003</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0002/"> <font color = blue>0002</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0003/"> <font color = blue>0003</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0004</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0005/"> <font color = blue>0005</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0005/"> <font color = blue>0005</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0006</font></th>
     <th class="tg-0lax"><font color = lightgray> 0007</font></th>
     <th class="tg-0lax"><font color = lightgray> 0008</font></th>
     <th class="tg-0lax"><font color = lightgray> 0009</font></th>
     <th class="tg-0lax"><font color = lightgray> 0010</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0011/"> <font color = blue>0011</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0012/"> <font color = blue>0012</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0013/"> <font color = blue>0013</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0011/"> <font color = blue>0011</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0012/"> <font color = blue>0012</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0013/"> <font color = blue>0013</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0014</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0015/"> <font color = blue>0015</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0015/"> <font color = blue>0015</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0016</font></th>
     <th class="tg-0lax"><font color = lightgray> 0017</font></th>
     <th class="tg-0lax"><font color = lightgray> 0018</font></th>
     <th class="tg-0lax"><font color = lightgray> 0019</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0020/"> <font color = blue>0020</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0020/"> <font color = blue>0020</font> </a></td>
   </tr>
 </tbody>
 <tbody>
   <tr>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0021/"> <font color = blue>0021</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0021/"> <font color = blue>0021</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0022</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0023/"> <font color = blue>0023</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0024/"> <font color = blue>0024</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0023/"> <font color = blue>0023</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0024/"> <font color = blue>0024</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0025</font></th>
     <th class="tg-0lax"><font color = lightgray> 0026</font></th>
     <th class="tg-0lax"><font color = lightgray> 0027</font></th>
     <th class="tg-0lax"><font color = lightgray> 0028</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0029/"> <font color = blue>0029</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0029/"> <font color = blue>0029</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0030</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0031/"> <font color = blue>0031</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0031/"> <font color = blue>0031</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0032</font></th>
     <th class="tg-0lax"><font color = lightgray> 0033</font></th>
     <th class="tg-0lax"><font color = lightgray> 0034</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0035/"> <font color = blue>0035</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0035/"> <font color = blue>0035</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0036</font></th>
     <th class="tg-0lax"><font color = lightgray> 0037</font></th>
     <th class="tg-0lax"><font color = lightgray> 0038</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0039/"> <font color = blue>0039</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0039/"> <font color = blue>0039</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0040</font></th>
   </tr>
 </tbody>
 <tbody>
   <tr>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0041/"> <font color = blue>0041</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0041/"> <font color = blue>0041</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0042</font></th>
     <th class="tg-0lax"><font color = lightgray> 0043</font></th>
     <th class="tg-0lax"><font color = lightgray> 0044</font></th>
     <th class="tg-0lax"><font color = lightgray> 0045</font></th>
     <th class="tg-0lax"><font color = lightgray> 0046</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0047/"> <font color = blue>0047</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0047/"> <font color = blue>0047</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0048</font></th>
     <th class="tg-0lax"><font color = lightgray> 0049</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0050/"> <font color = blue>0050</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0050/"> <font color = blue>0050</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0051</font></th>
     <th class="tg-0lax"><font color = lightgray> 0052</font></th>
     <th class="tg-0lax"><font color = lightgray> 0053</font></th>
     <th class="tg-0lax"><font color = lightgray> 0054</font></th>
     <th class="tg-0lax"><font color = lightgray> 0055</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0056/"> <font color = blue>0056</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0057/"> <font color = blue>0057</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0058/"> <font color = blue>0058</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0059/"> <font color = blue>0059</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0060/"> <font color = blue>0060</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0056/"> <font color = blue>0056</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0057/"> <font color = blue>0057</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0058/"> <font color = blue>0058</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0059/"> <font color = blue>0059</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0060/"> <font color = blue>0060</font> </a></td>
   </tr>
 </tbody>
 <tbody>
   <tr>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0061/"> <font color = blue>0061</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0062/"> <font color = blue>0062</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0061/"> <font color = blue>0061</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0062/"> <font color = blue>0062</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0063</font></th>
     <th class="tg-0lax"><font color = lightgray> 0064</font></th>
     <th class="tg-0lax"><font color = lightgray> 0065</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0066/"> <font color = blue>0066</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0067/"> <font color = blue>0067</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0066/"> <font color = blue>0066</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0067/"> <font color = blue>0067</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0068</font></th>
     <th class="tg-0lax"><font color = lightgray> 0069</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0070/"> <font color = blue>0070</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0071/"> <font color = blue>0071</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0072/"> <font color = blue>0072</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0070/"> <font color = blue>0070</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0071/"> <font color = blue>0071</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0072/"> <font color = blue>0072</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0073</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0074/"> <font color = blue>0074</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0075/"> <font color = blue>0075</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0074/"> <font color = blue>0074</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0075/"> <font color = blue>0075</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0076</font></th>
     <th class="tg-0lax"><font color = lightgray> 0077</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0078/"> <font color = blue>0078</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0079/"> <font color = blue>0079</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0080/"> <font color = blue>0080</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0078/"> <font color = blue>0078</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0079/"> <font color = blue>0079</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0080/"> <font color = blue>0080</font> </a></td>
   </tr>
 </tbody>
 <tbody>
   <tr>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0081/"> <font color = blue>0081</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0082/"> <font color = blue>0082</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0081/"> <font color = blue>0081</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0082/"> <font color = blue>0082</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0083</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0084/"> <font color = blue>0084</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0084/"> <font color = blue>0084</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0085</font></th>
     <th class="tg-0lax"><font color = lightgray> 0086</font></th>
     <th class="tg-0lax"><font color = lightgray> 0087</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0088/"> <font color = blue>0088</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0088/"> <font color = blue>0088</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0089</font></th>
     <th class="tg-0lax"><font color = lightgray> 0090</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0091/"> <font color = blue>0091</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0091/"> <font color = blue>0091</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0092</font></th>
     <th class="tg-0lax"><font color = lightgray> 0093</font></th>
     <th class="tg-0lax"><font color = lightgray> 0094</font></th>
     <th class="tg-0lax"><font color = lightgray> 0095</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0096/"> <font color = blue>0096</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0096/"> <font color = blue>0096</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0097</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0098/"> <font color = blue>0098</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0099/"> <font color = blue>0099</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0100/"> <font color = blue>0100</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0098/"> <font color = blue>0098</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0099/"> <font color = blue>0099</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0100/"> <font color = blue>0100</font> </a></td>
   </tr>
 </tbody>
 <tbody>
   <tr>
     <th class="tg-0lax"><font color = lightgray> 0101</font></th>
     <th class="tg-0lax"><font color = lightgray> 0102</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0103/"> <font color = blue>0103</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0104/"> <font color = blue>0104</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0103/"> <font color = blue>0103</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0104/"> <font color = blue>0104</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0105</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0106/"> <font color = blue>0106</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0107/"> <font color = blue>0107</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0106/"> <font color = blue>0106</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0107/"> <font color = blue>0107</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0108</font></th>
     <th class="tg-0lax"><font color = lightgray> 0109</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0110/"> <font color = blue>0110</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0111/"> <font color = blue>0111</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0110/"> <font color = blue>0110</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0111/"> <font color = blue>0111</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0112</font></th>
     <th class="tg-0lax"><font color = lightgray> 0113</font></th>
     <th class="tg-0lax"><font color = lightgray> 0114</font></th>
     <th class="tg-0lax"><font color = lightgray> 0115</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0116/"> <font color = blue>0116</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0117/"> <font color = blue>0117</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0116/"> <font color = blue>0116</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0117/"> <font color = blue>0117</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0118</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0119/"> <font color = blue>0119</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0119/"> <font color = blue>0119</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0120</font></th>
   </tr>
 </tbody>
 <tbody>
   <tr>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0121/"> <font color = blue>0121</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0121/"> <font color = blue>0121</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0122</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0123/"> <font color = blue>0123</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0123/"> <font color = blue>0123</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0124</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0125/"> <font color = blue>0125</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0125/"> <font color = blue>0125</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0126</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0127/"> <font color = blue>0127</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0127/"> <font color = blue>0127</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0128</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0129/"> <font color = blue>0129</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0130/"> <font color = blue>0130</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0131/"> <font color = blue>0131</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0129/"> <font color = blue>0129</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0130/"> <font color = blue>0130</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0131/"> <font color = blue>0131</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0132</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0133/"> <font color = blue>0133</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0134/"> <font color = blue>0134</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0133/"> <font color = blue>0133</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0134/"> <font color = blue>0134</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0135</font></th>
     <th class="tg-0lax"><font color = lightgray> 0136</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0137/"> <font color = blue>0137</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0138/"> <font color = blue>0138</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0139/"> <font color = blue>0139</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0140/"> <font color = blue>0140</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0137/"> <font color = blue>0137</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0138/"> <font color = blue>0138</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0139/"> <font color = blue>0139</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0140/"> <font color = blue>0140</font> </a></td>
   </tr>
 </tbody>
 <tbody>
   <tr>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0141/"> <font color = blue>0141</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0142/"> <font color = blue>0142</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0143/"> <font color = blue>0143</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0141/"> <font color = blue>0141</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0142/"> <font color = blue>0142</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0143/"> <font color = blue>0143</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0144</font></th>
     <th class="tg-0lax"><font color = lightgray> 0145</font></th>
     <th class="tg-0lax"><font color = lightgray> 0146</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0147/"> <font color = blue>0147</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0148/"> <font color = blue>0148</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0147/"> <font color = blue>0147</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0148/"> <font color = blue>0148</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0149</font></th>
     <th class="tg-0lax"><font color = lightgray> 0150</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0151/"> <font color = blue>0151</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0152/"> <font color = blue>0152</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0151/"> <font color = blue>0151</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0152/"> <font color = blue>0152</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0153</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0154/"> <font color = blue>0154</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0154/"> <font color = blue>0154</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0155</font></th>
     <th class="tg-0lax"><font color = lightgray> 0156</font></th>
     <th class="tg-0lax"><font color = lightgray> 0157</font></th>
     <th class="tg-0lax"><font color = lightgray> 0158</font></th>
     <th class="tg-0lax"><font color = lightgray> 0159</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0160/"> <font color = blue>0160</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0160/"> <font color = blue>0160</font> </a></td>
   </tr>
 </tbody>
 <tbody>
@@ -216,21 +216,21 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0162</font></th>
     <th class="tg-0lax"><font color = lightgray> 0163</font></th>
     <th class="tg-0lax"><font color = lightgray> 0164</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0165/"> <font color = blue>0165</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0165/"> <font color = blue>0165</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0166</font></th>
     <th class="tg-0lax"><font color = lightgray> 0167</font></th>
     <th class="tg-0lax"><font color = lightgray> 0168</font></th>
     <th class="tg-0lax"><font color = lightgray> 0169</font></th>
     <th class="tg-0lax"><font color = lightgray> 0170</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0171/"> <font color = blue>0171</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0171/"> <font color = blue>0171</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0172</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0173/"> <font color = blue>0173</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0174/"> <font color = blue>0174</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0173/"> <font color = blue>0173</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0174/"> <font color = blue>0174</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0175</font></th>
     <th class="tg-0lax"><font color = lightgray> 0176</font></th>
     <th class="tg-0lax"><font color = lightgray> 0177</font></th>
     <th class="tg-0lax"><font color = lightgray> 0178</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0179/"> <font color = blue>0179</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0179/"> <font color = blue>0179</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0180</font></th>
   </tr>
 </tbody>
@@ -242,19 +242,19 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0184</font></th>
     <th class="tg-0lax"><font color = lightgray> 0185</font></th>
     <th class="tg-0lax"><font color = lightgray> 0186</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0187/"> <font color = blue>0187</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0188/"> <font color = blue>0188</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0189/"> <font color = blue>0189</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0190/"> <font color = blue>0190</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0191/"> <font color = blue>0191</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0187/"> <font color = blue>0187</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0188/"> <font color = blue>0188</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0189/"> <font color = blue>0189</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0190/"> <font color = blue>0190</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0191/"> <font color = blue>0191</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0192</font></th>
     <th class="tg-0lax"><font color = lightgray> 0193</font></th>
     <th class="tg-0lax"><font color = lightgray> 0194</font></th>
     <th class="tg-0lax"><font color = lightgray> 0195</font></th>
     <th class="tg-0lax"><font color = lightgray> 0196</font></th>
     <th class="tg-0lax"><font color = lightgray> 0197</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0198/"> <font color = blue>0198</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0199/"> <font color = blue>0199</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0198/"> <font color = blue>0198</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0199/"> <font color = blue>0199</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0200</font></th>
   </tr>
 </tbody>
@@ -262,54 +262,54 @@ permalink: /content/
   <tr>
     <th class="tg-0lax"><font color = lightgray> 0201</font></th>
     <th class="tg-0lax"><font color = lightgray> 0202</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0203/"> <font color = blue>0203</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0203/"> <font color = blue>0203</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0204</font></th>
     <th class="tg-0lax"><font color = lightgray> 0205</font></th>
     <th class="tg-0lax"><font color = lightgray> 0206</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0207/"> <font color = blue>0207</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0207/"> <font color = blue>0207</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0208</font></th>
     <th class="tg-0lax"><font color = lightgray> 0209</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0210/"> <font color = blue>0210</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0211/"> <font color = blue>0211</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0212/"> <font color = blue>0212</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0213/"> <font color = blue>0213</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0210/"> <font color = blue>0210</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0211/"> <font color = blue>0211</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0212/"> <font color = blue>0212</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0213/"> <font color = blue>0213</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0214</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0215/"> <font color = blue>0215</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0216/"> <font color = blue>0216</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0215/"> <font color = blue>0215</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0216/"> <font color = blue>0216</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0217</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0218/"> <font color = blue>0218</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0218/"> <font color = blue>0218</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0219</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0220/"> <font color = blue>0220</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0220/"> <font color = blue>0220</font> </a></td>
   </tr>
 </tbody>
 <tbody>
   <tr>
     <th class="tg-0lax"><font color = lightgray> 0221</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0222/"> <font color = blue>0222</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0222/"> <font color = blue>0222</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0223</font></th>
     <th class="tg-0lax"><font color = lightgray> 0224</font></th>
     <th class="tg-0lax"><font color = lightgray> 0225</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0226/"> <font color = blue>0226</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0227/"> <font color = blue>0227</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0228/"> <font color = blue>0228</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0229/"> <font color = blue>0229</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0226/"> <font color = blue>0226</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0227/"> <font color = blue>0227</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0228/"> <font color = blue>0228</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0229/"> <font color = blue>0229</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0230</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0231/"> <font color = blue>0231</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0231/"> <font color = blue>0231</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0232</font></th>
     <th class="tg-0lax"><font color = lightgray> 0233</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0234</font></th>
+    <td class="tg-0lax"> <a href="/leetcode/0234/"> <font color = blue>0234</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0235</font></th>
     <th class="tg-0lax"><font color = lightgray> 0236</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0237/"> <font color = blue>0237</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0237/"> <font color = blue>0237</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0238</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0239/"> <font color = blue>0239</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0240/"> <font color = blue>0240</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0239/"> <font color = blue>0239</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0240/"> <font color = blue>0240</font> </a></td>
   </tr>
 </tbody>
 <tbody>
   <tr>
     <th class="tg-0lax"><font color = lightgray> 0241</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0242/"> <font color = blue>0242</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0242/"> <font color = blue>0242</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0243</font></th>
     <th class="tg-0lax"><font color = lightgray> 0244</font></th>
     <th class="tg-0lax"><font color = lightgray> 0245</font></th>
@@ -325,9 +325,9 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0255</font></th>
     <th class="tg-0lax"><font color = lightgray> 0256</font></th>
     <th class="tg-0lax"><font color = lightgray> 0257</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0258/"> <font color = blue>0258</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0258/"> <font color = blue>0258</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0259</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0260/"> <font color = blue>0260</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0260/"> <font color = blue>0260</font> </a></td>
   </tr>
 </tbody>
 <tbody>
@@ -335,22 +335,22 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0261</font></th>
     <th class="tg-0lax"><font color = lightgray> 0262</font></th>
     <th class="tg-0lax"><font color = lightgray> 0263</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0264/"> <font color = blue>0264</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0264/"> <font color = blue>0264</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0265</font></th>
     <th class="tg-0lax"><font color = lightgray> 0266</font></th>
     <th class="tg-0lax"><font color = lightgray> 0267</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0268/"> <font color = blue>0268</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0268/"> <font color = blue>0268</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0269</font></th>
     <th class="tg-0lax"><font color = lightgray> 0270</font></th>
     <th class="tg-0lax"><font color = lightgray> 0271</font></th>
     <th class="tg-0lax"><font color = lightgray> 0272</font></th>
     <th class="tg-0lax"><font color = lightgray> 0273</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0274/"> <font color = blue>0274</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0275/"> <font color = blue>0275</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0274/"> <font color = blue>0274</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0275/"> <font color = blue>0275</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0276</font></th>
     <th class="tg-0lax"><font color = lightgray> 0277</font></th>
     <th class="tg-0lax"><font color = lightgray> 0278</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0279/"> <font color = blue>0279</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0279/"> <font color = blue>0279</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0280</font></th>
   </tr>
 </tbody>
@@ -359,13 +359,13 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0281</font></th>
     <th class="tg-0lax"><font color = lightgray> 0282</font></th>
     <th class="tg-0lax"><font color = lightgray> 0283</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0284/"> <font color = blue>0284</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0284/"> <font color = blue>0284</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0285</font></th>
     <th class="tg-0lax"><font color = lightgray> 0286</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0287/"> <font color = blue>0287</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0287/"> <font color = blue>0287</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0288</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0289/"> <font color = blue>0289</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0290/"> <font color = blue>0290</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0289/"> <font color = blue>0289</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0290/"> <font color = blue>0290</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0291</font></th>
     <th class="tg-0lax"><font color = lightgray> 0292</font></th>
     <th class="tg-0lax"><font color = lightgray> 0293</font></th>
@@ -374,8 +374,8 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0296</font></th>
     <th class="tg-0lax"><font color = lightgray> 0297</font></th>
     <th class="tg-0lax"><font color = lightgray> 0298</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0299/"> <font color = blue>0299</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0300/"> <font color = blue>0300</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0299/"> <font color = blue>0299</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0300/"> <font color = blue>0300</font> </a></td>
   </tr>
 </tbody>
 <tbody>
@@ -388,14 +388,14 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0306</font></th>
     <th class="tg-0lax"><font color = lightgray> 0307</font></th>
     <th class="tg-0lax"><font color = lightgray> 0308</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0309/"> <font color = blue>0309</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0310/"> <font color = blue>0310</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0309/"> <font color = blue>0309</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0310/"> <font color = blue>0310</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0311</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0312/"> <font color = blue>0312</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0312/"> <font color = blue>0312</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0313</font></th>
     <th class="tg-0lax"><font color = lightgray> 0314</font></th>
     <th class="tg-0lax"><font color = lightgray> 0315</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0316/"> <font color = blue>0316</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0316/"> <font color = blue>0316</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0317</font></th>
     <th class="tg-0lax"><font color = lightgray> 0318</font></th>
     <th class="tg-0lax"><font color = lightgray> 0319</font></th>
@@ -405,7 +405,7 @@ permalink: /content/
 <tbody>
   <tr>
     <th class="tg-0lax"><font color = lightgray> 0321</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0322/"> <font color = blue>0322</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0322/"> <font color = blue>0322</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0323</font></th>
     <th class="tg-0lax"><font color = lightgray> 0324</font></th>
     <th class="tg-0lax"><font color = lightgray> 0325</font></th>
@@ -415,13 +415,13 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0329</font></th>
     <th class="tg-0lax"><font color = lightgray> 0330</font></th>
     <th class="tg-0lax"><font color = lightgray> 0331</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0332/"> <font color = blue>0332</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0332/"> <font color = blue>0332</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0333</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0334/"> <font color = blue>0334</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0334/"> <font color = blue>0334</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0335</font></th>
     <th class="tg-0lax"><font color = lightgray> 0336</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0337/"> <font color = blue>0337</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0338/"> <font color = blue>0338</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0337/"> <font color = blue>0337</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0338/"> <font color = blue>0338</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0339</font></th>
     <th class="tg-0lax"><font color = lightgray> 0340</font></th>
   </tr>
@@ -429,19 +429,19 @@ permalink: /content/
 <tbody>
   <tr>
     <th class="tg-0lax"><font color = lightgray> 0341</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0342/"> <font color = blue>0342</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0342/"> <font color = blue>0342</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0343</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0344/"> <font color = blue>0344</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0344/"> <font color = blue>0344</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0345</font></th>
     <th class="tg-0lax"><font color = lightgray> 0346</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0347/"> <font color = blue>0347</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0347/"> <font color = blue>0347</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0348</font></th>
     <th class="tg-0lax"><font color = lightgray> 0349</font></th>
     <th class="tg-0lax"><font color = lightgray> 0350</font></th>
     <th class="tg-0lax"><font color = lightgray> 0351</font></th>
     <th class="tg-0lax"><font color = lightgray> 0352</font></th>
     <th class="tg-0lax"><font color = lightgray> 0353</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0354/"> <font color = blue>0354</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0354/"> <font color = blue>0354</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0355</font></th>
     <th class="tg-0lax"><font color = lightgray> 0356</font></th>
     <th class="tg-0lax"><font color = lightgray> 0357</font></th>
@@ -459,7 +459,7 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0365</font></th>
     <th class="tg-0lax"><font color = lightgray> 0366</font></th>
     <th class="tg-0lax"><font color = lightgray> 0367</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0368/"> <font color = blue>0368</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0368/"> <font color = blue>0368</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0369</font></th>
     <th class="tg-0lax"><font color = lightgray> 0370</font></th>
     <th class="tg-0lax"><font color = lightgray> 0371</font></th>
@@ -467,17 +467,17 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0373</font></th>
     <th class="tg-0lax"><font color = lightgray> 0374</font></th>
     <th class="tg-0lax"><font color = lightgray> 0375</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0376/"> <font color = blue>0376</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0376/"> <font color = blue>0376</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0377</font></th>
     <th class="tg-0lax"><font color = lightgray> 0378</font></th>
     <th class="tg-0lax"><font color = lightgray> 0379</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0380/"> <font color = blue>0380</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0380/"> <font color = blue>0380</font> </a></td>
   </tr>
 </tbody>
 <tbody>
   <tr>
     <th class="tg-0lax"><font color = lightgray> 0381</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0382/"> <font color = blue>0382</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0382/"> <font color = blue>0382</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0383</font></th>
     <th class="tg-0lax"><font color = lightgray> 0384</font></th>
     <th class="tg-0lax"><font color = lightgray> 0385</font></th>
@@ -487,14 +487,14 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0389</font></th>
     <th class="tg-0lax"><font color = lightgray> 0390</font></th>
     <th class="tg-0lax"><font color = lightgray> 0391</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0392/"> <font color = blue>0392</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0392/"> <font color = blue>0392</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0393</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0394/"> <font color = blue>0394</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0395/"> <font color = blue>0395</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0394/"> <font color = blue>0394</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0395/"> <font color = blue>0395</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0396</font></th>
     <th class="tg-0lax"><font color = lightgray> 0397</font></th>
     <th class="tg-0lax"><font color = lightgray> 0398</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0399/"> <font color = blue>0399</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0399/"> <font color = blue>0399</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0400</font></th>
   </tr>
 </tbody>
@@ -503,20 +503,20 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0401</font></th>
     <th class="tg-0lax"><font color = lightgray> 0402</font></th>
     <th class="tg-0lax"><font color = lightgray> 0403</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0404/"> <font color = blue>0404</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0404/"> <font color = blue>0404</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0405</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0406/"> <font color = blue>0406</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0406/"> <font color = blue>0406</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0407</font></th>
     <th class="tg-0lax"><font color = lightgray> 0408</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0409/"> <font color = blue>0409</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0409/"> <font color = blue>0409</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0410</font></th>
     <th class="tg-0lax"><font color = lightgray> 0411</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0412/"> <font color = blue>0412</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0413/"> <font color = blue>0413</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0412/"> <font color = blue>0412</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0413/"> <font color = blue>0413</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0414</font></th>
     <th class="tg-0lax"><font color = lightgray> 0415</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0416/"> <font color = blue>0416</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0417/"> <font color = blue>0417</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0416/"> <font color = blue>0416</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0417/"> <font color = blue>0417</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0418</font></th>
     <th class="tg-0lax"><font color = lightgray> 0419</font></th>
     <th class="tg-0lax"><font color = lightgray> 0420</font></th>
@@ -524,23 +524,23 @@ permalink: /content/
 </tbody>
 <tbody>
   <tr>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0421/"> <font color = blue>0421</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0421/"> <font color = blue>0421</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0422</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0423/"> <font color = blue>0423</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0423/"> <font color = blue>0423</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0424</font></th>
     <th class="tg-0lax"><font color = lightgray> 0425</font></th>
     <th class="tg-0lax"><font color = lightgray> 0426</font></th>
     <th class="tg-0lax"><font color = lightgray> 0427</font></th>
     <th class="tg-0lax"><font color = lightgray> 0428</font></th>
     <th class="tg-0lax"><font color = lightgray> 0429</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0430/"> <font color = blue>0430</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0430/"> <font color = blue>0430</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0431</font></th>
     <th class="tg-0lax"><font color = lightgray> 0432</font></th>
     <th class="tg-0lax"><font color = lightgray> 0433</font></th>
     <th class="tg-0lax"><font color = lightgray> 0434</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0435/"> <font color = blue>0435</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0436/"> <font color = blue>0436</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0437/"> <font color = blue>0437</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0435/"> <font color = blue>0435</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0436/"> <font color = blue>0436</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0437/"> <font color = blue>0437</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0438</font></th>
     <th class="tg-0lax"><font color = lightgray> 0439</font></th>
     <th class="tg-0lax"><font color = lightgray> 0440</font></th>
@@ -548,40 +548,40 @@ permalink: /content/
 </tbody>
 <tbody>
   <tr>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0441/"> <font color = blue>0441</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0442/"> <font color = blue>0442</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0441/"> <font color = blue>0441</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0442/"> <font color = blue>0442</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0443</font></th>
     <th class="tg-0lax"><font color = lightgray> 0444</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0445/"> <font color = blue>0445</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0445/"> <font color = blue>0445</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0446</font></th>
     <th class="tg-0lax"><font color = lightgray> 0447</font></th>
     <th class="tg-0lax"><font color = lightgray> 0448</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0449/"> <font color = blue>0449</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0450/"> <font color = blue>0450</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0449/"> <font color = blue>0449</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0450/"> <font color = blue>0450</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0451</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0452/"> <font color = blue>0452</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0452/"> <font color = blue>0452</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0453</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0454/"> <font color = blue>0454</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0454/"> <font color = blue>0454</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0455</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0456/"> <font color = blue>0456</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0456/"> <font color = blue>0456</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0457</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0458/"> <font color = blue>0458</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0459/"> <font color = blue>0459</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0458/"> <font color = blue>0458</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0459/"> <font color = blue>0459</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0460</font></th>
   </tr>
 </tbody>
 <tbody>
   <tr>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0461/"> <font color = blue>0461</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0461/"> <font color = blue>0461</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0462</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0463/"> <font color = blue>0463</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0463/"> <font color = blue>0463</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0464</font></th>
     <th class="tg-0lax"><font color = lightgray> 0465</font></th>
     <th class="tg-0lax"><font color = lightgray> 0466</font></th>
     <th class="tg-0lax"><font color = lightgray> 0467</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0468/"> <font color = blue>0468</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0468/"> <font color = blue>0468</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0469</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0470/"> <font color = blue>0470</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0470/"> <font color = blue>0470</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0471</font></th>
     <th class="tg-0lax"><font color = lightgray> 0472</font></th>
     <th class="tg-0lax"><font color = lightgray> 0473</font></th>
@@ -589,7 +589,7 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0475</font></th>
     <th class="tg-0lax"><font color = lightgray> 0476</font></th>
     <th class="tg-0lax"><font color = lightgray> 0477</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0478/"> <font color = blue>0478</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0478/"> <font color = blue>0478</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0479</font></th>
     <th class="tg-0lax"><font color = lightgray> 0480</font></th>
   </tr>
@@ -610,10 +610,10 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0492</font></th>
     <th class="tg-0lax"><font color = lightgray> 0493</font></th>
     <th class="tg-0lax"><font color = lightgray> 0494</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0495/"> <font color = blue>0495</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0495/"> <font color = blue>0495</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0496</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0497/"> <font color = blue>0497</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0498/"> <font color = blue>0498</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0497/"> <font color = blue>0497</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0498/"> <font color = blue>0498</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0499</font></th>
     <th class="tg-0lax"><font color = lightgray> 0500</font></th>
   </tr>
@@ -637,9 +637,9 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0515</font></th>
     <th class="tg-0lax"><font color = lightgray> 0516</font></th>
     <th class="tg-0lax"><font color = lightgray> 0517</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0518/"> <font color = blue>0518</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0518/"> <font color = blue>0518</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0519</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0520/"> <font color = blue>0520</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0520/"> <font color = blue>0520</font> </a></td>
   </tr>
 </tbody>
 <tbody>
@@ -647,21 +647,21 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0521</font></th>
     <th class="tg-0lax"><font color = lightgray> 0522</font></th>
     <th class="tg-0lax"><font color = lightgray> 0523</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0524/"> <font color = blue>0524</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0525/"> <font color = blue>0525</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0526/"> <font color = blue>0526</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0524/"> <font color = blue>0524</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0525/"> <font color = blue>0525</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0526/"> <font color = blue>0526</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0527</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0528/"> <font color = blue>0528</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0528/"> <font color = blue>0528</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0529</font></th>
     <th class="tg-0lax"><font color = lightgray> 0530</font></th>
     <th class="tg-0lax"><font color = lightgray> 0531</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0532/"> <font color = blue>0532</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0532/"> <font color = blue>0532</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0533</font></th>
     <th class="tg-0lax"><font color = lightgray> 0534</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0535/"> <font color = blue>0535</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0535/"> <font color = blue>0535</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0536</font></th>
     <th class="tg-0lax"><font color = lightgray> 0537</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0538/"> <font color = blue>0538</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0538/"> <font color = blue>0538</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0539</font></th>
     <th class="tg-0lax"><font color = lightgray> 0540</font></th>
   </tr>
@@ -683,7 +683,7 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0553</font></th>
     <th class="tg-0lax"><font color = lightgray> 0554</font></th>
     <th class="tg-0lax"><font color = lightgray> 0555</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0556/"> <font color = blue>0556</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0556/"> <font color = blue>0556</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0557</font></th>
     <th class="tg-0lax"><font color = lightgray> 0558</font></th>
     <th class="tg-0lax"><font color = lightgray> 0559</font></th>
@@ -694,7 +694,7 @@ permalink: /content/
   <tr>
     <th class="tg-0lax"><font color = lightgray> 0561</font></th>
     <th class="tg-0lax"><font color = lightgray> 0562</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0563/"> <font color = blue>0563</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0563/"> <font color = blue>0563</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0564</font></th>
     <th class="tg-0lax"><font color = lightgray> 0565</font></th>
     <th class="tg-0lax"><font color = lightgray> 0566</font></th>
@@ -706,7 +706,7 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0572</font></th>
     <th class="tg-0lax"><font color = lightgray> 0573</font></th>
     <th class="tg-0lax"><font color = lightgray> 0574</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0575/"> <font color = blue>0575</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0575/"> <font color = blue>0575</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0576</font></th>
     <th class="tg-0lax"><font color = lightgray> 0577</font></th>
     <th class="tg-0lax"><font color = lightgray> 0578</font></th>
@@ -716,7 +716,7 @@ permalink: /content/
 </tbody>
 <tbody>
   <tr>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0581/"> <font color = blue>0581</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0581/"> <font color = blue>0581</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0582</font></th>
     <th class="tg-0lax"><font color = lightgray> 0583</font></th>
     <th class="tg-0lax"><font color = lightgray> 0584</font></th>
@@ -728,8 +728,8 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0590</font></th>
     <th class="tg-0lax"><font color = lightgray> 0591</font></th>
     <th class="tg-0lax"><font color = lightgray> 0592</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0593/"> <font color = blue>0593</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0594/"> <font color = blue>0594</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0593/"> <font color = blue>0593</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0594/"> <font color = blue>0594</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0595</font></th>
     <th class="tg-0lax"><font color = lightgray> 0596</font></th>
     <th class="tg-0lax"><font color = lightgray> 0597</font></th>
@@ -744,7 +744,7 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0602</font></th>
     <th class="tg-0lax"><font color = lightgray> 0603</font></th>
     <th class="tg-0lax"><font color = lightgray> 0604</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0605/"> <font color = blue>0605</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0605/"> <font color = blue>0605</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0606</font></th>
     <th class="tg-0lax"><font color = lightgray> 0607</font></th>
     <th class="tg-0lax"><font color = lightgray> 0608</font></th>
@@ -764,9 +764,9 @@ permalink: /content/
 </tbody>
 <tbody>
   <tr>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0621/"> <font color = blue>0621</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0621/"> <font color = blue>0621</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0622</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0623/"> <font color = blue>0623</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0623/"> <font color = blue>0623</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0624</font></th>
     <th class="tg-0lax"><font color = lightgray> 0625</font></th>
     <th class="tg-0lax"><font color = lightgray> 0626</font></th>
@@ -780,7 +780,7 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0634</font></th>
     <th class="tg-0lax"><font color = lightgray> 0635</font></th>
     <th class="tg-0lax"><font color = lightgray> 0636</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0637/"> <font color = blue>0637</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0637/"> <font color = blue>0637</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0638</font></th>
     <th class="tg-0lax"><font color = lightgray> 0639</font></th>
     <th class="tg-0lax"><font color = lightgray> 0640</font></th>
@@ -792,9 +792,9 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0642</font></th>
     <th class="tg-0lax"><font color = lightgray> 0643</font></th>
     <th class="tg-0lax"><font color = lightgray> 0644</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0645/"> <font color = blue>0645</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0645/"> <font color = blue>0645</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0646</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0647/"> <font color = blue>0647</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0647/"> <font color = blue>0647</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0648</font></th>
     <th class="tg-0lax"><font color = lightgray> 0649</font></th>
     <th class="tg-0lax"><font color = lightgray> 0650</font></th>
@@ -813,18 +813,18 @@ permalink: /content/
 <tbody>
   <tr>
     <th class="tg-0lax"><font color = lightgray> 0661</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0662/"> <font color = blue>0662</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0662/"> <font color = blue>0662</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0663</font></th>
     <th class="tg-0lax"><font color = lightgray> 0664</font></th>
     <th class="tg-0lax"><font color = lightgray> 0665</font></th>
     <th class="tg-0lax"><font color = lightgray> 0666</font></th>
     <th class="tg-0lax"><font color = lightgray> 0667</font></th>
     <th class="tg-0lax"><font color = lightgray> 0668</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0669/"> <font color = blue>0669</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0669/"> <font color = blue>0669</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0670</font></th>
     <th class="tg-0lax"><font color = lightgray> 0671</font></th>
     <th class="tg-0lax"><font color = lightgray> 0672</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0673/"> <font color = blue>0673</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0673/"> <font color = blue>0673</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0674</font></th>
     <th class="tg-0lax"><font color = lightgray> 0675</font></th>
     <th class="tg-0lax"><font color = lightgray> 0676</font></th>
@@ -855,25 +855,25 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0697</font></th>
     <th class="tg-0lax"><font color = lightgray> 0698</font></th>
     <th class="tg-0lax"><font color = lightgray> 0699</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0700/"> <font color = blue>0700</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0700/"> <font color = blue>0700</font> </a></td>
   </tr>
 </tbody>
 <tbody>
   <tr>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0701/"> <font color = blue>0701</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0701/"> <font color = blue>0701</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0702</font></th>
     <th class="tg-0lax"><font color = lightgray> 0703</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0704/"> <font color = blue>0704</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0705/"> <font color = blue>0705</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0706/"> <font color = blue>0706</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0704/"> <font color = blue>0704</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0705/"> <font color = blue>0705</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0706/"> <font color = blue>0706</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0707</font></th>
     <th class="tg-0lax"><font color = lightgray> 0708</font></th>
     <th class="tg-0lax"><font color = lightgray> 0709</font></th>
     <th class="tg-0lax"><font color = lightgray> 0710</font></th>
     <th class="tg-0lax"><font color = lightgray> 0711</font></th>
     <th class="tg-0lax"><font color = lightgray> 0712</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0713/"> <font color = blue>0713</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0714/"> <font color = blue>0714</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0713/"> <font color = blue>0713</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0714/"> <font color = blue>0714</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0715</font></th>
     <th class="tg-0lax"><font color = lightgray> 0716</font></th>
     <th class="tg-0lax"><font color = lightgray> 0717</font></th>
@@ -898,7 +898,7 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0732</font></th>
     <th class="tg-0lax"><font color = lightgray> 0733</font></th>
     <th class="tg-0lax"><font color = lightgray> 0734</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0735/"> <font color = blue>0735</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0735/"> <font color = blue>0735</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0736</font></th>
     <th class="tg-0lax"><font color = lightgray> 0737</font></th>
     <th class="tg-0lax"><font color = lightgray> 0738</font></th>
@@ -921,7 +921,7 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0751</font></th>
     <th class="tg-0lax"><font color = lightgray> 0752</font></th>
     <th class="tg-0lax"><font color = lightgray> 0753</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0754/"> <font color = blue>0754</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0754/"> <font color = blue>0754</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0755</font></th>
     <th class="tg-0lax"><font color = lightgray> 0756</font></th>
     <th class="tg-0lax"><font color = lightgray> 0757</font></th>
@@ -934,7 +934,7 @@ permalink: /content/
   <tr>
     <th class="tg-0lax"><font color = lightgray> 0761</font></th>
     <th class="tg-0lax"><font color = lightgray> 0762</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0763/"> <font color = blue>0763</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0763/"> <font color = blue>0763</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0764</font></th>
     <th class="tg-0lax"><font color = lightgray> 0765</font></th>
     <th class="tg-0lax"><font color = lightgray> 0766</font></th>
@@ -959,10 +959,10 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0781</font></th>
     <th class="tg-0lax"><font color = lightgray> 0782</font></th>
     <th class="tg-0lax"><font color = lightgray> 0783</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0784/"> <font color = blue>0784</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0785/"> <font color = blue>0785</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0784/"> <font color = blue>0784</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0785/"> <font color = blue>0785</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0786</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0787/"> <font color = blue>0787</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0787/"> <font color = blue>0787</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0788</font></th>
     <th class="tg-0lax"><font color = lightgray> 0789</font></th>
     <th class="tg-0lax"><font color = lightgray> 0790</font></th>
@@ -972,9 +972,9 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0794</font></th>
     <th class="tg-0lax"><font color = lightgray> 0795</font></th>
     <th class="tg-0lax"><font color = lightgray> 0796</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0797/"> <font color = blue>0797</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0797/"> <font color = blue>0797</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0798</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0799/"> <font color = blue>0799</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0799/"> <font color = blue>0799</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0800</font></th>
   </tr>
 </tbody>
@@ -983,7 +983,7 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0801</font></th>
     <th class="tg-0lax"><font color = lightgray> 0802</font></th>
     <th class="tg-0lax"><font color = lightgray> 0803</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0804/"> <font color = blue>0804</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0804/"> <font color = blue>0804</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0805</font></th>
     <th class="tg-0lax"><font color = lightgray> 0806</font></th>
     <th class="tg-0lax"><font color = lightgray> 0807</font></th>
@@ -999,15 +999,15 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0817</font></th>
     <th class="tg-0lax"><font color = lightgray> 0818</font></th>
     <th class="tg-0lax"><font color = lightgray> 0819</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0820/"> <font color = blue>0820</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0820/"> <font color = blue>0820</font> </a></td>
   </tr>
 </tbody>
 <tbody>
   <tr>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0821/"> <font color = blue>0821</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0821/"> <font color = blue>0821</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0822</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0823/"> <font color = blue>0823</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0824/"> <font color = blue>0824</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0823/"> <font color = blue>0823</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0824/"> <font color = blue>0824</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0825</font></th>
     <th class="tg-0lax"><font color = lightgray> 0826</font></th>
     <th class="tg-0lax"><font color = lightgray> 0827</font></th>
@@ -1015,10 +1015,10 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0829</font></th>
     <th class="tg-0lax"><font color = lightgray> 0830</font></th>
     <th class="tg-0lax"><font color = lightgray> 0831</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0832/"> <font color = blue>0832</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0832/"> <font color = blue>0832</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0833</font></th>
     <th class="tg-0lax"><font color = lightgray> 0834</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0835/"> <font color = blue>0835</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0835/"> <font color = blue>0835</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0836</font></th>
     <th class="tg-0lax"><font color = lightgray> 0837</font></th>
     <th class="tg-0lax"><font color = lightgray> 0838</font></th>
@@ -1028,25 +1028,25 @@ permalink: /content/
 </tbody>
 <tbody>
   <tr>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0841/"> <font color = blue>0841</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0841/"> <font color = blue>0841</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0842</font></th>
     <th class="tg-0lax"><font color = lightgray> 0843</font></th>
     <th class="tg-0lax"><font color = lightgray> 0844</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0845/"> <font color = blue>0845</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0845/"> <font color = blue>0845</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0846</font></th>
     <th class="tg-0lax"><font color = lightgray> 0847</font></th>
     <th class="tg-0lax"><font color = lightgray> 0848</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0849/"> <font color = blue>0849</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0849/"> <font color = blue>0849</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0850</font></th>
     <th class="tg-0lax"><font color = lightgray> 0851</font></th>
     <th class="tg-0lax"><font color = lightgray> 0852</font></th>
     <th class="tg-0lax"><font color = lightgray> 0853</font></th>
     <th class="tg-0lax"><font color = lightgray> 0854</font></th>
     <th class="tg-0lax"><font color = lightgray> 0855</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0856/"> <font color = blue>0856</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0856/"> <font color = blue>0856</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0857</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0858/"> <font color = blue>0858</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0859/"> <font color = blue>0859</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0858/"> <font color = blue>0858</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0859/"> <font color = blue>0859</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0860</font></th>
   </tr>
 </tbody>
@@ -1056,12 +1056,12 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0862</font></th>
     <th class="tg-0lax"><font color = lightgray> 0863</font></th>
     <th class="tg-0lax"><font color = lightgray> 0864</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0865/"> <font color = blue>0865</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0865/"> <font color = blue>0865</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0866</font></th>
     <th class="tg-0lax"><font color = lightgray> 0867</font></th>
     <th class="tg-0lax"><font color = lightgray> 0868</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0869/"> <font color = blue>0869</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0870/"> <font color = blue>0870</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0869/"> <font color = blue>0869</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0870/"> <font color = blue>0870</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0871</font></th>
     <th class="tg-0lax"><font color = lightgray> 0872</font></th>
     <th class="tg-0lax"><font color = lightgray> 0873</font></th>
@@ -1071,17 +1071,17 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0877</font></th>
     <th class="tg-0lax"><font color = lightgray> 0878</font></th>
     <th class="tg-0lax"><font color = lightgray> 0879</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0880/"> <font color = blue>0880</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0880/"> <font color = blue>0880</font> </a></td>
   </tr>
 </tbody>
 <tbody>
   <tr>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0881/"> <font color = blue>0881</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0881/"> <font color = blue>0881</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0882</font></th>
     <th class="tg-0lax"><font color = lightgray> 0883</font></th>
     <th class="tg-0lax"><font color = lightgray> 0884</font></th>
     <th class="tg-0lax"><font color = lightgray> 0885</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0886/"> <font color = blue>0886</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0886/"> <font color = blue>0886</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0887</font></th>
     <th class="tg-0lax"><font color = lightgray> 0888</font></th>
     <th class="tg-0lax"><font color = lightgray> 0889</font></th>
@@ -1090,9 +1090,9 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0892</font></th>
     <th class="tg-0lax"><font color = lightgray> 0893</font></th>
     <th class="tg-0lax"><font color = lightgray> 0894</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0895/"> <font color = blue>0895</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0895/"> <font color = blue>0895</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0896</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0897/"> <font color = blue>0897</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0897/"> <font color = blue>0897</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0898</font></th>
     <th class="tg-0lax"><font color = lightgray> 0899</font></th>
     <th class="tg-0lax"><font color = lightgray> 0900</font></th>
@@ -1101,21 +1101,21 @@ permalink: /content/
 <tbody>
   <tr>
     <th class="tg-0lax"><font color = lightgray> 0901</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0902/"> <font color = blue>0902</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0902/"> <font color = blue>0902</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0903</font></th>
     <th class="tg-0lax"><font color = lightgray> 0904</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0905/"> <font color = blue>0905</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0905/"> <font color = blue>0905</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0906</font></th>
     <th class="tg-0lax"><font color = lightgray> 0907</font></th>
     <th class="tg-0lax"><font color = lightgray> 0908</font></th>
     <th class="tg-0lax"><font color = lightgray> 0909</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0910/"> <font color = blue>0910</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0910/"> <font color = blue>0910</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0911</font></th>
     <th class="tg-0lax"><font color = lightgray> 0912</font></th>
     <th class="tg-0lax"><font color = lightgray> 0913</font></th>
     <th class="tg-0lax"><font color = lightgray> 0914</font></th>
     <th class="tg-0lax"><font color = lightgray> 0915</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0916/"> <font color = blue>0916</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0916/"> <font color = blue>0916</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0917</font></th>
     <th class="tg-0lax"><font color = lightgray> 0918</font></th>
     <th class="tg-0lax"><font color = lightgray> 0919</font></th>
@@ -1126,7 +1126,7 @@ permalink: /content/
   <tr>
     <th class="tg-0lax"><font color = lightgray> 0921</font></th>
     <th class="tg-0lax"><font color = lightgray> 0922</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0923/"> <font color = blue>0923</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0923/"> <font color = blue>0923</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0924</font></th>
     <th class="tg-0lax"><font color = lightgray> 0925</font></th>
     <th class="tg-0lax"><font color = lightgray> 0926</font></th>
@@ -1136,35 +1136,35 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0930</font></th>
     <th class="tg-0lax"><font color = lightgray> 0931</font></th>
     <th class="tg-0lax"><font color = lightgray> 0932</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0933/"> <font color = blue>0933</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0933/"> <font color = blue>0933</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0934</font></th>
     <th class="tg-0lax"><font color = lightgray> 0935</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0936/"> <font color = blue>0936</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0936/"> <font color = blue>0936</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0937</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0938/"> <font color = blue>0938</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0938/"> <font color = blue>0938</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0939</font></th>
     <th class="tg-0lax"><font color = lightgray> 0940</font></th>
   </tr>
 </tbody>
 <tbody>
   <tr>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0941/"> <font color = blue>0941</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0941/"> <font color = blue>0941</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0942</font></th>
     <th class="tg-0lax"><font color = lightgray> 0943</font></th>
     <th class="tg-0lax"><font color = lightgray> 0944</font></th>
     <th class="tg-0lax"><font color = lightgray> 0945</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0946/"> <font color = blue>0946</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0946/"> <font color = blue>0946</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0947</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0948/"> <font color = blue>0948</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0949/"> <font color = blue>0949</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0948/"> <font color = blue>0948</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0949/"> <font color = blue>0949</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0950</font></th>
     <th class="tg-0lax"><font color = lightgray> 0951</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0952/"> <font color = blue>0952</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0952/"> <font color = blue>0952</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0953</font></th>
     <th class="tg-0lax"><font color = lightgray> 0954</font></th>
     <th class="tg-0lax"><font color = lightgray> 0955</font></th>
     <th class="tg-0lax"><font color = lightgray> 0956</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0957/"> <font color = blue>0957</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0957/"> <font color = blue>0957</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0958</font></th>
     <th class="tg-0lax"><font color = lightgray> 0959</font></th>
     <th class="tg-0lax"><font color = lightgray> 0960</font></th>
@@ -1177,39 +1177,39 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 0963</font></th>
     <th class="tg-0lax"><font color = lightgray> 0964</font></th>
     <th class="tg-0lax"><font color = lightgray> 0965</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0966/"> <font color = blue>0966</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0967/"> <font color = blue>0967</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0966/"> <font color = blue>0966</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0967/"> <font color = blue>0967</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0968</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0969/"> <font color = blue>0969</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0969/"> <font color = blue>0969</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0970</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0971/"> <font color = blue>0971</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0971/"> <font color = blue>0971</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0972</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0973/"> <font color = blue>0973</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0973/"> <font color = blue>0973</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0974</font></th>
     <th class="tg-0lax"><font color = lightgray> 0975</font></th>
     <th class="tg-0lax"><font color = lightgray> 0976</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0977/"> <font color = blue>0977</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0977/"> <font color = blue>0977</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0978</font></th>
     <th class="tg-0lax"><font color = lightgray> 0979</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0980/"> <font color = blue>0980</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0980/"> <font color = blue>0980</font> </a></td>
   </tr>
 </tbody>
 <tbody>
   <tr>
     <th class="tg-0lax"><font color = lightgray> 0981</font></th>
     <th class="tg-0lax"><font color = lightgray> 0982</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0983/"> <font color = blue>0983</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0983/"> <font color = blue>0983</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0984</font></th>
     <th class="tg-0lax"><font color = lightgray> 0985</font></th>
     <th class="tg-0lax"><font color = lightgray> 0986</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0987/"> <font color = blue>0987</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0987/"> <font color = blue>0987</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0988</font></th>
     <th class="tg-0lax"><font color = lightgray> 0989</font></th>
     <th class="tg-0lax"><font color = lightgray> 0990</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0991/"> <font color = blue>0991</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0991/"> <font color = blue>0991</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0992</font></th>
     <th class="tg-0lax"><font color = lightgray> 0993</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/0994/"> <font color = blue>0994</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/0994/"> <font color = blue>0994</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0995</font></th>
     <th class="tg-0lax"><font color = lightgray> 0996</font></th>
     <th class="tg-0lax"><font color = lightgray> 0997</font></th>
@@ -1226,15 +1226,15 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 1004</font></th>
     <th class="tg-0lax"><font color = lightgray> 1005</font></th>
     <th class="tg-0lax"><font color = lightgray> 1006</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1007/"> <font color = blue>1007</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1007/"> <font color = blue>1007</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1008</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1009/"> <font color = blue>1009</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1010/"> <font color = blue>1010</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1009/"> <font color = blue>1009</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1010/"> <font color = blue>1010</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1011</font></th>
     <th class="tg-0lax"><font color = lightgray> 1012</font></th>
     <th class="tg-0lax"><font color = lightgray> 1013</font></th>
     <th class="tg-0lax"><font color = lightgray> 1014</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1015/"> <font color = blue>1015</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1015/"> <font color = blue>1015</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1016</font></th>
     <th class="tg-0lax"><font color = lightgray> 1017</font></th>
     <th class="tg-0lax"><font color = lightgray> 1018</font></th>
@@ -1245,17 +1245,17 @@ permalink: /content/
 <tbody>
   <tr>
     <th class="tg-0lax"><font color = lightgray> 1021</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1022/"> <font color = blue>1022</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1022/"> <font color = blue>1022</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1023</font></th>
     <th class="tg-0lax"><font color = lightgray> 1024</font></th>
     <th class="tg-0lax"><font color = lightgray> 1025</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1026/"> <font color = blue>1026</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1026/"> <font color = blue>1026</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1027</font></th>
     <th class="tg-0lax"><font color = lightgray> 1028</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1029/"> <font color = blue>1029</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1029/"> <font color = blue>1029</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1030</font></th>
     <th class="tg-0lax"><font color = lightgray> 1031</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1032/"> <font color = blue>1032</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1032/"> <font color = blue>1032</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1033</font></th>
     <th class="tg-0lax"><font color = lightgray> 1034</font></th>
     <th class="tg-0lax"><font color = lightgray> 1035</font></th>
@@ -1268,10 +1268,10 @@ permalink: /content/
 </tbody>
 <tbody>
   <tr>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1041/"> <font color = blue>1041</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1041/"> <font color = blue>1041</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1042</font></th>
     <th class="tg-0lax"><font color = lightgray> 1043</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1044/"> <font color = blue>1044</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1044/"> <font color = blue>1044</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1045</font></th>
     <th class="tg-0lax"><font color = lightgray> 1046</font></th>
     <th class="tg-0lax"><font color = lightgray> 1047</font></th>
@@ -1326,10 +1326,10 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 1088</font></th>
     <th class="tg-0lax"><font color = lightgray> 1089</font></th>
     <th class="tg-0lax"><font color = lightgray> 1090</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1091/"> <font color = blue>1091</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1091/"> <font color = blue>1091</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1092</font></th>
     <th class="tg-0lax"><font color = lightgray> 1093</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1094/"> <font color = blue>1094</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1094/"> <font color = blue>1094</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1095</font></th>
     <th class="tg-0lax"><font color = lightgray> 1096</font></th>
     <th class="tg-0lax"><font color = lightgray> 1097</font></th>
@@ -1342,7 +1342,7 @@ permalink: /content/
   <tr>
     <th class="tg-0lax"><font color = lightgray> 1101</font></th>
     <th class="tg-0lax"><font color = lightgray> 1102</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1103/"> <font color = blue>1103</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1103/"> <font color = blue>1103</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1104</font></th>
     <th class="tg-0lax"><font color = lightgray> 1105</font></th>
     <th class="tg-0lax"><font color = lightgray> 1106</font></th>
@@ -1376,10 +1376,10 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 1130</font></th>
     <th class="tg-0lax"><font color = lightgray> 1131</font></th>
     <th class="tg-0lax"><font color = lightgray> 1132</font></th>
-    <th class="tg-0lax"><font color = lightgray> 1133</font></th>
+    <td class="tg-0lax"> <a href="/leetcode/1133/"> <font color = blue>1133</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1134</font></th>
     <th class="tg-0lax"><font color = lightgray> 1135</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1136/"> <font color = blue>1136</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1136/"> <font color = blue>1136</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1137</font></th>
     <th class="tg-0lax"><font color = lightgray> 1138</font></th>
     <th class="tg-0lax"><font color = lightgray> 1139</font></th>
@@ -1476,7 +1476,7 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 1214</font></th>
     <th class="tg-0lax"><font color = lightgray> 1215</font></th>
     <th class="tg-0lax"><font color = lightgray> 1216</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1217/"> <font color = blue>1217</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1217/"> <font color = blue>1217</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1218</font></th>
     <th class="tg-0lax"><font color = lightgray> 1219</font></th>
     <th class="tg-0lax"><font color = lightgray> 1220</font></th>
@@ -1516,7 +1516,7 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 1246</font></th>
     <th class="tg-0lax"><font color = lightgray> 1247</font></th>
     <th class="tg-0lax"><font color = lightgray> 1248</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1249/"> <font color = blue>1249</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1249/"> <font color = blue>1249</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1250</font></th>
     <th class="tg-0lax"><font color = lightgray> 1251</font></th>
     <th class="tg-0lax"><font color = lightgray> 1252</font></th>
@@ -1558,15 +1558,15 @@ permalink: /content/
   <tr>
     <th class="tg-0lax"><font color = lightgray> 1281</font></th>
     <th class="tg-0lax"><font color = lightgray> 1282</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1283/"> <font color = blue>1283</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1283/"> <font color = blue>1283</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1284</font></th>
     <th class="tg-0lax"><font color = lightgray> 1285</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1286/"> <font color = blue>1286</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1286/"> <font color = blue>1286</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1287</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1288/"> <font color = blue>1288</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1288/"> <font color = blue>1288</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1289</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1290/"> <font color = blue>1290</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1291/"> <font color = blue>1291</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1290/"> <font color = blue>1290</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1291/"> <font color = blue>1291</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1292</font></th>
     <th class="tg-0lax"><font color = lightgray> 1293</font></th>
     <th class="tg-0lax"><font color = lightgray> 1294</font></th>
@@ -1584,8 +1584,8 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 1302</font></th>
     <th class="tg-0lax"><font color = lightgray> 1303</font></th>
     <th class="tg-0lax"><font color = lightgray> 1304</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1305/"> <font color = blue>1305</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1306/"> <font color = blue>1306</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1305/"> <font color = blue>1305</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1306/"> <font color = blue>1306</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1307</font></th>
     <th class="tg-0lax"><font color = lightgray> 1308</font></th>
     <th class="tg-0lax"><font color = lightgray> 1309</font></th>
@@ -1612,15 +1612,15 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 1326</font></th>
     <th class="tg-0lax"><font color = lightgray> 1327</font></th>
     <th class="tg-0lax"><font color = lightgray> 1328</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1329/"> <font color = blue>1329</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1329/"> <font color = blue>1329</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1330</font></th>
     <th class="tg-0lax"><font color = lightgray> 1331</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1332/"> <font color = blue>1332</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1332/"> <font color = blue>1332</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1333</font></th>
     <th class="tg-0lax"><font color = lightgray> 1334</font></th>
     <th class="tg-0lax"><font color = lightgray> 1335</font></th>
     <th class="tg-0lax"><font color = lightgray> 1336</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1337/"> <font color = blue>1337</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1337/"> <font color = blue>1337</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1338</font></th>
     <th class="tg-0lax"><font color = lightgray> 1339</font></th>
     <th class="tg-0lax"><font color = lightgray> 1340</font></th>
@@ -1629,10 +1629,10 @@ permalink: /content/
 <tbody>
   <tr>
     <th class="tg-0lax"><font color = lightgray> 1341</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1342/"> <font color = blue>1342</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1342/"> <font color = blue>1342</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1343</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1344/"> <font color = blue>1344</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1345/"> <font color = blue>1345</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1344/"> <font color = blue>1344</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1345/"> <font color = blue>1345</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1346</font></th>
     <th class="tg-0lax"><font color = lightgray> 1347</font></th>
     <th class="tg-0lax"><font color = lightgray> 1348</font></th>
@@ -1670,7 +1670,7 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 1376</font></th>
     <th class="tg-0lax"><font color = lightgray> 1377</font></th>
     <th class="tg-0lax"><font color = lightgray> 1378</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1379/"> <font color = blue>1379</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1379/"> <font color = blue>1379</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1380</font></th>
   </tr>
 </tbody>
@@ -1691,8 +1691,8 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 1393</font></th>
     <th class="tg-0lax"><font color = lightgray> 1394</font></th>
     <th class="tg-0lax"><font color = lightgray> 1395</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1396/"> <font color = blue>1396</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1397/"> <font color = blue>1397</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1396/"> <font color = blue>1396</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1397/"> <font color = blue>1397</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1398</font></th>
     <th class="tg-0lax"><font color = lightgray> 1399</font></th>
     <th class="tg-0lax"><font color = lightgray> 1400</font></th>
@@ -1740,7 +1740,7 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 1434</font></th>
     <th class="tg-0lax"><font color = lightgray> 1435</font></th>
     <th class="tg-0lax"><font color = lightgray> 1436</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1437/"> <font color = blue>1437</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1437/"> <font color = blue>1437</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1438</font></th>
     <th class="tg-0lax"><font color = lightgray> 1439</font></th>
     <th class="tg-0lax"><font color = lightgray> 1440</font></th>
@@ -1753,7 +1753,7 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 1443</font></th>
     <th class="tg-0lax"><font color = lightgray> 1444</font></th>
     <th class="tg-0lax"><font color = lightgray> 1445</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1446/"> <font color = blue>1446</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1446/"> <font color = blue>1446</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1447</font></th>
     <th class="tg-0lax"><font color = lightgray> 1448</font></th>
     <th class="tg-0lax"><font color = lightgray> 1449</font></th>
@@ -1764,21 +1764,21 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 1454</font></th>
     <th class="tg-0lax"><font color = lightgray> 1455</font></th>
     <th class="tg-0lax"><font color = lightgray> 1456</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1457/"> <font color = blue>1457</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1458/"> <font color = blue>1458</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1457/"> <font color = blue>1457</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1458/"> <font color = blue>1458</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1459</font></th>
     <th class="tg-0lax"><font color = lightgray> 1460</font></th>
   </tr>
 </tbody>
 <tbody>
   <tr>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1461/"> <font color = blue>1461</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1461/"> <font color = blue>1461</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1462</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1463/"> <font color = blue>1463</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1463/"> <font color = blue>1463</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1464</font></th>
     <th class="tg-0lax"><font color = lightgray> 1465</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1466/"> <font color = blue>1466</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1467/"> <font color = blue>1467</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1466/"> <font color = blue>1466</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1467/"> <font color = blue>1467</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1468</font></th>
     <th class="tg-0lax"><font color = lightgray> 1469</font></th>
     <th class="tg-0lax"><font color = lightgray> 1470</font></th>
@@ -1789,7 +1789,7 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 1475</font></th>
     <th class="tg-0lax"><font color = lightgray> 1476</font></th>
     <th class="tg-0lax"><font color = lightgray> 1477</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1478/"> <font color = blue>1478</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1478/"> <font color = blue>1478</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1479</font></th>
     <th class="tg-0lax"><font color = lightgray> 1480</font></th>
   </tr>
@@ -1807,9 +1807,9 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 1489</font></th>
     <th class="tg-0lax"><font color = lightgray> 1490</font></th>
     <th class="tg-0lax"><font color = lightgray> 1491</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1492/"> <font color = blue>1492</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1493/"> <font color = blue>1493</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1494/"> <font color = blue>1494</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1492/"> <font color = blue>1492</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1493/"> <font color = blue>1493</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1494/"> <font color = blue>1494</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1495</font></th>
     <th class="tg-0lax"><font color = lightgray> 1496</font></th>
     <th class="tg-0lax"><font color = lightgray> 1497</font></th>
@@ -1829,7 +1829,7 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 1507</font></th>
     <th class="tg-0lax"><font color = lightgray> 1508</font></th>
     <th class="tg-0lax"><font color = lightgray> 1509</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1510/"> <font color = blue>1510</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1510/"> <font color = blue>1510</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1511</font></th>
     <th class="tg-0lax"><font color = lightgray> 1512</font></th>
     <th class="tg-0lax"><font color = lightgray> 1513</font></th>
@@ -1862,7 +1862,7 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 1536</font></th>
     <th class="tg-0lax"><font color = lightgray> 1537</font></th>
     <th class="tg-0lax"><font color = lightgray> 1538</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1539/"> <font color = blue>1539</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1539/"> <font color = blue>1539</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1540</font></th>
   </tr>
 </tbody>
@@ -1974,7 +1974,7 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 1628</font></th>
     <th class="tg-0lax"><font color = lightgray> 1629</font></th>
     <th class="tg-0lax"><font color = lightgray> 1630</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1631/"> <font color = blue>1631</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1631/"> <font color = blue>1631</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1632</font></th>
     <th class="tg-0lax"><font color = lightgray> 1633</font></th>
     <th class="tg-0lax"><font color = lightgray> 1634</font></th>
@@ -1982,21 +1982,21 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 1636</font></th>
     <th class="tg-0lax"><font color = lightgray> 1637</font></th>
     <th class="tg-0lax"><font color = lightgray> 1638</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1639/"> <font color = blue>1639</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1640/"> <font color = blue>1640</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1639/"> <font color = blue>1639</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1640/"> <font color = blue>1640</font> </a></td>
   </tr>
 </tbody>
 <tbody>
   <tr>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1641/"> <font color = blue>1641</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1641/"> <font color = blue>1641</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1642</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1643/"> <font color = blue>1643</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1643/"> <font color = blue>1643</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1644</font></th>
     <th class="tg-0lax"><font color = lightgray> 1645</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1646/"> <font color = blue>1646</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1646/"> <font color = blue>1646</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1647</font></th>
     <th class="tg-0lax"><font color = lightgray> 1648</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1649/"> <font color = blue>1649</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1649/"> <font color = blue>1649</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1650</font></th>
     <th class="tg-0lax"><font color = lightgray> 1651</font></th>
     <th class="tg-0lax"><font color = lightgray> 1652</font></th>
@@ -2004,17 +2004,17 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 1654</font></th>
     <th class="tg-0lax"><font color = lightgray> 1655</font></th>
     <th class="tg-0lax"><font color = lightgray> 1656</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1657/"> <font color = blue>1657</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1658/"> <font color = blue>1658</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1659/"> <font color = blue>1659</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1657/"> <font color = blue>1657</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1658/"> <font color = blue>1658</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1659/"> <font color = blue>1659</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1660</font></th>
   </tr>
 </tbody>
 <tbody>
   <tr>
     <th class="tg-0lax"><font color = lightgray> 1661</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1662/"> <font color = blue>1662</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1663/"> <font color = blue>1663</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1662/"> <font color = blue>1662</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1663/"> <font color = blue>1663</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1664</font></th>
     <th class="tg-0lax"><font color = lightgray> 1665</font></th>
     <th class="tg-0lax"><font color = lightgray> 1666</font></th>
@@ -2022,16 +2022,16 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 1668</font></th>
     <th class="tg-0lax"><font color = lightgray> 1669</font></th>
     <th class="tg-0lax"><font color = lightgray> 1670</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1671/"> <font color = blue>1671</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1671/"> <font color = blue>1671</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1672</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1673/"> <font color = blue>1673</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1673/"> <font color = blue>1673</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1674</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1675/"> <font color = blue>1675</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1675/"> <font color = blue>1675</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1676</font></th>
     <th class="tg-0lax"><font color = lightgray> 1677</font></th>
     <th class="tg-0lax"><font color = lightgray> 1678</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1679/"> <font color = blue>1679</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1680/"> <font color = blue>1680</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1679/"> <font color = blue>1679</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1680/"> <font color = blue>1680</font> </a></td>
   </tr>
 </tbody>
 <tbody>
@@ -2078,15 +2078,15 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 1716</font></th>
     <th class="tg-0lax"><font color = lightgray> 1717</font></th>
     <th class="tg-0lax"><font color = lightgray> 1718</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1719/"> <font color = blue>1719</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1719/"> <font color = blue>1719</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1720</font></th>
   </tr>
 </tbody>
 <tbody>
   <tr>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1721/"> <font color = blue>1721</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1721/"> <font color = blue>1721</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1722</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1723/"> <font color = blue>1723</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1723/"> <font color = blue>1723</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1724</font></th>
     <th class="tg-0lax"><font color = lightgray> 1725</font></th>
     <th class="tg-0lax"><font color = lightgray> 1726</font></th>
@@ -2157,24 +2157,24 @@ permalink: /content/
 <tbody>
   <tr>
     <th class="tg-0lax"><font color = lightgray> 1781</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1782/"> <font color = blue>1782</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1782/"> <font color = blue>1782</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1783</font></th>
     <th class="tg-0lax"><font color = lightgray> 1784</font></th>
     <th class="tg-0lax"><font color = lightgray> 1785</font></th>
     <th class="tg-0lax"><font color = lightgray> 1786</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1787/"> <font color = blue>1787</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1787/"> <font color = blue>1787</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1788</font></th>
     <th class="tg-0lax"><font color = lightgray> 1789</font></th>
     <th class="tg-0lax"><font color = lightgray> 1790</font></th>
     <th class="tg-0lax"><font color = lightgray> 1791</font></th>
     <th class="tg-0lax"><font color = lightgray> 1792</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1793/"> <font color = blue>1793</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1793/"> <font color = blue>1793</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1794</font></th>
     <th class="tg-0lax"><font color = lightgray> 1795</font></th>
     <th class="tg-0lax"><font color = lightgray> 1796</font></th>
     <th class="tg-0lax"><font color = lightgray> 1797</font></th>
     <th class="tg-0lax"><font color = lightgray> 1798</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1799/"> <font color = blue>1799</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1799/"> <font color = blue>1799</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1800</font></th>
   </tr>
 </tbody>
@@ -2186,8 +2186,8 @@ permalink: /content/
     <th class="tg-0lax"><font color = lightgray> 1804</font></th>
     <th class="tg-0lax"><font color = lightgray> 1805</font></th>
     <th class="tg-0lax"><font color = lightgray> 1806</font></th>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1807/"> <font color = blue>1807</font> </a></td>
-    <td class="tg-0lax"> <a href="/Leetcode Problems/1808/"> <font color = blue>1808</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1807/"> <font color = blue>1807</font> </a></td>
+    <td class="tg-0lax"> <a href="/leetcode/1808/"> <font color = blue>1808</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 1809</font></th>
     <th class="tg-0lax"><font color = lightgray> 1810</font></th>
     <th class="tg-0lax"><font color = lightgray> 1811</font></th>

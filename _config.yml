@@ -3,7 +3,7 @@ author:
   name: Dmitry Babichev
   email: dimitry008@gmail.com
 description: > # this means to ignore newlines until "show_excerpts:"
-  Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problem.
+  Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.
 
 show_excerpts: false # set to true to show excerpts on the homepage
 
@@ -56,3 +56,8 @@ markdown: kramdown
 plugins:
  - jekyll-feed
  - jekyll-seo-tag
+ - jekyll-tagories
+
+collections:
+  leetcode:
+    output: true
