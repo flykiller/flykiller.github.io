@@ -13,11 +13,11 @@
 <meta property="og:description" content="Let dp[i][j] be the maximum dot product for first i numbers from nums1 and first j numbers from nums2. Note, that dp[0][0] = 0 is for the case where we take 0 elements from both nums1 and nums2 (that is we use dummy first column and row). Let us forgot for the moment, that product need to be not empty, then we can just use dp[i+1][j+1] = max(dp[i][j] + nums1[i]*nums2[j], dp[i][j+1], dp[i+1][j]), because we can: Either include nums1[i]*nums2[j] into our dot product and we need to add value of dp[i][j] Or do not inculde nums1[i]*nums2[j], that is choose the best from dp[i][j+1] or dp[i+1][j] problems." />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-01T13:19:14+02:00" />
+<meta property="article:published_time" content="2021-04-01T13:22:12+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 1458. Max Dot Product of Two Subsequences" />
 <script type="application/ld+json">
-{"url":"/leetcode/1458.html","@type":"BlogPosting","headline":"Leetcode 1458. Max Dot Product of Two Subsequences","dateModified":"2021-04-01T13:19:14+02:00","datePublished":"2021-04-01T13:19:14+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1458.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Let dp[i][j] be the maximum dot product for first i numbers from nums1 and first j numbers from nums2. Note, that dp[0][0] = 0 is for the case where we take 0 elements from both nums1 and nums2 (that is we use dummy first column and row). Let us forgot for the moment, that product need to be not empty, then we can just use dp[i+1][j+1] = max(dp[i][j] + nums1[i]*nums2[j], dp[i][j+1], dp[i+1][j]), because we can: Either include nums1[i]*nums2[j] into our dot product and we need to add value of dp[i][j] Or do not inculde nums1[i]*nums2[j], that is choose the best from dp[i][j+1] or dp[i+1][j] problems.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/1458.html","@type":"BlogPosting","headline":"Leetcode 1458. Max Dot Product of Two Subsequences","dateModified":"2021-04-01T13:22:12+02:00","datePublished":"2021-04-01T13:22:12+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1458.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Let dp[i][j] be the maximum dot product for first i numbers from nums1 and first j numbers from nums2. Note, that dp[0][0] = 0 is for the case where we take 0 elements from both nums1 and nums2 (that is we use dummy first column and row). Let us forgot for the moment, that product need to be not empty, then we can just use dp[i+1][j+1] = max(dp[i][j] + nums1[i]*nums2[j], dp[i][j+1], dp[i+1][j]), because we can: Either include nums1[i]*nums2[j] into our dot product and we need to add value of dp[i][j] Or do not inculde nums1[i]*nums2[j], that is choose the best from dp[i][j+1] or dp[i+1][j] problems.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -59,7 +59,7 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 1458. Max Dot Product of Two Subsequences</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-01T13:19:14+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-01T13:22:12+02:00" itemprop="datePublished">
         Apr 1, 2021
       </time></p>
   </header>
