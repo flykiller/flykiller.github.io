@@ -13,11 +13,11 @@
 <meta property="og:description" content="This is classical problem for sliding window. Let us keep window with elements [beg: end), where first element is included and last one is not. For example [0, 0) is empty window, and [2, 4) is window with 2 elements: 2 and 3. Let us discuss our algorithm now: window is set of symbols in our window, we use set to check in O(1) if new symbol inside it or not. beg = end = 0 in the beginning, so we start with empty window, also ans = 0 and n = len(s). Now, we continue, until one of two of our pointers reaches the end. First, we try to extend our window to the right: check s[end] in window and if we can, add it to set, move end pointer to the right and update ans. If we can not add new symbol to set, it means it is already in window set, and we need to move left pointer and move beg pointer to the right." />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-01T17:17:30+02:00" />
+<meta property="article:published_time" content="2021-04-01T17:33:19+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0003. Longest Substring Without Repeating Characters" />
 <script type="application/ld+json">
-{"url":"/leetcode/0003.html","@type":"BlogPosting","headline":"Leetcode 0003. Longest Substring Without Repeating Characters","dateModified":"2021-04-01T17:17:30+02:00","datePublished":"2021-04-01T17:17:30+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0003.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"This is classical problem for sliding window. Let us keep window with elements [beg: end), where first element is included and last one is not. For example [0, 0) is empty window, and [2, 4) is window with 2 elements: 2 and 3. Let us discuss our algorithm now: window is set of symbols in our window, we use set to check in O(1) if new symbol inside it or not. beg = end = 0 in the beginning, so we start with empty window, also ans = 0 and n = len(s). Now, we continue, until one of two of our pointers reaches the end. First, we try to extend our window to the right: check s[end] in window and if we can, add it to set, move end pointer to the right and update ans. If we can not add new symbol to set, it means it is already in window set, and we need to move left pointer and move beg pointer to the right.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0003.html","@type":"BlogPosting","headline":"Leetcode 0003. Longest Substring Without Repeating Characters","dateModified":"2021-04-01T17:33:19+02:00","datePublished":"2021-04-01T17:33:19+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0003.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"This is classical problem for sliding window. Let us keep window with elements [beg: end), where first element is included and last one is not. For example [0, 0) is empty window, and [2, 4) is window with 2 elements: 2 and 3. Let us discuss our algorithm now: window is set of symbols in our window, we use set to check in O(1) if new symbol inside it or not. beg = end = 0 in the beginning, so we start with empty window, also ans = 0 and n = len(s). Now, we continue, until one of two of our pointers reaches the end. First, we try to extend our window to the right: check s[end] in window and if we can, add it to set, move end pointer to the right and update ans. If we can not add new symbol to set, it means it is already in window set, and we need to move left pointer and move beg pointer to the right.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -65,7 +65,7 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0003. Longest Substring Without Repeating Characters</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-01T17:17:30+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-01T17:33:19+02:00" itemprop="datePublished">
         Apr 1, 2021
       </time></p>
   </header>
