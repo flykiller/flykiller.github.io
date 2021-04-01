@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Leetcode 0436. Find Right Interval | Dmitry Babichev algorithms</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Leetcode 0436. Find Right Interval" />
+<meta name="author" content="Dmitry Babichev" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Let us look carefully at our statement: for each interval i we need to find interval j, whose start is bigger or equal to the end point of interval i. We can rephrase this: Given end of interval i, we need to find such point among starts of interval, which goes immedietly after this end of iterval i. How we can find this point? We can sort our intervals by starts (and hopefully there is no equal starts by statement) and then for each end of interval find desired place. Let us go through exapmle: [1,12], [2,9], [3,10], [13,14], [15,16], [16,17] (I already sorted it by starts):" />
+<meta property="og:description" content="Let us look carefully at our statement: for each interval i we need to find interval j, whose start is bigger or equal to the end point of interval i. We can rephrase this: Given end of interval i, we need to find such point among starts of interval, which goes immedietly after this end of iterval i. How we can find this point? We can sort our intervals by starts (and hopefully there is no equal starts by statement) and then for each end of interval find desired place. Let us go through exapmle: [1,12], [2,9], [3,10], [13,14], [15,16], [16,17] (I already sorted it by starts):" />
+<meta property="og:site_name" content="Dmitry Babichev algorithms" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-04-01T12:49:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Leetcode 0436. Find Right Interval" />
+<script type="application/ld+json">
+{"url":"/leetcode/0436.html","@type":"BlogPosting","headline":"Leetcode 0436. Find Right Interval","dateModified":"2021-04-01T12:49:00+02:00","datePublished":"2021-04-01T12:49:00+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0436.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Let us look carefully at our statement: for each interval i we need to find interval j, whose start is bigger or equal to the end point of interval i. We can rephrase this: Given end of interval i, we need to find such point among starts of interval, which goes immedietly after this end of iterval i. How we can find this point? We can sort our intervals by starts (and hopefully there is no equal starts by statement) and then for each end of interval find desired place. Let us go through exapmle: [1,12], [2,9], [3,10], [13,14], [15,16], [16,17] (I already sorted it by starts):","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
+    
+
+
+
+
+
+
+  
+  
+</head>
+
+    
+    <!-- for mathjax support -->
+    
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dmitry Babichev algorithms</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <span>[
+  
+]</span>
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Leetcode 0436. Find Right Interval</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-01T12:49:00+02:00" itemprop="datePublished">
+        Apr 1, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Let us look carefully at our statement: for each interval <code class="language-plaintext highlighter-rouge">i</code> we need to find interval <code class="language-plaintext highlighter-rouge">j</code>, whose start is bigger or equal to the end point of interval <code class="language-plaintext highlighter-rouge">i</code>. We can rephrase this:
+Given end of interval <code class="language-plaintext highlighter-rouge">i</code>, we need to find such point among starts of interval, which goes immedietly after this end of iterval <code class="language-plaintext highlighter-rouge">i</code>. How we can find this point? We can sort our intervals by starts (and hopefully there is no equal starts by statement) and then for each end of interval find desired place. Let us go through exapmle:
+<code class="language-plaintext highlighter-rouge">[1,12], [2,9], [3,10], [13,14], [15,16], [16,17]</code> (I already sorted it by starts):</p>
+
+<ol>
+  <li>Look for number <code class="language-plaintext highlighter-rouge">12</code> in <code class="language-plaintext highlighter-rouge">begs = [1,2,3,13,15,16]</code>. What place we need? It is <code class="language-plaintext highlighter-rouge">3</code>, because <code class="language-plaintext highlighter-rouge">12 &lt;13</code> and <code class="language-plaintext highlighter-rouge">12 &gt; 3</code>.</li>
+  <li>Look for number <code class="language-plaintext highlighter-rouge">9</code>, again place is <code class="language-plaintext highlighter-rouge">3</code>.</li>
+  <li>Look for number <code class="language-plaintext highlighter-rouge">10</code>, place is <code class="language-plaintext highlighter-rouge">3</code>.</li>
+  <li>Look for number <code class="language-plaintext highlighter-rouge">14</code>, place is <code class="language-plaintext highlighter-rouge">4</code>, because <code class="language-plaintext highlighter-rouge">13&lt;14&lt;15</code>.</li>
+  <li>Look for number <code class="language-plaintext highlighter-rouge">16</code>, what is place? In is <code class="language-plaintext highlighter-rouge">5</code>, because <code class="language-plaintext highlighter-rouge">begs[5] = 16</code>. Exactly for this reason we use <code class="language-plaintext highlighter-rouge">bisect_left</code>, which will deal with these cases.</li>
+  <li>Look for number <code class="language-plaintext highlighter-rouge">17</code>, what is place? it is <code class="language-plaintext highlighter-rouge">6</code>, but it means it is bigger than any number in our <code class="language-plaintext highlighter-rouge">begs</code>, so we should return <code class="language-plaintext highlighter-rouge">-1</code>.</li>
+</ol>
+
+<p>So, what we do:</p>
+<ol>
+  <li>Sort our intervals by starts, but also we need to keep they original numbers, so I sort triplets: <code class="language-plaintext highlighter-rouge">[start, end, index]</code>.</li>
+  <li>Create array of starts, which I call <code class="language-plaintext highlighter-rouge">begs</code>.</li>
+  <li>Creaty <code class="language-plaintext highlighter-rouge">out</code> result, which filled with <code class="language-plaintext highlighter-rouge">-1</code>.</li>
+  <li>Iterate over <code class="language-plaintext highlighter-rouge">ints</code> and for every end <code class="language-plaintext highlighter-rouge">j</code>, use <code class="language-plaintext highlighter-rouge">bisect_left</code>. Check that found index <code class="language-plaintext highlighter-rouge">t &lt; len(begs)</code> and if it is, update <code class="language-plaintext highlighter-rouge">out[k] = ints[t][2]</code>. Why we update in this way, because our intervals in sorter list have different order, so we need to obtain original index.</li>
+</ol>
+
+<p><strong>Complexity</strong>: time complexity is <code class="language-plaintext highlighter-rouge">O(n log n)</code>: both for sort and for <code class="language-plaintext highlighter-rouge">n</code> binary searches. Space complexity is <code class="language-plaintext highlighter-rouge">O(n)</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">findRightInterval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">intervals</span><span class="p">):</span>
+        <span class="n">ints</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">([[</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,[</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">]</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">intervals</span><span class="p">)])</span>
+        <span class="n">begs</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">_</span><span class="p">,</span><span class="n">_</span> <span class="ow">in</span> <span class="n">ints</span><span class="p">]</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">begs</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span> <span class="ow">in</span> <span class="n">ints</span><span class="p">:</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="n">bisect</span><span class="p">.</span><span class="n">bisect_left</span><span class="p">(</span><span class="n">begs</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">begs</span><span class="p">):</span>
+                <span class="n">out</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">ints</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+        
+        <span class="k">return</span> <span class="n">out</span>
+</code></pre></div></div>
+
+  </div><a class="u-url" href="/leetcode/0436.html" hidden></a>
+</article>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">Dmitry Babichev</li>
+          <li><a class="u-email" href="mailto:dimitry008@gmail.com">dimitry008@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

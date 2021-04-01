@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Leetcode 0787. Cheapest Flights Within K Stops | Dmitry Babichev algorithms</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Leetcode 0787. Cheapest Flights Within K Stops" />
+<meta name="author" content="Dmitry Babichev" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="There are a lot of different ways to handle this problem: using DFS, BFS, Dijkstra, Bellman-Ford, Dynamic programming. For me it is easier to use BFS, because we are asked to find the shortest distance between two given cities, not with all dst like in Dijkstra or Bellman-Ford." />
+<meta property="og:description" content="There are a lot of different ways to handle this problem: using DFS, BFS, Dijkstra, Bellman-Ford, Dynamic programming. For me it is easier to use BFS, because we are asked to find the shortest distance between two given cities, not with all dst like in Dijkstra or Bellman-Ford." />
+<meta property="og:site_name" content="Dmitry Babichev algorithms" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-04-01T12:49:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Leetcode 0787. Cheapest Flights Within K Stops" />
+<script type="application/ld+json">
+{"url":"/leetcode/0787.html","@type":"BlogPosting","headline":"Leetcode 0787. Cheapest Flights Within K Stops","dateModified":"2021-04-01T12:49:00+02:00","datePublished":"2021-04-01T12:49:00+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0787.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"There are a lot of different ways to handle this problem: using DFS, BFS, Dijkstra, Bellman-Ford, Dynamic programming. For me it is easier to use BFS, because we are asked to find the shortest distance between two given cities, not with all dst like in Dijkstra or Bellman-Ford.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
+    
+
+
+
+
+
+
+  
+  
+</head>
+
+    
+    <!-- for mathjax support -->
+    
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dmitry Babichev algorithms</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <span>[
+  
+]</span>
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Leetcode 0787. Cheapest Flights Within K Stops</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-01T12:49:00+02:00" itemprop="datePublished">
+        Apr 1, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>There are a lot of different ways to handle this problem: using DFS, BFS, Dijkstra, Bellman-Ford, Dynamic programming. For me it is easier to use <strong>BFS</strong>, because we are asked to find the shortest distance between two given cities, not with all <code class="language-plaintext highlighter-rouge">dst</code> like in Dijkstra or Bellman-Ford.</p>
+
+<p><strong>BFS</strong> the idea is to traverse our graph in usual bfs routine and also take into account that we can have maximum <code class="language-plaintext highlighter-rouge">k</code> stops, that is our pathes should have length less or equal than <code class="language-plaintext highlighter-rouge">k + 1</code>. To implement bfs in python usual way is to use deque (double ended queue), it works pretty fast in python. We can not use usual list like in dfs (for similate stack), because here we need to pop elements from the beginning of our queue.</p>
+
+<p>We need to keep in each cell of our queue <code class="language-plaintext highlighter-rouge">3</code> values: current <code class="language-plaintext highlighter-rouge">city</code>, current number of <code class="language-plaintext highlighter-rouge">visited</code> cities and current <code class="language-plaintext highlighter-rouge">price</code>. It is worth to investigate new city if 3 conditions met:</p>
+<ol>
+  <li>Our current price is less or equal to minumum price found so far.</li>
+  <li>If we still can visit one more city, <code class="language-plaintext highlighter-rouge">visited &lt; k+1</code>.</li>
+  <li>The current city is not our destination yet.</li>
+</ol>
+
+<p>If we reached our city of destination, we update minimum price we get so far.</p>
+
+<p><strong>Complexity</strong>, both time and memory of bfs is <code class="language-plaintext highlighter-rouge">O(V + E)</code>, where <code class="language-plaintext highlighter-rouge">E</code> is number of edges and <code class="language-plaintext highlighter-rouge">V</code> is number of vertices. Note however, that we have here multipass bfs, when we visit node, we do not mark it as visited, and we can visit it several times. In fact this algorighm is very similar to Dijkstra algorighm, and I think complexity is <code class="language-plaintext highlighter-rouge">O(E + V^2) = E(V^2)</code>, because we traverse each edge only once, but we can visit nodes a lot of times. <strong>Update</strong> I do no think it is quite true, need to be checked.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">findCheapestPrice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">flights</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="n">graph</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="n">deque_vert</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([[</span><span class="n">src</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+        <span class="n">min_price</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s">'inf'</span><span class="p">)</span>
+     
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">flights</span><span class="p">:</span> 
+            <span class="n">graph</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">append</span><span class="p">([</span><span class="n">j</span><span class="p">,</span> <span class="n">w</span><span class="p">])</span>
+
+        <span class="k">while</span> <span class="n">deque_vert</span><span class="p">:</span>
+            <span class="n">city</span><span class="p">,</span> <span class="n">visited</span><span class="p">,</span> <span class="n">price</span> <span class="o">=</span> <span class="n">deque_vert</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">price</span> <span class="o">&lt;=</span> <span class="n">min_price</span> <span class="ow">and</span> <span class="n">visited</span> <span class="o">&lt;=</span> <span class="n">k</span> <span class="ow">and</span> <span class="n">city</span> <span class="o">!=</span> <span class="n">dst</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">neibh</span><span class="p">,</span> <span class="n">price_neibh</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">city</span><span class="p">]:</span>
+                     <span class="n">deque_vert</span><span class="p">.</span><span class="n">append</span><span class="p">([</span><span class="n">neibh</span><span class="p">,</span> <span class="n">visited</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">price</span> <span class="o">+</span> <span class="n">price_neibh</span><span class="p">])</span>
+            
+            <span class="k">if</span> <span class="n">city</span> <span class="o">==</span> <span class="n">dst</span><span class="p">:</span>
+                <span class="n">min_price</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">min_price</span><span class="p">,</span> <span class="n">price</span><span class="p">)</span>
+                
+        <span class="k">return</span> <span class="n">min_price</span> <span class="k">if</span> <span class="n">min_price</span> <span class="o">!=</span> <span class="nb">float</span><span class="p">(</span><span class="s">'inf'</span><span class="p">)</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+</code></pre></div></div>
+
+<h3 id="dijkstra">Dijkstra</h3>
+
+<p>There is better complexity time solution (however we need bigger tests to check it).
+I was wonderig is it possible to use <code class="language-plaintext highlighter-rouge">SortedList</code>, instead of <code class="language-plaintext highlighter-rouge">Heap</code> in Dijkstra algorighm, and the answer is yes! What we need to do is to pop the smallest element and to insert into our list in logarighmic time. Here we need to keep <code class="language-plaintext highlighter-rouge">2</code>-dimensional table <code class="language-plaintext highlighter-rouge">dist</code> for shortest distances with given length of path.</p>
+
+<p><strong>Complexity</strong> I think it is <code class="language-plaintext highlighter-rouge">O(E+(Vk)*log(Vk))</code>, because there will be no more than <code class="language-plaintext highlighter-rouge">Vk</code> different elements in our SortedList (Heap) at any moment.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">findCheapestPrice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">flights</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="n">graph</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="n">dist</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">float</span><span class="p">(</span><span class="s">"inf"</span><span class="p">)]</span> <span class="o">*</span> <span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span> 
+        <span class="n">dist</span><span class="p">[</span><span class="n">src</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">SList</span> <span class="o">=</span> <span class="n">SortedList</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">src</span><span class="p">]])</span>
+        
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">flights</span><span class="p">:</span> 
+            <span class="n">graph</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">append</span><span class="p">([</span><span class="n">j</span><span class="p">,</span> <span class="n">w</span><span class="p">])</span>
+        
+        <span class="k">while</span> <span class="n">SList</span><span class="p">:</span>
+            <span class="n">price</span><span class="p">,</span> <span class="n">visited</span><span class="p">,</span> <span class="n">city</span> <span class="o">=</span> <span class="n">SList</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">city</span> <span class="o">==</span> <span class="n">dst</span><span class="p">:</span> <span class="k">return</span> <span class="n">price</span>
+            
+            <span class="k">if</span> <span class="n">visited</span> <span class="o">&lt;=</span> <span class="n">k</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">neibh</span><span class="p">,</span> <span class="n">price_neibh</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">city</span><span class="p">]:</span> 
+                    <span class="n">candidate</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">city</span><span class="p">][</span><span class="n">visited</span><span class="p">]</span> <span class="o">+</span> <span class="n">price_neibh</span>
+                    <span class="k">if</span> <span class="n">candidate</span> <span class="o">&lt;=</span> <span class="n">dist</span><span class="p">[</span><span class="n">neibh</span><span class="p">][</span><span class="n">visited</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
+                        <span class="n">dist</span><span class="p">[</span><span class="n">neibh</span><span class="p">][</span><span class="n">visited</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">candidate</span>
+                        <span class="n">SList</span><span class="p">.</span><span class="n">add</span><span class="p">([</span><span class="n">price</span> <span class="o">+</span> <span class="n">price_neibh</span><span class="p">,</span> <span class="n">visited</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">neibh</span><span class="p">])</span>
+                        
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</code></pre></div></div>
+
+  </div><a class="u-url" href="/leetcode/0787.html" hidden></a>
+</article>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">Dmitry Babichev</li>
+          <li><a class="u-email" href="mailto:dimitry008@gmail.com">dimitry008@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

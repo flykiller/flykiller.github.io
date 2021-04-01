@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Leetcode 1396. Design Underground System | Dmitry Babichev algorithms</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Leetcode 1396. Design Underground System" />
+<meta name="author" content="Dmitry Babichev" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The main difficulty of this problem is very long statement, and probably you will spend more time understanding what is asked that to code it. So, what we have here. We have several persons, defined by id, which Check In at some station and some time and then Check Out from some other station at another time. We need to calculate times this person spend to go from one station to another and then calculate average time for all persons. Let us keep 3 pieces of information:" />
+<meta property="og:description" content="The main difficulty of this problem is very long statement, and probably you will spend more time understanding what is asked that to code it. So, what we have here. We have several persons, defined by id, which Check In at some station and some time and then Check Out from some other station at another time. We need to calculate times this person spend to go from one station to another and then calculate average time for all persons. Let us keep 3 pieces of information:" />
+<meta property="og:site_name" content="Dmitry Babichev algorithms" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-04-01T12:49:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Leetcode 1396. Design Underground System" />
+<script type="application/ld+json">
+{"url":"/leetcode/1396.html","@type":"BlogPosting","headline":"Leetcode 1396. Design Underground System","dateModified":"2021-04-01T12:49:00+02:00","datePublished":"2021-04-01T12:49:00+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1396.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"The main difficulty of this problem is very long statement, and probably you will spend more time understanding what is asked that to code it. So, what we have here. We have several persons, defined by id, which Check In at some station and some time and then Check Out from some other station at another time. We need to calculate times this person spend to go from one station to another and then calculate average time for all persons. Let us keep 3 pieces of information:","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
+    
+
+
+
+
+
+
+  
+  
+</head>
+
+    
+    <!-- for mathjax support -->
+    
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dmitry Babichev algorithms</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <span>[
+  
+]</span>
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Leetcode 1396. Design Underground System</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-01T12:49:00+02:00" itemprop="datePublished">
+        Apr 1, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>The main difficulty of this problem is very long statement, and probably you will spend more time understanding what is asked that to code it. So, what we have here. We have several persons, defined by <code class="language-plaintext highlighter-rouge">id</code>, which Check In at some <code class="language-plaintext highlighter-rouge">station</code> and some <code class="language-plaintext highlighter-rouge">time</code> and then Check Out from some other station at another time. We need to calculate times this person spend to go from one station to another and then calculate average time for all persons. Let us keep 3 pieces of information:</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">self.ids</code> is dictionary, where for each person(id) we will keep pair <code class="language-plaintext highlighter-rouge">(station, time)</code> if the last action this person did is check In and empty if it was check OUt</li>
+  <li><code class="language-plaintext highlighter-rouge">self.pairs</code> is counter, where for each pair of stations we keep total time spend between two stations.</li>
+  <li><code class="language-plaintext highlighter-rouge">self.freqs</code> is counter, where for each pair of stations we keep how many trips we have between these two stations.</li>
+</ol>
+
+<p>Now, let us discuss, what our functions will do:</p>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">checkIn(self, id, stationName, t)</code>: we just put pair <code class="language-plaintext highlighter-rouge">(stationName, t)</code> into <code class="language-plaintext highlighter-rouge">self.ids[id]</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">checkOut(self, id, stationName, t)</code>. Here we look at person <code class="language-plaintext highlighter-rouge">id</code>, extract information about his last station visited (pop it from <code class="language-plaintext highlighter-rouge">self.ids[id]</code> and update <code class="language-plaintext highlighter-rouge">self.pairs</code>, <code class="language-plaintext highlighter-rouge">self.freqs</code> for these pairs of stations.</li>
+  <li><code class="language-plaintext highlighter-rouge">getAverageTime(self, startStation, endStation)</code>: here we just look at dictionaries <code class="language-plaintext highlighter-rouge">self.pairs</code> and <code class="language-plaintext highlighter-rouge">self.freqs</code> and directly return result.</li>
+</ol>
+
+<p><strong>Complexity</strong>: time compexlty is <code class="language-plaintext highlighter-rouge">O(1)</code> for all <code class="language-plaintext highlighter-rouge">3</code> operations. Space complexity potentially is <code class="language-plaintext highlighter-rouge">O(Q)</code>, where <code class="language-plaintext highlighter-rouge">Q</code> is toatl number of queries.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class UndergroundSystem:
+    def __init__(self):
+        self.ids = {}
+        self.pairs = Counter()
+        self.freqs = Counter()
+        
+    def checkIn(self, id, stationName, t):
+        self.ids[id] = (stationName, t)
+
+    def checkOut(self, id, stationName, t):
+        Name2, t2 = self.ids.pop(id)
+        self.pairs[(Name2, stationName)] += t-t2
+        self.freqs[(Name2, stationName)] += 1
+        
+    def getAverageTime(self, startStation, endStation):
+        return self.pairs[startStation, endStation]/self.freqs[startStation, endStation]
+</code></pre></div></div>
+
+  </div><a class="u-url" href="/leetcode/1396.html" hidden></a>
+</article>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">Dmitry Babichev</li>
+          <li><a class="u-email" href="mailto:dimitry008@gmail.com">dimitry008@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

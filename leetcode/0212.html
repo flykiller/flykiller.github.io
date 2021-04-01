@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Leetcode 0212. Word Search II | Dmitry Babichev algorithms</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Leetcode 0212. Word Search II" />
+<meta name="author" content="Dmitry Babichev" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="One of the efficient ways to solve this problem is to use Trie. For more details please look https://en.wikipedia.org/wiki/Trie. In two words, it is a special data structure, similar to trees, but which has letters inside and used to quick search of patterns in strings. For implementation of Trie, please visit problem 208. Implement Trie (however I put my code here as well)" />
+<meta property="og:description" content="One of the efficient ways to solve this problem is to use Trie. For more details please look https://en.wikipedia.org/wiki/Trie. In two words, it is a special data structure, similar to trees, but which has letters inside and used to quick search of patterns in strings. For implementation of Trie, please visit problem 208. Implement Trie (however I put my code here as well)" />
+<meta property="og:site_name" content="Dmitry Babichev algorithms" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-04-01T12:49:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Leetcode 0212. Word Search II" />
+<script type="application/ld+json">
+{"url":"/leetcode/0212.html","@type":"BlogPosting","headline":"Leetcode 0212. Word Search II","dateModified":"2021-04-01T12:49:00+02:00","datePublished":"2021-04-01T12:49:00+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0212.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"One of the efficient ways to solve this problem is to use Trie. For more details please look https://en.wikipedia.org/wiki/Trie. In two words, it is a special data structure, similar to trees, but which has letters inside and used to quick search of patterns in strings. For implementation of Trie, please visit problem 208. Implement Trie (however I put my code here as well)","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
+    
+
+
+
+
+
+
+  
+  
+</head>
+
+    
+    <!-- for mathjax support -->
+    
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dmitry Babichev algorithms</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <span>[
+  
+]</span>
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Leetcode 0212. Word Search II</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-01T12:49:00+02:00" itemprop="datePublished">
+        Apr 1, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>One of the efficient ways to solve this problem is to use <strong>Trie</strong>. For more details please look https://en.wikipedia.org/wiki/Trie. In two words, it is a special data structure, similar to trees, but which has letters inside and used to quick search of patterns in strings. For implementation of Trie, please visit problem <strong>208. Implement Trie</strong> (however I put my code here as well)</p>
+
+<p>Outline of algorithm:</p>
+<ol>
+  <li>For each <code class="language-plaintext highlighter-rouge">word</code> in our <code class="language-plaintext highlighter-rouge">words</code> insert it in our Trie.</li>
+  <li>Starting with each symbol in our board, start <code class="language-plaintext highlighter-rouge">dfs</code> (backtracking) which are looking for words in our Trie.</li>
+</ol>
+
+<p><strong>Variables</strong>: 
+<code class="language-plaintext highlighter-rouge">self.num_words</code> is total number of words we still need to find, in the beginning it is equal to total number of words. 
+<code class="language-plaintext highlighter-rouge">res</code> is our result, where we keep found words. 
+<code class="language-plaintext highlighter-rouge">trie</code> is our trie.</p>
+
+<p>Now, how our <code class="language-plaintext highlighter-rouge">dfs(self, board, node, i, j, path, res)</code> works?</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">board</code> is our original board, <code class="language-plaintext highlighter-rouge">node</code> is current node of <code class="language-plaintext highlighter-rouge">trie</code>, <code class="language-plaintext highlighter-rouge">i</code> and <code class="language-plaintext highlighter-rouge">j</code> are current coordinates we are it, <code class="language-plaintext highlighter-rouge">path</code> is word build so far and <code class="language-plaintext highlighter-rouge">res</code> is global variable for found words.</li>
+  <li>First, we check if we still need to look for words, if not, return</li>
+  <li>Check if the node we are in currently is <strong>end_node</strong>: it means, that some word was found! We add it to our <code class="language-plaintext highlighter-rouge">res</code>, mark <code class="language-plaintext highlighter-rouge">node.end_node</code> as False (we do not want to search it once again) and decrease number of words we still need to find by <code class="language-plaintext highlighter-rouge">1</code>.</li>
+  <li>If we out of border or we inside border, but we can not traverse our <code class="language-plaintext highlighter-rouge">trie</code> we again do nothing.</li>
+  <li>Now, we mark <code class="language-plaintext highlighter-rouge">(i,j)</code> position in our board as visited: <code class="language-plaintext highlighter-rouge">#</code>, call our dfs for all neibours, and then restore value ofr <code class="language-plaintext highlighter-rouge">(i,j)</code> position. (the reason is in pyton if we give list as parameter of recursive method, it will deal as global variable, so we need to fix it when we returned from our recursion).</li>
+</ol>
+
+<p><strong>Complexity</strong>. This is difficult question, space complexity is needed to keep our <code class="language-plaintext highlighter-rouge">trie</code>, which is <code class="language-plaintext highlighter-rouge">O(k)</code>, where <code class="language-plaintext highlighter-rouge">k</code> is sum of length of all words. Time complexity is <code class="language-plaintext highlighter-rouge">O(mn*3^T)</code>, where <code class="language-plaintext highlighter-rouge">m</code> and <code class="language-plaintext highlighter-rouge">n</code> are sizes of our board and <code class="language-plaintext highlighter-rouge">T</code> is the length of the longest word in <code class="language-plaintext highlighter-rouge">words</code>. Why? Because we start our <code class="language-plaintext highlighter-rouge">dfs</code> from all points of our board and do not stop until we make sure that the longest word is checked: if we are not lucky and this word can not be found on board we need to check potentialy to the length <code class="language-plaintext highlighter-rouge">T</code>. Why <code class="language-plaintext highlighter-rouge">3^T</code>? Because each time we can choose one of three directions, except the one we came from.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.end_node = 0
+
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, word):
+        root = self.root
+        for symbol in word:
+            root = root.children.setdefault(symbol, TrieNode())
+        root.end_node = 1
+
+class Solution:
+    def findWords(self, board, words):
+        self.num_words = len(words)
+        res, trie = [], Trie()
+        for word in words: trie.insert(word) 
+
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                self.dfs(board, trie.root, i, j, "", res)
+        return res
+
+    def dfs(self, board, node, i, j, path, res):
+        if self.num_words == 0: return
+
+        if node.end_node:
+            res.append(path)
+            node.end_node = False
+            self.num_words -= 1
+
+        if i &lt; 0 or i &gt;= len(board) or j &lt; 0 or j &gt;= len(board[0]): return 
+        tmp = board[i][j]
+        if tmp not in node.children: return
+
+        board[i][j] = "#"
+        for x,y in [[0,-1], [0,1], [1,0], [-1,0]]:
+            self.dfs(board, node.children[tmp], i+x, j+y, path+tmp, res)
+        board[i][j] = tmp
+</code></pre></div></div>
+
+  </div><a class="u-url" href="/leetcode/0212.html" hidden></a>
+</article>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">Dmitry Babichev</li>
+          <li><a class="u-email" href="mailto:dimitry008@gmail.com">dimitry008@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

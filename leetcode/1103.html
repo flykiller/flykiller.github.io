@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Leetcode 1103. Distribute Candies to People | Dmitry Babichev algorithms</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Leetcode 1103. Distribute Candies to People" />
+<meta name="author" content="Dmitry Babichev" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="There are different ways how you can handle this problem, I prefer mathematical way. Let us define k = num_people and n = candies and try to understand how many candies we need to give to i-the person." />
+<meta property="og:description" content="There are different ways how you can handle this problem, I prefer mathematical way. Let us define k = num_people and n = candies and try to understand how many candies we need to give to i-the person." />
+<meta property="og:site_name" content="Dmitry Babichev algorithms" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-04-01T12:49:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Leetcode 1103. Distribute Candies to People" />
+<script type="application/ld+json">
+{"url":"/leetcode/1103.html","@type":"BlogPosting","headline":"Leetcode 1103. Distribute Candies to People","dateModified":"2021-04-01T12:49:00+02:00","datePublished":"2021-04-01T12:49:00+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1103.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"There are different ways how you can handle this problem, I prefer mathematical way. Let us define k = num_people and n = candies and try to understand how many candies we need to give to i-the person.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
+    
+
+
+
+
+
+
+  
+  
+</head>
+
+    
+    <!-- for mathjax support -->
+    
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dmitry Babichev algorithms</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <span>[
+  
+]</span>
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Leetcode 1103. Distribute Candies to People</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-01T12:49:00+02:00" itemprop="datePublished">
+        Apr 1, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>There are different ways how you can handle this problem, I prefer mathematical way. Let us define <code class="language-plaintext highlighter-rouge">k = num_people</code> and <code class="language-plaintext highlighter-rouge">n = candies</code> and try to understand how many candies we need to give to <code class="language-plaintext highlighter-rouge">i</code>-the person.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>…</th>
+      <th>k</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>k+1</strong></td>
+      <td><strong>k+2</strong></td>
+      <td><strong>k+3</strong></td>
+      <td><strong>…</strong></td>
+      <td><strong>2k</strong></td>
+    </tr>
+    <tr>
+      <td><strong>…</strong></td>
+      <td><strong>…</strong></td>
+      <td><strong>…</strong></td>
+      <td><strong>…</strong></td>
+      <td><strong>…</strong></td>
+    </tr>
+    <tr>
+      <td><strong>sk+1</strong></td>
+      <td><strong>…</strong></td>
+      <td><strong>sk+i</strong></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>We need to find the biggest <code class="language-plaintext highlighter-rouge">s</code>, such that the sum of numbers before is less or equal to <code class="language-plaintext highlighter-rouge">n</code>. Let us compute it:</p>
+
+<p><strong>1.</strong> First row: <code class="language-plaintext highlighter-rouge">k(k+1)/2</code>, sum of arithmetic progression.</p>
+
+<p><strong>2.</strong> Second row: <code class="language-plaintext highlighter-rouge">k(k+1)/2 + k^2</code>.</p>
+
+<p><strong>3.</strong> Third row:  <code class="language-plaintext highlighter-rouge">k(k+1)/2 + 2*k^2</code>.
+…</p>
+
+<p><strong>s-1.</strong> <code class="language-plaintext highlighter-rouge">k(k+1)/2 + (s-1)*k^2</code>.</p>
+
+<p><strong>s.</strong> <code class="language-plaintext highlighter-rouge">s*k*i + i(i+1)/2</code>.</p>
+
+<p>Let us evaluate this sum and solve quadratic inequality:</p>
+
+<p><img src="https://assets.leetcode.com/users/images/d526bc75-9a24-4903-a81f-361ab34dda1b_1597655950.5398853.png" alt="image" /></p>
+
+<p>So, we have root <code class="language-plaintext highlighter-rouge">s = ((-1-2*i) + sqrt(1+8*n))/(2*k)</code> and we need to find the biggest integer number which is less than <code class="language-plaintext highlighter-rouge">s</code>, let us define it <code class="language-plaintext highlighter-rouge">t = floor(s)</code>.
+Now, how many candies we need to give to this person? It is <code class="language-plaintext highlighter-rouge">i + (k+i) + ... + (sk+i) = i*(t+1) + k*t*(t+1)//2</code>. Finally, we need to find the last person, who gets the rest of the candies. How we can do it? I evaluate difference <code class="language-plaintext highlighter-rouge">s - floor(s)</code> and choose the person with the biggest difference.</p>
+
+<p><strong>Complexity</strong>: time and space complexity is <code class="language-plaintext highlighter-rouge">O(k)</code>, where <code class="language-plaintext highlighter-rouge">k</code> is number of people.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">distributeCandies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">candies</span><span class="p">,</span> <span class="n">num_people</span><span class="p">):</span>
+        <span class="n">k</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">num_people</span><span class="p">,</span> <span class="n">candies</span>
+        <span class="n">alloc</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">k</span>
+        <span class="n">Final</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">8</span><span class="o">*</span><span class="n">n</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span><span class="p">)</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="n">floor</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+            <span class="n">alloc</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">k</span><span class="o">*</span><span class="n">t</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
+            <span class="n">Final</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">Final</span><span class="p">,</span> <span class="p">(</span><span class="n">s</span><span class="o">-</span><span class="n">floor</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">i</span><span class="p">))</span> 
+            
+        <span class="n">alloc</span><span class="p">[</span><span class="n">Final</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="nb">sum</span><span class="p">(</span><span class="n">alloc</span><span class="p">))</span>
+            
+        <span class="k">return</span> <span class="n">alloc</span>
+</code></pre></div></div>
+
+  </div><a class="u-url" href="/leetcode/1103.html" hidden></a>
+</article>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">Dmitry Babichev</li>
+          <li><a class="u-email" href="mailto:dimitry008@gmail.com">dimitry008@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
