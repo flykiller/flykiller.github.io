@@ -13,11 +13,11 @@
 <meta property="og:description" content="There are several &#39;magical&#39; solutions for this problem I saw in comments, done in O(n), which I really enjoed to read, however I doubt if you never saw this problem you can suceed in real interview. That is why I suggest maybe not the fastest, but much more easier to come up solution. The idea is similar to problem Single Number, but here we need to count each bit modulo 3. So, we Iterate over all possible 32 bits and for each num check if this num has non-zero bit on position i with num &amp; (1&lt;&lt;i) == (1&lt;&lt;i) formula. We evaluate this sum modulo 3. Note, that in the end for each bit we can have either 0 or 1 and never 2. Next, update our answer single with evaluated bit. Finally, we need to deal with overflow cases in python: maximum value for int32 is 2^31 - 1, so if we get number more than this value we have negative answer in fact." />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-01T12:49:00+02:00" />
+<meta property="article:published_time" content="2021-04-01T13:12:10+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0137. Single Number II" />
 <script type="application/ld+json">
-{"url":"/leetcode/0137.html","@type":"BlogPosting","headline":"Leetcode 0137. Single Number II","dateModified":"2021-04-01T12:49:00+02:00","datePublished":"2021-04-01T12:49:00+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0137.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"There are several &#39;magical&#39; solutions for this problem I saw in comments, done in O(n), which I really enjoed to read, however I doubt if you never saw this problem you can suceed in real interview. That is why I suggest maybe not the fastest, but much more easier to come up solution. The idea is similar to problem Single Number, but here we need to count each bit modulo 3. So, we Iterate over all possible 32 bits and for each num check if this num has non-zero bit on position i with num &amp; (1&lt;&lt;i) == (1&lt;&lt;i) formula. We evaluate this sum modulo 3. Note, that in the end for each bit we can have either 0 or 1 and never 2. Next, update our answer single with evaluated bit. Finally, we need to deal with overflow cases in python: maximum value for int32 is 2^31 - 1, so if we get number more than this value we have negative answer in fact.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0137.html","@type":"BlogPosting","headline":"Leetcode 0137. Single Number II","dateModified":"2021-04-01T13:12:10+02:00","datePublished":"2021-04-01T13:12:10+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0137.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"There are several &#39;magical&#39; solutions for this problem I saw in comments, done in O(n), which I really enjoed to read, however I doubt if you never saw this problem you can suceed in real interview. That is why I suggest maybe not the fastest, but much more easier to come up solution. The idea is similar to problem Single Number, but here we need to count each bit modulo 3. So, we Iterate over all possible 32 bits and for each num check if this num has non-zero bit on position i with num &amp; (1&lt;&lt;i) == (1&lt;&lt;i) formula. We evaluate this sum modulo 3. Note, that in the end for each bit we can have either 0 or 1 and never 2. Next, update our answer single with evaluated bit. Finally, we need to deal with overflow cases in python: maximum value for int32 is 2^31 - 1, so if we get number more than this value we have negative answer in fact.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -59,7 +59,7 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0137. Single Number II</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-01T12:49:00+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-01T13:12:10+02:00" itemprop="datePublished">
         Apr 1, 2021
       </time></p>
   </header>
