@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0179. Largest Number" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Note, that we need to somehow sort our data, but be carefull about it: if we have 3, 32 and 31, then we need to choose 3 as the first element. However if we have 3, 34 and 32, then we need to chose 34 as the first element. So, let us for each two numbers x and y decide which one is better: we need to compare xy and yx and choose the best one: we work with x and y as with strings: for example for x = 3 and y = 32, we need to compare xy = 332 and yx = 323. Also it can be shown that if xy &gt;= yx and yz &gt;= zy, then xz &gt;= zx, this means that we have transitivity property, and this is enough to ensure that our sort is consistent: https://en.wikipedia.org/wiki/Comparison_sort" />
-<meta property="og:description" content="Note, that we need to somehow sort our data, but be carefull about it: if we have 3, 32 and 31, then we need to choose 3 as the first element. However if we have 3, 34 and 32, then we need to chose 34 as the first element. So, let us for each two numbers x and y decide which one is better: we need to compare xy and yx and choose the best one: we work with x and y as with strings: for example for x = 3 and y = 32, we need to compare xy = 332 and yx = 323. Also it can be shown that if xy &gt;= yx and yz &gt;= zy, then xz &gt;= zx, this means that we have transitivity property, and this is enough to ensure that our sort is consistent: https://en.wikipedia.org/wiki/Comparison_sort" />
+<meta name="description" content="https://leetcode.com/problems/largest-number" />
+<meta property="og:description" content="https://leetcode.com/problems/largest-number" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0179. Largest Number" />
 <script type="application/ld+json">
-{"url":"/leetcode/0179.html","@type":"BlogPosting","headline":"Leetcode 0179. Largest Number","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0179.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Note, that we need to somehow sort our data, but be carefull about it: if we have 3, 32 and 31, then we need to choose 3 as the first element. However if we have 3, 34 and 32, then we need to chose 34 as the first element. So, let us for each two numbers x and y decide which one is better: we need to compare xy and yx and choose the best one: we work with x and y as with strings: for example for x = 3 and y = 32, we need to compare xy = 332 and yx = 323. Also it can be shown that if xy &gt;= yx and yz &gt;= zy, then xz &gt;= zx, this means that we have transitivity property, and this is enough to ensure that our sort is consistent: https://en.wikipedia.org/wiki/Comparison_sort","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0179.html","@type":"BlogPosting","headline":"Leetcode 0179. Largest Number","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0179.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/largest-number","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -65,13 +65,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0179. Largest Number</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Note, that we need to somehow sort our data, but be carefull about it: if we have <code class="language-plaintext highlighter-rouge">3</code>, <code class="language-plaintext highlighter-rouge">32</code> and <code class="language-plaintext highlighter-rouge">31</code>, then we need to choose <code class="language-plaintext highlighter-rouge">3</code> as the first element. However if we have <code class="language-plaintext highlighter-rouge">3</code>, <code class="language-plaintext highlighter-rouge">34</code> and <code class="language-plaintext highlighter-rouge">32</code>, then we need to chose <code class="language-plaintext highlighter-rouge">34</code> as the first element. So, let us for each two numbers <code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">y</code> decide which one is better: we need to compare <code class="language-plaintext highlighter-rouge">xy</code> and <code class="language-plaintext highlighter-rouge">yx</code> and choose the best one: we work with <code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">y</code> as with strings: for example for <code class="language-plaintext highlighter-rouge">x = 3</code> and <code class="language-plaintext highlighter-rouge">y = 32</code>, we need to compare <code class="language-plaintext highlighter-rouge">xy = 332</code> and <code class="language-plaintext highlighter-rouge">yx = 323</code>. Also it can be shown that if <code class="language-plaintext highlighter-rouge">xy &gt;= yx</code> and <code class="language-plaintext highlighter-rouge">yz &gt;= zy</code>, then <code class="language-plaintext highlighter-rouge">xz &gt;= zx</code>, this means that we have transitivity property, and this is enough to ensure that our sort is consistent: https://en.wikipedia.org/wiki/Comparison_sort</p>
+    <p><a href="https://leetcode.com/problems/largest-number"> <font color="blue">https://leetcode.com/problems/largest-number</font></a></p>
+
+<p>Note, that we need to somehow sort our data, but be carefull about it: if we have <code class="language-plaintext highlighter-rouge">3</code>, <code class="language-plaintext highlighter-rouge">32</code> and <code class="language-plaintext highlighter-rouge">31</code>, then we need to choose <code class="language-plaintext highlighter-rouge">3</code> as the first element. However if we have <code class="language-plaintext highlighter-rouge">3</code>, <code class="language-plaintext highlighter-rouge">34</code> and <code class="language-plaintext highlighter-rouge">32</code>, then we need to chose <code class="language-plaintext highlighter-rouge">34</code> as the first element. So, let us for each two numbers <code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">y</code> decide which one is better: we need to compare <code class="language-plaintext highlighter-rouge">xy</code> and <code class="language-plaintext highlighter-rouge">yx</code> and choose the best one: we work with <code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">y</code> as with strings: for example for <code class="language-plaintext highlighter-rouge">x = 3</code> and <code class="language-plaintext highlighter-rouge">y = 32</code>, we need to compare <code class="language-plaintext highlighter-rouge">xy = 332</code> and <code class="language-plaintext highlighter-rouge">yx = 323</code>. Also it can be shown that if <code class="language-plaintext highlighter-rouge">xy &gt;= yx</code> and <code class="language-plaintext highlighter-rouge">yz &gt;= zy</code>, then <code class="language-plaintext highlighter-rouge">xz &gt;= zx</code>, this means that we have transitivity property, and this is enough to ensure that our sort is consistent: https://en.wikipedia.org/wiki/Comparison_sort</p>
 
 <p><strong>Complexity</strong>: time complexity is <code class="language-plaintext highlighter-rouge">O(n log n)</code>, if we assume that we can make comparison in constant time. In practise, we use strings and compare them, so complexity will be ineed <code class="language-plaintext highlighter-rouge">O(1)</code>. Space complexity is <code class="language-plaintext highlighter-rouge">O(n)</code> to keep sorted numbers.</p>
 
@@ -82,6 +84,8 @@
         <span class="n">compare</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span> <span class="o">&gt;</span> <span class="n">b</span><span class="o">+</span><span class="n">a</span> <span class="k">else</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">+</span><span class="n">a</span> <span class="k">else</span> <span class="mi">0</span>
         <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="s">""</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">nums</span><span class="p">),</span> <span class="n">key</span> <span class="o">=</span> <span class="n">cmp_to_key</span><span class="p">(</span><span class="n">compare</span><span class="p">)))))</span>
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/largest-number/discuss/863489/python-2-lines-solution-using-sort-explained"> <font color="blue">Problem 0179</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0179.html" hidden></a>
 </article>
@@ -133,4 +137,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

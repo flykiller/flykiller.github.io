@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 1463. Cherry Pickup II" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="The idea here is to use dynamic programming with 3 states: dp[j][i1][i2], where j is the number of row and, i1 is the number of column for the first robot and i2 is the number of column for the second robot. I also added dummy columns filled with big negative numbers to handle with border cases." />
-<meta property="og:description" content="The idea here is to use dynamic programming with 3 states: dp[j][i1][i2], where j is the number of row and, i1 is the number of column for the first robot and i2 is the number of column for the second robot. I also added dummy columns filled with big negative numbers to handle with border cases." />
+<meta name="description" content="https://leetcode.com/problems/cherry-pickup-ii" />
+<meta property="og:description" content="https://leetcode.com/problems/cherry-pickup-ii" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 1463. Cherry Pickup II" />
 <script type="application/ld+json">
-{"url":"/leetcode/1463.html","@type":"BlogPosting","headline":"Leetcode 1463. Cherry Pickup II","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1463.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"The idea here is to use dynamic programming with 3 states: dp[j][i1][i2], where j is the number of row and, i1 is the number of column for the first robot and i2 is the number of column for the second robot. I also added dummy columns filled with big negative numbers to handle with border cases.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/1463.html","@type":"BlogPosting","headline":"Leetcode 1463. Cherry Pickup II","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1463.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/cherry-pickup-ii","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 1463. Cherry Pickup II</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>The idea here is to use dynamic programming with 3 states: <code class="language-plaintext highlighter-rouge">dp[j][i1][i2]</code>, where <code class="language-plaintext highlighter-rouge">j</code> is the number of row and, <code class="language-plaintext highlighter-rouge">i1</code> is the number of column for the first robot and <code class="language-plaintext highlighter-rouge">i2</code> is the number of column for the second robot. I also added dummy columns filled with big negative numbers to handle with border cases.</p>
+    <p><a href="https://leetcode.com/problems/cherry-pickup-ii"> <font color="blue">https://leetcode.com/problems/cherry-pickup-ii</font></a></p>
+
+<p>The idea here is to use dynamic programming with 3 states: <code class="language-plaintext highlighter-rouge">dp[j][i1][i2]</code>, where <code class="language-plaintext highlighter-rouge">j</code> is the number of row and, <code class="language-plaintext highlighter-rouge">i1</code> is the number of column for the first robot and <code class="language-plaintext highlighter-rouge">i2</code> is the number of column for the second robot. I also added dummy columns filled with big negative numbers to handle with border cases.</p>
 
 <p>First, we need to fill <code class="language-plaintext highlighter-rouge">dp[0][1][M]</code> value of our table, which corresponds to column <code class="language-plaintext highlighter-rouge">0</code> for the first robot and column <code class="language-plaintext highlighter-rouge">M-1</code> for the second robot. Then we just go through the table and check all possible <code class="language-plaintext highlighter-rouge">3 x 3 = 9</code> cases for previous state of our robots, find maximum and update. We also need to deal with case, when they are at the same cell, which can be done with <code class="language-plaintext highlighter-rouge">(grid[j][i1-1] + grid[j][i2-1])//(1 + (i1 == i2))</code> code. In the end we need to return maximum over possile <code class="language-plaintext highlighter-rouge">M*M</code> values in the last row, that is for <code class="language-plaintext highlighter-rouge">dp[-1]</code></p>
 
@@ -87,6 +89,8 @@
 
         <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">max</span><span class="p">,</span> <span class="o">*</span><span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])))</span>        
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/cherry-pickup-ii/discuss/660586/python-clean-om2n-dp-10-lines-explained"> <font color="blue">Problem 1463</font></a></p>
 
   </div><a class="u-url" href="/leetcode/1463.html" hidden></a>
 </article>
@@ -138,4 +142,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0130. Surrounded Regions" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="In this problem we need to understand, what exactly surrouned by &#39;X&#39; means. It actually means that if we start from &#39;O&#39; at the border, and we traverse only &#39;O&#39;, only those &#39;O&#39; are not surrouned by &#39;X&#39;. So the plan is the following:" />
-<meta property="og:description" content="In this problem we need to understand, what exactly surrouned by &#39;X&#39; means. It actually means that if we start from &#39;O&#39; at the border, and we traverse only &#39;O&#39;, only those &#39;O&#39; are not surrouned by &#39;X&#39;. So the plan is the following:" />
+<meta name="description" content="https://leetcode.com/problems/surrounded-regions" />
+<meta property="og:description" content="https://leetcode.com/problems/surrounded-regions" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0130. Surrounded Regions" />
 <script type="application/ld+json">
-{"url":"/leetcode/0130.html","@type":"BlogPosting","headline":"Leetcode 0130. Surrounded Regions","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0130.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"In this problem we need to understand, what exactly surrouned by &#39;X&#39; means. It actually means that if we start from &#39;O&#39; at the border, and we traverse only &#39;O&#39;, only those &#39;O&#39; are not surrouned by &#39;X&#39;. So the plan is the following:","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0130.html","@type":"BlogPosting","headline":"Leetcode 0130. Surrounded Regions","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0130.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/surrounded-regions","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -68,13 +68,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0130. Surrounded Regions</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>In this problem we need to understand, what exactly surrouned by <code class="language-plaintext highlighter-rouge">'X'</code> means. It actually means that if we start from <code class="language-plaintext highlighter-rouge">'O'</code> at the border, and we traverse only <code class="language-plaintext highlighter-rouge">'O'</code>, only those <code class="language-plaintext highlighter-rouge">'O'</code> are <strong>not surrouned</strong> by <code class="language-plaintext highlighter-rouge">'X'</code>. So the plan is the following:</p>
+    <p><a href="https://leetcode.com/problems/surrounded-regions"> <font color="blue">https://leetcode.com/problems/surrounded-regions</font></a></p>
+
+<p>In this problem we need to understand, what exactly surrouned by <code class="language-plaintext highlighter-rouge">'X'</code> means. It actually means that if we start from <code class="language-plaintext highlighter-rouge">'O'</code> at the border, and we traverse only <code class="language-plaintext highlighter-rouge">'O'</code>, only those <code class="language-plaintext highlighter-rouge">'O'</code> are <strong>not surrouned</strong> by <code class="language-plaintext highlighter-rouge">'X'</code>. So the plan is the following:</p>
 
 <ol>
   <li>Start dfs or bfs from all <code class="language-plaintext highlighter-rouge">'O'</code>, which are on the border.</li>
@@ -108,6 +110,8 @@
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">M</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">N</span><span class="p">)):</span>
             <span class="n">board</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="s">"X"</span> <span class="k">if</span> <span class="n">board</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="s">"T"</span> <span class="k">else</span> <span class="s">"O"</span>
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/surrounded-regions/discuss/691646/python-omn-3-colors-dfs-explained"> <font color="blue">Problem 0130</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0130.html" hidden></a>
 </article>
@@ -159,4 +163,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

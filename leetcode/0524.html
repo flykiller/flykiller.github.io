@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0524. Longest Word in Dictionary through Deleting" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="This problem is nothing else, but generalization of problem 392. Is Subsequence, but here here we have one main string s and bunch of substrings we need to look inside. You can see my solution for this problem here https://leetcode.com/problems/is-subsequence/discuss/678389/Python-3-Solutions%3A-DP-2-pointers-and-follow-up-BS-explained" />
-<meta property="og:description" content="This problem is nothing else, but generalization of problem 392. Is Subsequence, but here here we have one main string s and bunch of substrings we need to look inside. You can see my solution for this problem here https://leetcode.com/problems/is-subsequence/discuss/678389/Python-3-Solutions%3A-DP-2-pointers-and-follow-up-BS-explained" />
+<meta name="description" content="https://leetcode.com/problems/longest-word-in-dictionary-through-deleting" />
+<meta property="og:description" content="https://leetcode.com/problems/longest-word-in-dictionary-through-deleting" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0524. Longest Word in Dictionary through Deleting" />
 <script type="application/ld+json">
-{"url":"/leetcode/0524.html","@type":"BlogPosting","headline":"Leetcode 0524. Longest Word in Dictionary through Deleting","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0524.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"This problem is nothing else, but generalization of problem 392. Is Subsequence, but here here we have one main string s and bunch of substrings we need to look inside. You can see my solution for this problem here https://leetcode.com/problems/is-subsequence/discuss/678389/Python-3-Solutions%3A-DP-2-pointers-and-follow-up-BS-explained","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0524.html","@type":"BlogPosting","headline":"Leetcode 0524. Longest Word in Dictionary through Deleting","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0524.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/longest-word-in-dictionary-through-deleting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0524. Longest Word in Dictionary through Deleting</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>This problem is nothing else, but generalization of problem <strong>392. Is Subsequence</strong>, but here here we have one main string <code class="language-plaintext highlighter-rouge">s</code> and bunch of substrings we need to look inside. You can see my solution for this problem here
+    <p><a href="https://leetcode.com/problems/longest-word-in-dictionary-through-deleting"> <font color="blue">https://leetcode.com/problems/longest-word-in-dictionary-through-deleting</font></a></p>
+
+<p>This problem is nothing else, but generalization of problem <strong>392. Is Subsequence</strong>, but here here we have one main string <code class="language-plaintext highlighter-rouge">s</code> and bunch of substrings we need to look inside. You can see my solution for this problem here
 https://leetcode.com/problems/is-subsequence/discuss/678389/Python-3-Solutions%3A-DP-2-pointers-and-follow-up-BS-explained</p>
 
 <p>Let us now iterate over strings <code class="language-plaintext highlighter-rouge">d</code> here and if we found subsequence of <code class="language-plaintext highlighter-rouge">s</code>, we update our <code class="language-plaintext highlighter-rouge">ans</code>: fisrt check length and then lexicographical order.</p>
@@ -90,6 +92,8 @@ https://leetcode.com/problems/is-subsequence/discuss/678389/Python-3-Solutions%3
 <p><strong>PS</strong>: there is also very elegant oneliner for isSubsequence function, which has the same complexity as my function, but works several times faster due to low-level python language optimizations. However, I think nobody expect this code on real interview and it is more for constests trick in my opinion.</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>return all(c in (t:=iter(t)) for c in s)
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/longest-word-in-dictionary-through-deleting/discuss/1077674/python-o(mn)-solution-explained"> <font color="blue">Problem 0524</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0524.html" hidden></a>
 </article>
@@ -141,4 +145,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

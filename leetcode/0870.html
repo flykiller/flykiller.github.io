@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0870. Advantage Shuffle" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="The idea here is to sort A and B lists first and start with the biggest number from B and check if we can beat it with biggest number from A. If we can, do it and increase beg pointer. If no, than we need to choose the smallest number we have and we move end pointer. One difficulty here is that we need to keep order of data somehow, so we add indexes to B list. Then we create ans list and change corresponding element of it." />
-<meta property="og:description" content="The idea here is to sort A and B lists first and start with the biggest number from B and check if we can beat it with biggest number from A. If we can, do it and increase beg pointer. If no, than we need to choose the smallest number we have and we move end pointer. One difficulty here is that we need to keep order of data somehow, so we add indexes to B list. Then we create ans list and change corresponding element of it." />
+<meta name="description" content="https://leetcode.com/problems/advantage-shuffle" />
+<meta property="og:description" content="https://leetcode.com/problems/advantage-shuffle" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0870. Advantage Shuffle" />
 <script type="application/ld+json">
-{"url":"/leetcode/0870.html","@type":"BlogPosting","headline":"Leetcode 0870. Advantage Shuffle","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0870.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"The idea here is to sort A and B lists first and start with the biggest number from B and check if we can beat it with biggest number from A. If we can, do it and increase beg pointer. If no, than we need to choose the smallest number we have and we move end pointer. One difficulty here is that we need to keep order of data somehow, so we add indexes to B list. Then we create ans list and change corresponding element of it.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0870.html","@type":"BlogPosting","headline":"Leetcode 0870. Advantage Shuffle","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0870.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/advantage-shuffle","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0870. Advantage Shuffle</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>The idea here is to sort <code class="language-plaintext highlighter-rouge">A</code> and <code class="language-plaintext highlighter-rouge">B</code> lists first and start with the biggest number from <code class="language-plaintext highlighter-rouge">B</code> and check if we can beat it with biggest number from <code class="language-plaintext highlighter-rouge">A</code>. If we can, do it and increase <code class="language-plaintext highlighter-rouge">beg</code> pointer. If no, than we need to choose the smallest number we have and we move <code class="language-plaintext highlighter-rouge">end</code> pointer. One difficulty here is that we need to keep order of data somehow, so we add indexes to <code class="language-plaintext highlighter-rouge">B</code> list. Then we create <code class="language-plaintext highlighter-rouge">ans</code> list and change corresponding element of it.</p>
+    <p><a href="https://leetcode.com/problems/advantage-shuffle"> <font color="blue">https://leetcode.com/problems/advantage-shuffle</font></a></p>
+
+<p>The idea here is to sort <code class="language-plaintext highlighter-rouge">A</code> and <code class="language-plaintext highlighter-rouge">B</code> lists first and start with the biggest number from <code class="language-plaintext highlighter-rouge">B</code> and check if we can beat it with biggest number from <code class="language-plaintext highlighter-rouge">A</code>. If we can, do it and increase <code class="language-plaintext highlighter-rouge">beg</code> pointer. If no, than we need to choose the smallest number we have and we move <code class="language-plaintext highlighter-rouge">end</code> pointer. One difficulty here is that we need to keep order of data somehow, so we add indexes to <code class="language-plaintext highlighter-rouge">B</code> list. Then we create <code class="language-plaintext highlighter-rouge">ans</code> list and change corresponding element of it.</p>
 
 <p>Time complexity is <code class="language-plaintext highlighter-rouge">O(n log n)</code> to perform sorts and space complexity is <code class="language-plaintext highlighter-rouge">O(n)</code>.</p>
 
@@ -88,6 +90,8 @@
                 
         <span class="k">return</span> <span class="n">ans</span>
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/advantage-shuffle/discuss/1125119/python-greedy-solution-two-pointers-explained"> <font color="blue">Problem 0870</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0870.html" hidden></a>
 </article>
@@ -139,4 +143,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

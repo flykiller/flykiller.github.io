@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0421. Maximum XOR of Two Numbers in an Array" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Let us try to build the biggest XOR number binary digit by digit. So, the first question we are going to ask, is there two numbers, such that its XOR starts with 1...... (length is 32 bits). Howe we can find it? Let us use the idea of Problem 1: TwoSum: put all prefixes of lengh one to set and then try to find two numbers in this set such that their XOR starts with 1 (at first we have at most 2 elements in our set). Imagine that there are two numbers, which XOR starts with 1......, then the next question is there are two numbers with XOR starts with 11....., we again iterate through all numbers and find two of them with XOR starts with 11. It can happen that on the next step we did not find XOR starts with 111....., then we do not change our ans and on next step we are looking for XOR starts with 1101... and so on. So:" />
-<meta property="og:description" content="Let us try to build the biggest XOR number binary digit by digit. So, the first question we are going to ask, is there two numbers, such that its XOR starts with 1...... (length is 32 bits). Howe we can find it? Let us use the idea of Problem 1: TwoSum: put all prefixes of lengh one to set and then try to find two numbers in this set such that their XOR starts with 1 (at first we have at most 2 elements in our set). Imagine that there are two numbers, which XOR starts with 1......, then the next question is there are two numbers with XOR starts with 11....., we again iterate through all numbers and find two of them with XOR starts with 11. It can happen that on the next step we did not find XOR starts with 111....., then we do not change our ans and on next step we are looking for XOR starts with 1101... and so on. So:" />
+<meta name="description" content="https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array" />
+<meta property="og:description" content="https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0421. Maximum XOR of Two Numbers in an Array" />
 <script type="application/ld+json">
-{"url":"/leetcode/0421.html","@type":"BlogPosting","headline":"Leetcode 0421. Maximum XOR of Two Numbers in an Array","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0421.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Let us try to build the biggest XOR number binary digit by digit. So, the first question we are going to ask, is there two numbers, such that its XOR starts with 1...... (length is 32 bits). Howe we can find it? Let us use the idea of Problem 1: TwoSum: put all prefixes of lengh one to set and then try to find two numbers in this set such that their XOR starts with 1 (at first we have at most 2 elements in our set). Imagine that there are two numbers, which XOR starts with 1......, then the next question is there are two numbers with XOR starts with 11....., we again iterate through all numbers and find two of them with XOR starts with 11. It can happen that on the next step we did not find XOR starts with 111....., then we do not change our ans and on next step we are looking for XOR starts with 1101... and so on. So:","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0421.html","@type":"BlogPosting","headline":"Leetcode 0421. Maximum XOR of Two Numbers in an Array","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0421.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0421. Maximum XOR of Two Numbers in an Array</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Let us try to build the biggest XOR number binary digit by digit. So, the first question we are going to ask, is there two numbers, such that its XOR starts with <code class="language-plaintext highlighter-rouge">1......</code> (length is <code class="language-plaintext highlighter-rouge">32</code> bits). Howe we can find it? Let us use the idea of Problem 1: TwoSum: put all prefixes of lengh one to set and then try to find two numbers in this set such that their XOR starts with <code class="language-plaintext highlighter-rouge">1</code> (at first we have at most <code class="language-plaintext highlighter-rouge">2</code> elements in our set). Imagine that there are two numbers, which XOR starts with <code class="language-plaintext highlighter-rouge">1......</code>, then the next question is there are two numbers with XOR starts with <code class="language-plaintext highlighter-rouge">11.....</code>, we again iterate through all numbers and find two of them with <code class="language-plaintext highlighter-rouge">XOR</code> starts with <code class="language-plaintext highlighter-rouge">11</code>. It can happen that on the next step we did not find <code class="language-plaintext highlighter-rouge">XOR</code> starts with <code class="language-plaintext highlighter-rouge">111.....</code>, then we do not change our <code class="language-plaintext highlighter-rouge">ans</code> and on next step we are looking for <code class="language-plaintext highlighter-rouge">XOR</code> starts with <code class="language-plaintext highlighter-rouge">1101...</code> and so on. So:</p>
+    <p><a href="https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array"> <font color="blue">https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array</font></a></p>
+
+<p>Let us try to build the biggest XOR number binary digit by digit. So, the first question we are going to ask, is there two numbers, such that its XOR starts with <code class="language-plaintext highlighter-rouge">1......</code> (length is <code class="language-plaintext highlighter-rouge">32</code> bits). Howe we can find it? Let us use the idea of Problem 1: TwoSum: put all prefixes of lengh one to set and then try to find two numbers in this set such that their XOR starts with <code class="language-plaintext highlighter-rouge">1</code> (at first we have at most <code class="language-plaintext highlighter-rouge">2</code> elements in our set). Imagine that there are two numbers, which XOR starts with <code class="language-plaintext highlighter-rouge">1......</code>, then the next question is there are two numbers with XOR starts with <code class="language-plaintext highlighter-rouge">11.....</code>, we again iterate through all numbers and find two of them with <code class="language-plaintext highlighter-rouge">XOR</code> starts with <code class="language-plaintext highlighter-rouge">11</code>. It can happen that on the next step we did not find <code class="language-plaintext highlighter-rouge">XOR</code> starts with <code class="language-plaintext highlighter-rouge">111.....</code>, then we do not change our <code class="language-plaintext highlighter-rouge">ans</code> and on next step we are looking for <code class="language-plaintext highlighter-rouge">XOR</code> starts with <code class="language-plaintext highlighter-rouge">1101...</code> and so on. So:</p>
 
 <ol>
   <li>We iterate, starting from the first digit in binary representation of number and go to the right.</li>
@@ -91,6 +93,8 @@
          
         <span class="k">return</span> <span class="n">ans</span>
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/discuss/849128/python-o(32n)-solution-explained"> <font color="blue">Problem 0421</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0421.html" hidden></a>
 </article>
@@ -142,4 +146,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

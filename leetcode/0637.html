@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0637. Average of Levels in Binary Tree" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="In this problem we need to traverse tree, using either bfs of dfs and for each node we need to calculate its level. You can choose any of these two methods, here I do it, using bfs." />
-<meta property="og:description" content="In this problem we need to traverse tree, using either bfs of dfs and for each node we need to calculate its level. You can choose any of these two methods, here I do it, using bfs." />
+<meta name="description" content="https://leetcode.com/problems/average-of-levels-in-binary-tree" />
+<meta property="og:description" content="https://leetcode.com/problems/average-of-levels-in-binary-tree" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0637. Average of Levels in Binary Tree" />
 <script type="application/ld+json">
-{"url":"/leetcode/0637.html","@type":"BlogPosting","headline":"Leetcode 0637. Average of Levels in Binary Tree","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0637.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"In this problem we need to traverse tree, using either bfs of dfs and for each node we need to calculate its level. You can choose any of these two methods, here I do it, using bfs.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0637.html","@type":"BlogPosting","headline":"Leetcode 0637. Average of Levels in Binary Tree","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0637.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/average-of-levels-in-binary-tree","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0637. Average of Levels in Binary Tree</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>In this problem we need to traverse tree, using either bfs of dfs and for each node we need to calculate its level. You can choose any of these two methods, here I do it, using <strong>bfs</strong>.</p>
+    <p><a href="https://leetcode.com/problems/average-of-levels-in-binary-tree"> <font color="blue">https://leetcode.com/problems/average-of-levels-in-binary-tree</font></a></p>
+
+<p>In this problem we need to traverse tree, using either bfs of dfs and for each node we need to calculate its level. You can choose any of these two methods, here I do it, using <strong>bfs</strong>.</p>
 
 <ol>
   <li>First, we put <code class="language-plaintext highlighter-rouge">root</code> into our queue (using <code class="language-plaintext highlighter-rouge">deque</code> python library).</li>
@@ -90,6 +92,8 @@
             <span class="n">result</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">level</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">level</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">result</span>
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/average-of-levels-in-binary-tree/discuss/1094399/python-simple-bfs-explained"> <font color="blue">Problem 0637</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0637.html" hidden></a>
 </article>
@@ -141,4 +145,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

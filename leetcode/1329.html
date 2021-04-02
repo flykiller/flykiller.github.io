@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 1329. Sort the Matrix Diagonally" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="In this problem we are asked to sort each diagonal, so it is good idea to traverse all matrix and create defaultdict d: numbers on each diagonal. Note, that inside each diagonal j - i is the same, so it can be used as key for our defaultdict. There will be two stages:" />
-<meta property="og:description" content="In this problem we are asked to sort each diagonal, so it is good idea to traverse all matrix and create defaultdict d: numbers on each diagonal. Note, that inside each diagonal j - i is the same, so it can be used as key for our defaultdict. There will be two stages:" />
+<meta name="description" content="https://leetcode.com/problems/sort-the-matrix-diagonally" />
+<meta property="og:description" content="https://leetcode.com/problems/sort-the-matrix-diagonally" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 1329. Sort the Matrix Diagonally" />
 <script type="application/ld+json">
-{"url":"/leetcode/1329.html","@type":"BlogPosting","headline":"Leetcode 1329. Sort the Matrix Diagonally","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1329.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"In this problem we are asked to sort each diagonal, so it is good idea to traverse all matrix and create defaultdict d: numbers on each diagonal. Note, that inside each diagonal j - i is the same, so it can be used as key for our defaultdict. There will be two stages:","@context":"https://schema.org"}</script>
+{"url":"/leetcode/1329.html","@type":"BlogPosting","headline":"Leetcode 1329. Sort the Matrix Diagonally","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1329.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/sort-the-matrix-diagonally","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 1329. Sort the Matrix Diagonally</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>In this problem we are asked to sort each diagonal, so it is good idea to traverse all matrix and create defaultdict <code class="language-plaintext highlighter-rouge">d</code>: numbers on each diagonal. Note, that inside each diagonal <code class="language-plaintext highlighter-rouge">j - i</code> is the same, so it can be used as key for our defaultdict. There will be two stages:</p>
+    <p><a href="https://leetcode.com/problems/sort-the-matrix-diagonally"> <font color="blue">https://leetcode.com/problems/sort-the-matrix-diagonally</font></a></p>
+
+<p>In this problem we are asked to sort each diagonal, so it is good idea to traverse all matrix and create defaultdict <code class="language-plaintext highlighter-rouge">d</code>: numbers on each diagonal. Note, that inside each diagonal <code class="language-plaintext highlighter-rouge">j - i</code> is the same, so it can be used as key for our defaultdict. There will be two stages:</p>
 
 <ol>
   <li>Traverse over all matrix and put <code class="language-plaintext highlighter-rouge">mat[i][j]</code> to the end of <code class="language-plaintext highlighter-rouge">d[j  - i]</code>.</li>
@@ -87,6 +89,8 @@
                 
         <span class="k">return</span> <span class="n">mat</span>
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/sort-the-matrix-diagonally/discuss/1030707/python-solution-using-defautdict-explained"> <font color="blue">Problem 1329</font></a></p>
 
   </div><a class="u-url" href="/leetcode/1329.html" hidden></a>
 </article>
@@ -138,4 +142,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

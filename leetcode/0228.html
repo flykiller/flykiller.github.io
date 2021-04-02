@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0228. Summary Ranges" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="What we need to in this problem is just traverse our data and create our ranges. Like if we have 1,2,3,4,5,7, we see at 1, 2, 3, 4 and 5, and then we need to stop and start new range. We use two pointers approach with beg and end pointers. We increase our end pointers until next number is not equal to current + 1. Also we need to check if we have range with only one number of with more than one." />
-<meta property="og:description" content="What we need to in this problem is just traverse our data and create our ranges. Like if we have 1,2,3,4,5,7, we see at 1, 2, 3, 4 and 5, and then we need to stop and start new range. We use two pointers approach with beg and end pointers. We increase our end pointers until next number is not equal to current + 1. Also we need to check if we have range with only one number of with more than one." />
+<meta name="description" content="https://leetcode.com/problems/summary-ranges" />
+<meta property="og:description" content="https://leetcode.com/problems/summary-ranges" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0228. Summary Ranges" />
 <script type="application/ld+json">
-{"url":"/leetcode/0228.html","@type":"BlogPosting","headline":"Leetcode 0228. Summary Ranges","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0228.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"What we need to in this problem is just traverse our data and create our ranges. Like if we have 1,2,3,4,5,7, we see at 1, 2, 3, 4 and 5, and then we need to stop and start new range. We use two pointers approach with beg and end pointers. We increase our end pointers until next number is not equal to current + 1. Also we need to check if we have range with only one number of with more than one.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0228.html","@type":"BlogPosting","headline":"Leetcode 0228. Summary Ranges","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0228.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/summary-ranges","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,12 +46,15 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
         <span>[
+  
+    
+    <a href="/tag/two pointers"><code class="highligher-rouge"><nobr>two pointers</nobr></code>&nbsp;</a>
   
 ]</span>
 
@@ -59,13 +62,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0228. Summary Ranges</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>What we need to in this problem is just traverse our data and create our ranges. Like if we have <code class="language-plaintext highlighter-rouge">1,2,3,4,5,7</code>, we see at <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">2</code>, <code class="language-plaintext highlighter-rouge">3</code>, <code class="language-plaintext highlighter-rouge">4</code> and <code class="language-plaintext highlighter-rouge">5</code>, and then we need to stop and start new range. We use two pointers approach with <code class="language-plaintext highlighter-rouge">beg</code> and <code class="language-plaintext highlighter-rouge">end</code> pointers. We increase our <code class="language-plaintext highlighter-rouge">end</code> pointers until next number is not equal to current + 1. Also we need to check if we have range with only one number of with more than one.</p>
+    <p><a href="https://leetcode.com/problems/summary-ranges"> <font color="blue">https://leetcode.com/problems/summary-ranges</font></a></p>
+
+<p>What we need to in this problem is just traverse our data and create our ranges. Like if we have <code class="language-plaintext highlighter-rouge">1,2,3,4,5,7</code>, we see at <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">2</code>, <code class="language-plaintext highlighter-rouge">3</code>, <code class="language-plaintext highlighter-rouge">4</code> and <code class="language-plaintext highlighter-rouge">5</code>, and then we need to stop and start new range. We use two pointers approach with <code class="language-plaintext highlighter-rouge">beg</code> and <code class="language-plaintext highlighter-rouge">end</code> pointers. We increase our <code class="language-plaintext highlighter-rouge">end</code> pointers until next number is not equal to current + 1. Also we need to check if we have range with only one number of with more than one.</p>
 
 <p><strong>Complexity</strong>: time complexity is <code class="language-plaintext highlighter-rouge">O(n)</code>, because we pass only once over our data. Space complexity is also potentially <code class="language-plaintext highlighter-rouge">O(n)</code>, because it can be the size of our answer.</p>
 
@@ -81,6 +86,8 @@
         
         <span class="k">return</span> <span class="n">result</span>
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/summary-ranges/discuss/913432/python-two-pointers-o(n)-solution-explained"> <font color="blue">Problem 0228</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0228.html" hidden></a>
 </article>
@@ -132,4 +139,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

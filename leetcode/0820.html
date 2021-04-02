@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0820. Short Encoding of Words" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="If we look carefully we can notice that we need to write all words such that they are not suffix of some other word. We can do it just in bruteforce way, for each word checking if suffix of this word alredy here or not. However as usual, when the problem is about suffixes or prefixes of words it is good idea to think about tries. Notice, that if we reverse words and put them into trie, than for [&quot;time&quot;, &quot;me&quot;, &quot;bell&quot;], we will put emit, em, lleb, so if one word was suffix of another, now it is is prefix, and this is what tries are about. In addition to classical trie data structure we want to keep list ends, so we can have quick access to them (usual way is for every node have IsEnd field which is true if some word ends with this node, but in this case we need to traverse all tree second time). Finally, we iterate over all ends and check that we can not continue this word, that is it is leaf of tree. Complexity: time complexity is O(w_1 + ... + w_n), where w_i is length of i-th word: we need to traverse each word and put it to trie and then traverse all n end points. Space complexity is also O(w_1 + ... + w_n)." />
-<meta property="og:description" content="If we look carefully we can notice that we need to write all words such that they are not suffix of some other word. We can do it just in bruteforce way, for each word checking if suffix of this word alredy here or not. However as usual, when the problem is about suffixes or prefixes of words it is good idea to think about tries. Notice, that if we reverse words and put them into trie, than for [&quot;time&quot;, &quot;me&quot;, &quot;bell&quot;], we will put emit, em, lleb, so if one word was suffix of another, now it is is prefix, and this is what tries are about. In addition to classical trie data structure we want to keep list ends, so we can have quick access to them (usual way is for every node have IsEnd field which is true if some word ends with this node, but in this case we need to traverse all tree second time). Finally, we iterate over all ends and check that we can not continue this word, that is it is leaf of tree. Complexity: time complexity is O(w_1 + ... + w_n), where w_i is length of i-th word: we need to traverse each word and put it to trie and then traverse all n end points. Space complexity is also O(w_1 + ... + w_n)." />
+<meta name="description" content="https://leetcode.com/problems/short-encoding-of-words" />
+<meta property="og:description" content="https://leetcode.com/problems/short-encoding-of-words" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0820. Short Encoding of Words" />
 <script type="application/ld+json">
-{"url":"/leetcode/0820.html","@type":"BlogPosting","headline":"Leetcode 0820. Short Encoding of Words","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0820.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"If we look carefully we can notice that we need to write all words such that they are not suffix of some other word. We can do it just in bruteforce way, for each word checking if suffix of this word alredy here or not. However as usual, when the problem is about suffixes or prefixes of words it is good idea to think about tries. Notice, that if we reverse words and put them into trie, than for [&quot;time&quot;, &quot;me&quot;, &quot;bell&quot;], we will put emit, em, lleb, so if one word was suffix of another, now it is is prefix, and this is what tries are about. In addition to classical trie data structure we want to keep list ends, so we can have quick access to them (usual way is for every node have IsEnd field which is true if some word ends with this node, but in this case we need to traverse all tree second time). Finally, we iterate over all ends and check that we can not continue this word, that is it is leaf of tree. Complexity: time complexity is O(w_1 + ... + w_n), where w_i is length of i-th word: we need to traverse each word and put it to trie and then traverse all n end points. Space complexity is also O(w_1 + ... + w_n).","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0820.html","@type":"BlogPosting","headline":"Leetcode 0820. Short Encoding of Words","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0820.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/short-encoding-of-words","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0820. Short Encoding of Words</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>If we look carefully we can notice that we need to write all words such that they are not suffix of some other word. We can do it just in bruteforce way, for each word checking if suffix of this word alredy here or not.</p>
+    <p><a href="https://leetcode.com/problems/short-encoding-of-words"> <font color="blue">https://leetcode.com/problems/short-encoding-of-words</font></a></p>
+
+<p>If we look carefully we can notice that we need to write all words such that they are not suffix of some other word. We can do it just in bruteforce way, for each word checking if suffix of this word alredy here or not.</p>
 
 <p>However as usual, when the problem is about suffixes or prefixes of words it is good idea to think about <strong>tries</strong>. Notice, that if we reverse words and put them into trie, than for <code class="language-plaintext highlighter-rouge">["time", "me", "bell"]</code>, we will put <code class="language-plaintext highlighter-rouge">emit, em, lleb</code>, so if one word was suffix of another, now it is is prefix, and this is what tries are about.</p>
 
@@ -99,6 +101,8 @@ class Solution:
 </code></pre></div></div>
 
 <p><strong>Remark</strong> Even though complexity here is  <code class="language-plaintext highlighter-rouge">O(w_1 + ... + w_n)</code> and straightforward algorithm it is  <code class="language-plaintext highlighter-rouge">O(w_1^2 + ... + w_n^2)</code>, here it can work slower, because lengths of words are very small and working with strings is faster than working with complex trie data structure we created here.</p>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/short-encoding-of-words/discuss/1095858/python-trie-solution-explained"> <font color="blue">Problem 0820</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0820.html" hidden></a>
 </article>
@@ -150,4 +154,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0987. Vertical Order Traversal of a Binary Tree" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="First of all, I want to mention, that problem statement is not clear at all, I need to go to comments to understand, what order they expect us to return nodes in levels. So, we have X coordinate and Y coordinate, we need to group them by X coordinate. If we have the same X coordinate, we need to check: First put nodes with higher Y coordinates, that ones, which are close to root If two nodes have the same Y coordinate also, we need to put small values before big values." />
-<meta property="og:description" content="First of all, I want to mention, that problem statement is not clear at all, I need to go to comments to understand, what order they expect us to return nodes in levels. So, we have X coordinate and Y coordinate, we need to group them by X coordinate. If we have the same X coordinate, we need to check: First put nodes with higher Y coordinates, that ones, which are close to root If two nodes have the same Y coordinate also, we need to put small values before big values." />
+<meta name="description" content="https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree" />
+<meta property="og:description" content="https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0987. Vertical Order Traversal of a Binary Tree" />
 <script type="application/ld+json">
-{"url":"/leetcode/0987.html","@type":"BlogPosting","headline":"Leetcode 0987. Vertical Order Traversal of a Binary Tree","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0987.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"First of all, I want to mention, that problem statement is not clear at all, I need to go to comments to understand, what order they expect us to return nodes in levels. So, we have X coordinate and Y coordinate, we need to group them by X coordinate. If we have the same X coordinate, we need to check: First put nodes with higher Y coordinates, that ones, which are close to root If two nodes have the same Y coordinate also, we need to put small values before big values.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0987.html","@type":"BlogPosting","headline":"Leetcode 0987. Vertical Order Traversal of a Binary Tree","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0987.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0987. Vertical Order Traversal of a Binary Tree</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>First of all, I want to mention, that problem statement is not clear at all, I need to go to comments to understand, what order they expect us to return nodes in levels. So, we have <code class="language-plaintext highlighter-rouge">X</code> coordinate and <code class="language-plaintext highlighter-rouge">Y</code> coordinate, we need to group them by <code class="language-plaintext highlighter-rouge">X</code> coordinate. If we have the same <code class="language-plaintext highlighter-rouge">X</code> coordinate, we need to check:</p>
+    <p><a href="https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree"> <font color="blue">https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree</font></a></p>
+
+<p>First of all, I want to mention, that problem statement is not clear at all, I need to go to comments to understand, what order they expect us to return nodes in levels. So, we have <code class="language-plaintext highlighter-rouge">X</code> coordinate and <code class="language-plaintext highlighter-rouge">Y</code> coordinate, we need to group them by <code class="language-plaintext highlighter-rouge">X</code> coordinate. If we have the same <code class="language-plaintext highlighter-rouge">X</code> coordinate, we need to check:</p>
 <ol>
   <li>First put nodes with higher <code class="language-plaintext highlighter-rouge">Y</code> coordinates, that ones, which are close to root</li>
   <li>If two nodes have the same <code class="language-plaintext highlighter-rouge">Y</code> coordinate also, we need to put small values before big values.</li>
@@ -107,6 +109,8 @@
             <span class="n">out</span> <span class="o">+=</span> <span class="p">[[</span><span class="n">j</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">dic</span><span class="p">[</span><span class="n">i</span><span class="p">])]]</span>
         <span class="k">return</span> <span class="n">out</span>
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/discuss/777584/python-simple-dfs-explained"> <font color="blue">Problem 0987</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0987.html" hidden></a>
 </article>
@@ -158,4 +162,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

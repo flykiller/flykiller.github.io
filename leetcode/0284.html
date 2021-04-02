@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0284. Peeking Iterator" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="This is more design problem, not algorithmic one in my opinion. You already given implemented class iterator, which you can understand as list, but it is not list. The goal is to implement so-called peeking iterator and to do this we need to be one step ahead: let us create self.buffer variable, which will keep next value from our iterator." />
-<meta property="og:description" content="This is more design problem, not algorithmic one in my opinion. You already given implemented class iterator, which you can understand as list, but it is not list. The goal is to implement so-called peeking iterator and to do this we need to be one step ahead: let us create self.buffer variable, which will keep next value from our iterator." />
+<meta name="description" content="https://leetcode.com/problems/peeking-iterator" />
+<meta property="og:description" content="https://leetcode.com/problems/peeking-iterator" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0284. Peeking Iterator" />
 <script type="application/ld+json">
-{"url":"/leetcode/0284.html","@type":"BlogPosting","headline":"Leetcode 0284. Peeking Iterator","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0284.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"This is more design problem, not algorithmic one in my opinion. You already given implemented class iterator, which you can understand as list, but it is not list. The goal is to implement so-called peeking iterator and to do this we need to be one step ahead: let us create self.buffer variable, which will keep next value from our iterator.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0284.html","@type":"BlogPosting","headline":"Leetcode 0284. Peeking Iterator","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0284.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/peeking-iterator","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,12 +46,15 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
         <span>[
+  
+    
+    <a href="/tag/design"><code class="highligher-rouge"><nobr>design</nobr></code>&nbsp;</a>
   
 ]</span>
 
@@ -59,13 +62,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0284. Peeking Iterator</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>This is more design problem, not algorithmic one in my opinion. You already given implemented class <code class="language-plaintext highlighter-rouge">iterator</code>, which you can understand as list, but it is not list. The goal is to implement so-called peeking iterator and to do this we need to be one step ahead: let us create <code class="language-plaintext highlighter-rouge">self.buffer</code> variable, which will keep next value from our iterator.</p>
+    <p><a href="https://leetcode.com/problems/peeking-iterator"> <font color="blue">https://leetcode.com/problems/peeking-iterator</font></a></p>
+
+<p>This is more design problem, not algorithmic one in my opinion. You already given implemented class <code class="language-plaintext highlighter-rouge">iterator</code>, which you can understand as list, but it is not list. The goal is to implement so-called peeking iterator and to do this we need to be one step ahead: let us create <code class="language-plaintext highlighter-rouge">self.buffer</code> variable, which will keep next value from our iterator.</p>
 
 <ol>
   <li>When we call <code class="language-plaintext highlighter-rouge">peek</code> function, we just return value from our buffer.</li>
@@ -92,6 +97,7 @@
         return self.buffer != None
 </code></pre></div></div>
 
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/peeking-iterator/discuss/1055803/python-simple-solution-explained"> <font color="blue">Problem 0284</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0284.html" hidden></a>
 </article>
@@ -143,4 +149,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

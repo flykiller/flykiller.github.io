@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0495. Teemo Attacking" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="If we look carefully at this problem we can see that all we need to do is to merge some intervals with equal length and return total length of merged intervals. Note also that intervals are already sorted by its beginings (and ends as well, because they have equal length), so usual sorting step can be skipped. All we need to do is to traverse our timeSeries and check if difference between current point and previous is more than duration. If it is more, we add duration to total sum, if it is less, we add difference between current and previous elements. Also we need to deal with border case of empty array and if array is not empty, add duration in the end. Complexity: time complexity is O(n), space complexity is O(1)." />
-<meta property="og:description" content="If we look carefully at this problem we can see that all we need to do is to merge some intervals with equal length and return total length of merged intervals. Note also that intervals are already sorted by its beginings (and ends as well, because they have equal length), so usual sorting step can be skipped. All we need to do is to traverse our timeSeries and check if difference between current point and previous is more than duration. If it is more, we add duration to total sum, if it is less, we add difference between current and previous elements. Also we need to deal with border case of empty array and if array is not empty, add duration in the end. Complexity: time complexity is O(n), space complexity is O(1)." />
+<meta name="description" content="https://leetcode.com/problems/teemo-attacking" />
+<meta property="og:description" content="https://leetcode.com/problems/teemo-attacking" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0495. Teemo Attacking" />
 <script type="application/ld+json">
-{"url":"/leetcode/0495.html","@type":"BlogPosting","headline":"Leetcode 0495. Teemo Attacking","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0495.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"If we look carefully at this problem we can see that all we need to do is to merge some intervals with equal length and return total length of merged intervals. Note also that intervals are already sorted by its beginings (and ends as well, because they have equal length), so usual sorting step can be skipped. All we need to do is to traverse our timeSeries and check if difference between current point and previous is more than duration. If it is more, we add duration to total sum, if it is less, we add difference between current and previous elements. Also we need to deal with border case of empty array and if array is not empty, add duration in the end. Complexity: time complexity is O(n), space complexity is O(1).","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0495.html","@type":"BlogPosting","headline":"Leetcode 0495. Teemo Attacking","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0495.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/teemo-attacking","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0495. Teemo Attacking</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>If we look carefully at this problem we can see that all we need to do is to merge some intervals with equal length and return total length of merged intervals. Note also that intervals are already sorted by its beginings (and ends as well, because they have equal length), so usual sorting step can be skipped.</p>
+    <p><a href="https://leetcode.com/problems/teemo-attacking"> <font color="blue">https://leetcode.com/problems/teemo-attacking</font></a></p>
+
+<p>If we look carefully at this problem we can see that all we need to do is to merge some intervals with equal length and return total length of merged intervals. Note also that intervals are already sorted by its beginings (and ends as well, because they have equal length), so usual sorting step can be skipped.</p>
 
 <p>All we need to do is to traverse our <code class="language-plaintext highlighter-rouge">timeSeries</code> and check if difference between current point and previous is more than <code class="language-plaintext highlighter-rouge">duration</code>. If it is more, we add <code class="language-plaintext highlighter-rouge">duration</code> to total sum, if it is less, we add difference between current and previous elements. Also we need to deal with border case of empty array and if array is not empty, add <code class="language-plaintext highlighter-rouge">duration</code> in the end.</p>
 
@@ -79,6 +81,8 @@
             <span class="n">out</span> <span class="o">+=</span> <span class="nb">min</span><span class="p">(</span><span class="n">timeSeries</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">timeSeries</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">duration</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">out</span> <span class="o">+</span> <span class="n">duration</span>
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/teemo-attacking/discuss/864975/python-merge-intervals-o(n)-solution-explained"> <font color="blue">Problem 0495</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0495.html" hidden></a>
 </article>
@@ -130,4 +134,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

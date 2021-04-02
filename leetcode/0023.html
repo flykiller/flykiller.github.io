@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0023. Merge k Sorted Lists" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="There are a bunch of different solutions for this problem, let us discuss solution, using heaps here. We need to iterate over k lists and on each step to choose the minimum element among k candidates, think of it as extention of classical merge stage in merge sort. If each time we find this minimum element, using lists, overall complexity will be O(nk), where n is total number of elements in all lists. However we can do better: we create heap with the following tuples as elements: First value of tuple is our value of nodes, because we want to sort using these values Second value of tuple is index in lists, form where we choose this element. Why we need this? Because when we will merge this element, we need to go to the next element in the corresponding list." />
-<meta property="og:description" content="There are a bunch of different solutions for this problem, let us discuss solution, using heaps here. We need to iterate over k lists and on each step to choose the minimum element among k candidates, think of it as extention of classical merge stage in merge sort. If each time we find this minimum element, using lists, overall complexity will be O(nk), where n is total number of elements in all lists. However we can do better: we create heap with the following tuples as elements: First value of tuple is our value of nodes, because we want to sort using these values Second value of tuple is index in lists, form where we choose this element. Why we need this? Because when we will merge this element, we need to go to the next element in the corresponding list." />
+<meta name="description" content="https://leetcode.com/problems/merge-k-sorted-lists" />
+<meta property="og:description" content="https://leetcode.com/problems/merge-k-sorted-lists" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0023. Merge k Sorted Lists" />
 <script type="application/ld+json">
-{"url":"/leetcode/0023.html","@type":"BlogPosting","headline":"Leetcode 0023. Merge k Sorted Lists","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0023.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"There are a bunch of different solutions for this problem, let us discuss solution, using heaps here. We need to iterate over k lists and on each step to choose the minimum element among k candidates, think of it as extention of classical merge stage in merge sort. If each time we find this minimum element, using lists, overall complexity will be O(nk), where n is total number of elements in all lists. However we can do better: we create heap with the following tuples as elements: First value of tuple is our value of nodes, because we want to sort using these values Second value of tuple is index in lists, form where we choose this element. Why we need this? Because when we will merge this element, we need to go to the next element in the corresponding list.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0023.html","@type":"BlogPosting","headline":"Leetcode 0023. Merge k Sorted Lists","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0023.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/merge-k-sorted-lists","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -68,13 +68,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0023. Merge k Sorted Lists</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>There are a bunch of different solutions for this problem, let us discuss solution, using <strong>heaps</strong> here. We need to iterate over <code class="language-plaintext highlighter-rouge">k</code> lists and on each step to choose the minimum element among <code class="language-plaintext highlighter-rouge">k</code> candidates, think of it as extention of classical merge stage in merge sort. If each time we find this minimum element, using lists, overall complexity will be <code class="language-plaintext highlighter-rouge">O(nk)</code>, where <code class="language-plaintext highlighter-rouge">n</code> is total number of elements in all lists. However we can do better: we create heap with the following tuples as elements:</p>
+    <p><a href="https://leetcode.com/problems/merge-k-sorted-lists"> <font color="blue">https://leetcode.com/problems/merge-k-sorted-lists</font></a></p>
+
+<p>There are a bunch of different solutions for this problem, let us discuss solution, using <strong>heaps</strong> here. We need to iterate over <code class="language-plaintext highlighter-rouge">k</code> lists and on each step to choose the minimum element among <code class="language-plaintext highlighter-rouge">k</code> candidates, think of it as extention of classical merge stage in merge sort. If each time we find this minimum element, using lists, overall complexity will be <code class="language-plaintext highlighter-rouge">O(nk)</code>, where <code class="language-plaintext highlighter-rouge">n</code> is total number of elements in all lists. However we can do better: we create heap with the following tuples as elements:</p>
 <ol>
   <li>First value of tuple is our value of nodes, because we want to sort using these values</li>
   <li>Second value of tuple is index in <code class="language-plaintext highlighter-rouge">lists</code>, form where we choose this element. Why we need this? Because when we will merge this element, we need to go to the next element in the corresponding list.</li>
@@ -109,6 +111,8 @@
                 
         <span class="k">return</span> <span class="n">dummy</span><span class="p">.</span><span class="nb">next</span>
 </code></pre></div></div>
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/merge-k-sorted-lists/discuss/1032723/python-heap-solution-explained"> <font color="blue">Problem 0023</font></a></p>
+
 
   </div><a class="u-url" href="/leetcode/0023.html" hidden></a>
 </article>
@@ -160,4 +164,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

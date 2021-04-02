@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 1641. Count Sorted Vowel Strings" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Actually, this is very classical combinatorical problem, which can be solved, using so-called stars and bars method: https://en.wikipedia.org/wiki/Stars_and_bars_(combinatorics). Imagine, that we have string aa..aee..eii..ioo..ouu..u, where we have some numbers of a, e, i, o and u. Then we can look at this problem in the following way: we have n + 4, places, and on some of them we need to put bars |, for example aaaeeiuu is corresponding to ***|**|*||**. So, final number of solutions is number of combinations from n+4 to 4, which can be evaluated as (n+4)!/n!/4!." />
-<meta property="og:description" content="Actually, this is very classical combinatorical problem, which can be solved, using so-called stars and bars method: https://en.wikipedia.org/wiki/Stars_and_bars_(combinatorics). Imagine, that we have string aa..aee..eii..ioo..ouu..u, where we have some numbers of a, e, i, o and u. Then we can look at this problem in the following way: we have n + 4, places, and on some of them we need to put bars |, for example aaaeeiuu is corresponding to ***|**|*||**. So, final number of solutions is number of combinations from n+4 to 4, which can be evaluated as (n+4)!/n!/4!." />
+<meta name="description" content="https://leetcode.com/problems/count-sorted-vowel-strings" />
+<meta property="og:description" content="https://leetcode.com/problems/count-sorted-vowel-strings" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 1641. Count Sorted Vowel Strings" />
 <script type="application/ld+json">
-{"url":"/leetcode/1641.html","@type":"BlogPosting","headline":"Leetcode 1641. Count Sorted Vowel Strings","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1641.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Actually, this is very classical combinatorical problem, which can be solved, using so-called stars and bars method: https://en.wikipedia.org/wiki/Stars_and_bars_(combinatorics). Imagine, that we have string aa..aee..eii..ioo..ouu..u, where we have some numbers of a, e, i, o and u. Then we can look at this problem in the following way: we have n + 4, places, and on some of them we need to put bars |, for example aaaeeiuu is corresponding to ***|**|*||**. So, final number of solutions is number of combinations from n+4 to 4, which can be evaluated as (n+4)!/n!/4!.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/1641.html","@type":"BlogPosting","headline":"Leetcode 1641. Count Sorted Vowel Strings","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1641.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/count-sorted-vowel-strings","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 1641. Count Sorted Vowel Strings</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Actually, this is very classical combinatorical problem, which can be solved, using so-called <strong>stars and bars</strong> method: https://en.wikipedia.org/wiki/Stars_and_bars_(combinatorics). Imagine, that we have string <code class="language-plaintext highlighter-rouge">aa..aee..eii..ioo..ouu..u</code>, where we have some numbers of <code class="language-plaintext highlighter-rouge">a, e, i, o</code> and <code class="language-plaintext highlighter-rouge">u</code>. Then we can look at this problem in the following way: we have <code class="language-plaintext highlighter-rouge">n + 4</code>, places, and on some of them we need to put bars <code class="language-plaintext highlighter-rouge">|</code>, for example <code class="language-plaintext highlighter-rouge">aaaeeiuu</code> is corresponding to <code class="language-plaintext highlighter-rouge">***|**|*||**</code>. So, final number of solutions is number of combinations from <code class="language-plaintext highlighter-rouge">n+4</code> to <code class="language-plaintext highlighter-rouge">4,</code> which can be evaluated as <code class="language-plaintext highlighter-rouge">(n+4)!/n!/4!</code>.</p>
+    <p><a href="https://leetcode.com/problems/count-sorted-vowel-strings"> <font color="blue">https://leetcode.com/problems/count-sorted-vowel-strings</font></a></p>
+
+<p>Actually, this is very classical combinatorical problem, which can be solved, using so-called <strong>stars and bars</strong> method: https://en.wikipedia.org/wiki/Stars_and_bars_(combinatorics). Imagine, that we have string <code class="language-plaintext highlighter-rouge">aa..aee..eii..ioo..ouu..u</code>, where we have some numbers of <code class="language-plaintext highlighter-rouge">a, e, i, o</code> and <code class="language-plaintext highlighter-rouge">u</code>. Then we can look at this problem in the following way: we have <code class="language-plaintext highlighter-rouge">n + 4</code>, places, and on some of them we need to put bars <code class="language-plaintext highlighter-rouge">|</code>, for example <code class="language-plaintext highlighter-rouge">aaaeeiuu</code> is corresponding to <code class="language-plaintext highlighter-rouge">***|**|*||**</code>. So, final number of solutions is number of combinations from <code class="language-plaintext highlighter-rouge">n+4</code> to <code class="language-plaintext highlighter-rouge">4,</code> which can be evaluated as <code class="language-plaintext highlighter-rouge">(n+4)!/n!/4!</code>.</p>
 
 <p><strong>Complexity</strong>: time and space complexity is <code class="language-plaintext highlighter-rouge">O(1)</code>, because <code class="language-plaintext highlighter-rouge">n</code> is small. One quick optimization is to use <code class="language-plaintext highlighter-rouge">(n+4)*(n+3)*(n+2)*(n+1)//4</code> formula, which will work faster for big <code class="language-plaintext highlighter-rouge">n</code>, but given problem constraints different is negligible.</p>
 
@@ -73,6 +75,8 @@
     <span class="k">def</span> <span class="nf">countVowelStrings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">factorial</span><span class="p">(</span><span class="mi">4</span><span class="o">+</span><span class="n">n</span><span class="p">)</span><span class="o">//</span><span class="n">factorial</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">//</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/count-sorted-vowel-strings/discuss/1021180/python-start-and-bars-explained"> <font color="blue">Problem 1641</font></a></p>
 
   </div><a class="u-url" href="/leetcode/1641.html" hidden></a>
 </article>
@@ -124,4 +128,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

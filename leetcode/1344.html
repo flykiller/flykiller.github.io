@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 1344. Angle Between Hands of a Clock" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="To solve this problem we need to understand the speeds of Hands of a clock." />
-<meta property="og:description" content="To solve this problem we need to understand the speeds of Hands of a clock." />
+<meta name="description" content="https://leetcode.com/problems/angle-between-hands-of-a-clock" />
+<meta property="og:description" content="https://leetcode.com/problems/angle-between-hands-of-a-clock" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 1344. Angle Between Hands of a Clock" />
 <script type="application/ld+json">
-{"url":"/leetcode/1344.html","@type":"BlogPosting","headline":"Leetcode 1344. Angle Between Hands of a Clock","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1344.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"To solve this problem we need to understand the speeds of Hands of a clock.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/1344.html","@type":"BlogPosting","headline":"Leetcode 1344. Angle Between Hands of a Clock","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1344.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/angle-between-hands-of-a-clock","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 1344. Angle Between Hands of a Clock</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>To solve this problem we need to understand the speeds of Hands of a clock.</p>
+    <p><a href="https://leetcode.com/problems/angle-between-hands-of-a-clock"> <font color="blue">https://leetcode.com/problems/angle-between-hands-of-a-clock</font></a></p>
+
+<p>To solve this problem we need to understand the speeds of Hands of a clock.</p>
 
 <ol>
   <li>Let us find the place, where <strong>hour hand</strong> is. First, whe have <code class="language-plaintext highlighter-rouge">12</code> hours in total, for <code class="language-plaintext highlighter-rouge">360</code> degrees, that means <code class="language-plaintext highlighter-rouge">30</code> degrees per hour. Also, for every <code class="language-plaintext highlighter-rouge">60</code> minutes, our hour hand rotated by <code class="language-plaintext highlighter-rouge">1</code> hour, that is <code class="language-plaintext highlighter-rouge">30</code> degrees, so for every minute, it is rotated by <code class="language-plaintext highlighter-rouge">0.5</code> degrees. So, final place for hour hand is <code class="language-plaintext highlighter-rouge">30*hour + 0.5*minutes</code></li>
@@ -87,6 +89,8 @@
 We can write this as oneliner as well:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>return min(abs(30*hour-5.5*minutes),360-abs(30*hour-5.5*minutes))
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/angle-between-hands-of-a-clock/discuss/735395/python-math-solution-oneliner-explained"> <font color="blue">Problem 1344</font></a></p>
 
   </div><a class="u-url" href="/leetcode/1344.html" hidden></a>
 </article>
@@ -138,4 +142,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

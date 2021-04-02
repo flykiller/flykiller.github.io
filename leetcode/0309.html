@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0309. Best Time to Buy and Sell Stock with Cooldown" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="For all this buy and sell stocks problems I prefer to use differences array. For example, if you have [1,2,3,1,4], then we have [1, 1, -2, 3] differences. Then the goal is to take as many of subarrays (with adjacent elements) with biggest sum, such that there is not gap with size 1. For example, for given differences, we can not take [1,1] and [3], but we can take [1] and [3], so the answer will be 4." />
-<meta property="og:description" content="For all this buy and sell stocks problems I prefer to use differences array. For example, if you have [1,2,3,1,4], then we have [1, 1, -2, 3] differences. Then the goal is to take as many of subarrays (with adjacent elements) with biggest sum, such that there is not gap with size 1. For example, for given differences, we can not take [1,1] and [3], but we can take [1] and [3], so the answer will be 4." />
+<meta name="description" content="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown" />
+<meta property="og:description" content="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0309. Best Time to Buy and Sell Stock with Cooldown" />
 <script type="application/ld+json">
-{"url":"/leetcode/0309.html","@type":"BlogPosting","headline":"Leetcode 0309. Best Time to Buy and Sell Stock with Cooldown","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0309.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"For all this buy and sell stocks problems I prefer to use differences array. For example, if you have [1,2,3,1,4], then we have [1, 1, -2, 3] differences. Then the goal is to take as many of subarrays (with adjacent elements) with biggest sum, such that there is not gap with size 1. For example, for given differences, we can not take [1,1] and [3], but we can take [1] and [3], so the answer will be 4.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0309.html","@type":"BlogPosting","headline":"Leetcode 0309. Best Time to Buy and Sell Stock with Cooldown","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0309.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0309. Best Time to Buy and Sell Stock with Cooldown</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>For all this buy and sell stocks problems I prefer to use <strong>differences</strong> array. For example, if you have <code class="language-plaintext highlighter-rouge">[1,2,3,1,4]</code>, then we have <code class="language-plaintext highlighter-rouge">[1, 1, -2, 3]</code> differences. Then the goal is to take as many of subarrays (with adjacent elements) with biggest sum, such that there is not gap with size <code class="language-plaintext highlighter-rouge">1</code>. For example, for given differences, we <strong>can not</strong> take <code class="language-plaintext highlighter-rouge">[1,1]</code> and <code class="language-plaintext highlighter-rouge">[3]</code>, but we can take <code class="language-plaintext highlighter-rouge">[1]</code> and <code class="language-plaintext highlighter-rouge">[3]</code>, so the answer will be <code class="language-plaintext highlighter-rouge">4</code>.</p>
+    <p><a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown"> <font color="blue">https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown</font></a></p>
+
+<p>For all this buy and sell stocks problems I prefer to use <strong>differences</strong> array. For example, if you have <code class="language-plaintext highlighter-rouge">[1,2,3,1,4]</code>, then we have <code class="language-plaintext highlighter-rouge">[1, 1, -2, 3]</code> differences. Then the goal is to take as many of subarrays (with adjacent elements) with biggest sum, such that there is not gap with size <code class="language-plaintext highlighter-rouge">1</code>. For example, for given differences, we <strong>can not</strong> take <code class="language-plaintext highlighter-rouge">[1,1]</code> and <code class="language-plaintext highlighter-rouge">[3]</code>, but we can take <code class="language-plaintext highlighter-rouge">[1]</code> and <code class="language-plaintext highlighter-rouge">[3]</code>, so the answer will be <code class="language-plaintext highlighter-rouge">4</code>.</p>
 
 <p>Let <code class="language-plaintext highlighter-rouge">n</code> be number of elements in <code class="language-plaintext highlighter-rouge">prices</code>, than there will be <code class="language-plaintext highlighter-rouge">n-1</code> elements in <code class="language-plaintext highlighter-rouge">diff</code> array. Let us create <code class="language-plaintext highlighter-rouge">dp</code> and <code class="language-plaintext highlighter-rouge">dp_max</code> arrays with <code class="language-plaintext highlighter-rouge">n+1</code> elements, that is two extra elements, such that</p>
 
@@ -97,6 +99,8 @@
             
         <span class="k">return</span> <span class="n">dp_max</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/discuss/761720/python-dp-o(n)-solution-using-differences-explained"> <font color="blue">Problem 0309</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0309.html" hidden></a>
 </article>
@@ -148,4 +152,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0299. Bulls and Cows" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Easy, but interesting problem, because it can be solved in different ways." />
-<meta property="og:description" content="Easy, but interesting problem, because it can be solved in different ways." />
+<meta name="description" content="https://leetcode.com/problems/bulls-and-cows" />
+<meta property="og:description" content="https://leetcode.com/problems/bulls-and-cows" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0299. Bulls and Cows" />
 <script type="application/ld+json">
-{"url":"/leetcode/0299.html","@type":"BlogPosting","headline":"Leetcode 0299. Bulls and Cows","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0299.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Easy, but interesting problem, because it can be solved in different ways.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0299.html","@type":"BlogPosting","headline":"Leetcode 0299. Bulls and Cows","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0299.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/bulls-and-cows","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,12 +46,18 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
         <span>[
+  
+    
+    <a href="/tag/math"><code class="highligher-rouge"><nobr>math</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/string"><code class="highligher-rouge"><nobr>string</nobr></code>&nbsp;</a>
   
 ]</span>
 
@@ -59,13 +65,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0299. Bulls and Cows</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Easy, but interesting problem, because it can be solved in different ways.</p>
+    <p><a href="https://leetcode.com/problems/bulls-and-cows"> <font color="blue">https://leetcode.com/problems/bulls-and-cows</font></a></p>
+
+<p>Easy, but interesting problem, because it can be solved in different ways.</p>
 
 <ol>
   <li>Let us first evaluate number of bulls <code class="language-plaintext highlighter-rouge">B</code>: by definition it is number of places with the same digit in <code class="language-plaintext highlighter-rouge">secret</code> and <code class="language-plaintext highlighter-rouge">guess</code>: so let us just traverse our strings and count it.</li>
@@ -83,6 +91,8 @@
         <span class="n">B_C</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="nb">min</span><span class="p">(</span><span class="n">Count_sec</span><span class="p">[</span><span class="n">elem</span><span class="p">],</span> <span class="n">Count_gue</span><span class="p">[</span><span class="n">elem</span><span class="p">])</span> <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">Count_sec</span><span class="p">])</span>
         <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">+</span> <span class="s">"A"</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">B_C</span><span class="o">-</span><span class="n">B</span><span class="p">)</span> <span class="o">+</span> <span class="s">"B"</span>
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/bulls-and-cows/discuss/839444/python-simple-solution-with-counters-explained"> <font color="blue">Problem 0299</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0299.html" hidden></a>
 </article>
@@ -134,4 +144,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

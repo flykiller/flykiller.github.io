@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0312. Burst Balloons" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="This is quite difficult problem! Let us consider dp[i][j] the maximum number of coins we can get, popping balls from i to j, not including i and j. Why it is enough to keep these values? Let us look at the last popped balloon with number k. Then our balloons are separated into two groups: to the left of this balloon and the the right and we can write: dp[i][j] = max(nums[i] * nums[k] * nums[j] + dp[i][k] + dp[k][j]) for k in (i+1,j)," />
-<meta property="og:description" content="This is quite difficult problem! Let us consider dp[i][j] the maximum number of coins we can get, popping balls from i to j, not including i and j. Why it is enough to keep these values? Let us look at the last popped balloon with number k. Then our balloons are separated into two groups: to the left of this balloon and the the right and we can write: dp[i][j] = max(nums[i] * nums[k] * nums[j] + dp[i][k] + dp[k][j]) for k in (i+1,j)," />
+<meta name="description" content="https://leetcode.com/problems/burst-balloons" />
+<meta property="og:description" content="https://leetcode.com/problems/burst-balloons" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0312. Burst Balloons" />
 <script type="application/ld+json">
-{"url":"/leetcode/0312.html","@type":"BlogPosting","headline":"Leetcode 0312. Burst Balloons","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0312.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"This is quite difficult problem! Let us consider dp[i][j] the maximum number of coins we can get, popping balls from i to j, not including i and j. Why it is enough to keep these values? Let us look at the last popped balloon with number k. Then our balloons are separated into two groups: to the left of this balloon and the the right and we can write: dp[i][j] = max(nums[i] * nums[k] * nums[j] + dp[i][k] + dp[k][j]) for k in (i+1,j),","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0312.html","@type":"BlogPosting","headline":"Leetcode 0312. Burst Balloons","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0312.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/burst-balloons","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0312. Burst Balloons</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>This is quite difficult problem! Let us consider <code class="language-plaintext highlighter-rouge">dp[i][j]</code> the maximum number of coins we can get, popping balls from <code class="language-plaintext highlighter-rouge">i</code> to <code class="language-plaintext highlighter-rouge">j</code>, <strong>not including</strong> <code class="language-plaintext highlighter-rouge">i</code> and <code class="language-plaintext highlighter-rouge">j</code>. Why it is enough to keep these values? Let us look at the <strong>last</strong> popped balloon with number <code class="language-plaintext highlighter-rouge">k</code>. Then our balloons are separated into two groups: to the left of this balloon and the the right and we can write:</p>
+    <p><a href="https://leetcode.com/problems/burst-balloons"> <font color="blue">https://leetcode.com/problems/burst-balloons</font></a></p>
+
+<p>This is quite difficult problem! Let us consider <code class="language-plaintext highlighter-rouge">dp[i][j]</code> the maximum number of coins we can get, popping balls from <code class="language-plaintext highlighter-rouge">i</code> to <code class="language-plaintext highlighter-rouge">j</code>, <strong>not including</strong> <code class="language-plaintext highlighter-rouge">i</code> and <code class="language-plaintext highlighter-rouge">j</code>. Why it is enough to keep these values? Let us look at the <strong>last</strong> popped balloon with number <code class="language-plaintext highlighter-rouge">k</code>. Then our balloons are separated into two groups: to the left of this balloon and the the right and we can write:</p>
 
 <p><code class="language-plaintext highlighter-rouge">dp[i][j] = max(nums[i] * nums[k] * nums[j] + dp[i][k] + dp[k][j]) for k in (i+1,j)</code>,</p>
 
@@ -89,6 +91,8 @@
         
         <span class="k">return</span> <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/burst-balloons/discuss/970727/python-5-lines-dp-explained"> <font color="blue">Problem 0312</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0312.html" hidden></a>
 </article>
@@ -140,4 +144,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

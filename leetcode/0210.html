@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0210. Course Schedule II" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="This is the classical problem about topological sort: (for more details you can look https://en.wikipedia.org/wiki/Topological_sorting). The basic idea of topological for directed graphs is to check if there cycle in this graph. For example if you have in your schedule dependencies like 0 -&gt; 5, 5-&gt; 3 and 3 -&gt; 0, then we say, that cycle exists and in this case we need to return False." />
-<meta property="og:description" content="This is the classical problem about topological sort: (for more details you can look https://en.wikipedia.org/wiki/Topological_sorting). The basic idea of topological for directed graphs is to check if there cycle in this graph. For example if you have in your schedule dependencies like 0 -&gt; 5, 5-&gt; 3 and 3 -&gt; 0, then we say, that cycle exists and in this case we need to return False." />
+<meta name="description" content="https://leetcode.com/problems/course-schedule-ii" />
+<meta property="og:description" content="https://leetcode.com/problems/course-schedule-ii" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0210. Course Schedule II" />
 <script type="application/ld+json">
-{"url":"/leetcode/0210.html","@type":"BlogPosting","headline":"Leetcode 0210. Course Schedule II","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0210.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"This is the classical problem about topological sort: (for more details you can look https://en.wikipedia.org/wiki/Topological_sorting). The basic idea of topological for directed graphs is to check if there cycle in this graph. For example if you have in your schedule dependencies like 0 -&gt; 5, 5-&gt; 3 and 3 -&gt; 0, then we say, that cycle exists and in this case we need to return False.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0210.html","@type":"BlogPosting","headline":"Leetcode 0210. Course Schedule II","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0210.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/course-schedule-ii","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,12 +46,24 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
         <span>[
+  
+    
+    <a href="/tag/topological sort"><code class="highligher-rouge"><nobr>topological sort</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/graph"><code class="highligher-rouge"><nobr>graph</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/dfs"><code class="highligher-rouge"><nobr>dfs</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/bfs"><code class="highligher-rouge"><nobr>bfs</nobr></code>&nbsp;</a>
   
 ]</span>
 
@@ -59,13 +71,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0210. Course Schedule II</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>This is the classical problem about <strong>topological sort</strong>: (for more details you can look https://en.wikipedia.org/wiki/Topological_sorting). The basic idea of topological for directed graphs is to check if there cycle in this graph. For example if you have in your schedule dependencies like <code class="language-plaintext highlighter-rouge">0 -&gt; 5</code>, <code class="language-plaintext highlighter-rouge">5-&gt; 3</code> and <code class="language-plaintext highlighter-rouge">3 -&gt; 0</code>, then we say, that cycle exists and in this case we need to return <code class="language-plaintext highlighter-rouge">False</code>.</p>
+    <p><a href="https://leetcode.com/problems/course-schedule-ii"> <font color="blue">https://leetcode.com/problems/course-schedule-ii</font></a></p>
+
+<p>This is the classical problem about <strong>topological sort</strong>: (for more details you can look https://en.wikipedia.org/wiki/Topological_sorting). The basic idea of topological for directed graphs is to check if there cycle in this graph. For example if you have in your schedule dependencies like <code class="language-plaintext highlighter-rouge">0 -&gt; 5</code>, <code class="language-plaintext highlighter-rouge">5-&gt; 3</code> and <code class="language-plaintext highlighter-rouge">3 -&gt; 0</code>, then we say, that cycle exists and in this case we need to return <code class="language-plaintext highlighter-rouge">False</code>.</p>
 
 <p>There are different ways to do topological sort, I prefer to use <code class="language-plaintext highlighter-rouge">dfs</code>. The idea is to use classical <code class="language-plaintext highlighter-rouge">dfs</code> traversal, but color our nodes into <code class="language-plaintext highlighter-rouge">3</code> different colors, <code class="language-plaintext highlighter-rouge">0 (white)</code> for node which is not visited yet, <code class="language-plaintext highlighter-rouge">1 (gray)</code> for node which is in process of visiting (not all its neibours are processed), and <code class="language-plaintext highlighter-rouge">2 (black)</code> for node which is fully visited (all its neibours are already processed). The proof can be found for example in classical Cormen book (note, that here we have slightly different notation with inversed edges, so we do not need to reverse list in the end).</p>
 
@@ -100,6 +114,8 @@
             <span class="bp">self</span><span class="p">.</span><span class="n">Visited</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>             <span class="c1"># color current node as black
 </span>            <span class="bp">self</span><span class="p">.</span><span class="n">Ans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>              <span class="c1"># add node to answer
 </span></code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/course-schedule-ii/discuss/741784/python-topological-sort-with-recurcive-dfs-explained"> <font color="blue">Problem 0210</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0210.html" hidden></a>
 </article>
@@ -151,4 +167,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

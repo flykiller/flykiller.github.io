@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0334. Increasing Triplet Subsequence" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="This problem is special case of problem 300 Longest Increasing Subsequence, but here we are asked if this length is more or equal to 3. Let us use the same logic here: we keep two-elements array a, where: a[0] is the smallest end among all increasing subsequences of length 1. a[1] is smallest end among all increasing subsequences of length 2. Note, that a[1] &gt;= a[0] always." />
-<meta property="og:description" content="This problem is special case of problem 300 Longest Increasing Subsequence, but here we are asked if this length is more or equal to 3. Let us use the same logic here: we keep two-elements array a, where: a[0] is the smallest end among all increasing subsequences of length 1. a[1] is smallest end among all increasing subsequences of length 2. Note, that a[1] &gt;= a[0] always." />
+<meta name="description" content="https://leetcode.com/problems/increasing-triplet-subsequence" />
+<meta property="og:description" content="https://leetcode.com/problems/increasing-triplet-subsequence" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0334. Increasing Triplet Subsequence" />
 <script type="application/ld+json">
-{"url":"/leetcode/0334.html","@type":"BlogPosting","headline":"Leetcode 0334. Increasing Triplet Subsequence","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0334.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"This problem is special case of problem 300 Longest Increasing Subsequence, but here we are asked if this length is more or equal to 3. Let us use the same logic here: we keep two-elements array a, where: a[0] is the smallest end among all increasing subsequences of length 1. a[1] is smallest end among all increasing subsequences of length 2. Note, that a[1] &gt;= a[0] always.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0334.html","@type":"BlogPosting","headline":"Leetcode 0334. Increasing Triplet Subsequence","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0334.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/increasing-triplet-subsequence","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0334. Increasing Triplet Subsequence</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>This problem is special case of problem <strong>300 Longest Increasing Subsequence</strong>, but here we are asked if this length is more or equal to <code class="language-plaintext highlighter-rouge">3</code>. Let us use the same logic here: we keep two-elements array <code class="language-plaintext highlighter-rouge">a</code>, where:</p>
+    <p><a href="https://leetcode.com/problems/increasing-triplet-subsequence"> <font color="blue">https://leetcode.com/problems/increasing-triplet-subsequence</font></a></p>
+
+<p>This problem is special case of problem <strong>300 Longest Increasing Subsequence</strong>, but here we are asked if this length is more or equal to <code class="language-plaintext highlighter-rouge">3</code>. Let us use the same logic here: we keep two-elements array <code class="language-plaintext highlighter-rouge">a</code>, where:</p>
 <ol>
   <li><code class="language-plaintext highlighter-rouge">a[0]</code> is the smallest end among all increasing subsequences of length <code class="language-plaintext highlighter-rouge">1</code>.</li>
   <li><code class="language-plaintext highlighter-rouge">a[1]</code> is smallest end among all increasing subsequences of length <code class="language-plaintext highlighter-rouge">2</code>. Note, that <code class="language-plaintext highlighter-rouge">a[1] &gt;= a[0]</code> always.</li>
@@ -86,6 +88,8 @@
             <span class="k">if</span> <span class="n">elem</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">:</span> <span class="k">return</span> <span class="bp">True</span>
         <span class="k">return</span> <span class="bp">False</span>
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/increasing-triplet-subsequence/discuss/976393/python-o(n)-solution-explained"> <font color="blue">Problem 0334</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0334.html" hidden></a>
 </article>
@@ -137,4 +141,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0804. Unique Morse Code Words" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Nothing very special about this problem: we just need to iterate through our words and for each of them build string. It is actually can be done even in one line (not including alphabet) if we use double comperehsions, but this is up to you if you like oneliners." />
-<meta property="og:description" content="Nothing very special about this problem: we just need to iterate through our words and for each of them build string. It is actually can be done even in one line (not including alphabet) if we use double comperehsions, but this is up to you if you like oneliners." />
+<meta name="description" content="https://leetcode.com/problems/unique-morse-code-words" />
+<meta property="og:description" content="https://leetcode.com/problems/unique-morse-code-words" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0804. Unique Morse Code Words" />
 <script type="application/ld+json">
-{"url":"/leetcode/0804.html","@type":"BlogPosting","headline":"Leetcode 0804. Unique Morse Code Words","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0804.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Nothing very special about this problem: we just need to iterate through our words and for each of them build string. It is actually can be done even in one line (not including alphabet) if we use double comperehsions, but this is up to you if you like oneliners.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0804.html","@type":"BlogPosting","headline":"Leetcode 0804. Unique Morse Code Words","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0804.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/unique-morse-code-words","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0804. Unique Morse Code Words</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Nothing very special about this problem: we just need to iterate through our <code class="language-plaintext highlighter-rouge">words</code> and for each of them build string. It is actually can be done even in one line (not including <code class="language-plaintext highlighter-rouge">alphabet</code>) if we use double comperehsions, but this is up to you if you like oneliners.</p>
+    <p><a href="https://leetcode.com/problems/unique-morse-code-words"> <font color="blue">https://leetcode.com/problems/unique-morse-code-words</font></a></p>
+
+<p>Nothing very special about this problem: we just need to iterate through our <code class="language-plaintext highlighter-rouge">words</code> and for each of them build string. It is actually can be done even in one line (not including <code class="language-plaintext highlighter-rouge">alphabet</code>) if we use double comperehsions, but this is up to you if you like oneliners.</p>
 
 <p><strong>Complexity</strong>: time and space complexity is <code class="language-plaintext highlighter-rouge">O(n*k)</code>, where <code class="language-plaintext highlighter-rouge">n</code> is number of words and <code class="language-plaintext highlighter-rouge">k</code> average is length of each word and we note that length of each encoding is not more than <code class="language-plaintext highlighter-rouge">4</code>. Space complexity is <code class="language-plaintext highlighter-rouge">O(n*k)</code> as well.</p>
 
@@ -77,6 +79,8 @@
             <span class="n">ans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">""</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">alphabet</span><span class="p">[</span><span class="nb">ord</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">-</span><span class="nb">ord</span><span class="p">(</span><span class="s">"a"</span><span class="p">)]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">word</span><span class="p">))</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">ans</span><span class="p">))</span>
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/unique-morse-code-words/discuss/944921/python-just-use-set-explained"> <font color="blue">Problem 0804</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0804.html" hidden></a>
 </article>
@@ -128,4 +132,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

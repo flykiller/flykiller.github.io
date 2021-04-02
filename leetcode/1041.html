@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 1041. Robot Bounded In Circle" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Let dx, dy be directions of our robot and x,y be its coordinates. Then using linear algepra we can say that if we rotate to the left, then dx, dy = -dy, dx, similar if we rotate to the right. So, now we can easily follow the place of our robot. How to understand if his path will be bounded by some circle? We need to understand if he is going to loop. There are 3 possible options where path will be bounded. In the end it will arrive to the starting position. It will not arrive to the starting position and his orientation is rotated to the left or to the right. Then it can be shown easily that after 4 loops robot will return to the original place. It will not arrive to the start and his orientation is opposite, then after 2 loops he will arrive at the starting place." />
-<meta property="og:description" content="Let dx, dy be directions of our robot and x,y be its coordinates. Then using linear algepra we can say that if we rotate to the left, then dx, dy = -dy, dx, similar if we rotate to the right. So, now we can easily follow the place of our robot. How to understand if his path will be bounded by some circle? We need to understand if he is going to loop. There are 3 possible options where path will be bounded. In the end it will arrive to the starting position. It will not arrive to the starting position and his orientation is rotated to the left or to the right. Then it can be shown easily that after 4 loops robot will return to the original place. It will not arrive to the start and his orientation is opposite, then after 2 loops he will arrive at the starting place." />
+<meta name="description" content="https://leetcode.com/problems/robot-bounded-in-circle" />
+<meta property="og:description" content="https://leetcode.com/problems/robot-bounded-in-circle" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 1041. Robot Bounded In Circle" />
 <script type="application/ld+json">
-{"url":"/leetcode/1041.html","@type":"BlogPosting","headline":"Leetcode 1041. Robot Bounded In Circle","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1041.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Let dx, dy be directions of our robot and x,y be its coordinates. Then using linear algepra we can say that if we rotate to the left, then dx, dy = -dy, dx, similar if we rotate to the right. So, now we can easily follow the place of our robot. How to understand if his path will be bounded by some circle? We need to understand if he is going to loop. There are 3 possible options where path will be bounded. In the end it will arrive to the starting position. It will not arrive to the starting position and his orientation is rotated to the left or to the right. Then it can be shown easily that after 4 loops robot will return to the original place. It will not arrive to the start and his orientation is opposite, then after 2 loops he will arrive at the starting place.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/1041.html","@type":"BlogPosting","headline":"Leetcode 1041. Robot Bounded In Circle","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1041.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/robot-bounded-in-circle","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 1041. Robot Bounded In Circle</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Let <code class="language-plaintext highlighter-rouge">dx, dy</code> be directions of our robot and <code class="language-plaintext highlighter-rouge">x,y</code> be its coordinates. Then using linear algepra we can say that if we rotate to the left, then <code class="language-plaintext highlighter-rouge">dx, dy = -dy, dx</code>, similar if we rotate to the right. So, now we can easily follow the place of our robot. How to understand if his path will be bounded by some circle? We need to understand if he is going to loop. There are <code class="language-plaintext highlighter-rouge">3</code> possible options where path will be bounded.</p>
+    <p><a href="https://leetcode.com/problems/robot-bounded-in-circle"> <font color="blue">https://leetcode.com/problems/robot-bounded-in-circle</font></a></p>
+
+<p>Let <code class="language-plaintext highlighter-rouge">dx, dy</code> be directions of our robot and <code class="language-plaintext highlighter-rouge">x,y</code> be its coordinates. Then using linear algepra we can say that if we rotate to the left, then <code class="language-plaintext highlighter-rouge">dx, dy = -dy, dx</code>, similar if we rotate to the right. So, now we can easily follow the place of our robot. How to understand if his path will be bounded by some circle? We need to understand if he is going to loop. There are <code class="language-plaintext highlighter-rouge">3</code> possible options where path will be bounded.</p>
 <ol>
   <li>In the end it will arrive to the starting position.</li>
   <li>It will not arrive to the starting position and his orientation is rotated to the left or to the right. Then it can be shown easily that after <code class="language-plaintext highlighter-rouge">4</code> loops robot will return to the original place.</li>
@@ -91,6 +93,8 @@
 </code></pre></div></div>
 
 <p><strong>PS</strong> I realized that we do not really need to traverse <code class="language-plaintext highlighter-rouge">instructions</code> 4 times, we can just return <code class="language-plaintext highlighter-rouge">(x,y) == 0 or (dx, dy) != (0,1)</code>, but this solution was already provided by others, so I left my solution as it is.</p>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/robot-bounded-in-circle/discuss/850437/python-o(n)-solution-explained"> <font color="blue">Problem 1041</font></a></p>
 
   </div><a class="u-url" href="/leetcode/1041.html" hidden></a>
 </article>
@@ -142,4 +146,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

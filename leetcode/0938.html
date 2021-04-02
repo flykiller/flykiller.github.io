@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0938. Range Sum of BST" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="One way to solve this problem is just iterate over our tree and for each element check if it is range or not. However here we are given, that out tree is BST, that is left subtree is always lesser than node lesser than right subtree. So, let us modify classical dfs a bit, where we traverse only nodes we need:" />
-<meta property="og:description" content="One way to solve this problem is just iterate over our tree and for each element check if it is range or not. However here we are given, that out tree is BST, that is left subtree is always lesser than node lesser than right subtree. So, let us modify classical dfs a bit, where we traverse only nodes we need:" />
+<meta name="description" content="https://leetcode.com/problems/range-sum-of-bst" />
+<meta property="og:description" content="https://leetcode.com/problems/range-sum-of-bst" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0938. Range Sum of BST" />
 <script type="application/ld+json">
-{"url":"/leetcode/0938.html","@type":"BlogPosting","headline":"Leetcode 0938. Range Sum of BST","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0938.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"One way to solve this problem is just iterate over our tree and for each element check if it is range or not. However here we are given, that out tree is BST, that is left subtree is always lesser than node lesser than right subtree. So, let us modify classical dfs a bit, where we traverse only nodes we need:","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0938.html","@type":"BlogPosting","headline":"Leetcode 0938. Range Sum of BST","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0938.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/range-sum-of-bst","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0938. Range Sum of BST</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>One way to solve this problem is just iterate over our tree and for each element check if it is range or not. However here we are given, that out tree is <code class="language-plaintext highlighter-rouge">BST</code>, that is left subtree is always lesser than node lesser than right subtree. So, let us modify classical <code class="language-plaintext highlighter-rouge">dfs</code> a bit, where we traverse only nodes we need:</p>
+    <p><a href="https://leetcode.com/problems/range-sum-of-bst"> <font color="blue">https://leetcode.com/problems/range-sum-of-bst</font></a></p>
+
+<p>One way to solve this problem is just iterate over our tree and for each element check if it is range or not. However here we are given, that out tree is <code class="language-plaintext highlighter-rouge">BST</code>, that is left subtree is always lesser than node lesser than right subtree. So, let us modify classical <code class="language-plaintext highlighter-rouge">dfs</code> a bit, where we traverse only nodes we need:</p>
 
 <ol>
   <li>Check value <code class="language-plaintext highlighter-rouge">node.val</code> and if it is in our range, add it to global sum.</li>
@@ -87,6 +89,8 @@
         <span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">out</span>
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/range-sum-of-bst/discuss/936480/python-simple-dfs-explained"> <font color="blue">Problem 0938</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0938.html" hidden></a>
 </article>
@@ -138,4 +142,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

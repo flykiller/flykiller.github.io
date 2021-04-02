@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0714. Best Time to Buy and Sell Stock with Transaction Fee" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Let us define diff[i] = B[i+1] - B[i]. Then we need to find maximum gain for several continuous subarrays, where we pay fee for each subarray. Let us consider it on example: [1, 3, 5, 4, 8, 7, 4], then differences will be [2, 2, -1, 4, -1, -3]. For example we can take two subarrays [2, 2] and [4], it means we make two trancastions and we need to pay 2 fees. In original array it means we buy at price 1, then sell at price 5. Then buy at price 4 and sell at price 8." />
-<meta property="og:description" content="Let us define diff[i] = B[i+1] - B[i]. Then we need to find maximum gain for several continuous subarrays, where we pay fee for each subarray. Let us consider it on example: [1, 3, 5, 4, 8, 7, 4], then differences will be [2, 2, -1, 4, -1, -3]. For example we can take two subarrays [2, 2] and [4], it means we make two trancastions and we need to pay 2 fees. In original array it means we buy at price 1, then sell at price 5. Then buy at price 4 and sell at price 8." />
+<meta name="description" content="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee" />
+<meta property="og:description" content="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0714. Best Time to Buy and Sell Stock with Transaction Fee" />
 <script type="application/ld+json">
-{"url":"/leetcode/0714.html","@type":"BlogPosting","headline":"Leetcode 0714. Best Time to Buy and Sell Stock with Transaction Fee","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0714.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Let us define diff[i] = B[i+1] - B[i]. Then we need to find maximum gain for several continuous subarrays, where we pay fee for each subarray. Let us consider it on example: [1, 3, 5, 4, 8, 7, 4], then differences will be [2, 2, -1, 4, -1, -3]. For example we can take two subarrays [2, 2] and [4], it means we make two trancastions and we need to pay 2 fees. In original array it means we buy at price 1, then sell at price 5. Then buy at price 4 and sell at price 8.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0714.html","@type":"BlogPosting","headline":"Leetcode 0714. Best Time to Buy and Sell Stock with Transaction Fee","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0714.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0714. Best Time to Buy and Sell Stock with Transaction Fee</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Let us define <code class="language-plaintext highlighter-rouge">diff[i] = B[i+1] - B[i]</code>. Then we need to find maximum gain for several continuous subarrays, where we pay fee for each subarray. Let us consider it on example:
+    <p><a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee"> <font color="blue">https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee</font></a></p>
+
+<p>Let us define <code class="language-plaintext highlighter-rouge">diff[i] = B[i+1] - B[i]</code>. Then we need to find maximum gain for several continuous subarrays, where we pay fee for each subarray. Let us consider it on example:
 <code class="language-plaintext highlighter-rouge">[1, 3, 5, 4, 8, 7, 4]</code>, then differences will be <code class="language-plaintext highlighter-rouge">[2, 2, -1, 4, -1, -3]</code>. For example we can take two subarrays <code class="language-plaintext highlighter-rouge">[2, 2]</code> and <code class="language-plaintext highlighter-rouge">[4]</code>, it means we make two trancastions and we need to pay <code class="language-plaintext highlighter-rouge">2</code> fees. In original array it means we buy at price <code class="language-plaintext highlighter-rouge">1</code>, then sell at price <code class="language-plaintext highlighter-rouge">5</code>. Then buy at price <code class="language-plaintext highlighter-rouge">4</code> and sell at price <code class="language-plaintext highlighter-rouge">8</code>.</p>
 
 <p>Use dynamic programming, where <code class="language-plaintext highlighter-rouge">dp[i]</code> is maximum gain at <code class="language-plaintext highlighter-rouge">i</code>-th moment of time if we use <code class="language-plaintext highlighter-rouge">diff[i]</code> and <code class="language-plaintext highlighter-rouge">sp[i]</code> be maximum among <code class="language-plaintext highlighter-rouge">dp[0], ..., dp[i]</code>, that is running maximum, that is <code class="language-plaintext highlighter-rouge">sp[i]</code> is the gain we can get, using first <code class="language-plaintext highlighter-rouge">i</code> times.
@@ -111,6 +113,8 @@ Then we can have <code class="language-plaintext highlighter-rouge">2</code> opt
 <p><strong>121: Best Time to Buy and Sell Stock</strong>
 <strong>123. Best Time to Buy and Sell Stock III</strong>
 <strong>188. Best Time to Buy and Sell Stock IV</strong></p>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/discuss/1112112/python-another-dp-solution-explained"> <font color="blue">Problem 0714</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0714.html" hidden></a>
 </article>
@@ -162,4 +166,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 1673. Find the Most Competitive Subsequence" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="This is a good problem to apply stack, with the following idea: let us traverse original list number by number and put in into stack: if it happens that new number is less than the top of our stack and if we still can afford to delete one more number, we extract it from stack and put new number. Let me illustrate this on example [1,4,5,3,2,8,7] and k = 4." />
-<meta property="og:description" content="This is a good problem to apply stack, with the following idea: let us traverse original list number by number and put in into stack: if it happens that new number is less than the top of our stack and if we still can afford to delete one more number, we extract it from stack and put new number. Let me illustrate this on example [1,4,5,3,2,8,7] and k = 4." />
+<meta name="description" content="https://leetcode.com/problems/find-the-most-competitive-subsequence" />
+<meta property="og:description" content="https://leetcode.com/problems/find-the-most-competitive-subsequence" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 1673. Find the Most Competitive Subsequence" />
 <script type="application/ld+json">
-{"url":"/leetcode/1673.html","@type":"BlogPosting","headline":"Leetcode 1673. Find the Most Competitive Subsequence","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1673.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"This is a good problem to apply stack, with the following idea: let us traverse original list number by number and put in into stack: if it happens that new number is less than the top of our stack and if we still can afford to delete one more number, we extract it from stack and put new number. Let me illustrate this on example [1,4,5,3,2,8,7] and k = 4.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/1673.html","@type":"BlogPosting","headline":"Leetcode 1673. Find the Most Competitive Subsequence","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1673.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/find-the-most-competitive-subsequence","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 1673. Find the Most Competitive Subsequence</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>This is a good problem to apply stack, with the following idea: let us traverse original list number by number and put in into stack: if it happens that new number is less than the top of our stack and if we still can afford to delete one more number, we extract it from stack and put new number. Let me illustrate this on example <code class="language-plaintext highlighter-rouge">[1,4,5,3,2,8,7]</code> and <code class="language-plaintext highlighter-rouge">k = 4</code>.</p>
+    <p><a href="https://leetcode.com/problems/find-the-most-competitive-subsequence"> <font color="blue">https://leetcode.com/problems/find-the-most-competitive-subsequence</font></a></p>
+
+<p>This is a good problem to apply stack, with the following idea: let us traverse original list number by number and put in into stack: if it happens that new number is less than the top of our stack and if we still can afford to delete one more number, we extract it from stack and put new number. Let me illustrate this on example <code class="language-plaintext highlighter-rouge">[1,4,5,3,2,8,7]</code> and <code class="language-plaintext highlighter-rouge">k = 4</code>.</p>
 
 <p>First, we put <code class="language-plaintext highlighter-rouge">1</code> into stack, then <code class="language-plaintext highlighter-rouge">4</code> and then <code class="language-plaintext highlighter-rouge">5</code>, so far we have <code class="language-plaintext highlighter-rouge">[1, 4, 5]</code>. Next step we see number <code class="language-plaintext highlighter-rouge">3</code>, which is less then <code class="language-plaintext highlighter-rouge">5</code>, so we keep removing elements from stack until we can and put <code class="language-plaintext highlighter-rouge">3</code>, so we have <code class="language-plaintext highlighter-rouge">[1, 3]</code> now. Next number is <code class="language-plaintext highlighter-rouge">2</code>, so we again remove <code class="language-plaintext highlighter-rouge">3</code> and put <code class="language-plaintext highlighter-rouge">2</code>, and we have <code class="language-plaintext highlighter-rouge">[1, 2]</code> in our stack now. At this moment number of attempts we can make is equal to zero, so we just must take all the rest numbers, so finally we have <code class="language-plaintext highlighter-rouge">[1, 2, 8, 7]</code> in our stack.</p>
 
@@ -85,6 +87,8 @@
 </code></pre></div></div>
 
 <p>See very similar problem <strong>402. Remove K Digits</strong>, where we need to do literally the same.</p>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/find-the-most-competitive-subsequence/discuss/1027495/python-stack-solution-explained"> <font color="blue">Problem 1673</font></a></p>
 
   </div><a class="u-url" href="/leetcode/1673.html" hidden></a>
 </article>
@@ -136,4 +140,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

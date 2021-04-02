@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 1032. Stream of Characters" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="It is pretty straightforward to use Tries for these type of problems, however it is not obvious how. My first solution was as it is given in the hint of this problem: create Trie of all given words and keep also set of all possible nodes in our trie for suffixes of our stream. However it was working very slow, &gt;10000ms initialy and 7000-9000ms after optimizations." />
-<meta property="og:description" content="It is pretty straightforward to use Tries for these type of problems, however it is not obvious how. My first solution was as it is given in the hint of this problem: create Trie of all given words and keep also set of all possible nodes in our trie for suffixes of our stream. However it was working very slow, &gt;10000ms initialy and 7000-9000ms after optimizations." />
+<meta name="description" content="https://leetcode.com/problems/stream-of-characters" />
+<meta property="og:description" content="https://leetcode.com/problems/stream-of-characters" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 1032. Stream of Characters" />
 <script type="application/ld+json">
-{"url":"/leetcode/1032.html","@type":"BlogPosting","headline":"Leetcode 1032. Stream of Characters","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1032.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"It is pretty straightforward to use Tries for these type of problems, however it is not obvious how. My first solution was as it is given in the hint of this problem: create Trie of all given words and keep also set of all possible nodes in our trie for suffixes of our stream. However it was working very slow, &gt;10000ms initialy and 7000-9000ms after optimizations.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/1032.html","@type":"BlogPosting","headline":"Leetcode 1032. Stream of Characters","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1032.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/stream-of-characters","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 1032. Stream of Characters</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>It is pretty straightforward to use Tries for these type of problems, however it is not obvious how. My first solution was as it is given in the hint of this problem: create Trie of all given words and keep also set of all possible nodes in our trie for suffixes of our stream. However it was working very slow, &gt;10000ms initialy and 7000-9000ms after optimizations.</p>
+    <p><a href="https://leetcode.com/problems/stream-of-characters"> <font color="blue">https://leetcode.com/problems/stream-of-characters</font></a></p>
+
+<p>It is pretty straightforward to use Tries for these type of problems, however it is not obvious how. My first solution was as it is given in the hint of this problem: create Trie of all given words and keep also set of all possible nodes in our trie for suffixes of our stream. However it was working very slow, &gt;10000ms initialy and 7000-9000ms after optimizations.</p>
 
 <p>So, alternative idea is to put all our words to Trie in reversed order. Why it can be a good idea? Imagine we have a current stream <code class="language-plaintext highlighter-rouge">abcdefghij</code> and we have dictionary <code class="language-plaintext highlighter-rouge">[hij, xyz, abc, hijk]</code> Then what we need to check if some suffix of this word in our dictinonary. It means that <code class="language-plaintext highlighter-rouge">jihgfedcba</code> should have <code class="language-plaintext highlighter-rouge">jih</code> as prefix. If we add one letter to strim, so we have <code class="language-plaintext highlighter-rouge">abcdefghijk</code>, we need to find prefixes in <code class="language-plaintext highlighter-rouge">kjihgfedcba</code> and so on.</p>
 
@@ -111,6 +113,8 @@ class StreamChecker:
             else: break
         return False
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/stream-of-characters/discuss/807541/python-trie-with-reversed-words-explained"> <font color="blue">Problem 1032</font></a></p>
 
   </div><a class="u-url" href="/leetcode/1032.html" hidden></a>
 </article>
@@ -162,4 +166,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

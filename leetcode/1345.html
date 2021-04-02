@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 1345. Jump Game IV" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="In this problem we are asked to find shortest path between two nodes in some graph, so the first idea you should think is bfs (or Dijkstra algorithm). Actually, bfs is almost sufficient here, but we need to do one optimization which increase our speed dramatically." />
-<meta property="og:description" content="In this problem we are asked to find shortest path between two nodes in some graph, so the first idea you should think is bfs (or Dijkstra algorithm). Actually, bfs is almost sufficient here, but we need to do one optimization which increase our speed dramatically." />
+<meta name="description" content="https://leetcode.com/problems/jump-game-iv" />
+<meta property="og:description" content="https://leetcode.com/problems/jump-game-iv" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 1345. Jump Game IV" />
 <script type="application/ld+json">
-{"url":"/leetcode/1345.html","@type":"BlogPosting","headline":"Leetcode 1345. Jump Game IV","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1345.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"In this problem we are asked to find shortest path between two nodes in some graph, so the first idea you should think is bfs (or Dijkstra algorithm). Actually, bfs is almost sufficient here, but we need to do one optimization which increase our speed dramatically.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/1345.html","@type":"BlogPosting","headline":"Leetcode 1345. Jump Game IV","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1345.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/jump-game-iv","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 1345. Jump Game IV</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>In this problem we are asked to find shortest path between two nodes in some graph, so the first idea you should think is bfs (or Dijkstra algorithm). Actually, bfs is almost sufficient here, but we need to do one optimization which increase our speed dramatically.</p>
+    <p><a href="https://leetcode.com/problems/jump-game-iv"> <font color="blue">https://leetcode.com/problems/jump-game-iv</font></a></p>
+
+<p>In this problem we are asked to find shortest path between two nodes in some graph, so the first idea you should think is bfs (or Dijkstra algorithm). Actually, bfs is almost sufficient here, but we need to do one optimization which increase our speed dramatically.</p>
 
 <ol>
   <li>Let us use <code class="language-plaintext highlighter-rouge">d</code>: defaultdict, where for each value we keep list of all possible indexes for this value. We need this to make fast steps of type 3.</li>
@@ -102,6 +104,8 @@
                         <span class="n">queue</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">steps</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">neib</span><span class="p">))</span>
                 <span class="n">visited_groups</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/jump-game-iv/discuss/988714/python-bfs-with-small-trick-explained"> <font color="blue">Problem 1345</font></a></p>
 
   </div><a class="u-url" href="/leetcode/1345.html" hidden></a>
 </article>
@@ -153,4 +157,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

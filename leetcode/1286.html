@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 1286. Iterator for Combination" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="There are different ways to solve this problem, one of them is to generate all possible combination and then when we asked to return next, just take the next one. Also we can use bitmasks, where we try to generate next combination and check if we choose correct number of elements or not. However I prefer to do it in a bit different way, I say it is honest iterator, where we find next permutation, given current one. Let me consider and example:" />
-<meta property="og:description" content="There are different ways to solve this problem, one of them is to generate all possible combination and then when we asked to return next, just take the next one. Also we can use bitmasks, where we try to generate next combination and check if we choose correct number of elements or not. However I prefer to do it in a bit different way, I say it is honest iterator, where we find next permutation, given current one. Let me consider and example:" />
+<meta name="description" content="https://leetcode.com/problems/iterator-for-combination" />
+<meta property="og:description" content="https://leetcode.com/problems/iterator-for-combination" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 1286. Iterator for Combination" />
 <script type="application/ld+json">
-{"url":"/leetcode/1286.html","@type":"BlogPosting","headline":"Leetcode 1286. Iterator for Combination","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1286.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"There are different ways to solve this problem, one of them is to generate all possible combination and then when we asked to return next, just take the next one. Also we can use bitmasks, where we try to generate next combination and check if we choose correct number of elements or not. However I prefer to do it in a bit different way, I say it is honest iterator, where we find next permutation, given current one. Let me consider and example:","@context":"https://schema.org"}</script>
+{"url":"/leetcode/1286.html","@type":"BlogPosting","headline":"Leetcode 1286. Iterator for Combination","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1286.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/iterator-for-combination","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 1286. Iterator for Combination</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>There are different ways to solve this problem, one of them is to generate all possible combination and then when we asked to return next, just take the next one. Also we can use bitmasks, where we try to generate next combination and check if we choose correct number of elements or not. However I prefer to do it in a bit different way, I say it is honest iterator, where we find next permutation, given current one. Let me consider and example:</p>
+    <p><a href="https://leetcode.com/problems/iterator-for-combination"> <font color="blue">https://leetcode.com/problems/iterator-for-combination</font></a></p>
+
+<p>There are different ways to solve this problem, one of them is to generate all possible combination and then when we asked to return next, just take the next one. Also we can use bitmasks, where we try to generate next combination and check if we choose correct number of elements or not. However I prefer to do it in a bit different way, I say it is honest iterator, where we find next permutation, given current one. Let me consider and example:</p>
 
 <p><code class="language-plaintext highlighter-rouge">acfxyz</code>, where we can use full alphabet. How can we find the next combination? We need to look at the end of our combination and try to increment it. Can we increment <code class="language-plaintext highlighter-rouge">z</code>? No, we can not, the same for <code class="language-plaintext highlighter-rouge">y</code> and <code class="language-plaintext highlighter-rouge">x</code>. What we can increment is <code class="language-plaintext highlighter-rouge">f</code>, so next combination will be <code class="language-plaintext highlighter-rouge">acghij</code>.
 This is the key remark of my method. Let us consider function <code class="language-plaintext highlighter-rouge">next()</code>:</p>
@@ -101,6 +103,8 @@ class CombinationIterator:
     def hasNext(self):
         return self.state != self.c[-self.len:]
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/iterator-for-combination/discuss/790113/python-o(k)-on-the-fly-explained"> <font color="blue">Problem 1286</font></a></p>
 
   </div><a class="u-url" href="/leetcode/1286.html" hidden></a>
 </article>
@@ -152,4 +156,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

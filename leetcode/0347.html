@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0347. Top K Frequent Elements" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="There are solution, using quickselect with O(n) complexity in average, but I think they are overcomplicated: actually, there is O(n) solution, using bucket sort. The idea, is that frequency of any element can not be more than n. So, the plan is the following:" />
-<meta property="og:description" content="There are solution, using quickselect with O(n) complexity in average, but I think they are overcomplicated: actually, there is O(n) solution, using bucket sort. The idea, is that frequency of any element can not be more than n. So, the plan is the following:" />
+<meta name="description" content="https://leetcode.com/problems/top-k-frequent-elements" />
+<meta property="og:description" content="https://leetcode.com/problems/top-k-frequent-elements" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0347. Top K Frequent Elements" />
 <script type="application/ld+json">
-{"url":"/leetcode/0347.html","@type":"BlogPosting","headline":"Leetcode 0347. Top K Frequent Elements","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0347.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"There are solution, using quickselect with O(n) complexity in average, but I think they are overcomplicated: actually, there is O(n) solution, using bucket sort. The idea, is that frequency of any element can not be more than n. So, the plan is the following:","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0347.html","@type":"BlogPosting","headline":"Leetcode 0347. Top K Frequent Elements","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0347.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/top-k-frequent-elements","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0347. Top K Frequent Elements</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>There are solution, using quickselect with <code class="language-plaintext highlighter-rouge">O(n)</code> complexity in average, but I think they are overcomplicated: actually, there is <code class="language-plaintext highlighter-rouge">O(n)</code> solution, using <strong>bucket sort</strong>. The idea, is that frequency of any element can not be more than <code class="language-plaintext highlighter-rouge">n</code>. So, the plan is the following:</p>
+    <p><a href="https://leetcode.com/problems/top-k-frequent-elements"> <font color="blue">https://leetcode.com/problems/top-k-frequent-elements</font></a></p>
+
+<p>There are solution, using quickselect with <code class="language-plaintext highlighter-rouge">O(n)</code> complexity in average, but I think they are overcomplicated: actually, there is <code class="language-plaintext highlighter-rouge">O(n)</code> solution, using <strong>bucket sort</strong>. The idea, is that frequency of any element can not be more than <code class="language-plaintext highlighter-rouge">n</code>. So, the plan is the following:</p>
 
 <ol>
   <li>Create list of empty lists for bucktes: for frequencies <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">2</code>, …, <code class="language-plaintext highlighter-rouge">n</code>.</li>
@@ -85,6 +87,8 @@
         <span class="n">flat_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="n">bucket</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">flat_list</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">][:</span><span class="n">k</span><span class="p">]</span>
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/top-k-frequent-elements/discuss/740374/python-5-lines-on-buckets-solution-explained"> <font color="blue">Problem 0347</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0347.html" hidden></a>
 </article>
@@ -136,4 +140,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

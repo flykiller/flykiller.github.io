@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0071. Simplify Path" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="When you see this problem, you should think about stack. Why? Because we have directories and you can go deeper or come back and when you come back, you basically forgot about all element after and stack is ideal simulation of this process. Also in python you can use .split(&quot;/&quot;) function, which will split our string into parts, separated by / symbol." />
-<meta property="og:description" content="When you see this problem, you should think about stack. Why? Because we have directories and you can go deeper or come back and when you come back, you basically forgot about all element after and stack is ideal simulation of this process. Also in python you can use .split(&quot;/&quot;) function, which will split our string into parts, separated by / symbol." />
+<meta name="description" content="https://leetcode.com/problems/simplify-path" />
+<meta property="og:description" content="https://leetcode.com/problems/simplify-path" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0071. Simplify Path" />
 <script type="application/ld+json">
-{"url":"/leetcode/0071.html","@type":"BlogPosting","headline":"Leetcode 0071. Simplify Path","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0071.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"When you see this problem, you should think about stack. Why? Because we have directories and you can go deeper or come back and when you come back, you basically forgot about all element after and stack is ideal simulation of this process. Also in python you can use .split(&quot;/&quot;) function, which will split our string into parts, separated by / symbol.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0071.html","@type":"BlogPosting","headline":"Leetcode 0071. Simplify Path","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0071.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/simplify-path","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -62,13 +62,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0071. Simplify Path</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>When you see this problem, you should think about stack. Why? Because we have directories and you can go deeper or come back and when you come back, you basically forgot about all element after and stack is ideal simulation of this process. Also in python you can use <code class="language-plaintext highlighter-rouge">.split("/")</code> function, which will split our string into parts, separated by <code class="language-plaintext highlighter-rouge">/</code> symbol.</p>
+    <p><a href="https://leetcode.com/problems/simplify-path"> <font color="blue">https://leetcode.com/problems/simplify-path</font></a></p>
+
+<p>When you see this problem, you should think about stack. Why? Because we have directories and you can go deeper or come back and when you come back, you basically forgot about all element after and stack is ideal simulation of this process. Also in python you can use <code class="language-plaintext highlighter-rouge">.split("/")</code> function, which will split our string into parts, separated by <code class="language-plaintext highlighter-rouge">/</code> symbol.</p>
 
 <p>So, the algorithm will look like this:</p>
 <ol>
@@ -90,6 +92,8 @@
                 
         <span class="k">return</span> <span class="s">"/"</span> <span class="o">+</span> <span class="s">"/"</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span>
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/simplify-path/discuss/1050573/python-short-stack-solution-explained"> <font color="blue">Problem 0071</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0071.html" hidden></a>
 </article>
@@ -141,4 +145,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

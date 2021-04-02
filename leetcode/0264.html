@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0264. Ugly Number II" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Let us solve this problem for general case: that is not only for 2,3,5 divisors, but for any of them and any number of them. factors = [2,3,5] and k=3 in our case. Let Numbers be an array, where we keep all our ugly numbers. Also, note, that any ugly number is some other ugly number, multiplied by 2, 3 or 5. So, let starts be the indexes of ugly numbers, that when multiplied by 2, 3 or 5 respectively, produces the smallest ugly number that is larger than the current overall maximum ugly number.. Let us do several first steps to understand it better:" />
-<meta property="og:description" content="Let us solve this problem for general case: that is not only for 2,3,5 divisors, but for any of them and any number of them. factors = [2,3,5] and k=3 in our case. Let Numbers be an array, where we keep all our ugly numbers. Also, note, that any ugly number is some other ugly number, multiplied by 2, 3 or 5. So, let starts be the indexes of ugly numbers, that when multiplied by 2, 3 or 5 respectively, produces the smallest ugly number that is larger than the current overall maximum ugly number.. Let us do several first steps to understand it better:" />
+<meta name="description" content="https://leetcode.com/problems/ugly-number-ii" />
+<meta property="og:description" content="https://leetcode.com/problems/ugly-number-ii" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0264. Ugly Number II" />
 <script type="application/ld+json">
-{"url":"/leetcode/0264.html","@type":"BlogPosting","headline":"Leetcode 0264. Ugly Number II","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0264.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Let us solve this problem for general case: that is not only for 2,3,5 divisors, but for any of them and any number of them. factors = [2,3,5] and k=3 in our case. Let Numbers be an array, where we keep all our ugly numbers. Also, note, that any ugly number is some other ugly number, multiplied by 2, 3 or 5. So, let starts be the indexes of ugly numbers, that when multiplied by 2, 3 or 5 respectively, produces the smallest ugly number that is larger than the current overall maximum ugly number.. Let us do several first steps to understand it better:","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0264.html","@type":"BlogPosting","headline":"Leetcode 0264. Ugly Number II","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0264.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/ugly-number-ii","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,12 +46,24 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
         <span>[
+  
+    
+    <a href="/tag/math"><code class="highligher-rouge"><nobr>math</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/three pointers"><code class="highligher-rouge"><nobr>three pointers</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/dp"><code class="highligher-rouge"><nobr>dp</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/heap"><code class="highligher-rouge"><nobr>heap</nobr></code>&nbsp;</a>
   
 ]</span>
 
@@ -59,13 +71,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0264. Ugly Number II</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Let us solve this problem for general case: that is not only for <code class="language-plaintext highlighter-rouge">2,3,5</code> divisors, but for any of them and any number of them. <code class="language-plaintext highlighter-rouge">factors = [2,3,5]</code> and  <code class="language-plaintext highlighter-rouge">k=3</code> in our case.
+    <p><a href="https://leetcode.com/problems/ugly-number-ii"> <font color="blue">https://leetcode.com/problems/ugly-number-ii</font></a></p>
+
+<p>Let us solve this problem for general case: that is not only for <code class="language-plaintext highlighter-rouge">2,3,5</code> divisors, but for any of them and any number of them. <code class="language-plaintext highlighter-rouge">factors = [2,3,5]</code> and  <code class="language-plaintext highlighter-rouge">k=3</code> in our case.
 Let <code class="language-plaintext highlighter-rouge">Numbers</code> be an array, where we keep all our <strong>ugly</strong> numbers. Also, note, that any ugly number is some other ugly number, multiplied by <code class="language-plaintext highlighter-rouge">2</code>, <code class="language-plaintext highlighter-rouge">3</code> or <code class="language-plaintext highlighter-rouge">5</code>. So, let <code class="language-plaintext highlighter-rouge">starts</code> be the indexes of ugly numbers, that when multiplied by <code class="language-plaintext highlighter-rouge">2</code>, <code class="language-plaintext highlighter-rouge">3</code> or <code class="language-plaintext highlighter-rouge">5</code> respectively, produces the smallest ugly number that is larger than the current overall maximum ugly number.. Let us do several first steps to understand it better:</p>
 
 <ol>
@@ -94,6 +108,8 @@ Let <code class="language-plaintext highlighter-rouge">Numbers</code> be an arra
             <span class="n">starts</span> <span class="o">=</span> <span class="p">[</span><span class="n">starts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">candidates</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">new_num</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">)]</span>
         <span class="k">return</span> <span class="n">Numbers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/ugly-number-ii/discuss/718879/python-on-universal-dp-solution-explained"> <font color="blue">Problem 0264</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0264.html" hidden></a>
 </article>
@@ -145,4 +161,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

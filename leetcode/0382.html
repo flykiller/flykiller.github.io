@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0382. Linked List Random Node" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Let us solve this question for follow-up question: we do not want to use additional memory here. There is specific method for this, whith is called reservoir sampling (actually, special case of it), which I am going to explain now. Imagine, that we have only 3 nodes in our linked list, then we do the following logic: On the first step we either stay in first node with probability 1/2 or go to the next one also with probability 1/2. On the second step, we do the following: if we are in node number 1, then we stay in this node with probability 2/3 and go to node number 2 with probability 1/3. If we in node number 2, then we stay in it with probability 1/3 and go to node number 3 with probability 2/3. Why everything will be OK? There is only one way, how you can stay in node 1, and probability is 1/2 * 2/3. There are two cases, how you can go to node number 2: stay on first step and go on second and go on first step and stay on second: probability will be 1/2*1/3 + 1/2*1/3 = 1/3. Finally, probability to be in node 3 is also 1/3." />
-<meta property="og:description" content="Let us solve this question for follow-up question: we do not want to use additional memory here. There is specific method for this, whith is called reservoir sampling (actually, special case of it), which I am going to explain now. Imagine, that we have only 3 nodes in our linked list, then we do the following logic: On the first step we either stay in first node with probability 1/2 or go to the next one also with probability 1/2. On the second step, we do the following: if we are in node number 1, then we stay in this node with probability 2/3 and go to node number 2 with probability 1/3. If we in node number 2, then we stay in it with probability 1/3 and go to node number 3 with probability 2/3. Why everything will be OK? There is only one way, how you can stay in node 1, and probability is 1/2 * 2/3. There are two cases, how you can go to node number 2: stay on first step and go on second and go on first step and stay on second: probability will be 1/2*1/3 + 1/2*1/3 = 1/3. Finally, probability to be in node 3 is also 1/3." />
+<meta name="description" content="https://leetcode.com/problems/linked-list-random-node" />
+<meta property="og:description" content="https://leetcode.com/problems/linked-list-random-node" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0382. Linked List Random Node" />
 <script type="application/ld+json">
-{"url":"/leetcode/0382.html","@type":"BlogPosting","headline":"Leetcode 0382. Linked List Random Node","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0382.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Let us solve this question for follow-up question: we do not want to use additional memory here. There is specific method for this, whith is called reservoir sampling (actually, special case of it), which I am going to explain now. Imagine, that we have only 3 nodes in our linked list, then we do the following logic: On the first step we either stay in first node with probability 1/2 or go to the next one also with probability 1/2. On the second step, we do the following: if we are in node number 1, then we stay in this node with probability 2/3 and go to node number 2 with probability 1/3. If we in node number 2, then we stay in it with probability 1/3 and go to node number 3 with probability 2/3. Why everything will be OK? There is only one way, how you can stay in node 1, and probability is 1/2 * 2/3. There are two cases, how you can go to node number 2: stay on first step and go on second and go on first step and stay on second: probability will be 1/2*1/3 + 1/2*1/3 = 1/3. Finally, probability to be in node 3 is also 1/3.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0382.html","@type":"BlogPosting","headline":"Leetcode 0382. Linked List Random Node","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0382.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/linked-list-random-node","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0382. Linked List Random Node</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Let us solve this question for follow-up question: we do not want to use additional memory here. There is specific method for this, whith is called <strong>reservoir sampling</strong> (actually, special case of it), which I am going to explain now. Imagine, that we have only <code class="language-plaintext highlighter-rouge">3</code> nodes in our linked list, then we do the following logic:</p>
+    <p><a href="https://leetcode.com/problems/linked-list-random-node"> <font color="blue">https://leetcode.com/problems/linked-list-random-node</font></a></p>
+
+<p>Let us solve this question for follow-up question: we do not want to use additional memory here. There is specific method for this, whith is called <strong>reservoir sampling</strong> (actually, special case of it), which I am going to explain now. Imagine, that we have only <code class="language-plaintext highlighter-rouge">3</code> nodes in our linked list, then we do the following logic:</p>
 <ol>
   <li>On the first step we either stay in first node with probability <code class="language-plaintext highlighter-rouge">1/2</code> or go to the next one also with probability <code class="language-plaintext highlighter-rouge">1/2</code>.</li>
   <li>On the second step, we do the following: if we are in node number <strong>1</strong>, then we stay in this node with probability <code class="language-plaintext highlighter-rouge">2/3</code> and go to node number <strong>2</strong> with probability <code class="language-plaintext highlighter-rouge">1/3</code>. If we in node number <strong>2</strong>, then we stay in it with probability <code class="language-plaintext highlighter-rouge">1/3</code> and go to node number <strong>3</strong> with probability <code class="language-plaintext highlighter-rouge">2/3</code>. Why everything will be OK? There is only one way, how you can stay in node <strong>1</strong>, and probability is <code class="language-plaintext highlighter-rouge">1/2 * 2/3</code>. There are two cases, how you can go to node number <strong>2</strong>: stay on first step and go on second and go on first step and stay on second: probability will be <code class="language-plaintext highlighter-rouge">1/2*1/3 + 1/2*1/3 = 1/3</code>. Finally, probability to be in node <strong>3</strong> is also <code class="language-plaintext highlighter-rouge">1/3</code>.</li>
@@ -105,6 +107,8 @@
                 
         <span class="k">return</span> <span class="n">ans</span><span class="p">.</span><span class="n">val</span>
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/linked-list-random-node/discuss/956872/python-reservoir-sampling-(follow-up)-explained"> <font color="blue">Problem 0382</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0382.html" hidden></a>
 </article>
@@ -156,4 +160,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

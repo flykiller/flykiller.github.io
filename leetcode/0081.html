@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0081. Search in Rotated Sorted Array II" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="The idea here is to use both binary search and dfs: each time we compare nums[mid] and nums[end] and we can have several options: nums[mid] &gt; nums[end], for example data can look like 3,4,5,6,7,1,2. Then we need to check conditions: a. If nums[end] &lt; target &lt;= nums[mid], then it means, that we need to look in the left half of our data: see region 1 on the left image. b. Else means, that we need to look in the right half of data. nums[mid] &lt; nums[end], for example data can look like 6,7,1,2,3,4,5. Then we need to check conditions: a. if nums[mid] &lt; target &lt;= nums[end], then it means, that we need to look in the right half of our data: see region 1 on the right image. b. Else means, that we need to look in the left half of data. In this problem it can happen, that nums[mid] == nums[end], and in this case we do not know where to find our number, so we just look for it in both halves." />
-<meta property="og:description" content="The idea here is to use both binary search and dfs: each time we compare nums[mid] and nums[end] and we can have several options: nums[mid] &gt; nums[end], for example data can look like 3,4,5,6,7,1,2. Then we need to check conditions: a. If nums[end] &lt; target &lt;= nums[mid], then it means, that we need to look in the left half of our data: see region 1 on the left image. b. Else means, that we need to look in the right half of data. nums[mid] &lt; nums[end], for example data can look like 6,7,1,2,3,4,5. Then we need to check conditions: a. if nums[mid] &lt; target &lt;= nums[end], then it means, that we need to look in the right half of our data: see region 1 on the right image. b. Else means, that we need to look in the left half of data. In this problem it can happen, that nums[mid] == nums[end], and in this case we do not know where to find our number, so we just look for it in both halves." />
+<meta name="description" content="https://leetcode.com/problems/search-in-rotated-sorted-array-ii" />
+<meta property="og:description" content="https://leetcode.com/problems/search-in-rotated-sorted-array-ii" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0081. Search in Rotated Sorted Array II" />
 <script type="application/ld+json">
-{"url":"/leetcode/0081.html","@type":"BlogPosting","headline":"Leetcode 0081. Search in Rotated Sorted Array II","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0081.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"The idea here is to use both binary search and dfs: each time we compare nums[mid] and nums[end] and we can have several options: nums[mid] &gt; nums[end], for example data can look like 3,4,5,6,7,1,2. Then we need to check conditions: a. If nums[end] &lt; target &lt;= nums[mid], then it means, that we need to look in the left half of our data: see region 1 on the left image. b. Else means, that we need to look in the right half of data. nums[mid] &lt; nums[end], for example data can look like 6,7,1,2,3,4,5. Then we need to check conditions: a. if nums[mid] &lt; target &lt;= nums[end], then it means, that we need to look in the right half of our data: see region 1 on the right image. b. Else means, that we need to look in the left half of data. In this problem it can happen, that nums[mid] == nums[end], and in this case we do not know where to find our number, so we just look for it in both halves.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0081.html","@type":"BlogPosting","headline":"Leetcode 0081. Search in Rotated Sorted Array II","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0081.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/search-in-rotated-sorted-array-ii","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -68,13 +68,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0081. Search in Rotated Sorted Array II</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>The idea here is to use both binary search and dfs: each time we compare <code class="language-plaintext highlighter-rouge">nums[mid]</code> and <code class="language-plaintext highlighter-rouge">nums[end]</code> and we can have several options:</p>
+    <p><a href="https://leetcode.com/problems/search-in-rotated-sorted-array-ii"> <font color="blue">https://leetcode.com/problems/search-in-rotated-sorted-array-ii</font></a></p>
+
+<p>The idea here is to use both binary search and dfs: each time we compare <code class="language-plaintext highlighter-rouge">nums[mid]</code> and <code class="language-plaintext highlighter-rouge">nums[end]</code> and we can have several options:</p>
 <ol>
   <li><code class="language-plaintext highlighter-rouge">nums[mid] &gt; nums[end]</code>, for example data can look like <code class="language-plaintext highlighter-rouge">3,4,5,6,7,1,2</code>. Then we need to check conditions:
 a. If <code class="language-plaintext highlighter-rouge">nums[end] &lt; target &lt;= nums[mid]</code>, then it means, that we need to look in the left half of our data: see region <code class="language-plaintext highlighter-rouge">1</code> on the left image.
@@ -112,6 +114,8 @@ b. Else means, that we need to look in the left half of data.</li>
 </code></pre></div></div>
 
 <p>If you have any questions, feel free to ask. If you like solution and explanations, please <strong>Upvote!</strong></p>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/search-in-rotated-sorted-array-ii/discuss/942575/python-binary-search-%2b-dfs-explained-with-diagram"> <font color="blue">Problem 0081</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0081.html" hidden></a>
 </article>
@@ -163,4 +167,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

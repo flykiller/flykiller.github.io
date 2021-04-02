@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0535. Encode and Decode TinyURL" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="The idea of this problem is the following: let us keep 2 dictinoaries: self.long_short to keep links between original long address and encoded short address. self.short_long to keep the opposit connections." />
-<meta property="og:description" content="The idea of this problem is the following: let us keep 2 dictinoaries: self.long_short to keep links between original long address and encoded short address. self.short_long to keep the opposit connections." />
+<meta name="description" content="https://leetcode.com/problems/encode-and-decode-tinyurl" />
+<meta property="og:description" content="https://leetcode.com/problems/encode-and-decode-tinyurl" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0535. Encode and Decode TinyURL" />
 <script type="application/ld+json">
-{"url":"/leetcode/0535.html","@type":"BlogPosting","headline":"Leetcode 0535. Encode and Decode TinyURL","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0535.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"The idea of this problem is the following: let us keep 2 dictinoaries: self.long_short to keep links between original long address and encoded short address. self.short_long to keep the opposit connections.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0535.html","@type":"BlogPosting","headline":"Leetcode 0535. Encode and Decode TinyURL","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0535.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/encode-and-decode-tinyurl","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0535. Encode and Decode TinyURL</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>The idea of this problem is the following: let us keep <code class="language-plaintext highlighter-rouge">2</code> dictinoaries:</p>
+    <p><a href="https://leetcode.com/problems/encode-and-decode-tinyurl"> <font color="blue">https://leetcode.com/problems/encode-and-decode-tinyurl</font></a></p>
+
+<p>The idea of this problem is the following: let us keep <code class="language-plaintext highlighter-rouge">2</code> dictinoaries:</p>
 <ol>
   <li><code class="language-plaintext highlighter-rouge">self.long_short</code> to keep links between original long address and encoded short address.</li>
   <li><code class="language-plaintext highlighter-rouge">self.short_long</code> to keep the opposit connections.</li>
@@ -95,6 +97,8 @@
     def decode(self, shortUrl):
         return self.short_long[shortUrl[-6:]]
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/encode-and-decode-tinyurl/discuss/1110529/python-use-two-dictionaries-explained"> <font color="blue">Problem 0535</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0535.html" hidden></a>
 </article>
@@ -146,4 +150,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

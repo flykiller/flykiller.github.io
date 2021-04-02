@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 1379. Find a Corresponding Node of a Binary Tree in a Clone of That Tree" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Let us find path to our node in original tree and write it down to self.path list: 0 for left turn and 1 for right turn. Let us use dfs function, which returns if given node is in path between root and given node. We need to stop if we reached None node, in this case we return False. If we met node == target, then we return True. Visit left and right nodes: L = dfs(node.left) and R = dfs(node.right). If both of them are False, it means we do not need to visit any of them, we do nothing. If one of them is True and another is False, then we need to choose the one with target. It can not happen, that both of them are True. Finally, we create empty self.path, run our dfs and what we will have in the end is path to target node, but in reversed order. So, we start with cloned node and follow this path." />
-<meta property="og:description" content="Let us find path to our node in original tree and write it down to self.path list: 0 for left turn and 1 for right turn. Let us use dfs function, which returns if given node is in path between root and given node. We need to stop if we reached None node, in this case we return False. If we met node == target, then we return True. Visit left and right nodes: L = dfs(node.left) and R = dfs(node.right). If both of them are False, it means we do not need to visit any of them, we do nothing. If one of them is True and another is False, then we need to choose the one with target. It can not happen, that both of them are True. Finally, we create empty self.path, run our dfs and what we will have in the end is path to target node, but in reversed order. So, we start with cloned node and follow this path." />
+<meta name="description" content="https://leetcode.com/problems/find-a-corresponding-node-of-a-binary-tree-in-a-clone-of-that-tree" />
+<meta property="og:description" content="https://leetcode.com/problems/find-a-corresponding-node-of-a-binary-tree-in-a-clone-of-that-tree" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 1379. Find a Corresponding Node of a Binary Tree in a Clone of That Tree" />
 <script type="application/ld+json">
-{"url":"/leetcode/1379.html","@type":"BlogPosting","headline":"Leetcode 1379. Find a Corresponding Node of a Binary Tree in a Clone of That Tree","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1379.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Let us find path to our node in original tree and write it down to self.path list: 0 for left turn and 1 for right turn. Let us use dfs function, which returns if given node is in path between root and given node. We need to stop if we reached None node, in this case we return False. If we met node == target, then we return True. Visit left and right nodes: L = dfs(node.left) and R = dfs(node.right). If both of them are False, it means we do not need to visit any of them, we do nothing. If one of them is True and another is False, then we need to choose the one with target. It can not happen, that both of them are True. Finally, we create empty self.path, run our dfs and what we will have in the end is path to target node, but in reversed order. So, we start with cloned node and follow this path.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/1379.html","@type":"BlogPosting","headline":"Leetcode 1379. Find a Corresponding Node of a Binary Tree in a Clone of That Tree","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1379.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/find-a-corresponding-node-of-a-binary-tree-in-a-clone-of-that-tree","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 1379. Find a Corresponding Node of a Binary Tree in a Clone of That Tree</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Let us find path to our node in <code class="language-plaintext highlighter-rouge">original</code> tree and write it down to <code class="language-plaintext highlighter-rouge">self.path</code> list: <code class="language-plaintext highlighter-rouge">0</code> for left turn and <code class="language-plaintext highlighter-rouge">1</code> for right turn. Let us use <code class="language-plaintext highlighter-rouge">dfs</code> function, which returns if given node is in path between root and given <code class="language-plaintext highlighter-rouge">node</code>.</p>
+    <p><a href="https://leetcode.com/problems/find-a-corresponding-node-of-a-binary-tree-in-a-clone-of-that-tree"> <font color="blue">https://leetcode.com/problems/find-a-corresponding-node-of-a-binary-tree-in-a-clone-of-that-tree</font></a></p>
+
+<p>Let us find path to our node in <code class="language-plaintext highlighter-rouge">original</code> tree and write it down to <code class="language-plaintext highlighter-rouge">self.path</code> list: <code class="language-plaintext highlighter-rouge">0</code> for left turn and <code class="language-plaintext highlighter-rouge">1</code> for right turn. Let us use <code class="language-plaintext highlighter-rouge">dfs</code> function, which returns if given node is in path between root and given <code class="language-plaintext highlighter-rouge">node</code>.</p>
 <ol>
   <li>We need to stop if we reached <code class="language-plaintext highlighter-rouge">None</code> node, in this case we return <code class="language-plaintext highlighter-rouge">False</code>. If we met <code class="language-plaintext highlighter-rouge">node == target</code>, then we return <code class="language-plaintext highlighter-rouge">True</code>.</li>
   <li>Visit left and right nodes: <code class="language-plaintext highlighter-rouge">L = dfs(node.left)</code> and <code class="language-plaintext highlighter-rouge">R = dfs(node.right)</code>.</li>
@@ -91,6 +93,8 @@
         
         <span class="k">return</span> <span class="n">cloned</span>
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/find-a-corresponding-node-of-a-binary-tree-in-a-clone-of-that-tree/discuss/997816/python-postorder-traversal-explained"> <font color="blue">Problem 1379</font></a></p>
 
   </div><a class="u-url" href="/leetcode/1379.html" hidden></a>
 </article>
@@ -142,4 +146,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

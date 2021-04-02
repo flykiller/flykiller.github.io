@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 1044. Longest Duplicate Substring" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="This is quite difficult problem in fact and you will be very unlucky if you have this on real interview. However if you familiar with Rabin-Karp algorighm, it will be not so difficult. You can see it in full details on Wikipedia: https://en.wikipedia.org/wiki/Rabin%E2%80%93Karp_algorithm" />
-<meta property="og:description" content="This is quite difficult problem in fact and you will be very unlucky if you have this on real interview. However if you familiar with Rabin-Karp algorighm, it will be not so difficult. You can see it in full details on Wikipedia: https://en.wikipedia.org/wiki/Rabin%E2%80%93Karp_algorithm" />
+<meta name="description" content="https://leetcode.com/problems/longest-duplicate-substring" />
+<meta property="og:description" content="https://leetcode.com/problems/longest-duplicate-substring" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 1044. Longest Duplicate Substring" />
 <script type="application/ld+json">
-{"url":"/leetcode/1044.html","@type":"BlogPosting","headline":"Leetcode 1044. Longest Duplicate Substring","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1044.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"This is quite difficult problem in fact and you will be very unlucky if you have this on real interview. However if you familiar with Rabin-Karp algorighm, it will be not so difficult. You can see it in full details on Wikipedia: https://en.wikipedia.org/wiki/Rabin%E2%80%93Karp_algorithm","@context":"https://schema.org"}</script>
+{"url":"/leetcode/1044.html","@type":"BlogPosting","headline":"Leetcode 1044. Longest Duplicate Substring","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1044.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/longest-duplicate-substring","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 1044. Longest Duplicate Substring</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>This is quite difficult problem in fact and you will be very unlucky if you have this on real interview. However if you familiar with <strong>Rabin-Karp</strong> algorighm, it will be not so difficult. 
+    <p><a href="https://leetcode.com/problems/longest-duplicate-substring"> <font color="blue">https://leetcode.com/problems/longest-duplicate-substring</font></a></p>
+
+<p>This is quite difficult problem in fact and you will be very unlucky if you have this on real interview. However if you familiar with <strong>Rabin-Karp</strong> algorighm, it will be not so difficult. 
 You can see it in full details on Wikipedia: https://en.wikipedia.org/wiki/Rabin%E2%80%93Karp_algorithm</p>
 
 <p>Here I briefly explain the idea of it. Imagine, that we have string <code class="language-plaintext highlighter-rouge">abcabcddcb</code>, and we want to check if there are two substrings of size <code class="language-plaintext highlighter-rouge">3</code>, which are equal. Idea is to <strong>hash</strong> this substrings, using rolling hash, where <code class="language-plaintext highlighter-rouge">d</code> is our <strong>base</strong> and <code class="language-plaintext highlighter-rouge">q</code> is used to avoid overflow.</p>
@@ -141,6 +143,8 @@ You can see it in full details on Wikipedia: https://en.wikipedia.org/wiki/Rabin
   <li>If you have more ideas, plese let me know!</li>
 </ol>
 
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/longest-duplicate-substring/discuss/695029/python-binary-search-with-rabin-karp-o(n-log-n)-explained"> <font color="blue">Problem 1044</font></a></p>
+
   </div><a class="u-url" href="/leetcode/1044.html" hidden></a>
 </article>
 
@@ -191,4 +195,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

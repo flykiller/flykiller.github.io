@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 1679. Max Number of K-Sum Pairs" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="The question which is asked: how many pairs can be constructed, such that sum in each pair is equal to k. Imagine, that k = 8 and we have numbers 2, 2, 2, 6, 6, 6, 6, 6, 6. Then we can construct 3 pairs in this case. In general if we have c1 times of number x and c2 times of number k - x, we can construct min(c1, c2) pairs with numbers x, k - x. So, all we need to do is to use Counter(nums) to calculate frequency of each number and then iterate over each number val, try to find number equal to k - val and update ans by min(freq, cnt[k - val]). Note also, that when we do this, we count each pair exaclty 2 times, so we need to divide answer by 2 in the end." />
-<meta property="og:description" content="The question which is asked: how many pairs can be constructed, such that sum in each pair is equal to k. Imagine, that k = 8 and we have numbers 2, 2, 2, 6, 6, 6, 6, 6, 6. Then we can construct 3 pairs in this case. In general if we have c1 times of number x and c2 times of number k - x, we can construct min(c1, c2) pairs with numbers x, k - x. So, all we need to do is to use Counter(nums) to calculate frequency of each number and then iterate over each number val, try to find number equal to k - val and update ans by min(freq, cnt[k - val]). Note also, that when we do this, we count each pair exaclty 2 times, so we need to divide answer by 2 in the end." />
+<meta name="description" content="https://leetcode.com/problems/max-number-of-k-sum-pairs" />
+<meta property="og:description" content="https://leetcode.com/problems/max-number-of-k-sum-pairs" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 1679. Max Number of K-Sum Pairs" />
 <script type="application/ld+json">
-{"url":"/leetcode/1679.html","@type":"BlogPosting","headline":"Leetcode 1679. Max Number of K-Sum Pairs","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1679.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"The question which is asked: how many pairs can be constructed, such that sum in each pair is equal to k. Imagine, that k = 8 and we have numbers 2, 2, 2, 6, 6, 6, 6, 6, 6. Then we can construct 3 pairs in this case. In general if we have c1 times of number x and c2 times of number k - x, we can construct min(c1, c2) pairs with numbers x, k - x. So, all we need to do is to use Counter(nums) to calculate frequency of each number and then iterate over each number val, try to find number equal to k - val and update ans by min(freq, cnt[k - val]). Note also, that when we do this, we count each pair exaclty 2 times, so we need to divide answer by 2 in the end.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/1679.html","@type":"BlogPosting","headline":"Leetcode 1679. Max Number of K-Sum Pairs","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1679.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/max-number-of-k-sum-pairs","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 1679. Max Number of K-Sum Pairs</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>The question which is asked: how many pairs can be constructed, such that sum in each pair is equal to <code class="language-plaintext highlighter-rouge">k</code>. Imagine, that <code class="language-plaintext highlighter-rouge">k = 8</code> and we have numbers <code class="language-plaintext highlighter-rouge">2, 2, 2, 6, 6, 6, 6, 6, 6</code>. Then we can construct <code class="language-plaintext highlighter-rouge">3</code> pairs in this case. In general if we have <code class="language-plaintext highlighter-rouge">c1</code> times of number <code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">c2</code> times of number <code class="language-plaintext highlighter-rouge">k - x</code>, we can construct <code class="language-plaintext highlighter-rouge">min(c1, c2)</code> pairs with numbers <code class="language-plaintext highlighter-rouge">x, k - x</code>. So, all we need to do is to use <code class="language-plaintext highlighter-rouge">Counter(nums)</code> to calculate frequency of each number and then iterate over each number <code class="language-plaintext highlighter-rouge">val</code>, try to find number equal to <code class="language-plaintext highlighter-rouge">k  - val</code> and update <code class="language-plaintext highlighter-rouge">ans</code> by <code class="language-plaintext highlighter-rouge">min(freq, cnt[k - val])</code>. Note also, that when we do this, we count each pair exaclty <code class="language-plaintext highlighter-rouge">2</code> times, so we need to divide answer by <code class="language-plaintext highlighter-rouge">2</code> in the end.</p>
+    <p><a href="https://leetcode.com/problems/max-number-of-k-sum-pairs"> <font color="blue">https://leetcode.com/problems/max-number-of-k-sum-pairs</font></a></p>
+
+<p>The question which is asked: how many pairs can be constructed, such that sum in each pair is equal to <code class="language-plaintext highlighter-rouge">k</code>. Imagine, that <code class="language-plaintext highlighter-rouge">k = 8</code> and we have numbers <code class="language-plaintext highlighter-rouge">2, 2, 2, 6, 6, 6, 6, 6, 6</code>. Then we can construct <code class="language-plaintext highlighter-rouge">3</code> pairs in this case. In general if we have <code class="language-plaintext highlighter-rouge">c1</code> times of number <code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">c2</code> times of number <code class="language-plaintext highlighter-rouge">k - x</code>, we can construct <code class="language-plaintext highlighter-rouge">min(c1, c2)</code> pairs with numbers <code class="language-plaintext highlighter-rouge">x, k - x</code>. So, all we need to do is to use <code class="language-plaintext highlighter-rouge">Counter(nums)</code> to calculate frequency of each number and then iterate over each number <code class="language-plaintext highlighter-rouge">val</code>, try to find number equal to <code class="language-plaintext highlighter-rouge">k  - val</code> and update <code class="language-plaintext highlighter-rouge">ans</code> by <code class="language-plaintext highlighter-rouge">min(freq, cnt[k - val])</code>. Note also, that when we do this, we count each pair exaclty <code class="language-plaintext highlighter-rouge">2</code> times, so we need to divide answer by <code class="language-plaintext highlighter-rouge">2</code> in the end.</p>
 
 <p><strong>Question</strong>: what happens, if <code class="language-plaintext highlighter-rouge">k = 8</code>, and we working wigh case <code class="language-plaintext highlighter-rouge">4, 4, 4, 4, 4, 4, 4</code>? Then there can be constructed <code class="language-plaintext highlighter-rouge">7//2 = 3</code> pairs, but when we count we count it <code class="language-plaintext highlighter-rouge">7</code> times. However in the end we will divide it by <code class="language-plaintext highlighter-rouge">2</code> and everything will work fine: because there can be only one number like this: <code class="language-plaintext highlighter-rouge">k//2</code> (if k is odd or if there is no such pairs, everythin will be OK as well)</p>
 
@@ -82,6 +84,8 @@
             <span class="n">ans</span> <span class="o">+=</span> <span class="nb">min</span><span class="p">(</span><span class="n">cnt</span><span class="p">[</span><span class="n">val</span><span class="p">],</span> <span class="n">cnt</span><span class="p">[</span><span class="n">k</span> <span class="o">-</span> <span class="n">val</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">ans</span><span class="o">//</span><span class="mi">2</span>
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/max-number-of-k-sum-pairs/discuss/1022699/python-counter-solution-explained"> <font color="blue">Problem 1679</font></a></p>
 
   </div><a class="u-url" href="/leetcode/1679.html" hidden></a>
 </article>
@@ -133,4 +137,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

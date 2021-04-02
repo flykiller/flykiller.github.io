@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0137. Single Number II" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="There are several &#39;magical&#39; solutions for this problem I saw in comments, done in O(n), which I really enjoed to read, however I doubt if you never saw this problem you can suceed in real interview. That is why I suggest maybe not the fastest, but much more easier to come up solution. The idea is similar to problem Single Number, but here we need to count each bit modulo 3. So, we Iterate over all possible 32 bits and for each num check if this num has non-zero bit on position i with num &amp; (1&lt;&lt;i) == (1&lt;&lt;i) formula. We evaluate this sum modulo 3. Note, that in the end for each bit we can have either 0 or 1 and never 2. Next, update our answer single with evaluated bit. Finally, we need to deal with overflow cases in python: maximum value for int32 is 2^31 - 1, so if we get number more than this value we have negative answer in fact." />
-<meta property="og:description" content="There are several &#39;magical&#39; solutions for this problem I saw in comments, done in O(n), which I really enjoed to read, however I doubt if you never saw this problem you can suceed in real interview. That is why I suggest maybe not the fastest, but much more easier to come up solution. The idea is similar to problem Single Number, but here we need to count each bit modulo 3. So, we Iterate over all possible 32 bits and for each num check if this num has non-zero bit on position i with num &amp; (1&lt;&lt;i) == (1&lt;&lt;i) formula. We evaluate this sum modulo 3. Note, that in the end for each bit we can have either 0 or 1 and never 2. Next, update our answer single with evaluated bit. Finally, we need to deal with overflow cases in python: maximum value for int32 is 2^31 - 1, so if we get number more than this value we have negative answer in fact." />
+<meta name="description" content="https://leetcode.com/problems/single-number-ii" />
+<meta property="og:description" content="https://leetcode.com/problems/single-number-ii" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0137. Single Number II" />
 <script type="application/ld+json">
-{"url":"/leetcode/0137.html","@type":"BlogPosting","headline":"Leetcode 0137. Single Number II","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0137.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"There are several &#39;magical&#39; solutions for this problem I saw in comments, done in O(n), which I really enjoed to read, however I doubt if you never saw this problem you can suceed in real interview. That is why I suggest maybe not the fastest, but much more easier to come up solution. The idea is similar to problem Single Number, but here we need to count each bit modulo 3. So, we Iterate over all possible 32 bits and for each num check if this num has non-zero bit on position i with num &amp; (1&lt;&lt;i) == (1&lt;&lt;i) formula. We evaluate this sum modulo 3. Note, that in the end for each bit we can have either 0 or 1 and never 2. Next, update our answer single with evaluated bit. Finally, we need to deal with overflow cases in python: maximum value for int32 is 2^31 - 1, so if we get number more than this value we have negative answer in fact.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0137.html","@type":"BlogPosting","headline":"Leetcode 0137. Single Number II","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0137.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/single-number-ii","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -65,13 +65,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0137. Single Number II</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>There are several <code class="language-plaintext highlighter-rouge">'magical'</code> solutions for this problem I saw in comments, done in <code class="language-plaintext highlighter-rouge">O(n)</code>, which I really enjoed to read, however I doubt if you never saw this problem you can suceed in real interview. That is why I suggest maybe not the fastest, but much more easier to come up solution. The idea is similar to problem <strong>Single Number</strong>, but here we need to count each bit modulo <code class="language-plaintext highlighter-rouge">3</code>. So, we</p>
+    <p><a href="https://leetcode.com/problems/single-number-ii"> <font color="blue">https://leetcode.com/problems/single-number-ii</font></a></p>
+
+<p>There are several <code class="language-plaintext highlighter-rouge">'magical'</code> solutions for this problem I saw in comments, done in <code class="language-plaintext highlighter-rouge">O(n)</code>, which I really enjoed to read, however I doubt if you never saw this problem you can suceed in real interview. That is why I suggest maybe not the fastest, but much more easier to come up solution. The idea is similar to problem <strong>Single Number</strong>, but here we need to count each bit modulo <code class="language-plaintext highlighter-rouge">3</code>. So, we</p>
 <ol>
   <li>Iterate over all possible <code class="language-plaintext highlighter-rouge">32</code> bits and for each <code class="language-plaintext highlighter-rouge">num</code> check if this <code class="language-plaintext highlighter-rouge">num</code> has non-zero bit on position <code class="language-plaintext highlighter-rouge">i</code> with <code class="language-plaintext highlighter-rouge">num &amp; (1&lt;&lt;i) == (1&lt;&lt;i)</code> formula.</li>
   <li>We evaluate this sum modulo <code class="language-plaintext highlighter-rouge">3</code>. Note, that in the end for each bit we can have either <code class="language-plaintext highlighter-rouge">0</code> or <code class="language-plaintext highlighter-rouge">1</code> and never <code class="language-plaintext highlighter-rouge">2</code>.</li>
@@ -92,6 +94,8 @@
             
         <span class="k">return</span> <span class="n">single</span> <span class="k">if</span> <span class="n">single</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">31</span><span class="p">)</span> <span class="k">else</span> <span class="n">single</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">32</span><span class="p">)</span>   
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/single-number-ii/discuss/699889/python-bit-manipulation-o32n-but-easy-exaplained"> <font color="blue">Problem 0137</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0137.html" hidden></a>
 </article>
@@ -143,4 +147,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

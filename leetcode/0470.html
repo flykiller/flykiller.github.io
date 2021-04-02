@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0470. Implement Rand10() Using Rand7()" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="What we can do here is to generate numbers between 1 and 7 and this makes this problems both easy and difficult. Easy, because you do not have a lot of choice what to do, difficult, because we need to use not very big number of generations. Can we use one number between 1 and 7 to generate number between 1 and 10? I do not think so, we have very small choice. Can we use 2? Yes, we can, here is the strategy: Generate a from 1 to 7 and b from 1 to 7, then we have 7x7 = 49 options. Let us create number c = (a-1)*7 + b-1, then we can show that c is number between 0 and 48: substitute all possible values for a and b and you will see. Now, let us divide these number into groups: [0,9]; [10;19]; [20;29]; [30;39]; [40;48]. If we get into one of the first four group we are happy: there is ten number in each group, so we just return c%10 + 1. If we are in the fifth group, we are not happy, there are only 9 numbers in this group and we need 10, use 9 is not fair. So in these case, we say, that our experiment was not working, and we just start it all over again! That is all." />
-<meta property="og:description" content="What we can do here is to generate numbers between 1 and 7 and this makes this problems both easy and difficult. Easy, because you do not have a lot of choice what to do, difficult, because we need to use not very big number of generations. Can we use one number between 1 and 7 to generate number between 1 and 10? I do not think so, we have very small choice. Can we use 2? Yes, we can, here is the strategy: Generate a from 1 to 7 and b from 1 to 7, then we have 7x7 = 49 options. Let us create number c = (a-1)*7 + b-1, then we can show that c is number between 0 and 48: substitute all possible values for a and b and you will see. Now, let us divide these number into groups: [0,9]; [10;19]; [20;29]; [30;39]; [40;48]. If we get into one of the first four group we are happy: there is ten number in each group, so we just return c%10 + 1. If we are in the fifth group, we are not happy, there are only 9 numbers in this group and we need 10, use 9 is not fair. So in these case, we say, that our experiment was not working, and we just start it all over again! That is all." />
+<meta name="description" content="https://leetcode.com/problems/implement-rand10-using-rand7" />
+<meta property="og:description" content="https://leetcode.com/problems/implement-rand10-using-rand7" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0470. Implement Rand10() Using Rand7()" />
 <script type="application/ld+json">
-{"url":"/leetcode/0470.html","@type":"BlogPosting","headline":"Leetcode 0470. Implement Rand10() Using Rand7()","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0470.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"What we can do here is to generate numbers between 1 and 7 and this makes this problems both easy and difficult. Easy, because you do not have a lot of choice what to do, difficult, because we need to use not very big number of generations. Can we use one number between 1 and 7 to generate number between 1 and 10? I do not think so, we have very small choice. Can we use 2? Yes, we can, here is the strategy: Generate a from 1 to 7 and b from 1 to 7, then we have 7x7 = 49 options. Let us create number c = (a-1)*7 + b-1, then we can show that c is number between 0 and 48: substitute all possible values for a and b and you will see. Now, let us divide these number into groups: [0,9]; [10;19]; [20;29]; [30;39]; [40;48]. If we get into one of the first four group we are happy: there is ten number in each group, so we just return c%10 + 1. If we are in the fifth group, we are not happy, there are only 9 numbers in this group and we need 10, use 9 is not fair. So in these case, we say, that our experiment was not working, and we just start it all over again! That is all.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0470.html","@type":"BlogPosting","headline":"Leetcode 0470. Implement Rand10() Using Rand7()","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0470.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/implement-rand10-using-rand7","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0470. Implement Rand10() Using Rand7()</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>What we can do here is to generate numbers between <code class="language-plaintext highlighter-rouge">1</code> and <code class="language-plaintext highlighter-rouge">7</code> and this makes this problems both easy and difficult. Easy, because you do not have a lot of choice what to do, difficult, because we need to use not very big number of generations. Can we use one number between <code class="language-plaintext highlighter-rouge">1</code> and <code class="language-plaintext highlighter-rouge">7</code> to generate number between <code class="language-plaintext highlighter-rouge">1</code> and <code class="language-plaintext highlighter-rouge">10</code>? I do not think so, we have very small choice. Can we use <code class="language-plaintext highlighter-rouge">2</code>? Yes, we can, here is the strategy:</p>
+    <p><a href="https://leetcode.com/problems/implement-rand10-using-rand7"> <font color="blue">https://leetcode.com/problems/implement-rand10-using-rand7</font></a></p>
+
+<p>What we can do here is to generate numbers between <code class="language-plaintext highlighter-rouge">1</code> and <code class="language-plaintext highlighter-rouge">7</code> and this makes this problems both easy and difficult. Easy, because you do not have a lot of choice what to do, difficult, because we need to use not very big number of generations. Can we use one number between <code class="language-plaintext highlighter-rouge">1</code> and <code class="language-plaintext highlighter-rouge">7</code> to generate number between <code class="language-plaintext highlighter-rouge">1</code> and <code class="language-plaintext highlighter-rouge">10</code>? I do not think so, we have very small choice. Can we use <code class="language-plaintext highlighter-rouge">2</code>? Yes, we can, here is the strategy:</p>
 <ol>
   <li>Generate <code class="language-plaintext highlighter-rouge">a</code> from <code class="language-plaintext highlighter-rouge">1</code> to <code class="language-plaintext highlighter-rouge">7</code> and <code class="language-plaintext highlighter-rouge">b</code> from <code class="language-plaintext highlighter-rouge">1</code> to <code class="language-plaintext highlighter-rouge">7</code>, then we have <code class="language-plaintext highlighter-rouge">7x7 = 49</code> options. Let us create number <code class="language-plaintext highlighter-rouge">c = (a-1)*7 + b-1</code>, then we can show that <code class="language-plaintext highlighter-rouge">c</code> is number between <code class="language-plaintext highlighter-rouge">0</code> and <code class="language-plaintext highlighter-rouge">48</code>: substitute all possible values for <code class="language-plaintext highlighter-rouge">a</code> and <code class="language-plaintext highlighter-rouge">b</code> and you will see.</li>
   <li>Now, let us divide these number into groups: <code class="language-plaintext highlighter-rouge">[0,9]; [10;19]; [20;29]; [30;39]; [40;48]</code>. If we get into one of the first four group we are happy: there is ten number in each group, so we just return <code class="language-plaintext highlighter-rouge">c%10 + 1</code>.</li>
@@ -79,6 +81,8 @@
         <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">rand7</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">7</span> <span class="o">+</span> <span class="n">rand7</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">rand10</span><span class="p">()</span> <span class="k">if</span> <span class="n">c</span> <span class="o">&gt;=</span> <span class="mi">40</span> <span class="k">else</span> <span class="p">(</span><span class="n">c</span> <span class="o">%</span> <span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/implement-rand10-using-rand7/discuss/816210/python-rejection-sampling-2-lines-explained"> <font color="blue">Problem 0470</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0470.html" hidden></a>
 </article>
@@ -130,4 +134,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

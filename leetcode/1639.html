@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 1639. Number of Ways to Form a Target String Given a Dictionary" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Let us denote by dp[i][j] number of solutions, such that the last symbol we take was from i-th column and also we create exactly j symbold of our target. Let also sp[i][j] be cumulative sum of dp on first index, that is sp[i][j] = sp[i-1][j] + ... + sp[0][j]." />
-<meta property="og:description" content="Let us denote by dp[i][j] number of solutions, such that the last symbol we take was from i-th column and also we create exactly j symbold of our target. Let also sp[i][j] be cumulative sum of dp on first index, that is sp[i][j] = sp[i-1][j] + ... + sp[0][j]." />
+<meta name="description" content="https://leetcode.com/problems/number-of-ways-to-form-a-target-string-given-a-dictionary" />
+<meta property="og:description" content="https://leetcode.com/problems/number-of-ways-to-form-a-target-string-given-a-dictionary" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 1639. Number of Ways to Form a Target String Given a Dictionary" />
 <script type="application/ld+json">
-{"url":"/leetcode/1639.html","@type":"BlogPosting","headline":"Leetcode 1639. Number of Ways to Form a Target String Given a Dictionary","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1639.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Let us denote by dp[i][j] number of solutions, such that the last symbol we take was from i-th column and also we create exactly j symbold of our target. Let also sp[i][j] be cumulative sum of dp on first index, that is sp[i][j] = sp[i-1][j] + ... + sp[0][j].","@context":"https://schema.org"}</script>
+{"url":"/leetcode/1639.html","@type":"BlogPosting","headline":"Leetcode 1639. Number of Ways to Form a Target String Given a Dictionary","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1639.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/number-of-ways-to-form-a-target-string-given-a-dictionary","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 1639. Number of Ways to Form a Target String Given a Dictionary</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Let us denote by <code class="language-plaintext highlighter-rouge">dp[i][j]</code> number of solutions, such that the last symbol we take was from <code class="language-plaintext highlighter-rouge">i</code>-th column and also we create exactly <code class="language-plaintext highlighter-rouge">j</code> symbold of our <code class="language-plaintext highlighter-rouge">target</code>. Let also <code class="language-plaintext highlighter-rouge">sp[i][j]</code> be cumulative sum of <code class="language-plaintext highlighter-rouge">dp</code> on first index, that is <code class="language-plaintext highlighter-rouge">sp[i][j] = sp[i-1][j] + ... + sp[0][j]</code>.</p>
+    <p><a href="https://leetcode.com/problems/number-of-ways-to-form-a-target-string-given-a-dictionary"> <font color="blue">https://leetcode.com/problems/number-of-ways-to-form-a-target-string-given-a-dictionary</font></a></p>
+
+<p>Let us denote by <code class="language-plaintext highlighter-rouge">dp[i][j]</code> number of solutions, such that the last symbol we take was from <code class="language-plaintext highlighter-rouge">i</code>-th column and also we create exactly <code class="language-plaintext highlighter-rouge">j</code> symbold of our <code class="language-plaintext highlighter-rouge">target</code>. Let also <code class="language-plaintext highlighter-rouge">sp[i][j]</code> be cumulative sum of <code class="language-plaintext highlighter-rouge">dp</code> on first index, that is <code class="language-plaintext highlighter-rouge">sp[i][j] = sp[i-1][j] + ... + sp[0][j]</code>.</p>
 
 <p>Now, the question is how we an evaluate <code class="language-plaintext highlighter-rouge">dp[i][j]</code>. By definition, the last symbol we take is from <code class="language-plaintext highlighter-rouge">i</code>-th column. So, first, we need to understand how many options we have to take this symbol: for quick acces we use <code class="language-plaintext highlighter-rouge">Q[i][j]</code> array, how many times we have symbol <code class="language-plaintext highlighter-rouge">j</code> in <code class="language-plaintext highlighter-rouge">i</code>-th column. We need to multiply this number by <code class="language-plaintext highlighter-rouge">sp[i-1][j-1] = dp[0][j-1] + ... + dp[i-1][j-1]</code>, because previous taken symbol can be from any of previous columns. For example, it can happen, that <code class="language-plaintext highlighter-rouge">Q[i][ord(target[j]) - ord("a")] = 0</code>, it means that <code class="language-plaintext highlighter-rouge">dp[i][j] = 0</code> immedietly. Also we need to consider one more corner case: if <code class="language-plaintext highlighter-rouge">j = 0</code>, it means, we just start to build our <code class="language-plaintext highlighter-rouge">target</code> string, so in this case we do not need to multiply by <code class="language-plaintext highlighter-rouge">sp[i-1][j-1]</code>. Finally, we update our <code class="language-plaintext highlighter-rouge">sp</code> and do not forget to use modulo <code class="language-plaintext highlighter-rouge">N</code>.</p>
 
@@ -91,6 +93,8 @@
 
         <span class="k">return</span> <span class="n">sp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">%</span> <span class="n">N</span>
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/number-of-ways-to-form-a-target-string-given-a-dictionary/discuss/917693/python-short-o(mn)-dp-solution-explained"> <font color="blue">Problem 1639</font></a></p>
 
   </div><a class="u-url" href="/leetcode/1639.html" hidden></a>
 </article>
@@ -142,4 +146,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

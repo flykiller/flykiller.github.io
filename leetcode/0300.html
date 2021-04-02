@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0300. Longest Increasing Subsequence" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Let us keep in table dp[i] the minumum value so far, which is the end of increasing sequence of length i + 1. It can be not easy to digest, so let us go through example nums = [100, 9, 2, 9, 3, 7, 101, 6]. dp = [100], because dp was empty, and there is nothig we can compare with. dp = [9] now, why? Because so far we found ony increasing subsequences with length 1 and we update dp[0]. dp = [2] for the same reason. dp = [2, 9], because new element is greater than the last element in our table, it means we can create increasing sequence of length 2. dp = [2, 3], because new element is 3, and we are looking for the smallest index in our table, such that value is more than 3, so we update 9 to 3: we found increasing subsequence of size 2, which ends with 3 &lt; 9. dp = [2, 3, 7], because new element is more than the last element. dp = [2, 3, 7, 101], the same reason. dp = [2, 3, 6, 101], because for new element 6 we looking for the smallest index in our table, such that value is more than 6, so we change element with value 7 to value 6." />
-<meta property="og:description" content="Let us keep in table dp[i] the minumum value so far, which is the end of increasing sequence of length i + 1. It can be not easy to digest, so let us go through example nums = [100, 9, 2, 9, 3, 7, 101, 6]. dp = [100], because dp was empty, and there is nothig we can compare with. dp = [9] now, why? Because so far we found ony increasing subsequences with length 1 and we update dp[0]. dp = [2] for the same reason. dp = [2, 9], because new element is greater than the last element in our table, it means we can create increasing sequence of length 2. dp = [2, 3], because new element is 3, and we are looking for the smallest index in our table, such that value is more than 3, so we update 9 to 3: we found increasing subsequence of size 2, which ends with 3 &lt; 9. dp = [2, 3, 7], because new element is more than the last element. dp = [2, 3, 7, 101], the same reason. dp = [2, 3, 6, 101], because for new element 6 we looking for the smallest index in our table, such that value is more than 6, so we change element with value 7 to value 6." />
+<meta name="description" content="https://leetcode.com/problems/longest-increasing-subsequence" />
+<meta property="og:description" content="https://leetcode.com/problems/longest-increasing-subsequence" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0300. Longest Increasing Subsequence" />
 <script type="application/ld+json">
-{"url":"/leetcode/0300.html","@type":"BlogPosting","headline":"Leetcode 0300. Longest Increasing Subsequence","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0300.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Let us keep in table dp[i] the minumum value so far, which is the end of increasing sequence of length i + 1. It can be not easy to digest, so let us go through example nums = [100, 9, 2, 9, 3, 7, 101, 6]. dp = [100], because dp was empty, and there is nothig we can compare with. dp = [9] now, why? Because so far we found ony increasing subsequences with length 1 and we update dp[0]. dp = [2] for the same reason. dp = [2, 9], because new element is greater than the last element in our table, it means we can create increasing sequence of length 2. dp = [2, 3], because new element is 3, and we are looking for the smallest index in our table, such that value is more than 3, so we update 9 to 3: we found increasing subsequence of size 2, which ends with 3 &lt; 9. dp = [2, 3, 7], because new element is more than the last element. dp = [2, 3, 7, 101], the same reason. dp = [2, 3, 6, 101], because for new element 6 we looking for the smallest index in our table, such that value is more than 6, so we change element with value 7 to value 6.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0300.html","@type":"BlogPosting","headline":"Leetcode 0300. Longest Increasing Subsequence","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0300.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/longest-increasing-subsequence","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,12 +46,18 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
         <span>[
+  
+    
+    <a href="/tag/dp"><code class="highligher-rouge"><nobr>dp</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/array"><code class="highligher-rouge"><nobr>array</nobr></code>&nbsp;</a>
   
 ]</span>
 
@@ -59,13 +65,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0300. Longest Increasing Subsequence</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Let us keep in table <code class="language-plaintext highlighter-rouge">dp[i]</code> the minumum value so far, which is the end of increasing sequence of length <code class="language-plaintext highlighter-rouge">i + 1</code>. It can be not easy to digest, so let us go through example <code class="language-plaintext highlighter-rouge">nums = [100, 9, 2, 9, 3, 7, 101, 6]</code>.</p>
+    <p><a href="https://leetcode.com/problems/longest-increasing-subsequence"> <font color="blue">https://leetcode.com/problems/longest-increasing-subsequence</font></a></p>
+
+<p>Let us keep in table <code class="language-plaintext highlighter-rouge">dp[i]</code> the minumum value so far, which is the end of increasing sequence of length <code class="language-plaintext highlighter-rouge">i + 1</code>. It can be not easy to digest, so let us go through example <code class="language-plaintext highlighter-rouge">nums = [100, 9, 2, 9, 3, 7, 101, 6]</code>.</p>
 <ol>
   <li><code class="language-plaintext highlighter-rouge">dp = [100]</code>, because <code class="language-plaintext highlighter-rouge">dp</code> was empty, and there is nothig we can compare with.</li>
   <li><code class="language-plaintext highlighter-rouge">dp = [9]</code> now, why? Because so far we found ony increasing subsequences with length 1 and we update <code class="language-plaintext highlighter-rouge">dp[0]</code>.</li>
@@ -103,6 +111,8 @@
         <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span> <span class="n">dp</span><span class="p">[</span><span class="n">bisect_left</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span> <span class="n">elem</span><span class="p">)]</span> <span class="o">=</span> <span class="n">elem</span>  
         <span class="k">return</span> <span class="n">dp</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">10</span><span class="p">)</span>
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/longest-increasing-subsequence/discuss/667975/python-3-lines-dp-with-binary-search-explained"> <font color="blue">Problem 0300</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0300.html" hidden></a>
 </article>
@@ -154,4 +164,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

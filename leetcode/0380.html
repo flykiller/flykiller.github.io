@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0380. Insert Delete GetRandom O(1)" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="My idea for this problem to achieve O(1) complexity for all three operation is to use 2 dictionaries: I called them direct dictionary dic_direct and inverse dictionary dic_invert. In direct dictionary we keep indexes and corresponding values: for example: 0:3, 1:4, 2:1 means, that we have 3 values in our dictionary: [3,4,1]. In invert dictionary we keep the opposite correspondences: 3:0, 4:1, 1:2. Why we need to keep two dictionaries? Because we want to search quickly both by keys and by values. num_elem is to count number of elements in our set (you can avoid it, but code becomes a bit more readible)." />
-<meta property="og:description" content="My idea for this problem to achieve O(1) complexity for all three operation is to use 2 dictionaries: I called them direct dictionary dic_direct and inverse dictionary dic_invert. In direct dictionary we keep indexes and corresponding values: for example: 0:3, 1:4, 2:1 means, that we have 3 values in our dictionary: [3,4,1]. In invert dictionary we keep the opposite correspondences: 3:0, 4:1, 1:2. Why we need to keep two dictionaries? Because we want to search quickly both by keys and by values. num_elem is to count number of elements in our set (you can avoid it, but code becomes a bit more readible)." />
+<meta name="description" content="https://leetcode.com/problems/insert-delete-getrandom-o1" />
+<meta property="og:description" content="https://leetcode.com/problems/insert-delete-getrandom-o1" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0380. Insert Delete GetRandom O(1)" />
 <script type="application/ld+json">
-{"url":"/leetcode/0380.html","@type":"BlogPosting","headline":"Leetcode 0380. Insert Delete GetRandom O(1)","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0380.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"My idea for this problem to achieve O(1) complexity for all three operation is to use 2 dictionaries: I called them direct dictionary dic_direct and inverse dictionary dic_invert. In direct dictionary we keep indexes and corresponding values: for example: 0:3, 1:4, 2:1 means, that we have 3 values in our dictionary: [3,4,1]. In invert dictionary we keep the opposite correspondences: 3:0, 4:1, 1:2. Why we need to keep two dictionaries? Because we want to search quickly both by keys and by values. num_elem is to count number of elements in our set (you can avoid it, but code becomes a bit more readible).","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0380.html","@type":"BlogPosting","headline":"Leetcode 0380. Insert Delete GetRandom O(1)","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0380.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/insert-delete-getrandom-o1","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0380. Insert Delete GetRandom O(1)</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>My idea for this problem to achieve <code class="language-plaintext highlighter-rouge">O(1)</code> complexity for all three operation is to use 2 dictionaries: I called them direct dictionary <code class="language-plaintext highlighter-rouge">dic_direct</code> and inverse dictionary <code class="language-plaintext highlighter-rouge">dic_invert</code>.</p>
+    <p><a href="https://leetcode.com/problems/insert-delete-getrandom-o1"> <font color="blue">https://leetcode.com/problems/insert-delete-getrandom-o1</font></a></p>
+
+<p>My idea for this problem to achieve <code class="language-plaintext highlighter-rouge">O(1)</code> complexity for all three operation is to use 2 dictionaries: I called them direct dictionary <code class="language-plaintext highlighter-rouge">dic_direct</code> and inverse dictionary <code class="language-plaintext highlighter-rouge">dic_invert</code>.</p>
 <ol>
   <li>In direct dictionary we keep indexes and corresponding values: for example: <code class="language-plaintext highlighter-rouge">0:3</code>, <code class="language-plaintext highlighter-rouge">1:4</code>, <code class="language-plaintext highlighter-rouge">2:1</code> means, that we have <code class="language-plaintext highlighter-rouge">3</code> values in our dictionary: <code class="language-plaintext highlighter-rouge">[3,4,1]</code>.</li>
   <li>In invert dictionary we keep the opposite correspondences: <code class="language-plaintext highlighter-rouge">3:0</code>, <code class="language-plaintext highlighter-rouge">4:1</code>, <code class="language-plaintext highlighter-rouge">1:2</code>. Why we need to keep two dictionaries? Because we want to search quickly both by keys and by values.</li>
@@ -110,6 +112,8 @@
         index = floor(random.random()*self.num_elem)
         return self.dic_direct[index]
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/insert-delete-getrandom-o1/discuss/683267/python-o(1)-using-two-hash-tables-beats-97-explained"> <font color="blue">Problem 0380</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0380.html" hidden></a>
 </article>
@@ -161,4 +165,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

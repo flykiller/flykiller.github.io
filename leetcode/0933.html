@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0933. Number of Recent Calls" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="What we need to keep in this problem is sliding window of recent calls. So, we need to remove old calls, if they are too old and append new ones. Ideal data structure is queue, and in python we usualy use deque. So, there are 3 simple steps to succes:" />
-<meta property="og:description" content="What we need to keep in this problem is sliding window of recent calls. So, we need to remove old calls, if they are too old and append new ones. Ideal data structure is queue, and in python we usualy use deque. So, there are 3 simple steps to succes:" />
+<meta name="description" content="https://leetcode.com/problems/number-of-recent-calls" />
+<meta property="og:description" content="https://leetcode.com/problems/number-of-recent-calls" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0933. Number of Recent Calls" />
 <script type="application/ld+json">
-{"url":"/leetcode/0933.html","@type":"BlogPosting","headline":"Leetcode 0933. Number of Recent Calls","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0933.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"What we need to keep in this problem is sliding window of recent calls. So, we need to remove old calls, if they are too old and append new ones. Ideal data structure is queue, and in python we usualy use deque. So, there are 3 simple steps to succes:","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0933.html","@type":"BlogPosting","headline":"Leetcode 0933. Number of Recent Calls","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0933.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/number-of-recent-calls","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,7 +46,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -59,13 +59,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0933. Number of Recent Calls</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>What we need to keep in this problem is sliding window of recent calls. So, we need to remove old calls, if they are too old and append new ones. Ideal data structure is queue, and in python we usualy use <code class="language-plaintext highlighter-rouge">deque</code>. So, there are 3 simple steps to succes:</p>
+    <p><a href="https://leetcode.com/problems/number-of-recent-calls"> <font color="blue">https://leetcode.com/problems/number-of-recent-calls</font></a></p>
+
+<p>What we need to keep in this problem is sliding window of recent calls. So, we need to remove old calls, if they are too old and append new ones. Ideal data structure is queue, and in python we usualy use <code class="language-plaintext highlighter-rouge">deque</code>. So, there are 3 simple steps to succes:</p>
 
 <ol>
   <li>Add new call time to the end of our queue.</li>
@@ -85,6 +87,8 @@
             self.calls.popleft()
         return len(self.calls)
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/number-of-recent-calls/discuss/873333/python-easy-solution-using-queue-explained"> <font color="blue">Problem 0933</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0933.html" hidden></a>
 </article>
@@ -136,4 +140,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

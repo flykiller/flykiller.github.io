@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0220. Contains Duplicate III" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="In my opinion it is more like hard problem, because brute-force solution will get you TLE and all other solutions uses some not easy trick: either heaps or BST or bucket sort. If you know some other solution without these ideas, please let me know!" />
-<meta property="og:description" content="In my opinion it is more like hard problem, because brute-force solution will get you TLE and all other solutions uses some not easy trick: either heaps or BST or bucket sort. If you know some other solution without these ideas, please let me know!" />
+<meta name="description" content="https://leetcode.com/problems/contains-duplicate-iii" />
+<meta property="og:description" content="https://leetcode.com/problems/contains-duplicate-iii" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0220. Contains Duplicate III" />
 <script type="application/ld+json">
-{"url":"/leetcode/0220.html","@type":"BlogPosting","headline":"Leetcode 0220. Contains Duplicate III","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0220.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"In my opinion it is more like hard problem, because brute-force solution will get you TLE and all other solutions uses some not easy trick: either heaps or BST or bucket sort. If you know some other solution without these ideas, please let me know!","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0220.html","@type":"BlogPosting","headline":"Leetcode 0220. Contains Duplicate III","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0220.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/contains-duplicate-iii","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,12 +46,24 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
         <span>[
+  
+    
+    <a href="/tag/hash table"><code class="highligher-rouge"><nobr>hash table</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/BST"><code class="highligher-rouge"><nobr>BST</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/heap"><code class="highligher-rouge"><nobr>heap</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/bucket sort"><code class="highligher-rouge"><nobr>bucket sort</nobr></code>&nbsp;</a>
   
 ]</span>
 
@@ -59,13 +71,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0220. Contains Duplicate III</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>In my opinion it is more like <strong>hard</strong> problem, because brute-force solution will get you TLE and all other solutions uses some not easy trick: either heaps or BST or bucket sort. If you know some other solution without these ideas, please let me know!</p>
+    <p><a href="https://leetcode.com/problems/contains-duplicate-iii"> <font color="blue">https://leetcode.com/problems/contains-duplicate-iii</font></a></p>
+
+<p>In my opinion it is more like <strong>hard</strong> problem, because brute-force solution will get you TLE and all other solutions uses some not easy trick: either heaps or BST or bucket sort. If you know some other solution without these ideas, please let me know!</p>
 
 <p>In this problem we need to iterate over window of size <code class="language-plaintext highlighter-rouge">k+1</code> and check if there is numbers with difference <code class="language-plaintext highlighter-rouge">&lt;=t</code> in this window. What we need to do efficiently is to add and remove elements from our window, and my choice of data structure is BST, which is implemented in <code class="language-plaintext highlighter-rouge">SortedList</code> in python. So on each step we have sorted list of elements in this window. Imagine the case:</p>
 
@@ -73,24 +87,40 @@
 
 <p><strong>Complexity</strong>: time complexity is <code class="language-plaintext highlighter-rouge">O(n log k)</code>, because we do <code class="language-plaintext highlighter-rouge">n</code> steps, each one with <code class="language-plaintext highlighter-rouge">O(log k)</code> complexity to do binary search, remove and add elements. Space complexity is <code class="language-plaintext highlighter-rouge">O(k)</code> to keep our <code class="language-plaintext highlighter-rouge">SortedList</code> updated.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from sortedcontainers import SortedList
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sortedcontainers</span> <span class="kn">import</span> <span class="n">SortedList</span>
 
-class Solution:
-    def containsNearbyAlmostDuplicate(self, nums, k, t):
-        SList = SortedList()
-        for i in range(len(nums)):
-            if i &gt; k: SList.remove(nums[i-k-1])   
-            pos1 = SortedList.bisect_left(SList, nums[i] - t)
-            pos2 = SortedList.bisect_right(SList, nums[i] + t)
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">containsNearbyAlmostDuplicate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+        <span class="n">SList</span> <span class="o">=</span> <span class="n">SortedList</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">k</span><span class="p">:</span> <span class="n">SList</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>   
+            <span class="n">pos1</span> <span class="o">=</span> <span class="n">SortedList</span><span class="p">.</span><span class="n">bisect_left</span><span class="p">(</span><span class="n">SList</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">t</span><span class="p">)</span>
+            <span class="n">pos2</span> <span class="o">=</span> <span class="n">SortedList</span><span class="p">.</span><span class="n">bisect_right</span><span class="p">(</span><span class="n">SList</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">t</span><span class="p">)</span>
             
-            if pos1 != pos2 and pos1 != len(SList): return True
+            <span class="k">if</span> <span class="n">pos1</span> <span class="o">!=</span> <span class="n">pos2</span> <span class="ow">and</span> <span class="n">pos1</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">SList</span><span class="p">):</span> <span class="k">return</span> <span class="bp">True</span>
             
-            SList.add(nums[i])
+            <span class="n">SList</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
         
-        return False
+        <span class="k">return</span> <span class="bp">False</span>
 </code></pre></div></div>
 
-<p><strong>PS</strong> because of time complexity <code class="language-plaintext highlighter-rouge">O(n log k)</code>, this solution will not be on top, there is <code class="language-plaintext highlighter-rouge">O(n)</code> bucket sort solution, but in my opinion it is for certain hard level.</p>
+<p>Another idea is that we do not really need maximum and minimum in each window, only the difference. We can use the idea of bucket sort, where we put every number $i$ to the bucket with number $\frac{i}{t+1}$. Then if we have two numbers in one bucket, we immediately return \texttt{True}. Also we need to check only two neighbors for each bucket. Finally, we go through numbers, put them to buckets and always keep number of buckets no more than $k$. Overall time complexity is $O(n)$ and space complexity is $O(k)$ to keep dictionary of <code class="language-plaintext highlighter-rouge">bucketNumb: index</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">containsNearbyAlmostDuplicate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="bp">False</span>
+        <span class="n">n</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">),</span> <span class="p">{},</span> <span class="n">t</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">//</span> <span class="n">w</span>
+            <span class="k">for</span> <span class="n">neib</span> <span class="ow">in</span> <span class="p">[</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">neib</span> <span class="ow">in</span> <span class="n">d</span> <span class="ow">and</span> <span class="nb">abs</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">d</span><span class="p">[</span><span class="n">neib</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">w</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="bp">True</span>
+
+            <span class="n">d</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">k</span><span class="p">:</span> <span class="k">del</span> <span class="n">d</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">k</span><span class="p">]</span> <span class="o">//</span> <span class="n">w</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">False</span>
+</code></pre></div></div>
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/contains-duplicate-iii/discuss/824603/python-sortedlist-o(n-log-k)-solution-explained"> <font color="blue">Problem 0220</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0220.html" hidden></a>
 </article>
@@ -142,4 +172,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.

@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0226. Invert Binary Tree" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Here what we need to do is just use definition of inverted tree. We go from top to bottom of our tree and if we reached the leaf, we do not do anything. If current subtree is not a leaf, we recursively call our function for both its children, first inverting them." />
-<meta property="og:description" content="Here what we need to do is just use definition of inverted tree. We go from top to bottom of our tree and if we reached the leaf, we do not do anything. If current subtree is not a leaf, we recursively call our function for both its children, first inverting them." />
+<meta name="description" content="https://leetcode.com/problems/invert-binary-tree" />
+<meta property="og:description" content="https://leetcode.com/problems/invert-binary-tree" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T10:11:27+02:00" />
+<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0226. Invert Binary Tree" />
 <script type="application/ld+json">
-{"url":"/leetcode/0226.html","@type":"BlogPosting","headline":"Leetcode 0226. Invert Binary Tree","dateModified":"2021-04-02T10:11:27+02:00","datePublished":"2021-04-02T10:11:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0226.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Here what we need to do is just use definition of inverted tree. We go from top to bottom of our tree and if we reached the leaf, we do not do anything. If current subtree is not a leaf, we recursively call our function for both its children, first inverting them.","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0226.html","@type":"BlogPosting","headline":"Leetcode 0226. Invert Binary Tree","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0226.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/invert-binary-tree","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -46,12 +46,18 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/content/">Content</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode Problems</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
         <span>[
+  
+    
+    <a href="/tag/tree"><code class="highligher-rouge"><nobr>tree</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/recursion"><code class="highligher-rouge"><nobr>recursion</nobr></code>&nbsp;</a>
   
 ]</span>
 
@@ -59,15 +65,18 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0226. Invert Binary Tree</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:11:27+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Here what we need to do is just use definition of <strong>inverted</strong> tree. We go from top to bottom of our tree and if we reached the leaf, we do not do anything. If current subtree is not a leaf, we recursively call our function for both its children, first inverting them.</p>
+    <p><a href="https://leetcode.com/problems/invert-binary-tree"> <font color="blue">https://leetcode.com/problems/invert-binary-tree</font></a></p>
 
-<p><strong>Complexity</strong> is <code class="language-plaintext highlighter-rouge">O(h)</code>, where <code class="language-plaintext highlighter-rouge">h</code> is the height of our tree.</p>
+<p>Here what we need to do is just use definition of <strong>inverted</strong> tree. We go from top to bottom of our tree and if we reached the leaf, we do not do anything. If current subtree is not a leaf, we recursively call our function for both its children, first inverting them.</p>
+
+<h4 id="complexity">Complexity</h4>
+<p>Time complexity is $O(n)$, space complexity** is <code class="language-plaintext highlighter-rouge">O(h)</code>, where <code class="language-plaintext highlighter-rouge">h</code> is the height of our tree.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">invertTree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">):</span>
@@ -76,6 +85,8 @@
 
         <span class="k">return</span> <span class="n">root</span>
 </code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/invert-binary-tree/discuss/664122/python-3-lines-recursion-expained"> <font color="blue">Problem 0226</font></a></p>
 
   </div><a class="u-url" href="/leetcode/0226.html" hidden></a>
 </article>
@@ -127,4 +138,3 @@ MathJax.Hub.Config({
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-The first part is used to enable inline equation.
