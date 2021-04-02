@@ -13,11 +13,11 @@
 <meta property="og:description" content="Problem statement" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-01T17:33:19+02:00" />
+<meta property="article:published_time" content="2021-04-02T10:03:58+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0001. Two Sum" />
 <script type="application/ld+json">
-{"url":"/leetcode/0001.html","@type":"BlogPosting","headline":"Leetcode 0001. Two Sum","dateModified":"2021-04-01T17:33:19+02:00","datePublished":"2021-04-01T17:33:19+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0001.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0001.html","@type":"BlogPosting","headline":"Leetcode 0001. Two Sum","dateModified":"2021-04-02T10:03:58+02:00","datePublished":"2021-04-02T10:03:58+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0001.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -54,7 +54,7 @@
         <span>[
   
     
-    <a href="/tag/hash-table"><code class="highligher-rouge"><nobr>hash-table</nobr></code>&nbsp;</a>
+    <a href="/tag/hash table"><code class="highligher-rouge"><nobr>hash table</nobr></code>&nbsp;</a>
   
     
     <a href="/tag/sort"><code class="highligher-rouge"><nobr>sort</nobr></code>&nbsp;</a>
@@ -68,8 +68,8 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0001. Two Sum</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-01T17:33:19+02:00" itemprop="datePublished">
-        Apr 1, 2021
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:03:58+02:00" itemprop="datePublished">
+        Apr 2, 2021
       </time></p>
   </header>
 
@@ -82,7 +82,7 @@
 
 <p>There are different approaches to this problem: bruteforce with $\mathcal{O}(n^2)$, sorting of data + 2 pointers with $\mathcal{O}(n \log n)$ complexity.</p>
 
-<p>Finally, we can use hash table to achieve $\mathcal{O}(n)$ complexity. The idea is for each number $\texttt{k}$ try to find number $\texttt{target - k}$.</p>
+<p>Finally, we can use hash table to achieve $\mathcal{O}(n)$ complexity. The idea is for each number <code class="language-plaintext highlighter-rouge">k</code> try to find number <code class="language-plaintext highlighter-rouge">target - k</code>.</p>
 
 <h4 id="complexity">Complexity</h4>
 <p>Time complexity is $\mathcal{O}(n)$, however space complexity is also $\mathcal{O}(n)$. I think it is not possible to have $\mathcal{O}(n)/\mathcal{O}(1)$ complexity solution.</p>

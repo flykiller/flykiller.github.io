@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0072. Edit Distance" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="This is very classical dynamic programming problem (there is even wikipedia page https://en.wikipedia.org/wiki/Edit_distance), which I think can not be solved without it. If I am wrong, please let me know!" />
-<meta property="og:description" content="This is very classical dynamic programming problem (there is even wikipedia page https://en.wikipedia.org/wiki/Edit_distance), which I think can not be solved without it. If I am wrong, please let me know!" />
+<meta name="description" content="Solution" />
+<meta property="og:description" content="Solution" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-01T17:33:19+02:00" />
+<meta property="article:published_time" content="2021-04-02T10:03:58+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0072. Edit Distance" />
 <script type="application/ld+json">
-{"url":"/leetcode/0072.html","@type":"BlogPosting","headline":"Leetcode 0072. Edit Distance","dateModified":"2021-04-01T17:33:19+02:00","datePublished":"2021-04-01T17:33:19+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0072.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"This is very classical dynamic programming problem (there is even wikipedia page https://en.wikipedia.org/wiki/Edit_distance), which I think can not be solved without it. If I am wrong, please let me know!","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0072.html","@type":"BlogPosting","headline":"Leetcode 0072. Edit Distance","dateModified":"2021-04-02T10:03:58+02:00","datePublished":"2021-04-02T10:03:58+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0072.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Solution","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -53,41 +53,46 @@
       <div class="wrapper">
         <span>[
   
+    
+    <a href="/tag/dp"><code class="highligher-rouge"><nobr>dp</nobr></code>&nbsp;</a>
+  
 ]</span>
 
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0072. Edit Distance</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-01T17:33:19+02:00" itemprop="datePublished">
-        Apr 1, 2021
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T10:03:58+02:00" itemprop="datePublished">
+        Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>This is very classical dynamic programming problem (there is even wikipedia page https://en.wikipedia.org/wiki/Edit_distance), which I think can not be solved without it. If I am wrong, please let me know!</p>
+    <h4 id="solution">Solution</h4>
 
-<p>Let <code class="language-plaintext highlighter-rouge">dp[i_1][i_2]</code> be the edit distance for words <code class="language-plaintext highlighter-rouge">dp[:i_1]</code> and <code class="language-plaintext highlighter-rouge">dp[:i_2]</code>. Then there can be 4 options: we can insert symbol on position <code class="language-plaintext highlighter-rouge">i_1</code> in the first word, insert symbol on position <code class="language-plaintext highlighter-rouge">i_2</code> in the second word, replace symbol <code class="language-plaintext highlighter-rouge">i_1</code> in first word with <code class="language-plaintext highlighter-rouge">i_2</code> if these symbols are different and look into <code class="language-plaintext highlighter-rouge">dp[i_1-1][i_2-1]</code> if these two symbols are the same.</p>
+<p>The idea is to use dynamic programming: <code class="language-plaintext highlighter-rouge">dp(i, j)</code> is answer for question for <code class="language-plaintext highlighter-rouge">word1[:i+1], word2[:j+1]</code>. Then if we have on of the words empty, we return length of the other plus one. Then we have <code class="language-plaintext highlighter-rouge">3</code> options:</p>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">dp(i-1, j) + 1</code>if we remove letter with index <code class="language-plaintext highlighter-rouge">i</code> from the first word</li>
+  <li><code class="language-plaintext highlighter-rouge">dp(i, j-1) + 1</code>, if we remove letter with index <code class="language-plaintext highlighter-rouge">j</code> from the second word</li>
+  <li><code class="language-plaintext highlighter-rouge">dp(i-1, j-1) + cost</code>, if we try to replace one letter with another or if letters are equal.</li>
+</ol>
 
-<p><strong>Complexity</strong>: time complexity is <code class="language-plaintext highlighter-rouge">O(mn)</code>, and space comlexity as well. Space complexity can be improved to <code class="language-plaintext highlighter-rouge">O(m+n)</code> if we keep only current row or column.</p>
+<h4 id="complexity">Complexity</h4>
 
-<p>We add stopsymbols in the beggining of words to deal with border cases in simpler way.</p>
+<p>Time complexity is $\mathcal{O}(mn)$, space complexity is also. Space complexity can be done in $\mathcal{O}(\max(m,n))$, because we need to keep only one row at a time.</p>
+
+<h4 id="code">Code</h4>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-  <span class="k">def</span> <span class="nf">minDistance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word1</span><span class="p">,</span> <span class="n">word2</span><span class="p">):</span>
-    <span class="n">word1</span><span class="p">,</span> <span class="n">word2</span> <span class="o">=</span> <span class="s">"!"</span> <span class="o">+</span> <span class="n">word1</span><span class="p">,</span> <span class="s">"!"</span> <span class="o">+</span> <span class="n">word2</span>
-    <span class="n">n_1</span><span class="p">,</span> <span class="n">n_2</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">word1</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">word2</span><span class="p">)</span>
-    <span class="n">dp</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_2</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_1</span><span class="p">)]</span>
-
-    <span class="k">for</span> <span class="n">i_1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_1</span><span class="p">):</span> <span class="n">dp</span><span class="p">[</span><span class="n">i_1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">i_1</span>
-    <span class="k">for</span> <span class="n">i_2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_2</span><span class="p">):</span> <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i_2</span><span class="p">]</span> <span class="o">=</span> <span class="n">i_2</span>
-
-    <span class="k">for</span> <span class="n">i_1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_1</span><span class="p">):</span>
-      <span class="k">for</span> <span class="n">i_2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n_2</span><span class="p">):</span>
-        <span class="n">Cost</span> <span class="o">=</span> <span class="p">(</span><span class="n">word1</span><span class="p">[</span><span class="n">i_1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">word2</span><span class="p">[</span><span class="n">i_2</span><span class="p">])</span>
-        <span class="n">dp</span><span class="p">[</span><span class="n">i_1</span><span class="p">][</span><span class="n">i_2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i_1</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">i_2</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dp</span><span class="p">[</span><span class="n">i_1</span><span class="p">][</span><span class="n">i_2</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dp</span><span class="p">[</span><span class="n">i_1</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">i_2</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">Cost</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">def</span> <span class="nf">minDistance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word1</span><span class="p">,</span> <span class="n">word2</span><span class="p">):</span>
+        <span class="o">@</span><span class="n">lru_cache</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">dp</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="k">return</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="k">return</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">cost</span> <span class="o">=</span> <span class="n">word1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">word2</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">dp</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dp</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dp</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">cost</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">dp</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">word2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 </code></pre></div></div>
 
   </div><a class="u-url" href="/leetcode/0072.html" hidden></a>
