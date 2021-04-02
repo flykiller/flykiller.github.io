@@ -13,11 +13,11 @@
 <meta property="og:description" content="https://leetcode.com/problems/partition-equal-subset-sum" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
+<meta property="article:published_time" content="2021-04-02T23:35:09+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0416. Partition Equal Subset Sum" />
 <script type="application/ld+json">
-{"url":"/leetcode/0416.html","@type":"BlogPosting","headline":"Leetcode 0416. Partition Equal Subset Sum","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0416.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/partition-equal-subset-sum","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0416.html","@type":"BlogPosting","headline":"Leetcode 0416. Partition Equal Subset Sum","dateModified":"2021-04-02T23:35:09+02:00","datePublished":"2021-04-02T23:35:09+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0416.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/partition-equal-subset-sum","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -53,19 +53,27 @@
       <div class="wrapper">
         <span>[
   
+    
+    <a href="/tag/dp"><code class="highligher-rouge"><nobr>dp</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/bit manipulation"><code class="highligher-rouge"><nobr>bit manipulation</nobr></code>&nbsp;</a>
+  
 ]</span>
 
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0416. Partition Equal Subset Sum</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T23:35:09+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
     <p><a href="https://leetcode.com/problems/partition-equal-subset-sum"> <font color="blue">https://leetcode.com/problems/partition-equal-subset-sum</font></a></p>
+
+<p>We are asked if we can choose sum numbers such that the give in sum our number. We can do it in DP way with complexity $O(mn)$, where $n$ is amount of numbers and $m$ is sum of all numbers. This is classical discrete knapsack problem. Let <code class="language-plaintext highlighter-rouge">dp[i][j]</code> means whether the specific sum <code class="language-plaintext highlighter-rouge">j</code> can be gotten from the first <code class="language-plaintext highlighter-rouge">i</code> numbers. Then we can update it in $O(1)$: <code class="language-plaintext highlighter-rouge">dp[i][j] = dp[i-1][j-A[i-1]]</code> or <code class="language-plaintext highlighter-rouge">dp[i-1][j]</code>. Actually, we do not need $O(mn)$ memory, just $O(m)$: initialize it with False, except zero element, which is True. Then add first number and update some <code class="language-plaintext highlighter-rouge">dp[A1] = True</code>, then second number and so on.</p>
 
 <p>The idea here is to use usual dp with states, but to encode them with numbers. Let me explain on small example, what I mean. Imagine, that we have numbers <code class="language-plaintext highlighter-rouge">A = [1,5,11,5]</code>, then let us start with <code class="language-plaintext highlighter-rouge">a = 1</code>:</p>
 

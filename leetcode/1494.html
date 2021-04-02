@@ -13,11 +13,11 @@
 <meta property="og:description" content="https://leetcode.com/problems/parallel-courses-ii" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
+<meta property="article:published_time" content="2021-04-02T23:35:09+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 1494. Parallel Courses II" />
 <script type="application/ld+json">
-{"url":"/leetcode/1494.html","@type":"BlogPosting","headline":"Leetcode 1494. Parallel Courses II","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1494.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/parallel-courses-ii","@context":"https://schema.org"}</script>
+{"url":"/leetcode/1494.html","@type":"BlogPosting","headline":"Leetcode 1494. Parallel Courses II","dateModified":"2021-04-02T23:35:09+02:00","datePublished":"2021-04-02T23:35:09+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1494.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/parallel-courses-ii","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -53,13 +53,16 @@
       <div class="wrapper">
         <span>[
   
+    
+    <a href="/tag/bit-dp"><code class="highligher-rouge"><nobr>bit-dp</nobr></code>&nbsp;</a>
+  
 ]</span>
 
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 1494. Parallel Courses II</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T23:35:09+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
@@ -89,7 +92,7 @@
   <li>We check how many courses we already take in last semester, using <code class="language-plaintext highlighter-rouge">bits &lt; k</code>, and also make sure, that we can add new course to last semester. Now we have two candidates: <code class="language-plaintext highlighter-rouge">(cand, bits + 1, mask + (1&lt;&lt;j))</code> and <code class="language-plaintext highlighter-rouge">dp[i][j]</code> and we need to choose the best one. In other case, we need to take new semester: so <code class="language-plaintext highlighter-rouge">cands</code> will be equalt to <code class="language-plaintext highlighter-rouge">cands + 1</code>, <code class="language-plaintext highlighter-rouge">bits</code> will be equal to <code class="language-plaintext highlighter-rouge">1</code> and binary mask for last semester is <code class="language-plaintext highlighter-rouge">1&lt;&lt;j</code>.</li>
 </ol>
 
-<p><strong>Complexity</strong> is <code class="language-plaintext highlighter-rouge">O(n^2*2^n)</code>, because we iterate all bitmasks and then we iterate over all pairs of non-zero bit, and we heve <code class="language-plaintext highlighter-rouge">O(n^2)</code> of them. Memory is <code class="language-plaintext highlighter-rouge">O(2^n * n)</code>.
+<p><strong>Complexity</strong> is <code class="language-plaintext highlighter-rouge">O(n^2*2^n)</code>, because we iterate all bitmasks and then we iterate over all pairs of non-zero bit, and we have <code class="language-plaintext highlighter-rouge">O(n^2)</code> of them. Memory is <code class="language-plaintext highlighter-rouge">O(2^n * n)</code>.
 I think it can be simplified to <code class="language-plaintext highlighter-rouge">O(n*2^n)/O(2^n)</code> complexity, but I am not sure yet.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>

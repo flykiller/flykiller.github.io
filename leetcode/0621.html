@@ -13,11 +13,11 @@
 <meta property="og:description" content="https://leetcode.com/problems/task-scheduler" />
 <meta property="og:site_name" content="Dmitry Babichev algorithms" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-02T15:51:07+02:00" />
+<meta property="article:published_time" content="2021-04-02T23:35:09+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0621. Task Scheduler" />
 <script type="application/ld+json">
-{"url":"/leetcode/0621.html","@type":"BlogPosting","headline":"Leetcode 0621. Task Scheduler","dateModified":"2021-04-02T15:51:07+02:00","datePublished":"2021-04-02T15:51:07+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0621.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/task-scheduler","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0621.html","@type":"BlogPosting","headline":"Leetcode 0621. Task Scheduler","dateModified":"2021-04-02T23:35:09+02:00","datePublished":"2021-04-02T23:35:09+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0621.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/task-scheduler","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev algorithms" />
     
@@ -53,19 +53,93 @@
       <div class="wrapper">
         <span>[
   
+    
+    <a href="/tag/greedy"><code class="highligher-rouge"><nobr>greedy</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/queue"><code class="highligher-rouge"><nobr>queue</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/array"><code class="highligher-rouge"><nobr>array</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/heap"><code class="highligher-rouge"><nobr>heap</nobr></code>&nbsp;</a>
+  
 ]</span>
 
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0621. Task Scheduler</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T15:51:07+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-02T23:35:09+02:00" itemprop="datePublished">
         Apr 2, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
     <p><a href="https://leetcode.com/problems/task-scheduler"> <font color="blue">https://leetcode.com/problems/task-scheduler</font></a></p>
+
+<h4 id="solution-1">Solution 1</h4>
+
+<p>One possible solution is to build sequence symbol by symbol, each moment of time taking the most frequent from the rest symbols, but also such that it is not used in last $n$ iterations. One way is to keep just frequencies of all letters and when we use letter, make frequency negative. On each iteration we choose element with highest frequency, in this way we ignore elements with negative frequencies. Time complexity is $O(26m)$, where $m$ is length of <code class="language-plaintext highlighter-rouge">tasks</code>, space complexity is $O(n)$ to keep our queue .</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">leastInterval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tasks</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">freq</span><span class="p">,</span> <span class="n">units</span><span class="p">,</span> <span class="n">queue</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">26</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">deque</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">tasks</span><span class="p">:</span>
+            <span class="n">freq</span><span class="p">[</span><span class="nb">ord</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s">"A"</span><span class="p">)]</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="n">Rest</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Counter</span><span class="p">(</span><span class="n">tasks</span><span class="p">))</span>
+
+        <span class="k">while</span> <span class="n">Rest</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">queue</span><span class="p">)</span> <span class="o">==</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">old</span> <span class="o">=</span> <span class="n">queue</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">old</span> <span class="o">&lt;</span> <span class="mi">26</span><span class="p">:</span> <span class="n">freq</span><span class="p">[</span><span class="n">old</span><span class="p">]</span> <span class="o">*=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            
+            <span class="n">Max_freq</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span>
+            <span class="n">Max_freq_ind</span> <span class="o">=</span> <span class="n">freq</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">freq</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">Max_freq</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> 
+                <span class="n">queue</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="mi">26</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">freq</span><span class="p">[</span><span class="n">Max_freq_ind</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">freq</span><span class="p">[</span><span class="n">Max_freq_ind</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">freq</span><span class="p">[</span><span class="n">Max_freq_ind</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="n">Rest</span> <span class="o">-=</span> <span class="mi">1</span>
+                <span class="n">queue</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">Max_freq_ind</span><span class="p">)</span>
+            <span class="n">units</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="k">return</span> <span class="n">units</span>
+</code></pre></div></div>
+
+<h4 id="solution-2">Solution 2</h4>
+
+<p>Alternatively, we can use heap to find maximum with lazy deletion with time complexity $O(m\log 26)$ and space complexity $O(n)$.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">leastInterval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tasks</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
+        <span class="n">heap</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="n">c</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">key</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">c</span><span class="p">]</span>
+        <span class="n">heapq</span><span class="p">.</span><span class="n">heapify</span><span class="p">(</span><span class="n">heap</span><span class="p">)</span>
+        <span class="n">buff</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">Rest</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(),</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">heap</span><span class="p">)</span>
+
+        <span class="k">while</span> <span class="n">Rest</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">heap</span><span class="p">:</span>
+                <span class="n">curCharKey</span><span class="p">,</span> <span class="n">curCharVal</span> <span class="o">=</span> <span class="n">heapq</span><span class="p">.</span><span class="n">heappop</span><span class="p">(</span><span class="n">heap</span><span class="p">)</span>
+                <span class="n">res</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">curCharKey</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="n">curCharKey</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="n">Rest</span> <span class="o">-=</span> <span class="mi">1</span>
+                <span class="n">buff</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">curCharKey</span><span class="p">,</span> <span class="n">curCharVal</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">buffer</span><span class="p">)</span> <span class="o">==</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">curCharKey</span><span class="p">,</span> <span class="n">curCharVal</span> <span class="o">=</span> <span class="n">buff</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">curCharKey</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">heapq</span><span class="p">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">heap</span><span class="p">,</span> <span class="p">(</span><span class="n">curCharKey</span><span class="p">,</span> <span class="n">curCharVal</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">heap</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">buff</span><span class="p">)</span> <span class="o">==</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">curCharKey</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+                <span class="n">heapq</span><span class="p">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">heap</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">"#"</span><span class="p">))</span>
+        
+        <span class="k">return</span> <span class="n">res</span>
+</code></pre></div></div>
+
+<h4 id="solution-3">Solution 3</h4>
 
 <p>This is quite difficult problem if you want to have optimal solution. First, I tried several ideas, using queue and greedy algorithm, where I tried to build sequence symbol by symbol, but it was working very slow and I get TLE. So, I decided to stop coding and to think.</p>
 
