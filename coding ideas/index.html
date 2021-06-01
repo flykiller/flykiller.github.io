@@ -252,9 +252,32 @@
         <span class="k">return</span> <span class="bp">True</span>
 </code></pre></div></div>
 
-<p>If previous implementation is not enough, there is implementation with ranks and with path compressions, which will be $O(\mathcal{A}(n))$ complexity, where $\mathcal{A}(n)$ is inverse Ackermann funcion, which in fact grows so slow, that we can state that complexity is $O(1)$.</p>
+<p>If previous implementation is not enough, there is implementation with ranks and with path compressions, which will be $O(\mathcal{A}(n))$ complexity, where $\mathcal{A}(n)$ is inverse Ackermann funcion, which in fact grows so slow, that we can state that complexity is $O(1)$. Actually path compressions will make code just one line longer.</p>
 
-<p><strong>implementation to be added later</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">DSU</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">par</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">rnk</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">N</span>
+
+    <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">par</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">par</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">par</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">par</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">union</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="n">xr</span><span class="p">,</span> <span class="n">yr</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="bp">self</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">xr</span> <span class="o">==</span> <span class="n">yr</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="p">.</span><span class="n">rnk</span><span class="p">[</span><span class="n">xr</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="p">.</span><span class="n">rnk</span><span class="p">[</span><span class="n">yr</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">par</span><span class="p">[</span><span class="n">xr</span><span class="p">]</span> <span class="o">=</span> <span class="n">yr</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="p">.</span><span class="n">rnk</span><span class="p">[</span><span class="n">xr</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="p">.</span><span class="n">rnk</span><span class="p">[</span><span class="n">yr</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">par</span><span class="p">[</span><span class="n">yr</span><span class="p">]</span> <span class="o">=</span> <span class="n">xr</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">par</span><span class="p">[</span><span class="n">yr</span><span class="p">]</span> <span class="o">=</span> <span class="n">xr</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">rnk</span><span class="p">[</span><span class="n">xr</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="bp">True</span>
+</code></pre></div></div>
 
 <h4 id="segment-tree-with-range-updates">Segment tree with range updates</h4>
 
@@ -492,42 +515,47 @@ It will return lengths of longest palindromes for all $2n-1$ places (there are o
         <span class="k">return</span> <span class="n">ans</span>
 </code></pre></div></div>
 
-<p><strong>Articulation points</strong> in graphs: such points which being removed break graph into parts. Articulation points partition graph into biconnected vertex components.</p>
+<p><strong>Articulation points</strong> in graphs: such points which being removed break graph into parts. Articulation points partition graph into biconnected vertex components. Here is implementation of classical algorithm. Note that it is very similar to bridges with small differences:</p>
 
-<p>Here is leetcode problem <strong>0928</strong> solution, where we use idea of articulation points inside. The problem itself is not just to find these points, but also we need to keep sizes of components. Complexity of this code whould have been $O(V + E)$, but because data is given as adjacency matrix, it is $O(V^2)$.</p>
+<ol>
+  <li>It is <code class="language-plaintext highlighter-rouge">fup[child] &gt;= tin[node]</code> instead of <code class="language-plaintext highlighter-rouge">fup[child] &gt; fup[node]</code>.</li>
+  <li>We also keep <code class="language-plaintext highlighter-rouge">children</code>: number of connections and make one more check if <code class="language-plaintext highlighter-rouge">par = -1</code> and number of children more than one (it means, they can not have common descendents), then this is also articulation point.</li>
+  <li>Finally, we keep set of articulation points, not list, because one node can be visited several times during traversal.</li>
+</ol>
+
+<p>See also problem <strong>0928</strong>, where one of the solutions can use this idea.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">minMalwareSpread</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">initial</span><span class="p">):</span>
-        <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">par</span><span class="p">):</span>
-            <span class="n">tin</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">fup</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">time</span>
-            <span class="bp">self</span><span class="p">.</span><span class="n">time</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="n">flag</span> <span class="o">=</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">infected</span>
-            <span class="n">size</span> <span class="o">=</span> <span class="mi">1</span>
-            <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-                <span class="k">if</span> <span class="n">graph</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="n">child</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">child</span> <span class="o">==</span> <span class="n">par</span><span class="p">:</span> <span class="k">continue</span>
-
-                <span class="k">if</span> <span class="n">tin</span><span class="p">[</span><span class="n">child</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="n">s</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                        <span class="n">flag</span> <span class="o">=</span> <span class="bp">True</span>
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="n">size</span> <span class="o">+=</span> <span class="n">s</span>
-                    
-                    <span class="k">if</span> <span class="n">fup</span><span class="p">[</span><span class="n">child</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">tin</span><span class="p">[</span><span class="n">node</span><span class="p">]:</span> <span class="n">count</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">+=</span> <span class="n">s</span>  <span class="c1">#it means we are in articulation point.
-</span>                    <span class="n">fup</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">fup</span><span class="p">[</span><span class="n">node</span><span class="p">],</span> <span class="n">fup</span><span class="p">[</span><span class="n">child</span><span class="p">])</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">fup</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">fup</span><span class="p">[</span><span class="n">node</span><span class="p">],</span> <span class="n">tin</span><span class="p">[</span><span class="n">child</span><span class="p">])</span>
-                    
-            <span class="k">return</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">flag</span> <span class="k">else</span> <span class="n">size</span>
+    <span class="k">def</span> <span class="nf">ArticulationPoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">connections</span><span class="p">):</span>
+        <span class="n">used</span><span class="p">,</span> <span class="n">tin</span><span class="p">,</span> <span class="n">fup</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">timer</span><span class="p">,</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">graph</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
         
-        <span class="n">n</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">time</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">),</span> <span class="mi">1</span>
-        <span class="n">tin</span><span class="p">,</span> <span class="n">fup</span><span class="p">,</span> <span class="n">count</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
-        <span class="n">infected</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">par</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">used</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">tin</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">fup</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">timer</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">timer</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">children</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">node</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">child</span> <span class="o">==</span> <span class="n">par</span><span class="p">:</span> <span class="k">continue</span>
+                <span class="k">if</span> <span class="n">used</span><span class="p">[</span><span class="n">child</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">fup</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">fup</span><span class="p">[</span><span class="n">node</span><span class="p">],</span> <span class="n">tin</span><span class="p">[</span><span class="n">child</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">dfs</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+                    <span class="n">fup</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">fup</span><span class="p">[</span><span class="n">node</span><span class="p">],</span> <span class="n">fup</span><span class="p">[</span><span class="n">child</span><span class="p">])</span>
+                    <span class="k">if</span> <span class="n">fup</span><span class="p">[</span><span class="n">child</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">tin</span><span class="p">[</span><span class="n">node</span><span class="p">]:</span> <span class="n">ans</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+                    <span class="n">children</span> <span class="o">+=</span> <span class="mi">1</span>
 
-        <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">initial</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">fup</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="n">dfs</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">par</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">children</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span> <span class="n">ans</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">connections</span><span class="p">:</span>
+            <span class="n">graph</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+            <span class="n">graph</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">used</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span> <span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
                 
-        <span class="k">return</span> <span class="o">-</span><span class="nb">max</span><span class="p">((</span><span class="n">count</span><span class="p">[</span><span class="n">u</span><span class="p">],</span> <span class="o">-</span><span class="n">u</span><span class="p">)</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">initial</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">ans</span>
 </code></pre></div></div>
 
 <p><strong>Bridges</strong> online. If we want to find the number of brides when we change our graph: add edge by edge. There is $O(n\log n + m)$ time complexity algorithm, where $m$ is number of edges (queries) and $n$ is number of nodes. The idea is to use two DSU structures: one for connected components and another for biconnected components.</p>

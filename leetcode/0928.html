@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Leetcode 0928. Minimize Malware Spread II | Dmitry Babichev’s webpage</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Leetcode 0928. Minimize Malware Spread II" />
+<meta name="author" content="Dmitry Babichev" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Problem statement" />
+<meta property="og:description" content="Problem statement" />
+<meta property="og:site_name" content="Dmitry Babichev’s webpage" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-06-01T23:39:34+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Leetcode 0928. Minimize Malware Spread II" />
+<script type="application/ld+json">
+{"url":"/leetcode/0928.html","@type":"BlogPosting","headline":"Leetcode 0928. Minimize Malware Spread II","dateModified":"2021-06-01T23:39:34+02:00","datePublished":"2021-06-01T23:39:34+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0928.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
+    
+
+
+
+
+
+
+  
+  
+</head>
+
+    
+    <!-- for mathjax support -->
+    
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dmitry Babichev&#39;s webpage</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode problems</a><a class="page-link" href="/coding%20ideas/">Patterns</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <span>[
+  
+    
+    <a href="/tag/graph"><code class="highligher-rouge"><nobr>graph</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/dfs"><code class="highligher-rouge"><nobr>dfs</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/graph algo"><code class="highligher-rouge"><nobr>graph algo</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/union find"><code class="highligher-rouge"><nobr>union find</nobr></code>&nbsp;</a>
+  
+]</span>
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Leetcode 0928. Minimize Malware Spread II</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-06-01T23:39:34+02:00" itemprop="datePublished">
+        Jun 1, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h4 id="problem-statement">Problem statement</h4>
+
+<p><a href="https://leetcode.com/problems/minimize-malware-spread-ii/"> <font color="blue">https://leetcode.com/problems/minimize-malware-spread-ii/</font></a></p>
+
+<h4 id="solution-1">Solution 1</h4>
+
+<p>One way to solve this problem is to use Union Find. Let us remove all infected nodes from our graph and denote this graph by $G$. Then we need to do following steps:</p>
+
+<ol>
+  <li>Create <code class="language-plaintext highlighter-rouge">clean</code> list of not-infected nodes and <code class="language-plaintext highlighter-rouge">initial_set</code> set of infected nodes.</li>
+  <li>Create DSU on $n$ elements and add all connections between not-infected nodes.</li>
+  <li>Now, for each node, going from infected node to not-infected node we add  <code class="language-plaintext highlighter-rouge">d1[dsu.find(v)].append(u)</code>: connection from representative element of connected component in $G$ to <code class="language-plaintext highlighter-rouge">u</code>.</li>
+  <li>Check for every connected component, how many connections with infected nodes it have: if we have more than one, than we can not save this component. If we have exactly one, we can save it, so we update counter of saved nodes, <code class="language-plaintext highlighter-rouge">d2</code>.</li>
+  <li>So, in this way we did the following operations: for every infected node we found all components in $G$, which connected with it, such that these components connected only with one infected node: this will be total number of saved nodes. Finally, we iterate over <code class="language-plaintext highlighter-rouge">d2</code> and choose node with biggest value, if we have tie, then with smallest index. If <code class="language-plaintext highlighter-rouge">d2</code> is empty, it means, that we can not save anything, so we need to return minimum of indexes in <code class="language-plaintext highlighter-rouge">initial</code>.</li>
+</ol>
+
+<h4 id="complexity">Complexity</h4>
+<p>Time complexity is $O(n^2)$ if we use DSU with ranks and path relaxations (in code it is just simplest DSU without any two of them, but it works OK on leetcode), space complexity is $O(n)$.</p>
+
+<h4 id="code">Code</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">DSU</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">p</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">sz</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">N</span>
+
+    <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">p</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">!=</span> <span class="n">x</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">p</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">p</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">p</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">union</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="n">xr</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">yr</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">p</span><span class="p">[</span><span class="n">xr</span><span class="p">]</span> <span class="o">=</span> <span class="n">yr</span>
+        <span class="k">if</span> <span class="n">xr</span> <span class="o">!=</span> <span class="n">yr</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">sz</span><span class="p">[</span><span class="n">yr</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span><span class="p">.</span><span class="n">sz</span><span class="p">[</span><span class="n">xr</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">sz</span><span class="p">[</span><span class="bp">self</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span>
+
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">minMalwareSpread</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">initial</span><span class="p">):</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+        <span class="n">initial_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span>
+        <span class="n">clean</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">initial_set</span><span class="p">]</span>
+
+        <span class="n">dsu</span> <span class="o">=</span> <span class="n">DSU</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="n">clean</span><span class="p">,</span> <span class="n">clean</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">v</span><span class="p">]:</span> <span class="n">dsu</span><span class="p">.</span><span class="n">union</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        
+        <span class="n">d1</span><span class="p">,</span> <span class="n">d2</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">),</span> <span class="n">Counter</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="n">initial</span><span class="p">,</span> <span class="n">clean</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">v</span><span class="p">]:</span> <span class="n">d1</span><span class="p">[</span><span class="n">dsu</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">)].</span><span class="n">append</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">d1</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="n">d2</span><span class="p">[</span><span class="n">val</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+=</span> <span class="n">dsu</span><span class="p">.</span><span class="n">size</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+                
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">d2</span><span class="p">:</span> <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span>      
+        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">d2</span><span class="p">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]))[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h4 id="solution-2">Solution 2</h4>
+
+<p>There is also solution with the following idea: <code class="language-plaintext highlighter-rouge">we define node a are directly infected by node b if node a will be infected by node b without through any other infected node</code>. Then we can run dfs/bfs from every infected node and not allow it to go on other infected nodes. In the end we find which one from initial nodes appears the most and choose it.</p>
+
+<h4 id="complexity-1">Complexity</h4>
+<p>Time complexity will be $O(n^2m)$, where $m$ is number of infected nodes, but it is easier to code.</p>
+
+<h4 id="code-1">Code</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">minMalwareSpread</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">initial</span><span class="p">):</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        
+        <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">par</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">neib</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">graph</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="n">neib</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">continue</span>
+                <span class="k">if</span> <span class="n">neib</span> <span class="ow">in</span> <span class="n">vis</span><span class="p">:</span> <span class="k">continue</span>
+                <span class="n">vis</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">neib</span><span class="p">)</span>
+                <span class="n">d</span><span class="p">[</span><span class="n">neib</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">par</span><span class="p">)</span>
+                <span class="n">dfs</span><span class="p">(</span><span class="n">neib</span><span class="p">,</span> <span class="n">par</span><span class="p">)</span>
+                
+        <span class="k">for</span> <span class="n">init</span> <span class="ow">in</span> <span class="n">initial</span><span class="p">:</span>
+            <span class="n">vis</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span>
+            <span class="n">dfs</span><span class="p">(</span><span class="n">init</span><span class="p">,</span> <span class="n">init</span><span class="p">)</span>
+      
+        <span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">d</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="n">res</span><span class="p">[</span><span class="n">val</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="nb">max</span><span class="p">(</span><span class="n">res</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">res</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">res</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h4 id="solution-3">Solution 3</h4>
+
+<p>We can use the idea of articulation points inside. The problem itself is not just to find these points, but also we need to keep sizes of components.</p>
+<h4 id="complexity-2">Complexity</h4>
+<p>Complexity of this code whould have been $O(n + E)$, but because data is given as adjacency matrix, it is $O(n^2)$.</p>
+
+<h4 id="code-2">Code</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">minMalwareSpread</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">initial</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">par</span><span class="p">):</span>
+            <span class="n">tin</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">fup</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">time</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">time</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">flag</span> <span class="o">=</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">infected</span>
+            <span class="n">size</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">graph</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="n">child</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">child</span> <span class="o">==</span> <span class="n">par</span><span class="p">:</span> <span class="k">continue</span>
+
+                <span class="k">if</span> <span class="n">tin</span><span class="p">[</span><span class="n">child</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">s</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">flag</span> <span class="o">=</span> <span class="bp">True</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">size</span> <span class="o">+=</span> <span class="n">s</span>
+                    
+                    <span class="k">if</span> <span class="n">fup</span><span class="p">[</span><span class="n">child</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">tin</span><span class="p">[</span><span class="n">node</span><span class="p">]:</span> <span class="n">count</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">+=</span> <span class="n">s</span>  <span class="c1">#it means we are in articulation point.
+</span>                    <span class="n">fup</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">fup</span><span class="p">[</span><span class="n">node</span><span class="p">],</span> <span class="n">fup</span><span class="p">[</span><span class="n">child</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">fup</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">fup</span><span class="p">[</span><span class="n">node</span><span class="p">],</span> <span class="n">tin</span><span class="p">[</span><span class="n">child</span><span class="p">])</span>
+                    
+            <span class="k">return</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">flag</span> <span class="k">else</span> <span class="n">size</span>
+        
+        <span class="n">n</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">time</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">),</span> <span class="mi">1</span>
+        <span class="n">tin</span><span class="p">,</span> <span class="n">fup</span><span class="p">,</span> <span class="n">count</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+        <span class="n">infected</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">initial</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">fup</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="n">dfs</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                
+        <span class="k">return</span> <span class="o">-</span><span class="nb">max</span><span class="p">((</span><span class="n">count</span><span class="p">[</span><span class="n">u</span><span class="p">],</span> <span class="o">-</span><span class="n">u</span><span class="p">)</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">initial</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
+
+  </div><a class="u-url" href="/leetcode/0928.html" hidden></a>
+</article>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">Dmitry Babichev</li>
+          <li><a class="u-email" href="mailto:dimitry008@gmail.com">dimitry008@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
