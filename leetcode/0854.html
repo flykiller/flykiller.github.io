@@ -13,11 +13,11 @@
 <meta property="og:description" content="Problem statement" />
 <meta property="og:site_name" content="Dmitry Babichev’s webpage" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-06-01T23:39:34+02:00" />
+<meta property="article:published_time" content="2021-06-01T23:47:27+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0854 K-Similar Strings" />
 <script type="application/ld+json">
-{"url":"/leetcode/0854.html","@type":"BlogPosting","headline":"Leetcode 0854 K-Similar Strings","dateModified":"2021-06-01T23:39:34+02:00","datePublished":"2021-06-01T23:39:34+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0854.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0854.html","@type":"BlogPosting","headline":"Leetcode 0854 K-Similar Strings","dateModified":"2021-06-01T23:47:27+02:00","datePublished":"2021-06-01T23:47:27+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0854.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
     
@@ -71,7 +71,7 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0854 K-Similar Strings</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-06-01T23:39:34+02:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-06-01T23:47:27+02:00" itemprop="datePublished">
         Jun 1, 2021
       </time></p>
   </header>
@@ -82,9 +82,9 @@
 <p><a href="https://leetcode.com/problems/k-similar-strings/"> <font color="blue">https://leetcode.com/problems/k-similar-strings/</font></a></p>
 
 <h4 id="solution">Solution</h4>
-<p>Note similarity of this problem with Problem \noteb{Q765} Couples Holding Hands, but here we have more $6$ different symbols. Let us look at this problem as to graph: for example if we have \texttt{A = abcde} and \texttt{B = bcaed}, then we need to find $2$ loops: $a\to b\to c\to a$ and $d\to e\to d$. In general we need to find minimum number of loops in directed graph on $m = 6$ nodes, where we can have multiple edges and we have $n$ edges. However it is still difficult problem and it is not obvious how to handle it.</p>
+<p>Note similarity of this problem with Problem <strong>0765</strong> Couples Holding Hands, but here we have more $6$ different symbols. Let us look at this problem as to graph: for example if we have <code class="language-plaintext highlighter-rouge">A = abcde</code> and <code class="language-plaintext highlighter-rouge">B = bcaed</code>, then we need to find $2$ loops: $a\to b\to c\to a$ and $d\to e\to d$. In general we need to find minimum number of loops in directed graph on $m = 6$ nodes, where we can have multiple edges and we have $n$ edges. However it is still difficult problem and it is not obvious how to handle it.</p>
 
-<p>Let us assign number to each letter: \texttt{a:1, b:32, c:$32^2$, $d:32^3$, e:$32^4$, f:$32^5$}. Now, we evaluate difference between corresponding elements of two strings, so for example for given example we have <code class="language-plaintext highlighter-rouge">[-31, -992, 1023, -1015808, 1015808]</code>. Now, finding loop is equivalent to group of elements which has $0$ when we sum them! Why? Because if some sum is equal to zero, it means, that numbers in both sets are equal:we choose $32$ &gt; $20$, length of our string): indeed, imagine, that we have set of numbers with sum $0$, it means:
+<p>Let us assign number to each letter: <code class="language-plaintext highlighter-rouge">a:1, b:32, c:$32^2$, $d:32^3$, e:$32^4$, f:$32^5$</code>. Now, we evaluate difference between corresponding elements of two strings, so for example for given example we have <code class="language-plaintext highlighter-rouge">[-31, -992, 1023, -1015808, 1015808]</code>. Now, finding loop is equivalent to group of elements which has $0$ when we sum them! Why? Because if some sum is equal to zero, it means, that numbers in both sets are equal:we choose $32$ &gt; $20$, length of our string): indeed, imagine, that we have set of numbers with sum $0$, it means:
 \(\alpha_0 \cdot 1 + \alpha_1\cdot 32 + \dots + \alpha_5\cdot 32^5 = \beta_0 \cdot 1 + \beta\cdot 32 + \dots + \beta\cdot 32^5,\)
 where $\alpha_0, \dots, \alpha_5$ is corresponding number of <code class="language-plaintext highlighter-rouge">a, b, c, d, e, f</code>, similar for betas. From here we have
 \(\gamma_0 \cdot 1 + \gamma_1\cdot 32 + \dots + \gamma_5\cdot 32^5 = 0,\) where $\gamma_i = \alpha_i - \beta_i \in [-20, 20]$. If we consider not biggest $\gamma_i$ which is not equal to $0$, then sum of all other terms is smaller than this term, so it means that all $\gamma_i$ equal to zero, that is we have the same set of letters.</p>
