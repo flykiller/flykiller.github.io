@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Leetcode 0673. Number of Longest Increasing Subsequence | Dmitry Babichev’s webpage</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Leetcode 0673. Number of Longest Increasing Subsequence" />
+<meta name="author" content="Dmitry Babichev" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="https://leetcode.com/problems/number-of-longest-increasing-subsequence" />
+<meta property="og:description" content="https://leetcode.com/problems/number-of-longest-increasing-subsequence" />
+<meta property="og:site_name" content="Dmitry Babichev’s webpage" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-06-28T14:27:36+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Leetcode 0673. Number of Longest Increasing Subsequence" />
+<script type="application/ld+json">
+{"url":"/leetcode/0673.html","@type":"BlogPosting","headline":"Leetcode 0673. Number of Longest Increasing Subsequence","dateModified":"2021-06-28T14:27:36+02:00","datePublished":"2021-06-28T14:27:36+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0673.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/number-of-longest-increasing-subsequence","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
+    
+
+
+
+
+
+
+  
+  
+</head>
+
+    
+    <!-- for mathjax support -->
+    
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dmitry Babichev&#39;s webpage</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode problems</a><a class="page-link" href="/coding%20ideas/">Patterns</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <span>[
+  
+    
+    <a href="/tag/dp"><code class="highligher-rouge"><nobr>dp</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/binary search"><code class="highligher-rouge"><nobr>binary search</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/segment tree"><code class="highligher-rouge"><nobr>segment tree</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/binary indexed tree"><code class="highligher-rouge"><nobr>binary indexed tree</nobr></code>&nbsp;</a>
+  
+]</span>
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Leetcode 0673. Number of Longest Increasing Subsequence</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-06-28T14:27:36+02:00" itemprop="datePublished">
+        Jun 28, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><a href="https://leetcode.com/problems/number-of-longest-increasing-subsequence"> <font color="blue">https://leetcode.com/problems/number-of-longest-increasing-subsequence</font></a></p>
+
+<p>The idea of my solution is to use so-called Patience sort: https://en.wikipedia.org/wiki/Patience_sorting</p>
+
+<p>The idea is to keep several <code class="language-plaintext highlighter-rouge">decks</code>, where numbers in each deck are decreasing. Also when we see new card, we need to put it to the end of the leftest possible deck. Also we have <code class="language-plaintext highlighter-rouge">paths</code>: corresponing number of LIS, ending with given <code class="language-plaintext highlighter-rouge">num</code>. That is in <code class="language-plaintext highlighter-rouge">paths[0]</code> we keep number of LIS with length <code class="language-plaintext highlighter-rouge">1</code>, in <code class="language-plaintext highlighter-rouge">paths[k]</code> we keep number of LIS with length <code class="language-plaintext highlighter-rouge">k+1</code>. (we keep cumulative sums) Also we keep <code class="language-plaintext highlighter-rouge">ends_decks</code> list to have quick access to end of our decks.</p>
+
+<p><strong>Property</strong>: It can be proved, that each LIS can be formed as choosing not more than one number from each deck and choosing them, looking at decks from left to right.</p>
+
+<p>Imagine, that we have <code class="language-plaintext highlighter-rouge">nums = [1,3,5,4,7,10,8,2,8]</code>, then we have the following <code class="language-plaintext highlighter-rouge">decks</code> and <code class="language-plaintext highlighter-rouge">paths</code> step by step:</p>
+
+<p><code class="language-plaintext highlighter-rouge">decks =  [[-1]] paths =  [[0, 1]]</code>
+<code class="language-plaintext highlighter-rouge">decks =  [[-1], [-3]] paths =  [[0, 1], [0, 1]]</code>
+<code class="language-plaintext highlighter-rouge">decks =  [[-1], [-3], [-5]] paths =  [[0, 1], [0, 1], [0, 1]]</code>
+<code class="language-plaintext highlighter-rouge">decks =  [[-1], [-3], [-5, -4]] paths =  [[0, 1], [0, 1], [0, 1, 2]]</code>
+<code class="language-plaintext highlighter-rouge">decks =  [[-1], [-3], [-5, -4], [-7]] paths =  [[0, 1], [0, 1], [0, 1, 2], [0, 2]]</code>
+<code class="language-plaintext highlighter-rouge">decks =  [[-1], [-3], [-5, -4], [-7], [-10]] paths =  [[0, 1], [0, 1], [0, 1, 2], [0, 2], [0, 2]]</code>
+<code class="language-plaintext highlighter-rouge">decks =  [[-1], [-3], [-5, -4], [-7], [-10, -8]] paths =  [[0, 1], [0, 1], [0, 1, 2], [0, 2], [0, 2, 4]]</code>
+<code class="language-plaintext highlighter-rouge">decks =  [[-1], [-3, -2], [-5, -4], [-7], [-10, -8]] paths =  [[0, 1], [0, 1, 2], [0, 1, 2], [0, 2], [0, 2, 4]]</code>
+<code class="language-plaintext highlighter-rouge">decks =  [[-1], [-3, -2], [-5, -4], [-7], [-10, -8, -8]] paths =  [[0, 1], [0, 1, 2], [0, 1, 2], [0, 2], [0, 2, 4, 6]]</code></p>
+
+<p>We use negative numbers, so each deck is sorted in increasing way instead of decreasing.</p>
+
+<p>When we see new <code class="language-plaintext highlighter-rouge">num</code>, then we first find <code class="language-plaintext highlighter-rouge">deck_idx</code>: number of deck we need to put this <code class="language-plaintext highlighter-rouge">num</code>. Now, we want to find number of LIS, ending with this <code class="language-plaintext highlighter-rouge">num</code>: for this we need to look at previous deck and find the place of <code class="language-plaintext highlighter-rouge">num</code> inside this deck: here we use our <strong>property</strong>, we update our <code class="language-plaintext highlighter-rouge">n_path</code>.</p>
+
+<p>Now, we need to decide where we put this number:</p>
+<ol>
+  <li>If our <code class="language-plaintext highlighter-rouge">deck_idx</code> is equal to <code class="language-plaintext highlighter-rouge">len(decks)</code>, it means, that we need to create new <code class="language-plaintext highlighter-rouge">deck</code>: we create new deck with one element, update <code class="language-plaintext highlighter-rouge">ends_decks</code> and also append <code class="language-plaintext highlighter-rouge">n_paths</code> to our <code class="language-plaintext highlighter-rouge">paths</code>.</li>
+  <li>In opposite case, we need to add <code class="language-plaintext highlighter-rouge">nums</code> to the end of corresponding deck, again update <code class="language-plaintext highlighter-rouge">ends_decks</code>  and update our <code class="language-plaintext highlighter-rouge">pathcs[deck_idx]</code>: it will consist of two parts: <code class="language-plaintext highlighter-rouge">n_paths</code>: number of paths, such that previous element is from previous or before decks. Also we have <code class="language-plaintext highlighter-rouge">paths[deck_idx][-1]</code>, because we keep cumulative sums inside.</li>
+</ol>
+
+<p>Finally, we return <code class="language-plaintext highlighter-rouge">paths[-1][-1]</code>, it is number of LIS with the biggest length.</p>
+
+<p><strong>Complexity</strong> is <code class="language-plaintext highlighter-rouge">O(n log n)</code>, because for each new <code class="language-plaintext highlighter-rouge">num</code> we process it in <code class="language-plaintext highlighter-rouge">O(log n)</code>. Space complexity is <code class="language-plaintext highlighter-rouge">O(n)</code>. When I run it, i have times, I have times from 60ms to 72ms, where <code class="language-plaintext highlighter-rouge">60</code>ms beats 100% of python solutions.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">findNumberOfLIS</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
+    
+        <span class="n">decks</span><span class="p">,</span> <span class="n">ends_decks</span><span class="p">,</span> <span class="n">paths</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+            <span class="n">deck_idx</span> <span class="o">=</span> <span class="n">bisect</span><span class="p">.</span><span class="n">bisect_left</span><span class="p">(</span><span class="n">ends_decks</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
+            <span class="n">n_paths</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">deck_idx</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">l</span> <span class="o">=</span> <span class="n">bisect</span><span class="p">.</span><span class="n">bisect</span><span class="p">(</span><span class="n">decks</span><span class="p">[</span><span class="n">deck_idx</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="n">num</span><span class="p">)</span>
+                <span class="n">n_paths</span> <span class="o">=</span> <span class="n">paths</span><span class="p">[</span><span class="n">deck_idx</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">paths</span><span class="p">[</span><span class="n">deck_idx</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">l</span><span class="p">]</span>
+                
+            <span class="k">if</span> <span class="n">deck_idx</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">decks</span><span class="p">):</span>
+                <span class="n">decks</span><span class="p">.</span><span class="n">append</span><span class="p">([</span><span class="o">-</span><span class="n">num</span><span class="p">])</span>
+                <span class="n">ends_decks</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+                <span class="n">paths</span><span class="p">.</span><span class="n">append</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">n_paths</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">decks</span><span class="p">[</span><span class="n">deck_idx</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="n">num</span><span class="p">)</span>
+                <span class="n">ends_decks</span><span class="p">[</span><span class="n">deck_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span>
+                <span class="n">paths</span><span class="p">[</span><span class="n">deck_idx</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">n_paths</span> <span class="o">+</span> <span class="n">paths</span><span class="p">[</span><span class="n">deck_idx</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+              
+        <span class="k">return</span> <span class="n">paths</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p><strong>Shorter version</strong> it can be written in shorter version, if we prefill our <code class="language-plaintext highlighter-rouge">decks</code>, <code class="language-plaintext highlighter-rouge">decks_ends</code> and <code class="language-plaintext highlighter-rouge">paths</code> first. However I do no know if we can do binary search in python by <strong>key</strong>: if we can, we can remove <code class="language-plaintext highlighter-rouge">ends_decks</code> at all and simplify it even more. Can somebody help me with it?</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">findNumberOfLIS</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    
+        <span class="n">decks</span><span class="p">,</span> <span class="n">ends_decks</span><span class="p">,</span> <span class="n">paths</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)],</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s">"inf"</span><span class="p">)]</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+        <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="n">bisect</span><span class="p">.</span><span class="n">bisect_left</span><span class="p">(</span><span class="n">ends_decks</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
+            <span class="n">n_paths</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">idx</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">l</span> <span class="o">=</span> <span class="n">bisect</span><span class="p">.</span><span class="n">bisect</span><span class="p">(</span><span class="n">decks</span><span class="p">[</span><span class="n">idx</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="n">num</span><span class="p">)</span>
+                <span class="n">n_paths</span> <span class="o">=</span> <span class="n">paths</span><span class="p">[</span><span class="n">idx</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">paths</span><span class="p">[</span><span class="n">idx</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">l</span><span class="p">]</span>
+            
+            <span class="n">decks</span><span class="p">[</span><span class="n">idx</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="n">num</span><span class="p">)</span>
+            <span class="n">ends_decks</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span>
+            <span class="n">paths</span><span class="p">[</span><span class="n">idx</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">n_paths</span> <span class="o">+</span> <span class="n">paths</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                
+        <span class="k">return</span> <span class="n">paths</span><span class="p">[</span><span class="n">paths</span><span class="p">.</span><span class="n">index</span><span class="p">([</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p><strong>PS</strong>: see also my solution of problem 300: Longest Increasing Subsequence:</p>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/number-of-longest-increasing-subsequence/discuss/916196/python-short-o(n-log-n)-solution-beats-100-explained"> <font color="blue">Problem 0673</font></a></p>
+
+  </div><a class="u-url" href="/leetcode/0673.html" hidden></a>
+</article>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">Dmitry Babichev</li>
+          <li><a class="u-email" href="mailto:dimitry008@gmail.com">dimitry008@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>

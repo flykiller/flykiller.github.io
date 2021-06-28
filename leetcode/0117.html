@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Leetcode 0117. Populating Next Right Pointers in Each Node II | Dmitry Babichev’s webpage</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Leetcode 0117. Populating Next Right Pointers in Each Node II" />
+<meta name="author" content="Dmitry Babichev" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii" />
+<meta property="og:description" content="https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii" />
+<meta property="og:site_name" content="Dmitry Babichev’s webpage" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-06-28T14:27:36+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Leetcode 0117. Populating Next Right Pointers in Each Node II" />
+<script type="application/ld+json">
+{"url":"/leetcode/0117.html","@type":"BlogPosting","headline":"Leetcode 0117. Populating Next Right Pointers in Each Node II","dateModified":"2021-06-28T14:27:36+02:00","datePublished":"2021-06-28T14:27:36+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0117.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
+    
+
+
+
+
+
+
+  
+  
+</head>
+
+    
+    <!-- for mathjax support -->
+    
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dmitry Babichev&#39;s webpage</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode problems</a><a class="page-link" href="/coding%20ideas/">Patterns</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <span>[
+  
+    
+    <a href="/tag/tree"><code class="highligher-rouge"><nobr>tree</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/recursion"><code class="highligher-rouge"><nobr>recursion</nobr></code>&nbsp;</a>
+  
+]</span>
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Leetcode 0117. Populating Next Right Pointers in Each Node II</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-06-28T14:27:36+02:00" itemprop="datePublished">
+        Jun 28, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><a href="https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii"> <font color="blue">https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii</font></a></p>
+
+<p>I spend some time for this problem, because my solution for problem <strong>116</strong> is quite different and can not be applied here (https://leetcode.com/problems/populating-next-right-pointers-in-each-node/discuss/934066/Python-O(n)-time-O(log-n)-space-recursion-explained). So, we need to think of something different here.</p>
+
+<p>The main idea is to go level by level and use already existing <code class="language-plaintext highlighter-rouge">.next</code> connections: if you will not do it, problem will be quite painful. So, idea is the following:</p>
+<ol>
+  <li>We will keep two nodes: <code class="language-plaintext highlighter-rouge">node</code> and <code class="language-plaintext highlighter-rouge">curr</code>: first one is for parent level and <code class="language-plaintext highlighter-rouge">curr</code> for next level.</li>
+  <li>We check if we have <code class="language-plaintext highlighter-rouge">node.left</code> and if we have, we create connection <code class="language-plaintext highlighter-rouge">curr.next = node.left</code> and also move our <code class="language-plaintext highlighter-rouge">curr</code> to the right, so it always will be the rightest visited node in level.</li>
+  <li>In similar way we check if we have <code class="language-plaintext highlighter-rouge">node.right</code> and do the same for it.</li>
+  <li>When we finished with <code class="language-plaintext highlighter-rouge">node</code>, we move it to right: <code class="language-plaintext highlighter-rouge">node = node.next</code>.</li>
+  <li>Finally, we need to go to the next level: we update <code class="language-plaintext highlighter-rouge">node = dummy.next</code>.</li>
+</ol>
+
+<p>Note, that in this place we will have some extra connections from dummy variables to left side of our tree, but there is no way testing system can detect it, because it is one-way connections. If you want to be completely honest, you need to add just one more line <code class="language-plaintext highlighter-rouge">dummy.next = None</code> after the line <code class="language-plaintext highlighter-rouge">node = dummy.next</code>.</p>
+
+<p><strong>Complexity</strong>: time complexity is <code class="language-plaintext highlighter-rouge">O(n)</code>: we visit each node of our tree only once. Space complexity is <code class="language-plaintext highlighter-rouge">O(1)</code></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">):</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">root</span>
+        <span class="k">while</span> <span class="n">node</span><span class="p">:</span>
+            <span class="n">curr</span> <span class="o">=</span> <span class="n">dummy</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">while</span> <span class="n">node</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">node</span><span class="p">.</span><span class="n">left</span><span class="p">:</span>
+                    <span class="n">curr</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="n">left</span>
+                    <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="p">.</span><span class="nb">next</span>
+                <span class="k">if</span> <span class="n">node</span><span class="p">.</span><span class="n">right</span><span class="p">:</span>
+                    <span class="n">curr</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="n">right</span>
+                    <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="p">.</span><span class="nb">next</span>
+                <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="nb">next</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">dummy</span><span class="p">.</span><span class="nb">next</span>
+               
+        <span class="k">return</span> <span class="n">root</span>
+</code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/discuss/961868/python-o(n)-solution-explained"> <font color="blue">Problem 0117</font></a></p>
+
+  </div><a class="u-url" href="/leetcode/0117.html" hidden></a>
+</article>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">Dmitry Babichev</li>
+          <li><a class="u-email" href="mailto:dimitry008@gmail.com">dimitry008@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>

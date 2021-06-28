@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Leetcode 0535. Encode and Decode TinyURL | Dmitry Babichev’s webpage</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Leetcode 0535. Encode and Decode TinyURL" />
+<meta name="author" content="Dmitry Babichev" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="https://leetcode.com/problems/encode-and-decode-tinyurl" />
+<meta property="og:description" content="https://leetcode.com/problems/encode-and-decode-tinyurl" />
+<meta property="og:site_name" content="Dmitry Babichev’s webpage" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-06-28T14:27:36+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Leetcode 0535. Encode and Decode TinyURL" />
+<script type="application/ld+json">
+{"url":"/leetcode/0535.html","@type":"BlogPosting","headline":"Leetcode 0535. Encode and Decode TinyURL","dateModified":"2021-06-28T14:27:36+02:00","datePublished":"2021-06-28T14:27:36+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0535.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/encode-and-decode-tinyurl","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
+    
+
+
+
+
+
+
+  
+  
+</head>
+
+    
+    <!-- for mathjax support -->
+    
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dmitry Babichev&#39;s webpage</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode problems</a><a class="page-link" href="/coding%20ideas/">Patterns</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <span>[
+  
+    
+    <a href="/tag/hash table"><code class="highligher-rouge"><nobr>hash table</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/random"><code class="highligher-rouge"><nobr>random</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/design"><code class="highligher-rouge"><nobr>design</nobr></code>&nbsp;</a>
+  
+]</span>
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Leetcode 0535. Encode and Decode TinyURL</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-06-28T14:27:36+02:00" itemprop="datePublished">
+        Jun 28, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><a href="https://leetcode.com/problems/encode-and-decode-tinyurl"> <font color="blue">https://leetcode.com/problems/encode-and-decode-tinyurl</font></a></p>
+
+<p>The idea of this problem is the following: let us keep <code class="language-plaintext highlighter-rouge">2</code> dictinoaries:</p>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">self.long_short</code> to keep links between original long address and encoded short address.</li>
+  <li><code class="language-plaintext highlighter-rouge">self.short_long</code> to keep the opposit connections.</li>
+</ol>
+
+<p>Why we need to keep both dictionaries? Because we want to do fast encoding and decoding.</p>
+
+<p>1.<code class="language-plaintext highlighter-rouge">encode(self, longUrl)</code> will work like this: let us try to generate random <code class="language-plaintext highlighter-rouge">code</code>, say with <code class="language-plaintext highlighter-rouge">6</code> symbols, which consists of letters. If this code was not used for some other long link, we are happy: we put connections to our direct and inverse dictionaries. If it happen, that this code was used for some other long link, we are not happy, and we generate one more code and so on.
+2.<code class="language-plaintext highlighter-rouge">decode(self, shortUrl)</code> is pretty straightforward: we just look at our <code class="language-plaintext highlighter-rouge">selfl.short_long</code> dictionary.</p>
+
+<p><strong>Complexity</strong>: time complexity of one encoding and decoding is <code class="language-plaintext highlighter-rouge">O(n + m)</code>, where <code class="language-plaintext highlighter-rouge">n</code> is length of original string and <code class="language-plaintext highlighter-rouge">m</code> is length of encoded strigng, if we assume that probability of collision is small enough. So, what is probability of collision: we have <code class="language-plaintext highlighter-rouge">26^6</code> approx <code class="language-plaintext highlighter-rouge">N = 3*10^8</code> different options, and if we use <strong>Birthday problem</strong>, than if you have <code class="language-plaintext highlighter-rouge">T = 1000</code> different strings to encode we will have <code class="language-plaintext highlighter-rouge">(1-1/N)*(1-2/N)*...(1-(T-1)/N)</code> probability to not have a collision, which is very close to <code class="language-plaintext highlighter-rouge">1</code>. In fact, we need to choose <code class="language-plaintext highlighter-rouge">T</code>, such that <code class="language-plaintext highlighter-rouge">T^2 &lt;&lt; N</code>, and in this case probability can be approximated as <code class="language-plaintext highlighter-rouge">exp(T^2/2*N)</code>, which in our case equal to <code class="language-plaintext highlighter-rouge">exp(-1/300)</code> approx <code class="language-plaintext highlighter-rouge">(1 - 1/300)</code>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Codec:
+    def __init__(self):
+        self.long_short = {}
+        self.short_long = {}
+        self.alphabet = "abcdefghijklmnopqrstuvwzyz"
+
+    def encode(self, longUrl):
+        while longUrl not in self.long_short:
+            code = "".join(choices(self.alphabet, k=6))
+            if code not in self.short_long:
+                self.short_long[code] = longUrl
+                self.long_short[longUrl] = code
+        return 'http://tinyurl.com/' + self.long_short[longUrl]
+
+    def decode(self, shortUrl):
+        return self.short_long[shortUrl[-6:]]
+</code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/encode-and-decode-tinyurl/discuss/1110529/python-use-two-dictionaries-explained"> <font color="blue">Problem 0535</font></a></p>
+
+  </div><a class="u-url" href="/leetcode/0535.html" hidden></a>
+</article>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">Dmitry Babichev</li>
+          <li><a class="u-email" href="mailto:dimitry008@gmail.com">dimitry008@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Leetcode 0395. Longest Substring with At Least K Repeating Characters | Dmitry Babichev’s webpage</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Leetcode 0395. Longest Substring with At Least K Repeating Characters" />
+<meta name="author" content="Dmitry Babichev" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters" />
+<meta property="og:description" content="https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters" />
+<meta property="og:site_name" content="Dmitry Babichev’s webpage" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-06-28T14:27:36+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Leetcode 0395. Longest Substring with At Least K Repeating Characters" />
+<script type="application/ld+json">
+{"url":"/leetcode/0395.html","@type":"BlogPosting","headline":"Leetcode 0395. Longest Substring with At Least K Repeating Characters","dateModified":"2021-06-28T14:27:36+02:00","datePublished":"2021-06-28T14:27:36+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0395.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
+    
+
+
+
+
+
+
+  
+  
+</head>
+
+    
+    <!-- for mathjax support -->
+    
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dmitry Babichev&#39;s webpage</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode problems</a><a class="page-link" href="/coding%20ideas/">Patterns</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <span>[
+  
+    
+    <a href="/tag/two pointers"><code class="highligher-rouge"><nobr>two pointers</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/sliding window"><code class="highligher-rouge"><nobr>sliding window</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/hash table"><code class="highligher-rouge"><nobr>hash table</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/recursion"><code class="highligher-rouge"><nobr>recursion</nobr></code>&nbsp;</a>
+  
+]</span>
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Leetcode 0395. Longest Substring with At Least K Repeating Characters</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-06-28T14:27:36+02:00" itemprop="datePublished">
+        Jun 28, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><a href="https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters"> <font color="blue">https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters</font></a></p>
+
+<p>First of all, be careful with this problem formulation: Given a string s and an integer k, return the length of the longest substring of s such that the frequency of each character in this substring <del><strong>is less than or equal to k</strong> </del>: this is not correct statement, what you actually asked is <strong>is more than or equal to k</strong>. I spend some time figuring it out.</p>
+
+<p>Now, we will use sliding window approach to find the window of biggest length. However, it is not that easy. Imagine, that we have <code class="language-plaintext highlighter-rouge">s = aabbb...</code> and <code class="language-plaintext highlighter-rouge">k = 3</code>, what should we do when we reached window <code class="language-plaintext highlighter-rouge">aabbb</code>: should we expand it to the right hoping that we will meet another <code class="language-plaintext highlighter-rouge">a</code>? Or should we start to move left side of our window? One way to handle this problem is to do several sliding windows passes, where we fix <code class="language-plaintext highlighter-rouge">T</code> number of different symbols we must have in our substring. So, we check all posible <code class="language-plaintext highlighter-rouge">T = 1, ... 26</code> (if fact, not 26, but <code class="language-plaintext highlighter-rouge">len(Counter(s)) + 1)</code>) and do sliding window pass:</p>
+
+<ol>
+  <li>Initialize <code class="language-plaintext highlighter-rouge">beg = 0</code>, <code class="language-plaintext highlighter-rouge">end = 0</code>, <code class="language-plaintext highlighter-rouge">Found = 0</code>: number of elements with frequency more or equal than <code class="language-plaintext highlighter-rouge">k</code>,  <code class="language-plaintext highlighter-rouge">freq</code> is array of frequencies <code class="language-plaintext highlighter-rouge">= [0]*26</code> and <code class="language-plaintext highlighter-rouge">MoreEqK = 0</code>, which count number of non-zero frequencies in our <code class="language-plaintext highlighter-rouge">freq</code> array.</li>
+  <li>Now, we check if <code class="language-plaintext highlighter-rouge">MoreEqK &lt;=T</code> or not, that is we have <code class="language-plaintext highlighter-rouge">T</code> or less different symbols in our window: then we can add element to to right part of our sliding window: we increase its frequency, if this symbol is new, that is frequency become equal to <code class="language-plaintext highlighter-rouge">1</code>, we increment <code class="language-plaintext highlighter-rouge">MoreEqK</code>. Also, if frequency become equal to <code class="language-plaintext highlighter-rouge">k</code>, we increment <code class="language-plaintext highlighter-rouge">Found</code>.</li>
+  <li>In opposite case it means, that we already have <code class="language-plaintext highlighter-rouge">T+1</code> or more different symbols in or window, so we need to move left side of our sliding window. Again, we check if frequency was equal to <code class="language-plaintext highlighter-rouge">k</code> and if it was, we decrease <code class="language-plaintext highlighter-rouge">Found</code> by one, if frequency become equal to zero, we decrease <code class="language-plaintext highlighter-rouge">MoreEqK</code>.</li>
+  <li>Finally, if we have exactly <code class="language-plaintext highlighter-rouge">T</code> non-zero frequencies and all <code class="language-plaintext highlighter-rouge">T</code> of them more or equal than <code class="language-plaintext highlighter-rouge">k</code>, we update our <code class="language-plaintext highlighter-rouge">result</code>.</li>
+</ol>
+
+<p><strong>Complexity</strong>: time complexity is <code class="language-plaintext highlighter-rouge">O(26n)</code>, because we can potentially have <code class="language-plaintext highlighter-rouge">26</code> passes over our data. Space complexity is <code class="language-plaintext highlighter-rouge">O(26)</code>. Yes, I understand, that <code class="language-plaintext highlighter-rouge">O(26n) = O(n)</code>, but here I want to stress that constant is quite big.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">longestSubstring</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">T</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">Counter</span><span class="p">(</span><span class="n">s</span><span class="p">))</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">beg</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">Found</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="n">MoreEqK</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">26</span><span class="p">,</span> <span class="mi">0</span>
+            <span class="k">while</span> <span class="n">end</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">MoreEqK</span> <span class="o">&lt;=</span> <span class="n">T</span><span class="p">:</span>
+                    <span class="n">s_new</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">end</span><span class="p">])</span> <span class="o">-</span> <span class="mi">97</span>
+                    <span class="n">freq</span><span class="p">[</span><span class="n">s_new</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="k">if</span> <span class="n">freq</span><span class="p">[</span><span class="n">s_new</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="n">MoreEqK</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="k">if</span> <span class="n">freq</span><span class="p">[</span><span class="n">s_new</span><span class="p">]</span> <span class="o">==</span> <span class="n">k</span><span class="p">:</span>
+                        <span class="n">Found</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="n">end</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">symb</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">beg</span><span class="p">])</span> <span class="o">-</span> <span class="mi">97</span>
+                    <span class="n">beg</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="k">if</span> <span class="n">freq</span><span class="p">[</span><span class="n">symb</span><span class="p">]</span> <span class="o">==</span> <span class="n">k</span><span class="p">:</span>
+                        <span class="n">Found</span> <span class="o">-=</span> <span class="mi">1</span>
+                    <span class="n">freq</span><span class="p">[</span><span class="n">symb</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+                    <span class="k">if</span> <span class="n">freq</span><span class="p">[</span><span class="n">symb</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">MoreEqK</span> <span class="o">-=</span> <span class="mi">1</span>
+                            
+                <span class="k">if</span> <span class="n">MoreEqK</span> <span class="o">==</span> <span class="n">T</span> <span class="ow">and</span> <span class="n">Found</span> <span class="o">==</span> <span class="n">T</span><span class="p">:</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">end</span> <span class="o">-</span> <span class="n">beg</span><span class="p">)</span>
+                    
+        <span class="k">return</span> <span class="n">result</span>
+</code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/discuss/949552/python-sliding-window-solution-explained"> <font color="blue">Problem 0395</font></a></p>
+
+  </div><a class="u-url" href="/leetcode/0395.html" hidden></a>
+</article>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">Dmitry Babichev</li>
+          <li><a class="u-email" href="mailto:dimitry008@gmail.com">dimitry008@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>

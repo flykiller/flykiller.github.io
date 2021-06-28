@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Leetcode 0148. Sort List | Dmitry Babichev’s webpage</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Leetcode 0148. Sort List" />
+<meta name="author" content="Dmitry Babichev" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="https://leetcode.com/problems/sort-list" />
+<meta property="og:description" content="https://leetcode.com/problems/sort-list" />
+<meta property="og:site_name" content="Dmitry Babichev’s webpage" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-06-28T14:27:36+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Leetcode 0148. Sort List" />
+<script type="application/ld+json">
+{"url":"/leetcode/0148.html","@type":"BlogPosting","headline":"Leetcode 0148. Sort List","dateModified":"2021-06-28T14:27:36+02:00","datePublished":"2021-06-28T14:27:36+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0148.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/sort-list","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
+    
+
+
+
+
+
+
+  
+  
+</head>
+
+    
+    <!-- for mathjax support -->
+    
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dmitry Babichev&#39;s webpage</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode problems</a><a class="page-link" href="/coding%20ideas/">Patterns</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <span>[
+  
+    
+    <a href="/tag/linked list"><code class="highligher-rouge"><nobr>linked list</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/merge sort"><code class="highligher-rouge"><nobr>merge sort</nobr></code>&nbsp;</a>
+  
+]</span>
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Leetcode 0148. Sort List</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-06-28T14:27:36+02:00" itemprop="datePublished">
+        Jun 28, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><a href="https://leetcode.com/problems/sort-list"> <font color="blue">https://leetcode.com/problems/sort-list</font></a></p>
+
+<p>This is pretty straightforward question, if you know how to use merge sort. All we need to do is to split our list into two parts, sort the first half, then sort the second half and finally merge this two parts. Here I use two axuilary function:</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">getMid(head)</code>, which will find the middle of list with given <code class="language-plaintext highlighter-rouge">head</code> and cut it into two smaller lists. We use the idea of slow and fast pointers here to find middle efficiently.</li>
+  <li><code class="language-plaintext highlighter-rouge">merge(head1, head2)</code> will merge two lists with given heads. To make it more readible and to avoid corner cases, it is good idea to use dummy sentinel node in the beginning of list. We iterate over two lists, using two pointers and add them one by one. When we out of nodes, we attach the rest of on of the lists to the end, we return the start of our new list.</li>
+  <li><code class="language-plaintext highlighter-rouge">sortList(head)</code>: it is our original function: if list has length <code class="language-plaintext highlighter-rouge">0</code> or <code class="language-plaintext highlighter-rouge">1</code>, we do not do anything, it is corner case of our recursion. If it is not the case, we find <code class="language-plaintext highlighter-rouge">mid = self.getMid(head)</code>, which will cut our list into two smaller lists and return the start of the second list. Finally, we apply <code class="language-plaintext highlighter-rouge">sortList()</code> to <code class="language-plaintext highlighter-rouge">head</code> and to <code class="language-plaintext highlighter-rouge">mid</code> and merge two parts.</li>
+</ol>
+
+<p><strong>Complexity</strong>: Time complexity is <code class="language-plaintext highlighter-rouge">O(n log n)</code>, because it is classical complexity of merge sort. Space complexity is <code class="language-plaintext highlighter-rouge">O(log n)</code>, because we use recursion which can be <code class="language-plaintext highlighter-rouge">log n</code> deep.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">sortList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">head</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">head</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">head</span><span class="p">.</span><span class="nb">next</span><span class="p">:</span> <span class="k">return</span> <span class="n">head</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">getMid</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">sortList</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
+        <span class="n">right</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">sortList</span><span class="p">(</span><span class="n">mid</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">getMid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">head</span><span class="p">):</span>
+        <span class="n">slow</span><span class="p">,</span> <span class="n">fast</span> <span class="o">=</span> <span class="n">head</span><span class="p">,</span> <span class="n">head</span>
+        <span class="k">while</span> <span class="n">fast</span><span class="p">.</span><span class="nb">next</span> <span class="ow">and</span> <span class="n">fast</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">:</span>
+            <span class="n">slow</span> <span class="o">=</span> <span class="n">slow</span><span class="p">.</span><span class="nb">next</span>
+            <span class="n">fast</span> <span class="o">=</span> <span class="n">fast</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="n">slow</span><span class="p">.</span><span class="nb">next</span>
+        <span class="n">slow</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span> <span class="n">mid</span>
+    
+    <span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">head1</span><span class="p">,</span> <span class="n">head2</span><span class="p">):</span>
+        <span class="n">dummy</span> <span class="o">=</span> <span class="n">tail</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+        <span class="k">while</span> <span class="n">head1</span> <span class="ow">and</span> <span class="n">head2</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">head1</span><span class="p">.</span><span class="n">val</span> <span class="o">&lt;</span> <span class="n">head2</span><span class="p">.</span><span class="n">val</span><span class="p">:</span>
+                <span class="n">tail</span><span class="p">.</span><span class="nb">next</span><span class="p">,</span> <span class="n">tail</span><span class="p">,</span> <span class="n">head1</span> <span class="o">=</span> <span class="n">head1</span><span class="p">,</span> <span class="n">head1</span><span class="p">,</span> <span class="n">head1</span><span class="p">.</span><span class="nb">next</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">tail</span><span class="p">.</span><span class="nb">next</span><span class="p">,</span> <span class="n">tail</span><span class="p">,</span> <span class="n">head2</span> <span class="o">=</span> <span class="n">head2</span><span class="p">,</span> <span class="n">head2</span><span class="p">,</span> <span class="n">head2</span><span class="p">.</span><span class="nb">next</span>
+    
+        <span class="n">tail</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">head1</span> <span class="ow">or</span> <span class="n">head2</span>
+        <span class="k">return</span> <span class="n">dummy</span><span class="p">.</span><span class="nb">next</span>
+</code></pre></div></div>
+
+<p><strong>Follow up</strong> question askes us to do it in <code class="language-plaintext highlighter-rouge">O(1)</code> memory, and it is possible to do it, using bottom-up merge sort, which is much more difficult to implement during interview limits. What I expect that if you just explain the idea, without implementing this will be already quite good. So, idea is the following: imagine, that we have list <code class="language-plaintext highlighter-rouge">a1, a2, a3, a4, a5, a6, a7, a8</code>. Let us first sort values in pairs:
+<code class="language-plaintext highlighter-rouge">(a1, a2)</code>, <code class="language-plaintext highlighter-rouge">(a3, a4)</code>, <code class="language-plaintext highlighter-rouge">(a5, a6)</code>, <code class="language-plaintext highlighter-rouge">(a7, a8)</code>. 
+then we sort values in groups by <code class="language-plaintext highlighter-rouge">4</code>, mergin our pairs:
+<code class="language-plaintext highlighter-rouge">(a1, a2, a3, a4)</code>, <code class="language-plaintext highlighter-rouge">(a5, a6, a7, a8)</code>.
+And finally we merge them in one group of <code class="language-plaintext highlighter-rouge">9</code>. It is more difficult to implement and I will add code later.</p>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/sort-list/discuss/892759/python-o(n-log-n-log-n)-merge-sort-explained"> <font color="blue">Problem 0148</font></a></p>
+
+  </div><a class="u-url" href="/leetcode/0148.html" hidden></a>
+</article>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">Dmitry Babichev</li>
+          <li><a class="u-email" href="mailto:dimitry008@gmail.com">dimitry008@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
