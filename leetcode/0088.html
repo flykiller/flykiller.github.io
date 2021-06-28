@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Leetcode 0088. Merge Sorted Array | Dmitry Babichev’s webpage</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Leetcode 0088. Merge Sorted Array" />
+<meta name="author" content="Dmitry Babichev" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="https://leetcode.com/problems/merge-sorted-array" />
+<meta property="og:description" content="https://leetcode.com/problems/merge-sorted-array" />
+<meta property="og:site_name" content="Dmitry Babichev’s webpage" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-06-28T14:27:36+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Leetcode 0088. Merge Sorted Array" />
+<script type="application/ld+json">
+{"url":"/leetcode/0088.html","@type":"BlogPosting","headline":"Leetcode 0088. Merge Sorted Array","dateModified":"2021-06-28T14:27:36+02:00","datePublished":"2021-06-28T14:27:36+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0088.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/merge-sorted-array","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
+    
+
+
+
+
+
+
+  
+  
+</head>
+
+    
+    <!-- for mathjax support -->
+    
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dmitry Babichev&#39;s webpage</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode problems</a><a class="page-link" href="/coding%20ideas/">Patterns</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <span>[
+  
+    
+    <a href="/tag/two pointers"><code class="highligher-rouge"><nobr>two pointers</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/array"><code class="highligher-rouge"><nobr>array</nobr></code>&nbsp;</a>
+  
+]</span>
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Leetcode 0088. Merge Sorted Array</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-06-28T14:27:36+02:00" itemprop="datePublished">
+        Jun 28, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><a href="https://leetcode.com/problems/merge-sorted-array"> <font color="blue">https://leetcode.com/problems/merge-sorted-array</font></a></p>
+
+<p>Easy problem if you know the trick, but not so easy if you see this type of idea first time. Here we need to use two observations:</p>
+<ol>
+  <li>It is definitely <code class="language-plaintext highlighter-rouge">2</code> pointers approach, we need to iterate through <code class="language-plaintext highlighter-rouge">nums1</code> and <code class="language-plaintext highlighter-rouge">nums2</code> and build solution, using merge.</li>
+  <li>Also, we need to start from <strong>end</strong> of our lists, and this is essential, if you start from the beginning of lists, you can accidentely rewrite you data, so you need to think where to put it first and it will be extra space.</li>
+</ol>
+
+<p>So, all we do is:</p>
+<ol>
+  <li>define <code class="language-plaintext highlighter-rouge">p1 = m - 1</code> and <code class="language-plaintext highlighter-rouge">p2 = n - 1</code>: pointers for <code class="language-plaintext highlighter-rouge">nums1</code> and <code class="language-plaintext highlighter-rouge">nums2</code>.</li>
+  <li>We start from <code class="language-plaintext highlighter-rouge">i = m + n - 1</code> and move in backward direction: we compare <code class="language-plaintext highlighter-rouge">nums1[p1]</code> and <code class="language-plaintext highlighter-rouge">nums2[p2]</code>, write biggest number to <code class="language-plaintext highlighter-rouge">nums1[i]</code> and move one of the pointers: <code class="language-plaintext highlighter-rouge">p1</code> or <code class="language-plaintext highlighter-rouge">p2</code>.</li>
+  <li>This is not all: it can happen, that when we reached <code class="language-plaintext highlighter-rouge">p1 = 0</code>, there are still some numbers we need to copy from <code class="language-plaintext highlighter-rouge">nums2</code> to <code class="language-plaintext highlighter-rouge">nums1</code>, and in next step we do this.</li>
+</ol>
+
+<p><strong>Complexity</strong>: time complexity is <code class="language-plaintext highlighter-rouge">O(n + m)</code>, space complexity is <code class="language-plaintext highlighter-rouge">O(1)</code>: we did everything inplace.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums1</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">nums2</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">p1</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">p2</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span> <span class="k">break</span>
+            <span class="k">if</span> <span class="n">nums1</span><span class="p">[</span><span class="n">p1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">nums2</span><span class="p">[</span><span class="n">p2</span><span class="p">]:</span>
+                <span class="n">nums1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums1</span><span class="p">[</span><span class="n">p1</span><span class="p">]</span>
+                <span class="n">p1</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">nums1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums2</span><span class="p">[</span><span class="n">p2</span><span class="p">]</span>
+                <span class="n">p2</span> <span class="o">-=</span> <span class="mi">1</span>
+              
+        <span class="k">while</span> <span class="n">p2</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">nums1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums2</span><span class="p">[</span><span class="n">p2</span><span class="p">]</span>
+            <span class="n">i</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="n">p2</span> <span class="o">-=</span> <span class="mi">1</span>
+</code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/merge-sorted-array/discuss/1011556/python-2-pointers-solution-explained"> <font color="blue">Problem 0088</font></a></p>
+
+  </div><a class="u-url" href="/leetcode/0088.html" hidden></a>
+</article>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">Dmitry Babichev</li>
+          <li><a class="u-email" href="mailto:dimitry008@gmail.com">dimitry008@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Leetcode 1354. Construct Target Array With Multiple Sums | Dmitry Babichev’s webpage</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Leetcode 1354. Construct Target Array With Multiple Sums" />
+<meta name="author" content="Dmitry Babichev" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Problem statement" />
+<meta property="og:description" content="Problem statement" />
+<meta property="og:site_name" content="Dmitry Babichev’s webpage" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-06-28T14:27:36+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Leetcode 1354. Construct Target Array With Multiple Sums" />
+<script type="application/ld+json">
+{"url":"/leetcode/1354.html","@type":"BlogPosting","headline":"Leetcode 1354. Construct Target Array With Multiple Sums","dateModified":"2021-06-28T14:27:36+02:00","datePublished":"2021-06-28T14:27:36+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1354.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
+    
+
+
+
+
+
+
+  
+  
+</head>
+
+    
+    <!-- for mathjax support -->
+    
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dmitry Babichev&#39;s webpage</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode problems</a><a class="page-link" href="/coding%20ideas/">Patterns</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <span>[
+  
+    
+    <a href="/tag/heap"><code class="highligher-rouge"><nobr>heap</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/greedy"><code class="highligher-rouge"><nobr>greedy</nobr></code>&nbsp;</a>
+  
+]</span>
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Leetcode 1354. Construct Target Array With Multiple Sums</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-06-28T14:27:36+02:00" itemprop="datePublished">
+        Jun 28, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h4 id="problem-statement">Problem statement</h4>
+
+<p><a href="https://leetcode.com/problems/construct-target-array-with-multiple-sums/"> <font color="blue">https://leetcode.com/problems/construct-target-array-with-multiple-sums/</font></a></p>
+
+<h4 id="solution">Solution</h4>
+<p>It is not clear at all, what to do if we start from <code class="language-plaintext highlighter-rouge">[1, ..., 1]</code> and move towards <code class="language-plaintext highlighter-rouge">target</code> list. However if we reverse our process, each step will be unique. Imagine, that we have <code class="language-plaintext highlighter-rouge">[1, 3, 5]</code>. What step we can do backwards: there is not choice: we need to take the biggest value <code class="language-plaintext highlighter-rouge">5</code> and subtract sum of all other elements from this value: <code class="language-plaintext highlighter-rouge">5 - (3 + 1) = 1</code>, so on the next step we have <code class="language-plaintext highlighter-rouge">[1, 3, 1]</code>. Note also that it does not matter what order our numbers in list are, actually what matters are two values on each step:</p>
+<ol>
+  <li>The biggest element in our list.</li>
+  <li>The sum of all elements in our list.</li>
+</ol>
+
+<p>The ideal data structure for this is <strong>heap</strong>: note, that we will put negative elements inside, because we need <code class="language-plaintext highlighter-rouge">max</code>, not <code class="language-plaintext highlighter-rouge">min</code>.</p>
+
+<p>Finally, our algorithm will look like this:</p>
+
+<ol>
+  <li>Put all negative elements to <strong>heap</strong> and evaluate sum <strong>s</strong> of all elements.</li>
+  <li>Start to do steps: extract the biggest elements <code class="language-plaintext highlighter-rouge">elem</code>. If it is equal to <code class="language-plaintext highlighter-rouge">1</code>, we are good: it means, that all smaller elements also equal to <code class="language-plaintext highlighter-rouge">1</code> and we can return <code class="language-plaintext highlighter-rouge">True</code>. If it happen that <code class="language-plaintext highlighter-rouge">s == elem</code>, it means that we actually have only one element in <code class="language-plaintext highlighter-rouge">target</code>, and it is not equal to <code class="language-plaintext highlighter-rouge">1</code>: we can not do anything with it, so we return <code class="language-plaintext highlighter-rouge">False</code>.</li>
+  <li>Next, we need to put new element in our heap. And here we have another subtle point: imagine, that we have <code class="language-plaintext highlighter-rouge">[100, 3]</code>. Then on the next step we have <code class="language-plaintext highlighter-rouge">[97, 3]</code>, then <code class="language-plaintext highlighter-rouge">[94, 3]</code> and so on. In the given example we need only <code class="language-plaintext highlighter-rouge">33</code> steps to converge, however if we have <code class="language-plaintext highlighter-rouge">[10000000, 1]</code> we will get TLE for sure. Note, that what we did is similar to one step of <strong>Eucledian algorithm</strong>, there is classical improvement, where instead of <code class="language-plaintext highlighter-rouge">(m, n) -&gt; (m-n, n)</code> step we do <code class="language-plaintext highlighter-rouge">(m, n) -&gt; (m%n, n)</code> step. Note also, that in the case <code class="language-plaintext highlighter-rouge">[99, 3]</code> we want to stop on <code class="language-plaintext highlighter-rouge">[3, 3]</code>, not going to <code class="language-plaintext highlighter-rouge">[0, 3]</code>, so we need to modify step a bit: I did it using <code class="language-plaintext highlighter-rouge">cand = (elem - 1) % (s - elem) + 1</code>. Here <code class="language-plaintext highlighter-rouge">s - elem</code> is sum of all elements except <code class="language-plaintext highlighter-rouge">elem</code>.</li>
+  <li>Check if <code class="language-plaintext highlighter-rouge">cand == elem</code> and if it is the case, it means, that we can not do the step, so we are stuch and we return <code class="language-plaintext highlighter-rouge">False</code>.</li>
+  <li>Finally, we update <code class="language-plaintext highlighter-rouge">s</code>: subtract <code class="language-plaintext highlighter-rouge">elem</code> and add new element <code class="language-plaintext highlighter-rouge">cand</code> and push <code class="language-plaintext highlighter-rouge">-cand</code> to our heap.</li>
+</ol>
+
+<h4 id="complexity">Complexity</h4>
+<p>This is the most interesting part for me. Let us look at Eucledian algorithm first, say with numbers <code class="language-plaintext highlighter-rouge">(34, 21)</code>. Why I choose these numbers? They are Fibonacci numbers, and it happens that for these values Eucledian algorithm will work the slowest: <code class="language-plaintext highlighter-rouge">(34, 21) -&gt; (21, 13) -&gt; (13, 8) -&gt; (8, 5) -&gt; (5, 3) -&gt; (3, 2) -&gt; (2,1)</code>. Working time for it will be <code class="language-plaintext highlighter-rouge">O(log(m+n))</code>. Note, this is not a proof I gave here, but just intuition, for more details please check wikipedia.</p>
+
+<p>So, what is the final complexity of our problem? I believe it is <code class="language-plaintext highlighter-rouge">O(n + n*log n + log T * log n)</code>, where <code class="language-plaintext highlighter-rouge">n</code> is the size of <code class="language-plaintext highlighter-rouge">target</code> and <code class="language-plaintext highlighter-rouge">T</code> is the biggest number among <code class="language-plaintext highlighter-rouge">target</code>, however I do not have proof for this at the moment. Space complexity is <code class="language-plaintext highlighter-rouge">O(n)</code>.</p>
+
+<h4 id="code">Code</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">isPossible</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+        <span class="n">heap</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">target</span><span class="p">:</span> <span class="n">heappush</span><span class="p">(</span><span class="n">heap</span><span class="p">,</span> <span class="o">-</span><span class="n">num</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">elem</span> <span class="o">=</span> <span class="o">-</span><span class="n">heappop</span><span class="p">(</span><span class="n">heap</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">elem</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="k">return</span> <span class="bp">True</span>
+            <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="n">elem</span><span class="p">:</span> <span class="k">return</span> <span class="bp">False</span>
+            <span class="n">cand</span> <span class="o">=</span> <span class="p">(</span><span class="n">elem</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="n">s</span> <span class="o">-</span> <span class="n">elem</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">cand</span> <span class="o">==</span> <span class="n">elem</span><span class="p">:</span> <span class="k">return</span> <span class="bp">False</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">-</span> <span class="n">elem</span> <span class="o">+</span> <span class="n">cand</span>
+            <span class="n">heappush</span><span class="p">(</span><span class="n">heap</span><span class="p">,</span> <span class="o">-</span><span class="n">cand</span><span class="p">)</span>
+</code></pre></div></div>
+
+  </div><a class="u-url" href="/leetcode/1354.html" hidden></a>
+</article>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">Dmitry Babichev</li>
+          <li><a class="u-email" href="mailto:dimitry008@gmail.com">dimitry008@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Leetcode 1900. The Earliest and Latest Rounds Where Players Compete | Dmitry Babichev’s webpage</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Leetcode 1900. The Earliest and Latest Rounds Where Players Compete" />
+<meta name="author" content="Dmitry Babichev" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Problem statement" />
+<meta property="og:description" content="Problem statement" />
+<meta property="og:site_name" content="Dmitry Babichev’s webpage" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-06-28T14:27:36+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Leetcode 1900. The Earliest and Latest Rounds Where Players Compete" />
+<script type="application/ld+json">
+{"url":"/leetcode/1900.html","@type":"BlogPosting","headline":"Leetcode 1900. The Earliest and Latest Rounds Where Players Compete","dateModified":"2021-06-28T14:27:36+02:00","datePublished":"2021-06-28T14:27:36+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1900.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
+    
+
+
+
+
+
+
+  
+  
+</head>
+
+    
+    <!-- for mathjax support -->
+    
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dmitry Babichev&#39;s webpage</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode problems</a><a class="page-link" href="/coding%20ideas/">Patterns</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <span>[
+  
+    
+    <a href="/tag/dp"><code class="highligher-rouge"><nobr>dp</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/dfs"><code class="highligher-rouge"><nobr>dfs</nobr></code>&nbsp;</a>
+  
+]</span>
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Leetcode 1900. The Earliest and Latest Rounds Where Players Compete</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-06-28T14:27:36+02:00" itemprop="datePublished">
+        Jun 28, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h4 id="problem-statement">Problem statement</h4>
+
+<p><a href="https://leetcode.com/problems/the-earliest-and-latest-rounds-where-players-compete/"> <font color="blue">https://leetcode.com/problems/the-earliest-and-latest-rounds-where-players-compete/</font></a></p>
+
+<h4 id="solution">Solution</h4>
+<p>Not very difficult problem, the main problem in python to make it work without TLE. Let us use <code class="language-plaintext highlighter-rouge">dfs(pos, i)</code> function, where:</p>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">pos</code> is tuple of players we still have.</li>
+  <li><code class="language-plaintext highlighter-rouge">i</code> is how many matches were already played.</li>
+</ol>
+
+<p>Each time we run recursion, check that pair <code class="language-plaintext highlighter-rouge">(firstPlayer, secondPlayer)</code> is not here yet (denoted by <code class="language-plaintext highlighter-rouge">F</code> and <code class="language-plaintext highlighter-rouge">S</code>), if it is, add number of matches played to set <code class="language-plaintext highlighter-rouge">ans</code> and return. Also, ignore pairs where one of the two players is <code class="language-plaintext highlighter-rouge">S</code> or <code class="language-plaintext highlighter-rouge">F</code>. Finally, use functionality of python <code class="language-plaintext highlighter-rouge">product</code> function to fastly generate all next positions.</p>
+
+<h4 id="complexity">Complexity</h4>
+<p>We have <code class="language-plaintext highlighter-rouge">n</code> players in the beginning, and we have <code class="language-plaintext highlighter-rouge">n//2</code> pairs, so there is <code class="language-plaintext highlighter-rouge">O(2^(n//2))</code> options for the first step, then it will be <code class="language-plaintext highlighter-rouge">O(2^(n//4))</code> and so on, so in the end we can have potentially <code class="language-plaintext highlighter-rouge">O(2^n)</code> positions, which is our time complexity. However, due to careful prunning, it practice it is much less, like if we have <code class="language-plaintext highlighter-rouge">28</code>, then on the next step we have not <code class="language-plaintext highlighter-rouge">2^14</code>, but <code class="language-plaintext highlighter-rouge">2^12</code> positions, because <code class="language-plaintext highlighter-rouge">S</code> and <code class="language-plaintext highlighter-rouge">F</code> always go to the next match or we stop, then we have <code class="language-plaintext highlighter-rouge">2^5</code> and then we have <code class="language-plaintext highlighter-rouge">2^1</code>, so it is more like <code class="language-plaintext highlighter-rouge">2^(12 + 5 + 1) = 2^18</code>, so it is still feasible. Space complexity is <code class="language-plaintext highlighter-rouge">O(n)</code>.</p>
+
+<h4 id="code">Code</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">earliestAndLatest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">S</span><span class="p">):</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+            <span class="n">M</span><span class="p">,</span> <span class="n">pairs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pos</span><span class="p">),</span> <span class="p">[]</span>
+            <span class="k">if</span> <span class="n">M</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span> <span class="k">return</span>
+
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="o">//</span><span class="mi">2</span><span class="p">):</span>
+                <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">pos</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">pos</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">j</span><span class="p">]</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">S</span><span class="p">):</span>
+                    <span class="n">ans</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                    <span class="k">return</span>
+                <span class="k">if</span> <span class="n">a</span> <span class="o">!=</span> <span class="n">F</span> <span class="ow">and</span> <span class="n">b</span> <span class="o">!=</span> <span class="n">F</span> <span class="ow">and</span> <span class="n">a</span> <span class="o">!=</span> <span class="n">S</span> <span class="ow">and</span> <span class="n">b</span> <span class="o">!=</span> <span class="n">S</span><span class="p">:</span>
+                    <span class="n">pairs</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+
+            <span class="n">addon</span> <span class="o">=</span> <span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span> <span class="k">if</span> <span class="n">M</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">F</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">pos</span><span class="p">[</span><span class="n">M</span><span class="o">//</span><span class="mi">2</span><span class="p">]]))</span>
+            <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">pairs</span><span class="p">):</span>
+                <span class="n">dfs</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">elem</span> <span class="o">+</span> <span class="n">addon</span><span class="p">),</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">dfs</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)),</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="n">ans</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">ans</span><span class="p">)]</span>
+</code></pre></div></div>
+
+<h4 id="solution-2">Solution 2</h4>
+<p>This solution is borrowed from https://leetcode.com/problems/the-earliest-and-latest-rounds-where-players-compete/discuss/1268560/Python-simple-top-down-dp-solution-O(N4*logN), here I just rewrote it a bit and try to add some explanations with examples. Please go and upvote this post, it deserves more upvotes.</p>
+
+<p>Define by <code class="language-plaintext highlighter-rouge">dp(l, r, m, q)</code> state with the following parameters:</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">l</code> and <code class="language-plaintext highlighter-rouge">r</code> are positions of our <code class="language-plaintext highlighter-rouge">F</code> and <code class="language-plaintext highlighter-rouge">S</code> players from start and from end. For example if we have 1, 2, <strong>3</strong>, 4, 5, 6, <strong>7</strong>, 8, 9, 10, 11, 12, where we denoted by bold elements the first and the second player, and we have <code class="language-plaintext highlighter-rouge">l = 3</code> and <code class="language-plaintext highlighter-rouge">r = 6</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">m</code> is current number of players, we have 12 here and <code class="language-plaintext highlighter-rouge">q</code> is number of games already played.</li>
+</ol>
+
+<p>What can happen on the next step? Let us go through options and see what is going on. Let us denote by underline  <u>x</u> the players who loose and by <strong>x</strong> player who win.
+Then at the moment we have the following situation:</p>
+
+<p>1, 2, <strong>3</strong>, 4, 5, <u>6</u>, <strong>7</strong>, 8, 9, <u>10</u>, 11, 12.</p>
+
+<p>What can happen that among players <code class="language-plaintext highlighter-rouge">1</code> and <code class="language-plaintext highlighter-rouge">2</code> there can be zero, one or two wins, and actually it does not matter which ones. Let us consider the cases:</p>
+
+<ol>
+  <li>We have zero wins, so we have <u>1</u>, <u>2</u>, <strong>3</strong>, 4, 5, <u>6</u>, <strong>7</strong>, 8, 9, <u>10</u>, <strong>11</strong>, <strong>12</strong>. Then what we know for sure is in new round player <strong>3</strong> will be the first. Player <strong>7</strong> can be either 3, 4 or 5 from the end.</li>
+  <li>We have one wins, so we have <u>1</u>, <strong>2</strong>, <strong>3</strong>, 4, 5, <u>6</u>, <strong>7</strong>, 8, 9, <u>10</u>, <u>11</u>, <strong>12</strong>. Then what we know for sure is in new round player <strong>3</strong> will be the second. Player <strong>7</strong> can be either 2, 3 or 4 from the end.</li>
+  <li>We have two wins, so we have <strong>1</strong>, <strong>2</strong>, <strong>3</strong>, 4, 5, <u>6</u>, <strong>7</strong>, 8, 9, <u>10</u>, <u>11</u>, <u>12</u>. Then what we know for sure is in new round player <strong>3</strong> will be the third. Player <strong>7</strong> can be either 1, 2 or 3 from the end.</li>
+</ol>
+
+<p>So, what we need to do is to carefully understand all the cases we can meet.</p>
+
+<h4 id="complexity-1">Complexity</h4>
+<p>We have <code class="language-plaintext highlighter-rouge">O(n^2*log(n)</code> states: <code class="language-plaintext highlighter-rouge">O(n)</code> for both <code class="language-plaintext highlighter-rouge">l</code> and <code class="language-plaintext highlighter-rouge">r</code> and <code class="language-plaintext highlighter-rouge">log(n)</code> states for <code class="language-plaintext highlighter-rouge">m</code>, which will define <code class="language-plaintext highlighter-rouge">q</code> in unique way. We have <code class="language-plaintext highlighter-rouge">O(n^2)</code> transactions from one state to others, so time complexity is <code class="language-plaintext highlighter-rouge">O(n^4*log n)</code>, space complexity is <code class="language-plaintext highlighter-rouge">O(n^2*log n)</code>. Actually, more detailed analysis shows that log factor can be removed, because say <code class="language-plaintext highlighter-rouge">n = 64</code>, then we have <code class="language-plaintext highlighter-rouge">O(64*64)</code> states for <code class="language-plaintext highlighter-rouge">m = 64</code>, then we have <code class="language-plaintext highlighter-rouge">O(32*32)</code> states for <code class="language-plaintext highlighter-rouge">m = 32</code> and so on. So final time complexity is <code class="language-plaintext highlighter-rouge">O(n^4)</code>, space is <code class="language-plaintext highlighter-rouge">O(n^2)</code>.</p>
+
+<h4 id="code-1">Code</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">earliestAndLatest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">S</span><span class="p">):</span>
+        <span class="o">@</span><span class="n">lru_cache</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">dp</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">l</span> <span class="o">&gt;</span> <span class="n">r</span><span class="p">:</span>  <span class="n">dp</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">l</span> <span class="o">==</span> <span class="n">r</span><span class="p">:</span> <span class="n">ans</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+            
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">l</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">l</span><span class="o">-</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="o">-</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span> <span class="o">&gt;=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="n">l</span> <span class="o">+</span> <span class="n">r</span> <span class="o">-</span> <span class="n">m</span><span class="o">//</span><span class="mi">2</span><span class="p">:</span> <span class="k">continue</span>
+                    <span class="n">dp</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="p">(</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">q</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        
+        <span class="n">ans</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">dp</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">S</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="n">ans</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">ans</span><span class="p">)]</span>
+</code></pre></div></div>
+
+  </div><a class="u-url" href="/leetcode/1900.html" hidden></a>
+</article>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">Dmitry Babichev</li>
+          <li><a class="u-email" href="mailto:dimitry008@gmail.com">dimitry008@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>

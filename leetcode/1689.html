@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Leetcode 1689. Partitioning Into Minimum Number Of Deci-Binary Numbers | Dmitry Babichev’s webpage</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Leetcode 1689. Partitioning Into Minimum Number Of Deci-Binary Numbers" />
+<meta name="author" content="Dmitry Babichev" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Problem statement" />
+<meta property="og:description" content="Problem statement" />
+<meta property="og:site_name" content="Dmitry Babichev’s webpage" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-06-28T14:27:36+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Leetcode 1689. Partitioning Into Minimum Number Of Deci-Binary Numbers" />
+<script type="application/ld+json">
+{"url":"/leetcode/1689.html","@type":"BlogPosting","headline":"Leetcode 1689. Partitioning Into Minimum Number Of Deci-Binary Numbers","dateModified":"2021-06-28T14:27:36+02:00","datePublished":"2021-06-28T14:27:36+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1689.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
+    
+
+
+
+
+
+
+  
+  
+</head>
+
+    
+    <!-- for mathjax support -->
+    
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dmitry Babichev&#39;s webpage</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode problems</a><a class="page-link" href="/coding%20ideas/">Patterns</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <span>[
+  
+    
+    <a href="/tag/math"><code class="highligher-rouge"><nobr>math</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/greedy"><code class="highligher-rouge"><nobr>greedy</nobr></code>&nbsp;</a>
+  
+]</span>
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Leetcode 1689. Partitioning Into Minimum Number Of Deci-Binary Numbers</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-06-28T14:27:36+02:00" itemprop="datePublished">
+        Jun 28, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h4 id="problem-statement">Problem statement</h4>
+
+<p><a href="https://leetcode.com/problems/partitioning-into-minimum-number-of-deci-binary-numbers/"> <font color="blue">https://leetcode.com/problems/partitioning-into-minimum-number-of-deci-binary-numbers/</font></a></p>
+
+<h4 id="solution">Solution</h4>
+<p>We asked the question: what is minimum number of deci-binary numbers we can have, so it is <strong>example + estimate</strong> problem. It means that for strict proof you should have two parts:</p>
+<ol>
+  <li>Estimation: say, that for number <code class="language-plaintext highlighter-rouge">n</code>, minimum number of parts is some number <code class="language-plaintext highlighter-rouge">f(n)</code>, that is it is impossible to make it with lesser number of parts.</li>
+  <li>Example: provide example, where we have exaclty <code class="language-plaintext highlighter-rouge">f(n)</code> parts.</li>
+</ol>
+
+<p>If it was math olympiad, and you skip one of the parts, usually you will get only half of the points (it really depends of these two parts, one of the parts can be very easy and another difficult, but you for sure will lose some points). We are in programming olympiad setup, so we do not need to have strict proof here, but if it is interview you still need. So, what is our guess. We have <code class="language-plaintext highlighter-rouge">0</code> and <code class="language-plaintext highlighter-rouge">1</code> only, so let us try to proof that answer is <strong>maximum digit</strong> in our number.</p>
+
+<ol>
+  <li><strong>Estimation</strong>. Let us for simplicity consider number <code class="language-plaintext highlighter-rouge">9182436</code>, so we need to prove that it is impossible to partition it into <code class="language-plaintext highlighter-rouge">8</code> parts. Indeed, if we sum numbers with digits only <code class="language-plaintext highlighter-rouge">0</code> or <code class="language-plaintext highlighter-rouge">1</code>, then we can have digits <code class="language-plaintext highlighter-rouge">&lt;=8</code>, so there is no way we can get our number. Similarly it will work for all other numbers.</li>
+  <li><strong>Example</strong>. Let us consider again number <code class="language-plaintext highlighter-rouge">9182436</code>. Now, we need to give example, how it can be partitioned into <code class="language-plaintext highlighter-rouge">9</code> numbers, or prove that this example exists. Here the process is the following. Let us look at all digits, which are not-zero, and subtract <code class="language-plaintext highlighter-rouge">1</code> from all of them: we have <code class="language-plaintext highlighter-rouge">9182436 = 8071325 + 1111111</code>, then repeat this process: <code class="language-plaintext highlighter-rouge">= 7060214 + 1011111 + 1111111</code> and so on. How many times we need to repeat this process? Exactly <code class="language-plaintext highlighter-rouge">9</code> in fact, because each time biggest digit is reduced by <code class="language-plaintext highlighter-rouge">1</code>. Here we considered number <code class="language-plaintext highlighter-rouge">9182436</code> for more intutions, exaclty the same idea will work on all numbers.</li>
+</ol>
+
+<p>So, we proved, that <strong>maximum digit</strong> is the correct answer. Note, that estimation and example have quite similar structure, but nevertheless you still need to provide both of them to have a strict proof. It is similar to when you need to prove that one statement is equivalent to another, you need to prove it in both sides. I think this is the reason why problem is marked medium, not easy.</p>
+
+<h4 id="complexity">Complexity</h4>
+<p>Time is just <code class="language-plaintext highlighter-rouge">O(n)</code> to find the biggest digit and space is <code class="language-plaintext highlighter-rouge">O(1)</code>.</p>
+
+<h4 id="code">Code</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">minPartitions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">n</span><span class="p">)</span>
+</code></pre></div></div>
+
+  </div><a class="u-url" href="/leetcode/1689.html" hidden></a>
+</article>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">Dmitry Babichev</li>
+          <li><a class="u-email" href="mailto:dimitry008@gmail.com">dimitry008@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
