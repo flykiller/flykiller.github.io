@@ -606,6 +606,17 @@ It will return lengths of longest palindromes for all $2n-1$ places (there are o
     <span class="k">return</span> <span class="n">ans</span>
 </code></pre></div></div>
 
+<h4 id="fast-matrix-moduly-expontiation">Fast matrix moduly expontiation</h4>
+<p>Given $A$ $T\times T$ size square matrix, we need to evaluate $A^n$ modulo <code class="language-plaintext highlighter-rouge">MOD</code>. It can be done in $O(T^3\log n)$ time, using doubling trick. It is useful for some types of dynamic programming problems.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">power</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">MOD</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">eye</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">M</span><span class="p">),</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">int</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">n</span><span class="o">%</span><span class="mi">2</span><span class="p">:</span> <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span> <span class="o">%</span> <span class="n">MOD</span>
+        <span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span> <span class="o">%</span> <span class="n">MOD</span>
+        <span class="n">n</span> <span class="o">//=</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">result</span>
+</code></pre></div></div>
 
   </div>
 
