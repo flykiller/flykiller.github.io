@@ -413,7 +413,22 @@ It will return lengths of longest palindromes for all $2n-1$ places (there are o
 <p>It will find shortest paths from given node to all others, if we can have negative weights, but not negative cycles. Time complexity is $O(mn)$, where $m$ is number of edges and $n$ is number of nodes.</p>
 
 <h4 id="topological-sort">Topological sort</h4>
-<p>Given graph, check if it is DAG, and if it is, give the correct order of nodes, if not, return $-1$.</p>
+<p>Given graph, check if it is DAG, and if it is, give the correct order of nodes, if not, return $[]$. Here is code which use BFS, time and space complexity is $O(V + E)$. <code class="language-plaintext highlighter-rouge">verts</code> is list of vertices and <code class="language-plaintext highlighter-rouge">E</code> is list of edges.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">Topological</span><span class="p">(</span><span class="n">verts</span><span class="p">,</span> <span class="n">edges</span><span class="p">):</span>
+    <span class="n">pre</span><span class="p">,</span> <span class="n">suc</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+        <span class="n">pre</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">suc</span><span class="p">[</span><span class="n">b</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+    <span class="n">free</span><span class="p">,</span> <span class="n">out</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">verts</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">pre</span><span class="p">),</span> <span class="p">[]</span>
+    <span class="k">while</span> <span class="n">free</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">free</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">out</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">suc</span><span class="p">[</span><span class="n">a</span><span class="p">]:</span>
+            <span class="n">pre</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">pre</span><span class="p">[</span><span class="n">b</span><span class="p">]:</span> <span class="n">free</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">out</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">verts</span><span class="p">))</span>
+</code></pre></div></div>
 
 <h4 id="convex-hull-jarvis-algorithm-and-graham-scan">Convex Hull: Jarvis algorithm and Graham Scan</h4>
 <p>This algorithm will give us the convex hull of given set of points on the plane.</p>
