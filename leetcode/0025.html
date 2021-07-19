@@ -13,11 +13,11 @@
 <meta property="og:description" content="Problem statement" />
 <meta property="og:site_name" content="Dmitry Babichev’s webpage" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-07-08T11:27:06+02:00" />
+<meta property="article:published_time" content="2021-07-19T13:57:50+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0025. Reverse Nodes in k-Group" />
 <script type="application/ld+json">
-{"url":"/leetcode/0025.html","@type":"BlogPosting","headline":"Leetcode 0025. Reverse Nodes in k-Group","dateModified":"2021-07-08T11:27:06+02:00","datePublished":"2021-07-08T11:27:06+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0025.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0025.html","@type":"BlogPosting","headline":"Leetcode 0025. Reverse Nodes in k-Group","dateModified":"2021-07-19T13:57:50+02:00","datePublished":"2021-07-19T13:57:50+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0025.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
     
@@ -62,8 +62,8 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0025. Reverse Nodes in k-Group</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-07-08T11:27:06+02:00" itemprop="datePublished">
-        Jul 8, 2021
+    <p class="post-meta"><time class="dt-published" datetime="2021-07-19T13:57:50+02:00" itemprop="datePublished">
+        Jul 19, 2021
       </time></p>
   </header>
 
@@ -73,10 +73,10 @@
 <p><a href="https://leetcode.com/problems/reverse-nodes-in-k-group/"> <font color="blue">https://leetcode.com/problems/reverse-nodes-in-k-group/</font></a></p>
 
 <h4 id="solution">Solution</h4>
-<p>It can be a bit problematic to imagine all this in your head, do it on paper. The idea is to add dummy variable, then calculate number of nodes. We need this, because we do not need to reverse last group. Then we use idea similar to problem <strong>Q206</strong> Reverse Linked List.</p>
+<p>This is quite classical linked list problem and it is quite nasty in my opinion. It can be a bit problematic to imagine all this in your head, do it on paper. The idea is to add dummy variable, then calculate number of nodes. We need this, because we do not need to reverse last group. Then we use idea similar to problem <strong>0206</strong> Reverse Linked List: but here we need to reverse <code class="language-plaintext highlighter-rouge">k</code> elements, and then reconnect first and last nodes in each group and update <code class="language-plaintext highlighter-rouge">cnt</code>.</p>
 
 <h4 id="complexity">Complexity</h4>
-<p>Time complexity is $O(n)$, space complexity is $O(1)$.</p>
+<p>Time complexity is <code class="language-plaintext highlighter-rouge">O(n)</code>, space complexity is <code class="language-plaintext highlighter-rouge">O(1)</code>.</p>
 
 <h4 id="code">Code</h4>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
