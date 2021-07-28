@@ -13,11 +13,11 @@
 <meta property="og:description" content="https://leetcode.com/problems/coin-change-2" />
 <meta property="og:site_name" content="Dmitry Babichev’s webpage" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-07-19T13:57:50+02:00" />
+<meta property="article:published_time" content="2021-07-28T22:19:26+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0518. Coin Change 2" />
 <script type="application/ld+json">
-{"url":"/leetcode/0518.html","@type":"BlogPosting","headline":"Leetcode 0518. Coin Change 2","dateModified":"2021-07-19T13:57:50+02:00","datePublished":"2021-07-19T13:57:50+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0518.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/coin-change-2","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0518.html","@type":"BlogPosting","headline":"Leetcode 0518. Coin Change 2","dateModified":"2021-07-28T22:19:26+02:00","datePublished":"2021-07-28T22:19:26+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0518.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/coin-change-2","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
     
@@ -68,8 +68,8 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0518. Coin Change 2</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-07-19T13:57:50+02:00" itemprop="datePublished">
-        Jul 19, 2021
+    <p class="post-meta"><time class="dt-published" datetime="2021-07-28T22:19:26+02:00" itemprop="datePublished">
+        Jul 28, 2021
       </time></p>
   </header>
 
@@ -83,12 +83,50 @@ To find <code class="language-plaintext highlighter-rouge">dp_sum[i][j]</code> w
   <li><code class="language-plaintext highlighter-rouge">dp_sum[i-coins[j]][j]</code>, number of options, where we removed coin number <code class="language-plaintext highlighter-rouge">j</code> and we need to find number of options for the rest amount.</li>
 </ol>
 
-<p><strong>Example</strong>: let us consider <code class="language-plaintext highlighter-rouge">coins = [1,2,5]</code> and amont = 5. Then table <code class="language-plaintext highlighter-rouge">dp_sum</code> will be equal to
-|             | 0 | 1 | 2 | 3 | 4 | 5 |
-|————-|—|—|—|—|—|—|
-| <strong>coin #0 (1)</strong> | 1 | 1 | 1 | 1 | 1 | 1 |
-| <strong>coin #1 (2)</strong> | 1 | 1 | 2 | 2 | 3 | 3 |
-| <strong>coin #2 (5)</strong> | 1 | 1| 2 | 2 | 3 | 4 |</p>
+<p><strong>Example</strong>: let us consider <code class="language-plaintext highlighter-rouge">coins = [1,2,5]</code> and amont = 5. Then table <code class="language-plaintext highlighter-rouge">dp_sum</code> will be equal to</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>coin #0 (1)</strong></td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td><strong>coin #1 (2)</strong></td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>2</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td><strong>coin #2 (5)</strong></td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
 
 <p><strong>Complexity</strong> time and space is <code class="language-plaintext highlighter-rouge">O(amount *N)</code>, where <code class="language-plaintext highlighter-rouge">N</code> is number of different coins, because we need only <code class="language-plaintext highlighter-rouge">O(1)</code> to update each cell.</p>
 

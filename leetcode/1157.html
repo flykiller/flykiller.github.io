@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Leetcode 1157. Online Majority Element In Subarray | Dmitry Babichev’s webpage</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Leetcode 1157. Online Majority Element In Subarray" />
+<meta name="author" content="Dmitry Babichev" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Problem statement" />
+<meta property="og:description" content="Problem statement" />
+<meta property="og:site_name" content="Dmitry Babichev’s webpage" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-07-28T22:19:26+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Leetcode 1157. Online Majority Element In Subarray" />
+<script type="application/ld+json">
+{"url":"/leetcode/1157.html","@type":"BlogPosting","headline":"Leetcode 1157. Online Majority Element In Subarray","dateModified":"2021-07-28T22:19:26+02:00","datePublished":"2021-07-28T22:19:26+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1157.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
+    
+
+
+
+
+
+
+  
+  
+</head>
+
+    
+    <!-- for mathjax support -->
+    
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dmitry Babichev&#39;s webpage</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode problems</a><a class="page-link" href="/coding%20ideas/">Patterns</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <span>[
+  
+    
+    <a href="/tag/binary search"><code class="highligher-rouge"><nobr>binary search</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/binary indexed tree"><code class="highligher-rouge"><nobr>binary indexed tree</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/segment tree"><code class="highligher-rouge"><nobr>segment tree</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/design"><code class="highligher-rouge"><nobr>design</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/voting"><code class="highligher-rouge"><nobr>voting</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/random"><code class="highligher-rouge"><nobr>random</nobr></code>&nbsp;</a>
+  
+]</span>
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Leetcode 1157. Online Majority Element In Subarray</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-07-28T22:19:26+02:00" itemprop="datePublished">
+        Jul 28, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h4 id="problem-statement">Problem statement</h4>
+
+<p><a href="https://leetcode.com/problems/online-majority-element-in-subarray/"> <font color="blue">https://leetcode.com/problems/online-majority-element-in-subarray/</font></a></p>
+
+<h4 id="solution">Solution</h4>
+<p>Quite difficult problem if we want to solve it without randomness (see later what I mean by this). The idea is to build segment tree, where on each segment we will keep two values (candidate, frequency of this candidate). Then the idea is to use  Boyer-Moore majority vote algorithm to merge two segments.</p>
+
+<p>Indeed, it can be shown, that if we have one segment with candidate <code class="language-plaintext highlighter-rouge">a</code> and another segment with candidtate <code class="language-plaintext highlighter-rouge">b</code>, then if candidates are the same, we sum their frequencies, if not, we choose the more frequent one and subtract frequencies.</p>
+
+<p>In this way we always have only one candidate for each segment, but no one says that it will be the majority element (just like in Boyer-Moore), so we need another pass in the end to check if it is correct element. How we can do it? For each element we create array of indexes for this element and then we do binary search to check how many elements we have.</p>
+
+<p>Here we use segment trees with signature <code class="language-plaintext highlighter-rouge">(t, l, r)</code>, where <code class="language-plaintext highlighter-rouge">t</code> is number of segment and <code class="language-plaintext highlighter-rouge">l</code> and <code class="language-plaintext highlighter-rouge">r</code> are left and right points of it. In this way it is easy to traverse the tree. Code for build is taken from cp-algorithms.com, for query it also can be taken from this place, but there is alternative way to do it, look in my code.</p>
+
+<h4 id="complexity">Complexity</h4>
+<p>Time to build tree is <code class="language-plaintext highlighter-rouge">O(n)</code>, space to build is <code class="language-plaintext highlighter-rouge">O(n)</code>. As well as <code class="language-plaintext highlighter-rouge">O(n)</code> to create <code class="language-plaintext highlighter-rouge">self.indexes</code> dictionary of lists.
+For query we can do it in <code class="language-plaintext highlighter-rouge">O(log n)</code> time: first part is find candidate and the same complexity is to check if it is good candidate.</p>
+
+<h4 id="code">Code</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">bisect</span> <span class="kn">import</span> <span class="n">bisect</span><span class="p">,</span> <span class="n">bisect_left</span>
+
+<span class="k">class</span> <span class="nc">SegmentTree</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">arr</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">nums</span> <span class="o">=</span> <span class="p">[()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">n</span><span class="p">)]</span>   <span class="c1">#can make smaller?
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">arr</span> <span class="o">=</span> <span class="n">arr</span>
+
+    <span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">t1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">t2</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="k">return</span> <span class="p">(</span><span class="n">t1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">t2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">t1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">t2</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="k">return</span> <span class="p">(</span><span class="n">t1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">t2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">t2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">t1</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">l</span> <span class="o">==</span> <span class="n">r</span><span class="p">:</span> 
+            <span class="bp">self</span><span class="p">.</span><span class="n">nums</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">arr</span><span class="p">[</span><span class="n">l</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">build</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">mid</span><span class="p">)</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">build</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">nums</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">nums</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="p">],</span> <span class="bp">self</span><span class="p">.</span><span class="n">nums</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">ql</span><span class="p">,</span> <span class="n">qr</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">l</span> <span class="o">&gt;</span> <span class="n">qr</span> <span class="ow">or</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="n">ql</span><span class="p">:</span> <span class="k">return</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">l</span> <span class="o">&gt;=</span> <span class="n">ql</span> <span class="ow">and</span> <span class="n">r</span> <span class="o">&lt;=</span> <span class="n">qr</span><span class="p">:</span> <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">nums</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">ql</span><span class="p">,</span> <span class="n">qr</span><span class="p">),</span> <span class="bp">self</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">ql</span><span class="p">,</span> <span class="n">qr</span><span class="p">))</span>
+
+<span class="k">class</span> <span class="nc">MajorityChecker</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arr</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">Tree</span> <span class="o">=</span> <span class="n">SegmentTree</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">arr</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">Tree</span><span class="p">.</span><span class="n">build</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">indexes</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">indexes</span><span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]].</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">tresh</span><span class="p">):</span>
+        <span class="n">cand</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">Tree</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cand</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">:</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">bisect_left</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">indexes</span><span class="p">[</span><span class="n">cand</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">l</span><span class="p">)</span> 
+        <span class="n">e</span> <span class="o">=</span> <span class="n">bisect</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">indexes</span><span class="p">[</span><span class="n">cand</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">r</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cand</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">e</span> <span class="o">-</span> <span class="n">s</span> <span class="o">&gt;=</span> <span class="n">tresh</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+</code></pre></div></div>
+
+<h4 id="remark-other-ways-to-solve">Remark: other ways to solve</h4>
+<p>Another smart idea is that if we have majority element, than if we take say <code class="language-plaintext highlighter-rouge">20</code> elements from our range, then probability that we did not seen it is very small. So, for each of candidates, do binary search to calculate how many times we seen it and check if it is big enough. I am not sure however how to avoid collisions fully, like in rolling hash, where we compare strings element by element. Here it seems we can not do it.</p>
+
+<p>Another idea is if we sort elements by frequency, than we can have complexity <code class="language-plaintext highlighter-rouge">O(sqrt(n)*log n)</code> for one query. The idea is that there can be no more than <code class="language-plaintext highlighter-rouge">O(sqrt(n))</code> candidates for each range: given range with size <code class="language-plaintext highlighter-rouge">A</code>, for candidate to worth to check its size should be <code class="language-plaintext highlighter-rouge">&gt;= A/2</code>.</p>
+<ol>
+  <li>If <code class="language-plaintext highlighter-rouge">A &lt;= sqrt(n)</code>, then we can have no more than <code class="language-plaintext highlighter-rouge">sqrt(n)</code> candidates.</li>
+  <li>If <code class="language-plaintext highlighter-rouge">A &gt; sqrt(n)</code>, then we can have no more than <code class="language-plaintext highlighter-rouge">n/(A/2) = O(sqrt(n))</code> candidates again.</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MajorityChecker</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arr</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">loc</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">n</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>    
+        <span class="bp">self</span><span class="p">.</span><span class="n">nums</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">loc</span><span class="p">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">n</span><span class="p">]))[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        
+    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">threshold</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">.</span><span class="n">nums</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">n</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">threshold</span><span class="p">:</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="n">l</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">bisect</span><span class="p">.</span><span class="n">bisect_left</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">left</span><span class="p">),</span> <span class="n">bisect</span><span class="p">.</span><span class="n">bisect</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">right</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">r</span> <span class="o">-</span> <span class="n">l</span> <span class="o">&gt;=</span> <span class="n">threshold</span><span class="p">:</span> <span class="k">return</span> <span class="n">n</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</code></pre></div></div>
+
+  </div><a class="u-url" href="/leetcode/1157.html" hidden></a>
+</article>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">Dmitry Babichev</li>
+          <li><a class="u-email" href="mailto:dimitry008@gmail.com">dimitry008@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
