@@ -13,11 +13,11 @@
 <meta property="og:description" content="Problem statement" />
 <meta property="og:site_name" content="Dmitry Babichev’s webpage" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-08-06T15:06:09+02:00" />
+<meta property="article:published_time" content="2021-08-14T19:00:50+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 1632. Rank Transform of a Matrix" />
 <script type="application/ld+json">
-{"url":"/leetcode/1632.html","@type":"BlogPosting","headline":"Leetcode 1632. Rank Transform of a Matrix","dateModified":"2021-08-06T15:06:09+02:00","datePublished":"2021-08-06T15:06:09+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1632.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
+{"url":"/leetcode/1632.html","@type":"BlogPosting","headline":"Leetcode 1632. Rank Transform of a Matrix","dateModified":"2021-08-14T19:00:50+02:00","datePublished":"2021-08-14T19:00:50+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1632.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
     
@@ -54,13 +54,13 @@
         <span>[
   
     
-    <a href="/tag/union find"><code class="highligher-rouge"><nobr>union find</nobr></code>&nbsp;</a>
+    <a href="/tag/2d-array"><code class="highligher-rouge"><nobr>2d-array</nobr></code>&nbsp;</a>
   
     
     <a href="/tag/greedy"><code class="highligher-rouge"><nobr>greedy</nobr></code>&nbsp;</a>
   
     
-    <a href="/tag/sort"><code class="highligher-rouge"><nobr>sort</nobr></code>&nbsp;</a>
+    <a href="/tag/union find"><code class="highligher-rouge"><nobr>union find</nobr></code>&nbsp;</a>
   
 ]</span>
 
@@ -68,8 +68,8 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 1632. Rank Transform of a Matrix</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-08-06T15:06:09+02:00" itemprop="datePublished">
-        Aug 6, 2021
+    <p class="post-meta"><time class="dt-published" datetime="2021-08-14T19:00:50+02:00" itemprop="datePublished">
+        Aug 14, 2021
       </time></p>
   </header>
 
@@ -79,18 +79,18 @@
 <p><a href="https://leetcode.com/problems/rank-transform-of-a-matrix/"> <font color="blue">https://leetcode.com/problems/rank-transform-of-a-matrix/</font></a></p>
 
 <h4 id="solution">Solution</h4>
-<p>Quite difficult problem. Let us first start with the smallest number in our matrix. In general we create defaultict <code class="language-plaintext highlighter-rouge">d</code>, which for every value contain coordinates of cells with this value. We can notice, that we can start to work with small groups, then when we have next group we need to only care about what ranks we already put in out matrix. Imagine, than we first filled places where number $x_1$ was, how we can do it? Actually at the first step we can put them all equal to $1$. However on the next step when we consider number $x_2 &gt; x_1$ we already have some ranks in our table, so we need to be carefull. For all numbers $x_2$ in our table we can create <strong>graph</strong>, where nodes are $n + m$ columns and rows and we have edge between row <code class="language-plaintext highlighter-rouge">i</code> and column <code class="language-plaintext highlighter-rouge">j</code> if we have value $x_2$ at the intersection of these row and column. Then our graph can be separated into several <strong>connected components</strong>: where for each connected component we must have equal values. Different connected components can have different value, because we already put some ranks when we worked with $x_1$.</p>
+<p>Quite difficult problem. Let us first start with the smallest number in our matrix. In general we create defaultict <code class="language-plaintext highlighter-rouge">d</code>, which for every value contain coordinates of cells with this value. We can notice, that we can start to work with small groups, then when we have next group we need to only care about what ranks we already put in out matrix. Imagine, than we first filled places where number <code class="language-plaintext highlighter-rouge">x1</code> was, how we can do it? Actually at the first step we can put them all equal to <code class="language-plaintext highlighter-rouge">1</code>. However on the next step when we consider number <code class="language-plaintext highlighter-rouge">x2 &gt; x1</code> we already have some ranks in our table, so we need to be carefull. For all numbers <code class="language-plaintext highlighter-rouge">x2</code> in our table we can create <strong>graph</strong>, where nodes are <code class="language-plaintext highlighter-rouge">n + m</code> columns and rows and we have edge between row <code class="language-plaintext highlighter-rouge">i</code> and column <code class="language-plaintext highlighter-rouge">j</code> if we have value <code class="language-plaintext highlighter-rouge">x2</code> at the intersection of these row and column. Then our graph can be separated into several <strong>connected components</strong>: where for each connected component we must have equal values. Different connected components can have different value, because we already put some ranks when we worked with <code class="language-plaintext highlighter-rouge">x1</code>.</p>
 
 <ol>
   <li><code class="language-plaintext highlighter-rouge">rank</code> is variable for biggest rank so far in each <code class="language-plaintext highlighter-rouge">n</code> rows and <code class="language-plaintext highlighter-rouge">m</code> columns.</li>
-  <li>Let us use <strong>Union Find</strong> data structure for efficient working with connected components. There is $n$ rows and $m$ columns, we will deal with point (edge in graph) <code class="language-plaintext highlighter-rouge">(i, j)</code> as <code class="language-plaintext highlighter-rouge">i, j + n</code> connection. We will use sparse dsu structure, that is we can have e.g. elements <code class="language-plaintext highlighter-rouge">(1, 3, 7, 12, 20)</code> in it, not neccesarily range from <code class="language-plaintext highlighter-rouge">1</code> to <code class="language-plaintext highlighter-rouge">20</code>.</li>
+  <li>Let us use <strong>Union Find</strong> data structure for efficient working with connected components. There is <code class="language-plaintext highlighter-rouge">n</code> rows and <code class="language-plaintext highlighter-rouge">m</code> columns, we will deal with point (edge in graph) <code class="language-plaintext highlighter-rouge">(i, j)</code> as <code class="language-plaintext highlighter-rouge">i, j + n</code> connection. We will use sparse dsu structure, that is we can have e.g. elements <code class="language-plaintext highlighter-rouge">(1, 3, 7, 12, 20)</code> in it, not neccesarily range from <code class="language-plaintext highlighter-rouge">1</code> to <code class="language-plaintext highlighter-rouge">20</code>.</li>
   <li>For each edge, create connection: <code class="language-plaintext highlighter-rouge">for i, j in d[a]: dsu.union(i, j + n)</code></li>
   <li>Now, we need to find connected components, use <code class="language-plaintext highlighter-rouge">groups</code> function inside our dsu structure. For each connected component we need to look at ranks we have: we need to take the biggest among them and add <code class="language-plaintext highlighter-rouge">1</code> to this number. Why? Because in opposite case we will have different numbers with the same rank, lying in the same colomn or row by properties of our connected component.</li>
   <li>Finally, we update ranks in table, we can use matrix <code class="language-plaintext highlighter-rouge">A</code> directly, because we update full connected component.</li>
 </ol>
 
 <h4 id="complexity">Complexity</h4>
-<p>Time complexity is $O(mn\cdot \log(mn)$, because the most heavy part is sorting (in theory, in practice it can work quite fast). Then even though we use dsu without optimizations, it will also work in average in logarithmic time, so total complexity will be the same. Space complexity is $O(mn)$ to keep dictionary <code class="language-plaintext highlighter-rouge">d</code>.</p>
+<p>Time complexity is <code class="language-plaintext highlighter-rouge">O(mn *log(mn)</code>, because the most heavy part is sorting (in theory, in practice it works quite fast). Then even though we use dsu without optimizations, it will also work in average in logarithmic time, so total complexity will be the same. Space complexity is <code class="language-plaintext highlighter-rouge">O(mn)</code> to keep dictionary <code class="language-plaintext highlighter-rouge">d</code>.</p>
 
 <h4 id="code">Code</h4>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">DSU</span><span class="p">:</span>
