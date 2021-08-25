@@ -9,15 +9,15 @@
 <meta property="og:title" content="Leetcode 0091. Decode Ways" />
 <meta name="author" content="Dmitry Babichev" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="https://leetcode.com/problems/decode-ways" />
-<meta property="og:description" content="https://leetcode.com/problems/decode-ways" />
+<meta name="description" content="Problem statement https://leetcode.com/problems/decode-ways" />
+<meta property="og:description" content="Problem statement https://leetcode.com/problems/decode-ways" />
 <meta property="og:site_name" content="Dmitry Babichev’s webpage" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-08-14T19:09:20+02:00" />
+<meta property="article:published_time" content="2021-08-25T20:13:38+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0091. Decode Ways" />
 <script type="application/ld+json">
-{"url":"/leetcode/0091.html","@type":"BlogPosting","headline":"Leetcode 0091. Decode Ways","dateModified":"2021-08-14T19:09:20+02:00","datePublished":"2021-08-14T19:09:20+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0091.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/decode-ways","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0091.html","@type":"BlogPosting","headline":"Leetcode 0091. Decode Ways","dateModified":"2021-08-25T20:13:38+02:00","datePublished":"2021-08-25T20:13:38+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0091.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement https://leetcode.com/problems/decode-ways","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
     
@@ -65,14 +65,16 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0091. Decode Ways</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-08-14T19:09:20+02:00" itemprop="datePublished">
-        Aug 14, 2021
+    <p class="post-meta"><time class="dt-published" datetime="2021-08-25T20:13:38+02:00" itemprop="datePublished">
+        Aug 25, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p><a href="https://leetcode.com/problems/decode-ways"> <font color="blue">https://leetcode.com/problems/decode-ways</font></a></p>
+    <h4 id="problem-statement">Problem statement</h4>
+<p><a href="https://leetcode.com/problems/decode-ways"> <font color="blue">https://leetcode.com/problems/decode-ways</font></a></p>
 
+<h4 id="solution-1">Solution 1</h4>
 <p>Let us use dynamic programming for this problem, where we keep <code class="language-plaintext highlighter-rouge">3</code> values on each step:</p>
 
 <ol>
@@ -102,7 +104,39 @@
         <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div></div>
 
-<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/decode-ways/discuss/987013/python-o(n)-timeo(1)-space-dp-explained"> <font color="blue">Problem 0091</font></a></p>
+<h4 id="solution-2">Solution 2</h4>
+<p>In this problem we can see some repeating subproblems, so we can apply dynamic programming.</p>
+
+<p>Let <code class="language-plaintext highlighter-rouge">dp(i)</code> is number of ways to decode string <code class="language-plaintext highlighter-rouge">s[:i]</code>. Then we can have the following cases:</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">if i == -1</code>, we return <code class="language-plaintext highlighter-rouge">1</code>, because there is unique way to decode empty string.</li>
+  <li>If last digit is not equal to <code class="language-plaintext highlighter-rouge">0</code>, we need to add <code class="language-plaintext highlighter-rouge">dp(i-1)</code> to our answer.</li>
+  <li>If last two digits form number from <code class="language-plaintext highlighter-rouge">10</code> to <code class="language-plaintext highlighter-rouge">26</code>, we can use last <code class="language-plaintext highlighter-rouge">2</code> symbols for decoding, so we add <code class="language-plaintext highlighter-rouge">dp(i-2)</code> to our answer.</li>
+</ol>
+
+<h4 id="complexity">Complexity</h4>
+<p>Time complexity is <code class="language-plaintext highlighter-rouge">O(n)</code>, we have <code class="language-plaintext highlighter-rouge">n</code> states and at most <code class="language-plaintext highlighter-rouge">2</code> transactions from one to another. Space complexity is <code class="language-plaintext highlighter-rouge">O(n)</code> as well.</p>
+
+<h4 id="code">Code</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">numDecodings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+        <span class="o">@</span><span class="n">lru_cache</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">dp</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="k">return</span> <span class="mi">1</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="s">"0"</span><span class="p">:</span> <span class="n">ans</span> <span class="o">+=</span> <span class="n">dp</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="s">"10"</span> <span class="o">&lt;=</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="s">"26"</span><span class="p">:</span>
+                <span class="n">ans</span> <span class="o">+=</span> <span class="n">dp</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">ans</span>
+        
+        <span class="k">return</span> <span class="n">dp</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="remark">Remark</h4>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section: <a href="https://leetcode.com/problems/decode-ways/discuss/987013/python-o(n)-timeo(1)-space-dp-explained"> <font color="blue">Problem 0091
+<a href="https://leetcode.com/problems/decode-ways/discuss/1410879/Python-dp-using-lru_cache-explained"> <font color="blue">Problem 0091</font></a></font></a></p>
 
   </div><a class="u-url" href="/leetcode/0091.html" hidden></a>
 </article>

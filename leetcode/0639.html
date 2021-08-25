@@ -13,11 +13,11 @@
 <meta property="og:description" content="Problem statement" />
 <meta property="og:site_name" content="Dmitry Babichev’s webpage" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-08-14T19:09:20+02:00" />
+<meta property="article:published_time" content="2021-08-25T20:13:38+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0639. Decode Ways II" />
 <script type="application/ld+json">
-{"url":"/leetcode/0639.html","@type":"BlogPosting","headline":"Leetcode 0639. Decode Ways II","dateModified":"2021-08-14T19:09:20+02:00","datePublished":"2021-08-14T19:09:20+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0639.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0639.html","@type":"BlogPosting","headline":"Leetcode 0639. Decode Ways II","dateModified":"2021-08-25T20:13:38+02:00","datePublished":"2021-08-25T20:13:38+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0639.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
     
@@ -65,8 +65,8 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0639. Decode Ways II</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-08-14T19:09:20+02:00" itemprop="datePublished">
-        Aug 14, 2021
+    <p class="post-meta"><time class="dt-published" datetime="2021-08-25T20:13:38+02:00" itemprop="datePublished">
+        Aug 25, 2021
       </time></p>
   </header>
 
@@ -102,6 +102,43 @@
                 <span class="n">dp_new</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>  <span class="o">=</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="s">'2'</span><span class="p">)</span> <span class="o">*</span> <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="n">mod</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">dp_new</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h4 id="solution-2">Solution 2</h4>
+<p>Previous solution is very fast and efficient, but I think it is a bit difficult to invent it in short time. So, here is an alternative: let <code class="language-plaintext highlighter-rouge">dp(i)</code> be the number of ways to decode <code class="language-plaintext highlighter-rouge">s[:i]</code>. Then we can have several cases:</p>
+
+<ol>
+  <li>if <code class="language-plaintext highlighter-rouge">i &lt; 0</code>, we return <code class="language-plaintext highlighter-rouge">1</code>, there is only one way to decode empty string.</li>
+  <li>if <code class="language-plaintext highlighter-rouge">s[i] == *</code>, then there is <code class="language-plaintext highlighter-rouge">9*dp(i-1)</code> ways to decode if we take last number 1-digit. To decode last number 2-digit we need to consider several cases. If we have <code class="language-plaintext highlighter-rouge">1*</code>, then we have <code class="language-plaintext highlighter-rouge">9</code> ways to replace <code class="language-plaintext highlighter-rouge">*</code> with <code class="language-plaintext highlighter-rouge">[1, 2, ..., 9]</code>. If we have <code class="language-plaintext highlighter-rouge">2*</code>, then we have <code class="language-plaintext highlighter-rouge">6</code> ways to replace it with <code class="language-plaintext highlighter-rouge">[1, 2, ..., 6]</code>. Finally, if we have <code class="language-plaintext highlighter-rouge">**</code>, then we have <code class="language-plaintext highlighter-rouge">15</code> options: <code class="language-plaintext highlighter-rouge">[11, ...., 19, 21, ..., 26]</code>.</li>
+  <li>if <code class="language-plaintext highlighter-rouge">s[i] != *</code>, that it it is digit, we have <code class="language-plaintext highlighter-rouge">dp(i-1)</code> ways to decode if we have last digit not equal to <code class="language-plaintext highlighter-rouge">0</code> and 0 ways if it is zero. For last <code class="language-plaintext highlighter-rouge">2</code> digits we need again consider cases: if previous element is digit, then only case <code class="language-plaintext highlighter-rouge">[10, ..., 26]</code> will be good for as, so we add <code class="language-plaintext highlighter-rouge">dp(i-2)</code>. If we have <code class="language-plaintext highlighter-rouge">*.</code>, then if <code class="language-plaintext highlighter-rouge">. = 0, 1, 2, 3, 4, 5, 6</code>, then we have <code class="language-plaintext highlighter-rouge">2</code> options for <code class="language-plaintext highlighter-rouge">*</code>: 1 and 2, in other case we have only one option.</li>
+</ol>
+
+<h4 id="complexity-1">Complexity</h4>
+<p>It is <code class="language-plaintext highlighter-rouge">O(n)</code> for time and space.</p>
+
+<h4 id="code-1">Code</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span> 
+    <span class="k">def</span> <span class="nf">numDecodings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+        <span class="n">M</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">9</span> <span class="o">+</span> <span class="mi">7</span> 
+        
+        <span class="o">@</span><span class="n">lru_cache</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">dp</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s">"*"</span><span class="p">:</span>
+                <span class="n">corr</span> <span class="o">=</span> <span class="p">{</span><span class="s">"1"</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s">"2"</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s">"*"</span><span class="p">:</span><span class="mi">15</span><span class="p">}</span>
+                <span class="n">ans</span> <span class="o">=</span> <span class="mi">9</span><span class="o">*</span><span class="n">dp</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span> <span class="n">ans</span> <span class="o">+=</span> <span class="n">corr</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="n">dp</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">ans</span> <span class="o">%</span> <span class="n">M</span>
+            
+            <span class="n">ans</span> <span class="o">=</span> <span class="n">dp</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="s">"0"</span> <span class="k">else</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="s">"10"</span> <span class="o">&lt;=</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="s">"26"</span><span class="p">:</span>
+                <span class="n">ans</span> <span class="o">+=</span> <span class="n">dp</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">"*"</span><span class="p">:</span>
+                <span class="n">ans</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">2</span> <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="s">"6"</span> <span class="k">else</span> <span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">dp</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+           
+            <span class="k">return</span> <span class="n">ans</span> <span class="o">%</span> <span class="n">M</span>
+        
+        <span class="k">return</span> <span class="n">dp</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">M</span>
 </code></pre></div></div>
 
   </div><a class="u-url" href="/leetcode/0639.html" hidden></a>

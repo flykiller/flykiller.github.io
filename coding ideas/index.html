@@ -213,22 +213,22 @@
     <span class="k">def</span> <span class="nf">Dijkstra</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
         <span class="n">dist</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s">'inf'</span><span class="p">)]</span> <span class="o">*</span> <span class="n">n</span>
         <span class="n">dist</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">adj_list</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
         
         <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
-            <span class="n">adj_list</span><span class="p">[</span><span class="n">a</span><span class="p">].</span><span class="n">append</span><span class="p">((</span><span class="n">b</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span>
-            <span class="n">adj_list</span><span class="p">[</span><span class="n">b</span><span class="p">].</span><span class="n">append</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span>
+            <span class="n">G</span><span class="p">[</span><span class="n">a</span><span class="p">].</span><span class="n">append</span><span class="p">((</span><span class="n">b</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span>
+            <span class="n">G</span><span class="p">[</span><span class="n">b</span><span class="p">].</span><span class="n">append</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span>
         
         <span class="n">heap</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="n">start</span><span class="p">)]</span>
 
         <span class="k">while</span> <span class="n">heap</span><span class="p">:</span>
-            <span class="p">(</span><span class="n">min_dist</span><span class="p">,</span> <span class="n">min_dist_id</span><span class="p">)</span> <span class="o">=</span> <span class="n">heappop</span><span class="p">(</span><span class="n">heap</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">min_dist_id</span> <span class="o">==</span> <span class="n">end</span><span class="p">:</span> <span class="k">return</span> <span class="n">min_dist</span>
-            <span class="k">for</span> <span class="n">neibh</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">adj_list</span><span class="p">[</span><span class="n">min_dist_id</span><span class="p">]:</span>
-                <span class="n">candidate</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">min_dist_id</span><span class="p">]</span> <span class="o">+</span> <span class="n">weight</span>
-                <span class="k">if</span> <span class="n">candidate</span> <span class="o">&lt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">neibh</span><span class="p">]:</span>
-                    <span class="n">dist</span><span class="p">[</span><span class="n">neibh</span><span class="p">]</span> <span class="o">=</span> <span class="n">candidate</span>
-                    <span class="n">heappush</span><span class="p">(</span><span class="n">heap</span><span class="p">,</span> <span class="p">(</span><span class="n">weight</span> <span class="o">+</span> <span class="n">min_dist</span><span class="p">,</span> <span class="n">neibh</span><span class="p">))</span>
+            <span class="p">(</span><span class="n">min_dist</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span> <span class="o">=</span> <span class="n">heappop</span><span class="p">(</span><span class="n">heap</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">id</span> <span class="o">==</span> <span class="n">end</span><span class="p">:</span> <span class="k">return</span> <span class="n">min_dist</span>
+            <span class="k">for</span> <span class="n">neibh</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">G</span><span class="p">[</span><span class="nb">id</span><span class="p">]:</span>
+                <span class="n">cand</span> <span class="o">=</span> <span class="n">min_dist</span> <span class="o">+</span> <span class="n">weight</span>
+                <span class="k">if</span> <span class="n">cand</span> <span class="o">&lt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">neibh</span><span class="p">]:</span>
+                    <span class="n">dist</span><span class="p">[</span><span class="n">neibh</span><span class="p">]</span> <span class="o">=</span> <span class="n">cand</span>
+                    <span class="n">heappush</span><span class="p">(</span><span class="n">heap</span><span class="p">,</span> <span class="p">(</span><span class="n">cand</span><span class="p">,</span> <span class="n">neibh</span><span class="p">))</span>
                     
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 </code></pre></div></div>

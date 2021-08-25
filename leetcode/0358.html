@@ -13,11 +13,11 @@
 <meta property="og:description" content="Problem statement" />
 <meta property="og:site_name" content="Dmitry Babichev’s webpage" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-08-14T19:09:20+02:00" />
+<meta property="article:published_time" content="2021-08-25T20:13:38+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0358. Rearrange String k Distance Apart" />
 <script type="application/ld+json">
-{"url":"/leetcode/0358.html","@type":"BlogPosting","headline":"Leetcode 0358. Rearrange String k Distance Apart","dateModified":"2021-08-14T19:09:20+02:00","datePublished":"2021-08-14T19:09:20+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0358.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0358.html","@type":"BlogPosting","headline":"Leetcode 0358. Rearrange String k Distance Apart","dateModified":"2021-08-25T20:13:38+02:00","datePublished":"2021-08-25T20:13:38+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0358.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
     
@@ -68,8 +68,8 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0358. Rearrange String k Distance Apart</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-08-14T19:09:20+02:00" itemprop="datePublished">
-        Aug 14, 2021
+    <p class="post-meta"><time class="dt-published" datetime="2021-08-25T20:13:38+02:00" itemprop="datePublished">
+        Aug 25, 2021
       </time></p>
   </header>
 
@@ -86,7 +86,7 @@
 <h4 id="complexity">Complexity</h4>
 <p>Both steps can be done in $O(\log M)$, so overall time complexity is $O(n\log M)$.  Each moment of time we have no more than $M = 26$ elements in our heap.</p>
 
-<p>####</p>
+<h4 id="code">Code</h4>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">rearrangeString</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="n">s</span>
@@ -121,7 +121,7 @@
 <h4 id="complexity-1">Complexity</h4>
 <p>Complexity is $O(M\cdot N)$ which is theoretically bigger, but in practice works faster.\</p>
 
-<h4 id="code">Code</h4>
+<h4 id="code-1">Code</h4>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">rearrangeString</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="n">s</span>
