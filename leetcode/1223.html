@@ -13,11 +13,11 @@
 <meta property="og:description" content="Problem statement" />
 <meta property="og:site_name" content="Dmitry Babichev’s webpage" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-08-25T20:13:38+02:00" />
+<meta property="article:published_time" content="2021-09-12T21:17:50+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 1223. Dice Roll Simulation" />
 <script type="application/ld+json">
-{"url":"/leetcode/1223.html","@type":"BlogPosting","headline":"Leetcode 1223. Dice Roll Simulation","dateModified":"2021-08-25T20:13:38+02:00","datePublished":"2021-08-25T20:13:38+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1223.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
+{"url":"/leetcode/1223.html","@type":"BlogPosting","headline":"Leetcode 1223. Dice Roll Simulation","dateModified":"2021-09-12T21:17:50+02:00","datePublished":"2021-09-12T21:17:50+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1223.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
     
@@ -68,8 +68,8 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 1223. Dice Roll Simulation</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-08-25T20:13:38+02:00" itemprop="datePublished">
-        Aug 25, 2021
+    <p class="post-meta"><time class="dt-published" datetime="2021-09-12T21:17:50+02:00" itemprop="datePublished">
+        Sep 12, 2021
       </time></p>
   </header>
 
@@ -130,34 +130,33 @@
 <p>Time complexity is <code class="language-plaintext highlighter-rouge">O(m^3 * log n)</code>, space is <code class="language-plaintext highlighter-rouge">O(m^2)</code>.</p>
 
 <h4 id="code-1">Code</h4>
-<p>```python
-class Solution:
-    def dieSimulator(self, n, rollMax):
-        def mult(X, Y, MOD):
-            return [[sum(a<em>b for a,b in zip(x, y))%MOD for y in zip(</em>Y)] for x in X]</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    def power(M, n, MOD):
-        result = [[0] * m for _ in range(m)]
-        for i in range(m): result[i][i] = 1
-        while n &gt; 0:
-            if n%2: result = mult(M, result, MOD)
-            M = mult(M, M, MOD)
-            n //= 2
-        return result
-    
-    m, MOD = sum(rollMax), 10**9 + 7
-    mat, s = [[0] * m for _ in range(m)], [0] * m
-    acc = [0] + list(accumulate(rollMax))
-
-    for i, j in zip(acc, acc[1:]):
-        for k in chain(range(i), range(j, m)): mat[k][i] = 1  
-            
-    for i in range(m-1):
-        mat[i][i+1] = 1
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">dieSimulator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">rollMax</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">mult</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">MOD</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">[[</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">b</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span><span class="o">%</span><span class="n">MOD</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">Y</span><span class="p">)]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span><span class="p">]</span>
         
-    for i in acc[:-1]: s[i] = 1
+        <span class="k">def</span> <span class="nf">power</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">MOD</span><span class="p">):</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">m</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">)]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span> <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">n</span><span class="o">%</span><span class="mi">2</span><span class="p">:</span> <span class="n">result</span> <span class="o">=</span> <span class="n">mult</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">MOD</span><span class="p">)</span>
+                <span class="n">M</span> <span class="o">=</span> <span class="n">mult</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">MOD</span><span class="p">)</span>
+                <span class="n">n</span> <span class="o">//=</span> <span class="mi">2</span>
+            <span class="k">return</span> <span class="n">result</span>
+        
+        <span class="n">m</span><span class="p">,</span> <span class="n">MOD</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">rollMax</span><span class="p">),</span> <span class="mi">10</span><span class="o">**</span><span class="mi">9</span> <span class="o">+</span> <span class="mi">7</span>
+        <span class="n">mat</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">m</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">)],</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">m</span>
+        <span class="n">acc</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">accumulate</span><span class="p">(</span><span class="n">rollMax</span><span class="p">))</span>
 
-    return sum(mult([s], power(mat, n-1, MOD), MOD)[0]) % MOD ``
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="n">acc</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">chain</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">m</span><span class="p">)):</span> <span class="n">mat</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  
+                
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">acc</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">mult</span><span class="p">([</span><span class="n">s</span><span class="p">],</span> <span class="n">power</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">MOD</span><span class="p">),</span> <span class="n">MOD</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span> <span class="o">%</span> <span class="n">MOD</span>
 </code></pre></div></div>
 
   </div><a class="u-url" href="/leetcode/1223.html" hidden></a>

@@ -13,11 +13,11 @@
 <meta property="og:description" content="https://leetcode.com/problems/partition-labels" />
 <meta property="og:site_name" content="Dmitry Babichev’s webpage" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-08-25T20:13:38+02:00" />
+<meta property="article:published_time" content="2021-09-12T21:17:50+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0763. Partition Labels" />
 <script type="application/ld+json">
-{"url":"/leetcode/0763.html","@type":"BlogPosting","headline":"Leetcode 0763. Partition Labels","dateModified":"2021-08-25T20:13:38+02:00","datePublished":"2021-08-25T20:13:38+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0763.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/partition-labels","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0763.html","@type":"BlogPosting","headline":"Leetcode 0763. Partition Labels","dateModified":"2021-09-12T21:17:50+02:00","datePublished":"2021-09-12T21:17:50+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0763.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/partition-labels","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
     
@@ -68,26 +68,28 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0763. Partition Labels</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-08-25T20:13:38+02:00" itemprop="datePublished">
-        Aug 25, 2021
+    <p class="post-meta"><time class="dt-published" datetime="2021-09-12T21:17:50+02:00" itemprop="datePublished">
+        Sep 12, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
     <p><a href="https://leetcode.com/problems/partition-labels"> <font color="blue">https://leetcode.com/problems/partition-labels</font></a></p>
 
-<p>The idea of this solution is greedily construct our partition, let us consider the example
-<code class="language-plaintext highlighter-rouge">S = ababcbacdefegdehijhklij</code>. We need to start with letter <code class="language-plaintext highlighter-rouge">a</code> and we can not stop, until we reach the last occurence of <code class="language-plaintext highlighter-rouge">a</code>: so, we need to take <code class="language-plaintext highlighter-rouge">ababcba</code> part at least. But if we take this part, we need to consider letters <code class="language-plaintext highlighter-rouge">b</code> and <code class="language-plaintext highlighter-rouge">c</code> as well and also traverse our string until we meet the last occurence of these letters, so we need to take <code class="language-plaintext highlighter-rouge">ababcbac</code>. Here we can stop, because we already take into account all symbols inside this string. So, we go to the next symbol and repeat our partition. So, what we have in my code:</p>
+<h4 id="solution">Solution</h4>
+<p>The idea of this solution is greedily construct our partition, let us consider the example <code class="language-plaintext highlighter-rouge">S = ababcbacde fegdehijhklij</code>. We need to start with letter a and we can not stop, until we reach the last occurrence of <code class="language-plaintext highlighter-rouge">a</code>: so, we need to take <code class="language-plaintext highlighter-rouge">ababcba</code> part at least. But if we take this part, we need to consider letters <code class="language-plaintext highlighter-rouge">b</code> and <code class="language-plaintext highlighter-rouge">c</code> as well and also traverse our string until we meet the last occurrence of these letters, so we need to take <code class="language-plaintext highlighter-rouge">ababcbac</code>. Here we can stop, because we already take into account all symbols inside this string. So, we go to the next symbol and repeat our partition. So, what we have in my code:</p>
 
 <ol>
   <li>First, we need to know all ends for each letter in advance, I call it <code class="language-plaintext highlighter-rouge">ends</code>.</li>
-  <li>Also, <code class="language-plaintext highlighter-rouge">curr</code> is current index and <code class="language-plaintext highlighter-rouge">last</code> is index we need to traverse until. For each group of symbols we need to do: <code class="language-plaintext highlighter-rouge">last = ends[S[curr]]</code>: we find the place we need to traverse; while we do no reach this place, we look at the next symbol and update our <code class="language-plaintext highlighter-rouge">last</code>. So, we stop, when <code class="language-plaintext highlighter-rouge">curr</code> become greater than <code class="language-plaintext highlighter-rouge">last</code>.</li>
-  <li>We add <code class="language-plaintext highlighter-rouge">curr</code> to our <code class="language-plaintext highlighter-rouge">out</code> result.</li>
-  <li>Note, that we need to have <code class="language-plaintext highlighter-rouge">[8,7,8]</code> for our example, but we get <code class="language-plaintext highlighter-rouge">[8,15,23]</code>, places where our partitions are. So, we evaluate differences <code class="language-plaintext highlighter-rouge">8-0</code>, <code class="language-plaintext highlighter-rouge">15-8</code>, <code class="language-plaintext highlighter-rouge">23-15</code> and return them.</li>
+  <li>Also, <code class="language-plaintext highlighter-rouge">curr</code> is current index and last is index we need to traverse until. For each group of symbols we need to do: <code class="language-plaintext highlighter-rouge">last = ends[S[curr]]</code>: we find the place we need to traverse; while we do no reach this place, we look at the next symbol and update our last. So, we stop, when <code class="language-plaintext highlighter-rouge">curr</code> become greater than last.</li>
+  <li>We add <code class="language-plaintext highlighter-rouge">curr</code> to our out result.</li>
+  <li>Note, that we need to have <code class="language-plaintext highlighter-rouge">[8, 7, 8]</code> for our example, but we get <code class="language-plaintext highlighter-rouge">[8, 15, 23]</code>, places where our partitions are. So, we evaluate differences <code class="language-plaintext highlighter-rouge">8 - 0, 15 - 8, 23 - 15</code> and return them.</li>
 </ol>
 
-<p><strong>Complexity</strong>: time complexity is <code class="language-plaintext highlighter-rouge">O(n)</code>, we traverse our string twice: one time when we evaluate <code class="language-plaintext highlighter-rouge">ends</code> and second time when we do partitions. Space complexity is <code class="language-plaintext highlighter-rouge">O(26)</code>: to keep our <code class="language-plaintext highlighter-rouge">ends</code> (also we have answer, but it can not be greater than <code class="language-plaintext highlighter-rouge">26</code> as well).</p>
+<h4 id="complexity">Complexity</h4>
+<p>Time complexity is <code class="language-plaintext highlighter-rouge">O(n)</code>, we traverse our string twice: one time when we evaluate ends and second time when we do partitions. Space complexity is <code class="language-plaintext highlighter-rouge">O(26)</code>: to keep our ends (also we have answer, but it can not be greater than <code class="language-plaintext highlighter-rouge">26</code> as well).</p>
 
+<h4 id="code">Code</h4>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">partitionLabels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">S</span><span class="p">):</span>
         <span class="n">ends</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">S</span><span class="p">)}</span>        
@@ -104,7 +106,8 @@
         <span class="k">return</span> <span class="p">[</span><span class="n">out</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">out</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">out</span><span class="p">))]</span>
 </code></pre></div></div>
 
-<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/partition-labels/discuss/828031/python-greedy-o(n)-solution-explained"> <font color="blue">Problem 0763</font></a></p>
+<h4 id="remark">Remark</h4>
+<p>Note, that what we actually doing here is merging intervals, which is very similar to problem <strong>0056</strong> Merge Intervals, but here <code class="language-plaintext highlighter-rouge">[1, 4]</code> and <code class="language-plaintext highlighter-rouge">[4, 5]</code> is not overlapping. So, instead of <code class="language-plaintext highlighter-rouge">[0, 2), [2, 4)</code>, we can use <code class="language-plaintext highlighter-rouge">[0, 1.5], [2, 3.5]</code> intervals and then just apply problem <strong>0056</strong> directly</p>
 
   </div><a class="u-url" href="/leetcode/0763.html" hidden></a>
 </article>
