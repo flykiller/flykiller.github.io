@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Leetcode 1707 Maximum XOR With an Element From Array | Dmitry Babichev’s webpage</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Leetcode 1707 Maximum XOR With an Element From Array" />
+<meta name="author" content="Dmitry Babichev" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Problem statement" />
+<meta property="og:description" content="Problem statement" />
+<meta property="og:site_name" content="Dmitry Babichev’s webpage" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-09-13T18:31:34+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Leetcode 1707 Maximum XOR With an Element From Array" />
+<script type="application/ld+json">
+{"url":"/leetcode/1707.html","@type":"BlogPosting","headline":"Leetcode 1707 Maximum XOR With an Element From Array","dateModified":"2021-09-13T18:31:34+02:00","datePublished":"2021-09-13T18:31:34+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1707.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
+    
+
+
+
+
+
+
+  
+  
+</head>
+
+    
+    <!-- for mathjax support -->
+    
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dmitry Babichev&#39;s webpage</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode problems</a><a class="page-link" href="/coding%20ideas/">Patterns</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <span>[
+  
+    
+    <a href="/tag/trie"><code class="highligher-rouge"><nobr>trie</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/math"><code class="highligher-rouge"><nobr>math</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/bit manipulation"><code class="highligher-rouge"><nobr>bit manipulation</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/digit build"><code class="highligher-rouge"><nobr>digit build</nobr></code>&nbsp;</a>
+  
+]</span>
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Leetcode 1707 Maximum XOR With an Element From Array</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-09-13T18:31:34+02:00" itemprop="datePublished">
+        Sep 13, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h4 id="problem-statement">Problem statement</h4>
+
+<p><a href="https://leetcode.com/problems/maximum-xor-with-an-element-from-array/"> <font color="blue">https://leetcode.com/problems/maximum-xor-with-an-element-from-array/</font></a></p>
+
+<h4 id="solution-1">Solution 1</h4>
+<p>It is similar to problem <strong>0421</strong>, where the idea is to build trie given number. Also in this problem we are given our queries in advance, that is so-called offline queries, so we can exploit this and keep in our trie only relevant elements. The idea is to sort queries by <code class="language-plaintext highlighter-rouge">m</code> and then add only number which are less or equal to <code class="language-plaintext highlighter-rouge">m</code>.</p>
+
+<h4 id="complexity">Complexity</h4>
+<p>Time complexity is <code class="language-plaintext highlighter-rouge">O(n log n + k log k + k log M)</code>, where <code class="language-plaintext highlighter-rouge">n</code> is length of <code class="language-plaintext highlighter-rouge">nums</code>, <code class="language-plaintext highlighter-rouge">k</code> is length of <code class="language-plaintext highlighter-rouge">queries</code> and <code class="language-plaintext highlighter-rouge">M</code> is limit for numbers in <code class="language-plaintext highlighter-rouge">nums</code>. Space complexity is <code class="language-plaintext highlighter-rouge">O(n * log M)</code>.</p>
+
+<h4 id="code">Code</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Trie</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">root</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">root</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">bit</span> <span class="o">=</span> <span class="p">(</span><span class="n">num</span> <span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">1</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">bit</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="p">.</span><span class="n">root</span><span class="p">:</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">node</span><span class="p">,</span> <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">root</span><span class="p">,</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">bit</span> <span class="o">=</span> <span class="p">(</span><span class="n">num</span> <span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">1</span>
+            <span class="n">desired</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">bit</span> <span class="k">if</span> <span class="mi">1</span><span class="o">-</span><span class="n">bit</span> <span class="ow">in</span> <span class="n">node</span> <span class="k">else</span> <span class="n">bit</span>
+            <span class="n">res</span> <span class="o">+=</span> <span class="p">(</span><span class="n">desired</span> <span class="o">^</span> <span class="n">bit</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">i</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="n">desired</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">res</span>
+
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">maximizeXor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">Q</span><span class="p">):</span>
+        <span class="n">nums</span><span class="p">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="n">Q</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">((</span><span class="n">m</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">Q</span><span class="p">))</span>
+        <span class="n">trie</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">Trie</span><span class="p">(),</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+        <span class="n">ans</span><span class="p">,</span> <span class="n">ind</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">k</span><span class="p">,</span> <span class="mi">0</span>
+        
+        <span class="k">for</span> <span class="n">m</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">Q</span><span class="p">:</span>
+            <span class="k">while</span> <span class="n">ind</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="p">:</span>
+                <span class="n">trie</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">ind</span><span class="p">])</span>
+                <span class="n">ind</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">trie</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div></div>
+
+<h4 id="solution-2">Solution 2</h4>
+<p>There is also version where queries are online. The idea is to traverse trie and if:</p>
+<ol>
+  <li>We have only one children, we need to go in this direction.</li>
+  <li>If we have <code class="language-plaintext highlighter-rouge">1-bit</code> children, we need to go to this direction, and if we have result <code class="language-plaintext highlighter-rouge">-1</code>, it means that this subtree is too big for us, so we need to abandon it and go to the other one.</li>
+</ol>
+
+<h4 id="complexity-1">Complexity</h4>
+<p>One query can spend potentially upto <code class="language-plaintext highlighter-rouge">O(log^2 M)</code> time, because to make sure that branch is bad, we need to go upto leaf. However in practice it works almost the same as previous approach, because I think in average it is still <code class="language-plaintext highlighter-rouge">O(log M)</code>. So, total time complexity is <code class="language-plaintext highlighter-rouge">O(n log n + k*log^2M)</code>. Space complexity is <code class="language-plaintext highlighter-rouge">O(n * log M)</code>.</p>
+
+<h4 id="code-1">Code</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Trie</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">root</span> <span class="o">=</span> <span class="p">{}</span>
+        
+    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">root</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">bit</span> <span class="o">=</span> <span class="p">(</span><span class="n">num</span> <span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">1</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">bit</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span>
+        
+    <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">res</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">res</span> <span class="o">&gt;</span> <span class="n">L</span><span class="p">:</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="n">res</span>
+        <span class="n">bit</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">1</span>
+        
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="mi">0</span> <span class="ow">in</span> <span class="n">node</span> <span class="k">else</span> <span class="mi">1</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">dfs</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="n">x</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">res</span><span class="o">+</span><span class="p">(</span><span class="n">c</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="p">))</span>
+        
+        <span class="n">res2</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">dfs</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="n">bit</span><span class="p">],</span> <span class="n">x</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">res</span><span class="o">+</span><span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">bit</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">res2</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span> <span class="n">res2</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">dfs</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="n">bit</span><span class="p">],</span> <span class="n">x</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">res</span><span class="o">+</span><span class="p">(</span><span class="n">bit</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">res2</span>
+    
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">maximizeXor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">Q</span><span class="p">):</span>
+        <span class="n">trie</span><span class="p">,</span> <span class="n">res</span> <span class="o">=</span> <span class="n">Trie</span><span class="p">(),</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span> <span class="n">trie</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">Q</span><span class="p">:</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="n">trie</span><span class="p">.</span><span class="n">dfs</span><span class="p">(</span><span class="n">trie</span><span class="p">.</span><span class="n">root</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">res</span> <span class="o">+=</span> <span class="p">[</span><span class="n">ans</span><span class="o">^</span><span class="n">x</span><span class="p">]</span> <span class="k">if</span> <span class="n">ans</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">res</span>
+</code></pre></div></div>
+
+<h4 id="solution-3">Solution 3</h4>
+<p>We can modify our trie a bit and for each node keep minimum value of subtree we can have. If it is more than limit, we can do erly stopping. So, now complexity of query is <code class="language-plaintext highlighter-rouge">O(log M)</code>, however in practice it works even slower, but from code it is easy to show complexity.</p>
+
+<h4 id="complexity-2">Complexity</h4>
+<p>Total time complexity is <code class="language-plaintext highlighter-rouge">O(n log n + k*log M)</code>. Space complexity is <code class="language-plaintext highlighter-rouge">O(n * log M)</code>.</p>
+
+<h4 id="code-2">Code</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Trie</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">root</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="s">"inf"</span><span class="p">)}</span>
+        
+    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">root</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">bit</span> <span class="o">=</span> <span class="p">(</span><span class="n">num</span> <span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">1</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">bit</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span>
+            <span class="n">d</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="s">"inf"</span><span class="p">)))</span>
+        
+    <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">res</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">res</span> <span class="o">&gt;</span> <span class="n">L</span><span class="p">:</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="n">res</span>
+        <span class="n">bit</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">1</span>
+        
+        <span class="n">best</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">if</span> <span class="mi">1</span><span class="o">-</span><span class="n">bit</span> <span class="ow">in</span> <span class="n">node</span> <span class="ow">and</span> <span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="n">bit</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">L</span> <span class="ow">or</span> <span class="n">bit</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">node</span><span class="p">):</span> 
+            <span class="n">best</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">bit</span>
+        <span class="k">elif</span> <span class="n">bit</span> <span class="ow">in</span> <span class="n">node</span> <span class="ow">and</span> <span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="n">bit</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">L</span> <span class="ow">or</span> <span class="mi">1</span><span class="o">-</span><span class="n">bit</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">node</span><span class="p">):</span>
+            <span class="n">best</span> <span class="o">=</span> <span class="n">bit</span>
+        
+        <span class="k">if</span> <span class="n">best</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">dfs</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="n">best</span><span class="p">],</span> <span class="n">x</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">res</span><span class="o">+</span><span class="p">(</span><span class="n">best</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="p">))</span>
+    
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">maximizeXor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">Q</span><span class="p">):</span>
+        <span class="n">trie</span><span class="p">,</span> <span class="n">res</span> <span class="o">=</span> <span class="n">Trie</span><span class="p">(),</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span> <span class="n">trie</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">Q</span><span class="p">:</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="n">trie</span><span class="p">.</span><span class="n">dfs</span><span class="p">(</span><span class="n">trie</span><span class="p">.</span><span class="n">root</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">res</span> <span class="o">+=</span> <span class="p">[</span><span class="n">ans</span><span class="o">^</span><span class="n">x</span><span class="p">]</span> <span class="k">if</span> <span class="n">ans</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">res</span>
+</code></pre></div></div>
+
+
+  </div><a class="u-url" href="/leetcode/1707.html" hidden></a>
+</article>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">Dmitry Babichev</li>
+          <li><a class="u-email" href="mailto:dimitry008@gmail.com">dimitry008@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
