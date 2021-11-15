@@ -13,11 +13,11 @@
 <meta property="og:description" content="Problem statement" />
 <meta property="og:site_name" content="Dmitry Babichev’s webpage" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-09-14T17:45:17+02:00" />
+<meta property="article:published_time" content="2021-11-15T15:22:32+03:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0350 Intersection of Two Arrays II" />
 <script type="application/ld+json">
-{"url":"/leetcode/0350.html","@type":"BlogPosting","headline":"Leetcode 0350 Intersection of Two Arrays II","dateModified":"2021-09-14T17:45:17+02:00","datePublished":"2021-09-14T17:45:17+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0350.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0350.html","@type":"BlogPosting","headline":"Leetcode 0350 Intersection of Two Arrays II","dateModified":"2021-11-15T15:22:32+03:00","datePublished":"2021-11-15T15:22:32+03:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0350.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
     
@@ -71,8 +71,8 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0350 Intersection of Two Arrays II</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-09-14T17:45:17+02:00" itemprop="datePublished">
-        Sep 14, 2021
+    <p class="post-meta"><time class="dt-published" datetime="2021-11-15T15:22:32+03:00" itemprop="datePublished">
+        Nov 15, 2021
       </time></p>
   </header>
 
@@ -82,9 +82,10 @@
 <p><a href="https://leetcode.com/problems/intersection-of-two-arrays-ii/"> <font color="blue">https://leetcode.com/problems/intersection-of-two-arrays-ii/</font></a></p>
 
 <h4 id="solution">Solution</h4>
-<p>Similar to problem <strong>0349</strong>, but here we can use hash-table with number of occurrences or in python we can use <code class="language-plaintext highlighter-rouge">Counter</code> function. If our data is sorted, we can use two pointers approach, complexity will be <code class="language-plaintext highlighter-rouge">O(m+n)</code> and with additional <code class="language-plaintext highlighter-rouge">O(1)</code> memory, if we do not consider answer as memory. If one of arrays is much bigger than another, we can use binary search with complexity <code class="language-plaintext highlighter-rouge">O(n log m)</code>. (note, that BS is quite tricky here, because we need to handle duplicates, we need to find the left-most matching number. Next time we perform binary search, the low should start from previously found index + 1). If <code class="language-plaintext highlighter-rouge">nums2</code> is stored on disk, then we can put <code class="language-plaintext highlighter-rouge">nums1</code> into hash table and use chunks of <code class="language-plaintext highlighter-rouge">nums1</code>. If <code class="language-plaintext highlighter-rouge">nums1</code> is also big, we need to sort them, using external sort and use two pointers.</p>
+<p>Similar to problem <strong>0349</strong>, but here we can use hash-table with number of occurrences or in python we can use <code class="language-plaintext highlighter-rouge">Counter</code> function.  The idea is to use intersection of counters, using <code class="language-plaintext highlighter-rouge">&amp;</code> symbol and then just take each symbol with correct frequency. Then we use <code class="language-plaintext highlighter-rouge">chain(*)</code> to create list.</p>
 
 <h4 id="complexity">Complexity</h4>
+<p>It is <code class="language-plaintext highlighter-rouge">O(n + m)</code> for time and space where <code class="language-plaintext highlighter-rouge">n</code> and <code class="language-plaintext highlighter-rouge">m</code> are sizes of <code class="language-plaintext highlighter-rouge">nums</code> and <code class="language-plaintext highlighter-rouge">nums2</code>.</p>
 
 <h4 id="code">Code</h4>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
@@ -92,6 +93,8 @@
         <span class="k">return</span> <span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="p">[[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">j</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">(</span><span class="n">Counter</span><span class="p">(</span><span class="n">nums1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">Counter</span><span class="p">(</span><span class="n">nums2</span><span class="p">)).</span><span class="n">items</span><span class="p">()])</span>
 </code></pre></div></div>
 
+<h4 id="follow-up">Follow-up</h4>
+<p>If our data is sorted, we can use two pointers approach, complexity will be <code class="language-plaintext highlighter-rouge">O(m+n)</code> and with additional <code class="language-plaintext highlighter-rouge">O(1)</code> memory, if we do not consider answer as memory. If one of arrays is much bigger than another, we can use binary search with complexity <code class="language-plaintext highlighter-rouge">O(n log m)</code>. (note, that BS is quite tricky here, because we need to handle duplicates, we need to find the left-most matching number. Next time we perform binary search, the low should start from previously found index + 1). If <code class="language-plaintext highlighter-rouge">nums2</code> is stored on disk, then we can put <code class="language-plaintext highlighter-rouge">nums1</code> into hash table and use chunks of <code class="language-plaintext highlighter-rouge">nums1</code>. If <code class="language-plaintext highlighter-rouge">nums1</code> is also big, we need to sort them, using external sort and use two pointers.</p>
 
   </div><a class="u-url" href="/leetcode/0350.html" hidden></a>
 </article>

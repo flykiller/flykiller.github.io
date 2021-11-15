@@ -13,11 +13,11 @@
 <meta property="og:description" content="Problem statement" />
 <meta property="og:site_name" content="Dmitry Babichev’s webpage" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-09-14T17:45:17+02:00" />
+<meta property="article:published_time" content="2021-11-15T15:22:32+03:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 1235 Maximum Profit in Job Scheduling" />
 <script type="application/ld+json">
-{"url":"/leetcode/1235.html","@type":"BlogPosting","headline":"Leetcode 1235 Maximum Profit in Job Scheduling","dateModified":"2021-09-14T17:45:17+02:00","datePublished":"2021-09-14T17:45:17+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1235.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
+{"url":"/leetcode/1235.html","@type":"BlogPosting","headline":"Leetcode 1235 Maximum Profit in Job Scheduling","dateModified":"2021-11-15T15:22:32+03:00","datePublished":"2021-11-15T15:22:32+03:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1235.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
     
@@ -71,8 +71,8 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 1235 Maximum Profit in Job Scheduling</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-09-14T17:45:17+02:00" itemprop="datePublished">
-        Sep 14, 2021
+    <p class="post-meta"><time class="dt-published" datetime="2021-11-15T15:22:32+03:00" itemprop="datePublished">
+        Nov 15, 2021
       </time></p>
   </header>
 
@@ -82,24 +82,34 @@
 <p><a href="https://leetcode.com/problems/day-of-the-week/"> <font color="blue">https://leetcode.com/problems/day-of-the-week/</font></a></p>
 
 <h4 id="solution">Solution</h4>
-<p>Very similar to problem <strong>1751</strong>, but here we do not care about how many jobs we take.</p>
+<p>This is really interesting problem, where you need to use two tecniques: dynamic programming and binary search. Let us start our jobs by their starts. Define by <code class="language-plaintext highlighter-rouge">dp[k]</code> the maximum gain we can have if we can use only use jobs starting with index <code class="language-plaintext highlighter-rouge">k</code>. How we can find <code class="language-plaintext highlighter-rouge">dp[k]</code> now and why in the first places we sorted our jobs by starts?</p>
+
+<p>Imagine that we taken job with number <code class="language-plaintext highlighter-rouge">k</code>, what we can take next? We need to wait until this job finished, that is to look at <code class="language-plaintext highlighter-rouge">jobs[k][1]</code> and find the first job which start more than this number: we use binary search for this with this line <code class="language-plaintext highlighter-rouge">temp = bisect_left(S, jobs[k][1])</code>. Finally, our gain will be <code class="language-plaintext highlighter-rouge">jobs[k][2] + dp[temp]</code>. Also we have another option: <code class="language-plaintext highlighter-rouge">dp[k+1]</code>, if we do not take job <code class="language-plaintext highlighter-rouge">k</code>. then we can take any jobs from <code class="language-plaintext highlighter-rouge">k+1</code> without restriction.</p>
+
+<p>Notice also that we start from <code class="language-plaintext highlighter-rouge">k = n-1</code> and move to <code class="language-plaintext highlighter-rouge">k = 0</code> in the opposite direction, because to answer <code class="language-plaintext highlighter-rouge">dp[k]</code> query we want to already be able to ask queries for <code class="language-plaintext highlighter-rouge">dp[&gt;k]</code>.</p>
 
 <h4 id="complexity">Complexity</h4>
-<p>Time complexity is <code class="language-plaintext highlighter-rouge">O(n log n)</code>, space is <code class="language-plaintext highlighter-rouge">O(n)</code>.</p>
+<p>Time complexity is <code class="language-plaintext highlighter-rouge">O(n * log n)</code>, because we do <code class="language-plaintext highlighter-rouge">n</code> binary searches. Space complexity is <code class="language-plaintext highlighter-rouge">O(n)</code>.</p>
 
 <h4 id="code">Code</h4>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">bisect</span>
+
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">jobScheduling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">profit</span><span class="p">):</span>
-        <span class="n">videos</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">profit</span><span class="p">)))</span>
-        <span class="n">S</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">videos</span><span class="p">]</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">videos</span><span class="p">)</span>
+        <span class="n">jobs</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">profit</span><span class="p">)))</span>
+        <span class="n">S</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">jobs</span><span class="p">]</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">jobs</span><span class="p">)</span>
         <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-            <span class="n">temp</span> <span class="o">=</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">videos</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
-            <span class="n">dp</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">videos</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">dp</span><span class="p">[</span><span class="n">temp</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
-        <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>    
+            <span class="n">temp</span> <span class="o">=</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">jobs</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">dp</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">jobs</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">dp</span><span class="p">[</span><span class="n">temp</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div></div>
 
+<p>If you have any questions, feel free to ask. If you like solution and explanations, please <strong>Upvote!</strong></p>
+
+<h4 id="remark">Remark</h4>
+<p>Very similar to problem <strong>1751</strong>, but here we do not care about how many jobs we take.</p>
 
   </div><a class="u-url" href="/leetcode/1235.html" hidden></a>
 </article>

@@ -13,11 +13,11 @@
 <meta property="og:description" content="https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs" />
 <meta property="og:site_name" content="Dmitry Babichev’s webpage" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-09-14T17:45:17+02:00" />
+<meta property="article:published_time" content="2021-11-15T15:22:32+03:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 1723. Find Minimum Time to Finish All Jobs" />
 <script type="application/ld+json">
-{"url":"/leetcode/1723.html","@type":"BlogPosting","headline":"Leetcode 1723. Find Minimum Time to Finish All Jobs","dateModified":"2021-09-14T17:45:17+02:00","datePublished":"2021-09-14T17:45:17+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1723.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs","@context":"https://schema.org"}</script>
+{"url":"/leetcode/1723.html","@type":"BlogPosting","headline":"Leetcode 1723. Find Minimum Time to Finish All Jobs","dateModified":"2021-11-15T15:22:32+03:00","datePublished":"2021-11-15T15:22:32+03:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1723.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
     
@@ -68,14 +68,15 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 1723. Find Minimum Time to Finish All Jobs</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-09-14T17:45:17+02:00" itemprop="datePublished">
-        Sep 14, 2021
+    <p class="post-meta"><time class="dt-published" datetime="2021-11-15T15:22:32+03:00" itemprop="datePublished">
+        Nov 15, 2021
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
     <p><a href="https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs"> <font color="blue">https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs</font></a></p>
 
+<h4 id="solution-1">Solution 1</h4>
 <p>Not the fastest solution in python, but I think it is clean and it is easy to estimate its complexity.</p>
 
 <p>Let us try to answer the following question first: given <code class="language-plaintext highlighter-rouge">basket</code> : working time for each worker, question is if we can allocate workers in such way, that each of them spend <code class="language-plaintext highlighter-rouge">&lt;= basket</code> time. For example, if we have <code class="language-plaintext highlighter-rouge">jobs = [1, 2, 3, 5, 7]</code>, and <code class="language-plaintext highlighter-rouge">basket = 8</code>, then we can allocate workers as <code class="language-plaintext highlighter-rouge">[1, 7], [3, 5], [2]</code> and we need at least <code class="language-plaintext highlighter-rouge">3</code> workers here.</p>
@@ -102,30 +103,59 @@
 
 <p><strong>Further thought</strong> As far as I aware, there is also <code class="language-plaintext highlighter-rouge">O(k*3^n)</code> complexity solution, I will code it later, but I think it will give TLE in python. There are also a lot of dfs solution with different pruning techniques, that are pretty good and working 5-50 times faster, depending on how you prune, but will you be able to explain complexity of those solution to interviewer?</p>
 
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Solution:
+    def minimumTimeRequired(self, jobs, k):
+        N = len(jobs)
+        
+        @lru_cache(None)
+        def dfs(mask, basket):
+            if mask == 0: return (1, 0)
+            ans = (float("inf"), float("inf"))
+            for j in range(N):
+                if mask &amp; (1&lt;&lt;j):
+                    pieces, last = dfs(mask - (1 &lt;&lt; j), basket)
+                    full = (last + jobs[j] &gt; basket)
+                    ans = min(ans, (pieces + full, jobs[j] + (1-full)*last))  
+            return ans 
+
+        beg, end = max(jobs), sum(jobs)
+        while beg &lt; end:
+            mid = (beg + end)//2
+            if dfs((1&lt;&lt;N) - 1, mid)[0] &gt;= k + 1:
+                beg = mid + 1
+            else:
+                end = mid
+        
+        return beg
+</code></pre></div></div>
+
+<h4 id="solution-2">Solution 2</h4>
+<p>We can also work with submasks: let the state be <code class="language-plaintext highlighter-rouge">mask</code> of available jobs and <code class="language-plaintext highlighter-rouge">k</code> is index of person. Then each time when we choose new person we need to look at all possible submasks. However we need to be careful and use a bit of prunning: without it in python we will get TLE: we check <code class="language-plaintext highlighter-rouge">if cost[submask] &gt;= ret: continue</code>, that is do early stopping if cost of submask is more than score of mask, we do not consider this option.</p>
+
+<h4 id="complexity">Complexity</h4>
+<p>Time complexity is <code class="language-plaintext highlighter-rouge">O(3^n * m)</code>, space complexity is <code class="language-plaintext highlighter-rouge">O(2^n * m)</code>.</p>
+
+<h4 id="code">Code</h4>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">minimumTimeRequired</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jobs</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-        <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">jobs</span><span class="p">)</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">jobs</span><span class="p">)</span>
+        <span class="n">cost</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">mask</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)):</span>
+            <span class="n">cost</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">+=</span> <span class="n">jobs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="p">((</span><span class="n">mask</span> <span class="o">&gt;&gt;</span> <span class="n">j</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span>
         
         <span class="o">@</span><span class="n">lru_cache</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
-        <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">basket</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">mask</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-            <span class="n">ans</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="s">"inf"</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="s">"inf"</span><span class="p">))</span>
-            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-                <span class="k">if</span> <span class="n">mask</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">j</span><span class="p">):</span>
-                    <span class="n">pieces</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">mask</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">j</span><span class="p">),</span> <span class="n">basket</span><span class="p">)</span>
-                    <span class="n">full</span> <span class="o">=</span> <span class="p">(</span><span class="n">last</span> <span class="o">+</span> <span class="n">jobs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">basket</span><span class="p">)</span>
-                    <span class="n">ans</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="p">(</span><span class="n">pieces</span> <span class="o">+</span> <span class="n">full</span><span class="p">,</span> <span class="n">jobs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">full</span><span class="p">)</span><span class="o">*</span><span class="n">last</span><span class="p">))</span>  
-            <span class="k">return</span> <span class="n">ans</span> 
-
-        <span class="n">beg</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">jobs</span><span class="p">),</span> <span class="nb">sum</span><span class="p">(</span><span class="n">jobs</span><span class="p">)</span>
-        <span class="k">while</span> <span class="n">beg</span> <span class="o">&lt;</span> <span class="n">end</span><span class="p">:</span>
-            <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">beg</span> <span class="o">+</span> <span class="n">end</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
-            <span class="k">if</span> <span class="n">dfs</span><span class="p">((</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">N</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mid</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="n">beg</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">end</span> <span class="o">=</span> <span class="n">mid</span>
+        <span class="k">def</span> <span class="nf">dp</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">cost</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+            <span class="n">submask</span><span class="p">,</span> <span class="n">ret</span> <span class="o">=</span> <span class="n">mask</span><span class="p">,</span> <span class="n">cost</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">submask</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">mask</span><span class="p">:</span>
+                <span class="n">submask</span> <span class="o">=</span> <span class="p">(</span><span class="n">submask</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">mask</span>
+                <span class="k">if</span> <span class="n">cost</span><span class="p">[</span><span class="n">submask</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">ret</span><span class="p">:</span> <span class="k">continue</span>
+                <span class="n">ret</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">cost</span><span class="p">[</span><span class="n">submask</span><span class="p">],</span> <span class="n">dp</span><span class="p">(</span><span class="n">mask</span><span class="o">^</span><span class="n">submask</span><span class="p">,</span> <span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
+                
+            <span class="k">return</span> <span class="n">ret</span>
         
-        <span class="k">return</span> <span class="n">beg</span>
+        <span class="k">return</span> <span class="n">dp</span><span class="p">((</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/discuss/1010451/python-o(2n*n*log(m))-with-complexity-analysis-explained"> <font color="blue">Problem 1723</font></a></p>

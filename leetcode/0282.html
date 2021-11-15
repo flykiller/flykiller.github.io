@@ -13,11 +13,11 @@
 <meta property="og:description" content="Problem statement" />
 <meta property="og:site_name" content="Dmitry Babichev’s webpage" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-09-14T17:45:17+02:00" />
+<meta property="article:published_time" content="2021-11-15T15:22:32+03:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0282. Expression Add Operators" />
 <script type="application/ld+json">
-{"url":"/leetcode/0282.html","@type":"BlogPosting","headline":"Leetcode 0282. Expression Add Operators","dateModified":"2021-09-14T17:45:17+02:00","datePublished":"2021-09-14T17:45:17+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0282.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0282.html","@type":"BlogPosting","headline":"Leetcode 0282. Expression Add Operators","dateModified":"2021-11-15T15:22:32+03:00","datePublished":"2021-11-15T15:22:32+03:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0282.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
     
@@ -68,8 +68,8 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0282. Expression Add Operators</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-09-14T17:45:17+02:00" itemprop="datePublished">
-        Sep 14, 2021
+    <p class="post-meta"><time class="dt-published" datetime="2021-11-15T15:22:32+03:00" itemprop="datePublished">
+        Nov 15, 2021
       </time></p>
   </header>
 
@@ -88,7 +88,9 @@
   <li><code class="language-plaintext highlighter-rouge">last</code> is the value of the last monomial.</li>
 </ol>
 
-<p>Then when we traverse our string, we can have several options: each time we need to create <code class="language-plaintext highlighter-rouge">tmp = int(num[idx: i])</code> and make sure that this is valid number. Then if <code class="language-plaintext highlighter-rouge">last == None</code>, we have only one option. If <code class="language-plaintext highlighter-rouge">last != None</code>, we can have <code class="language-plaintext highlighter-rouge">3</code> options which symbol we can take: if it is <code class="language-plaintext highlighter-rouge">+</code> or <code class="language-plaintext highlighter-rouge">-</code>, we just update <code class="language-plaintext highlighter-rouge">value</code> and sign of <code class="language-plaintext highlighter-rouge">tmp</code>. If it is multiplication, we need to update both <code class="language-plaintext highlighter-rouge">value</code> and <code class="language-plaintext highlighter-rouge">last</code> should be multiplied by <code class="language-plaintext highlighter-rouge">tmp</code>.</p>
+<p>Here we use idea of stack of monomials: imagine, that we have expression <code class="language-plaintext highlighter-rouge">1*2 + 3*4*5</code>, then we have the following steps: <code class="language-plaintext highlighter-rouge">[1], [2], [2, 3], [2,12], [2,60]</code>: each time we have <code class="language-plaintext highlighter-rouge">+</code> or <code class="language-plaintext highlighter-rouge">-</code> we add one element to the end of stack; each time we have <code class="language-plaintext highlighter-rouge">*</code> we update the last element in stack.</p>
+
+<p>Then when we traverse our string, we can have several options: each time we need to create <code class="language-plaintext highlighter-rouge">tmp = int(num[idx: i])</code> and make sure that this is valid number: <code class="language-plaintext highlighter-rouge">tmp</code> will be the next number we are going to use. Then if <code class="language-plaintext highlighter-rouge">last == None</code>, we have only one option. If <code class="language-plaintext highlighter-rouge">last != None</code>, we can have <code class="language-plaintext highlighter-rouge">3</code> options which symbol we can take: if it is <code class="language-plaintext highlighter-rouge">+</code> or <code class="language-plaintext highlighter-rouge">-</code>, we just update <code class="language-plaintext highlighter-rouge">value</code> and sign of <code class="language-plaintext highlighter-rouge">tmp</code>. If it is multiplication, we need to update both <code class="language-plaintext highlighter-rouge">value</code> and <code class="language-plaintext highlighter-rouge">last</code> should be multiplied by <code class="language-plaintext highlighter-rouge">tmp</code>.</p>
 
 <h4 id="complexity">Complexity</h4>
 <p>It is potentially <code class="language-plaintext highlighter-rouge">O(4^n * n)</code>, because on each step we have <code class="language-plaintext highlighter-rouge">4</code> options: <code class="language-plaintext highlighter-rouge">+</code>, <code class="language-plaintext highlighter-rouge">-</code>, <code class="language-plaintext highlighter-rouge">*</code> or no sign. Space complexity potentially the same.</p>
@@ -102,7 +104,7 @@
             
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
                 <span class="n">tmp</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">idx</span><span class="p">:</span> <span class="n">i</span><span class="p">])</span>
-                <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span> <span class="ow">or</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">num</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">!=</span> <span class="s">'0'</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span> <span class="ow">or</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">num</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">!=</span> <span class="s">"0"</span><span class="p">):</span>
                     <span class="k">if</span> <span class="n">last</span> <span class="ow">is</span> <span class="bp">None</span> <span class="p">:</span>
                         <span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">num</span><span class="p">[</span><span class="n">idx</span><span class="p">:</span> <span class="n">i</span><span class="p">],</span> <span class="n">tmp</span><span class="p">,</span> <span class="n">tmp</span><span class="p">)</span>
                     <span class="k">else</span><span class="p">:</span>

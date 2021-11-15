@@ -13,11 +13,11 @@
 <meta property="og:description" content="Problem statement" />
 <meta property="og:site_name" content="Dmitry Babichev’s webpage" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-09-14T17:45:17+02:00" />
+<meta property="article:published_time" content="2021-11-15T15:22:32+03:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0587 Erect The Fence" />
 <script type="application/ld+json">
-{"url":"/leetcode/0587.html","@type":"BlogPosting","headline":"Leetcode 0587 Erect The Fence","dateModified":"2021-09-14T17:45:17+02:00","datePublished":"2021-09-14T17:45:17+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0587.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0587.html","@type":"BlogPosting","headline":"Leetcode 0587 Erect The Fence","dateModified":"2021-11-15T15:22:32+03:00","datePublished":"2021-11-15T15:22:32+03:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0587.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
     
@@ -71,8 +71,8 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0587 Erect The Fence</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-09-14T17:45:17+02:00" itemprop="datePublished">
-        Sep 14, 2021
+    <p class="post-meta"><time class="dt-published" datetime="2021-11-15T15:22:32+03:00" itemprop="datePublished">
+        Nov 15, 2021
       </time></p>
   </header>
 
@@ -82,7 +82,7 @@
 <p><a href="https://leetcode.com/problems/erect-the-fence/"> <font color="blue">https://leetcode.com/problems/erect-the-fence/</font></a></p>
 
 <h4 id="solution-1">Solution 1</h4>
-<p>What we actually need to find is convex hull of given points. There are different ways how to do it: the simplest is Jarvis Algorithm with <code class="language-plaintext highlighter-rouge">O(mn)</code> complexity, where <code class="language-plaintext highlighter-rouge">n</code> is total number of points and <code class="language-plaintext highlighter-rouge">m</code> is number of points in convex hull. I prefer <strong>Graham scan</strong>, which use the idea of angle sweep. We need to choose the most left point as starting point. Then we need to sort points with respect to its angle, and if we have the same angle, then we need to sort points by <strong>(-p[1], p[0])</strong> - in this way we can be sure that we traverse points in correct order. Then we keep stack with points and check orientation of triangle, using <code class="language-plaintext highlighter-rouge">cross</code> function and if orientation is negative, then we pop the point <code class="language-plaintext highlighter-rouge">ans[-2]</code>. Please go to wikipedia for more details.</p>
+<p>What we actually need to find is convex hull of given points. There are different ways how to do it: the simplest is Jarvis Algorithm with <code class="language-plaintext highlighter-rouge">O(mn)</code> complexity, where <code class="language-plaintext highlighter-rouge">n</code> is total number of points and <code class="language-plaintext highlighter-rouge">m</code> is number of points in convex hull. I prefer <strong>Graham scan</strong>, which use the idea of angle sweep. We need to choose the most left point as starting point. Then we need to sort points with respect to its angle, and if we have the same angle, then we need to sort points by <strong>(-p[1], p[0])</strong> - in this way we can be sure that we traverse points in correct order, also we need to make sure that for the first points if they have the same angle, we need to sort them in <strong>increasing order by distance</strong> and for the last one in the <strong>decreasing order by distance</strong>. I did not found elegant way to code this, so what I do is just check last points and look for points lying on the same line and then sort them in correct way. Then we keep stack with points and check orientation of triangle, using <code class="language-plaintext highlighter-rouge">cross</code> function and if orientation is negative, then we pop the point <code class="language-plaintext highlighter-rouge">ans[-2]</code>. Please go to wikipedia for more details.</p>
 
 <p>Note, that in this problem our convex hull contains point on border, if we do not need it we need to use  <code class="language-plaintext highlighter-rouge">cross(*ans[-3:]) &lt;= 0</code> instead and <code class="language-plaintext highlighter-rouge">points.sort(key=lambda p: (atan2(p[1]-start[1], p[0]-start[0]), p[0]))</code>, I am not 100 sure though, I did not test it a lot.</p>
 
@@ -98,6 +98,12 @@
         <span class="n">start</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
         <span class="n">points</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="n">points</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="n">start</span><span class="p">))</span>
         <span class="n">points</span><span class="p">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="p">(</span><span class="n">atan2</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">start</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="o">-</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        
+        <span class="n">last</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">last</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">cross</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">points</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">points</span><span class="p">[</span><span class="n">last</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">last</span> <span class="o">-=</span> <span class="mi">1</span>
+            
+        <span class="n">points</span><span class="p">[</span><span class="n">last</span><span class="p">:]</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="n">last</span><span class="p">:],</span> <span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 
         <span class="n">ans</span> <span class="o">=</span> <span class="p">[</span><span class="n">start</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">points</span><span class="p">:</span>
@@ -139,6 +145,12 @@
         <span class="n">points</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="n">points</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="n">start</span><span class="p">))</span>
         <span class="n">points</span> <span class="o">=</span> <span class="p">[[</span><span class="n">x</span> <span class="o">-</span> <span class="n">start</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y</span> <span class="o">-</span> <span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">points</span><span class="p">]</span>
         <span class="n">points</span><span class="p">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="n">cmp_to_key</span><span class="p">(</span><span class="n">compare</span><span class="p">))</span>
+        
+        <span class="n">last</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">last</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">cross</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">points</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">points</span><span class="p">[</span><span class="n">last</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">last</span> <span class="o">-=</span> <span class="mi">1</span>
+            
+        <span class="n">points</span><span class="p">[</span><span class="n">last</span><span class="p">:]</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="n">last</span><span class="p">:],</span> <span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 
         <span class="n">ans</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
         <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">points</span><span class="p">:</span>
@@ -148,7 +160,6 @@
         
         <span class="k">return</span> <span class="p">[[</span><span class="n">x</span> <span class="o">+</span> <span class="n">start</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y</span> <span class="o">+</span> <span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ans</span><span class="p">]</span>
 </code></pre></div></div>
-
 
   </div><a class="u-url" href="/leetcode/0587.html" hidden></a>
 </article>

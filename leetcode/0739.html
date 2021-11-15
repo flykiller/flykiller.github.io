@@ -13,11 +13,11 @@
 <meta property="og:description" content="Problem statement" />
 <meta property="og:site_name" content="Dmitry Babichev’s webpage" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-09-14T17:45:17+02:00" />
+<meta property="article:published_time" content="2021-11-15T15:22:32+03:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0739 Daily Temperatures" />
 <script type="application/ld+json">
-{"url":"/leetcode/0739.html","@type":"BlogPosting","headline":"Leetcode 0739 Daily Temperatures","dateModified":"2021-09-14T17:45:17+02:00","datePublished":"2021-09-14T17:45:17+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0739.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0739.html","@type":"BlogPosting","headline":"Leetcode 0739 Daily Temperatures","dateModified":"2021-11-15T15:22:32+03:00","datePublished":"2021-11-15T15:22:32+03:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0739.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
     
@@ -65,8 +65,8 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0739 Daily Temperatures</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-09-14T17:45:17+02:00" itemprop="datePublished">
-        Sep 14, 2021
+    <p class="post-meta"><time class="dt-published" datetime="2021-11-15T15:22:32+03:00" itemprop="datePublished">
+        Nov 15, 2021
       </time></p>
   </header>
 
@@ -76,7 +76,7 @@
 <p><a href="https://leetcode.com/problems/daily-temperatures/"> <font color="blue">https://leetcode.com/problems/daily-temperatures/</font></a></p>
 
 <h4 id="solution">Solution</h4>
-<p>The problem is very similar to Problem <strong>0496</strong>: Next Greater Element I. Here we again traverse numbers from the end and keep stack with decreasing elements.</p>
+<p>The problem is very similar to Problem 0496: Next Greater Element I. Here we again traverse numbers from the end and keep stack with decreasing elements. The idea is to keep so-called monotonic stack: we always have elements in decreasing order while we traversing temperatures from the end. Each time we have new element first we check if we have decreasing property and if not, pop elements. Then add new element. Also if length of stack is equal to 1, it means that there is no future day with warmer temperature.</p>
 
 <h4 id="complexity">Complexity</h4>
 <p>Time and space complexity is <code class="language-plaintext highlighter-rouge">O(n)</code>.</p>

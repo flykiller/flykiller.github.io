@@ -13,11 +13,11 @@
 <meta property="og:description" content="Problem statement" />
 <meta property="og:site_name" content="Dmitry Babichev’s webpage" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-09-14T17:45:17+02:00" />
+<meta property="article:published_time" content="2021-11-15T15:22:32+03:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0598 Range Addition II" />
 <script type="application/ld+json">
-{"url":"/leetcode/0598.html","@type":"BlogPosting","headline":"Leetcode 0598 Range Addition II","dateModified":"2021-09-14T17:45:17+02:00","datePublished":"2021-09-14T17:45:17+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0598.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0598.html","@type":"BlogPosting","headline":"Leetcode 0598 Range Addition II","dateModified":"2021-11-15T15:22:32+03:00","datePublished":"2021-11-15T15:22:32+03:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0598.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
     
@@ -59,8 +59,8 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0598 Range Addition II</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-09-14T17:45:17+02:00" itemprop="datePublished">
-        Sep 14, 2021
+    <p class="post-meta"><time class="dt-published" datetime="2021-11-15T15:22:32+03:00" itemprop="datePublished">
+        Nov 15, 2021
       </time></p>
   </header>
 
@@ -69,12 +69,19 @@
 
 <p><a href="https://leetcode.com/problems/range-addition-ii/"> <font color="blue">https://leetcode.com/problems/range-addition-ii/</font></a></p>
 
+<h4 id="solution">Solution</h4>
+<p>We can note, that <code class="language-plaintext highlighter-rouge">[0, 0]</code> will always be increased by <code class="language-plaintext highlighter-rouge">1</code> for every range we have. What cells also will be increased by <code class="language-plaintext highlighter-rouge">1</code> for every range? It is all coordinates, where <code class="language-plaintext highlighter-rouge">x &lt;= min(all x cooridnates)</code> and <code class="language-plaintext highlighter-rouge">y &lt;= min(all y coordinates)</code>.</p>
+
+<p>So we need to find minimum of all <code class="language-plaintext highlighter-rouge">x</code> coordinates and multiply it by minimum of all <code class="language-plaintext highlighter-rouge">y</code> coordinates. If we have empty update list, we need to return <code class="language-plaintext highlighter-rouge">m * n</code> (because all elements still equal to <code class="language-plaintext highlighter-rouge">0</code>) so we can add it to our <code class="language-plaintext highlighter-rouge">ops</code>.</p>
+
+<h4 id="complexity">Complexity</h4>
+<p>Time complexity is <code class="language-plaintext highlighter-rouge">O(k)</code>, where <code class="language-plaintext highlighter-rouge">k</code> is number of updates, space complexity is <code class="language-plaintext highlighter-rouge">O(1)</code>.</p>
+
 <h4 id="code">Code</h4>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">maxCount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">ops</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">_</span> <span class="ow">in</span> <span class="n">ops</span><span class="o">+</span><span class="p">[[</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">]])</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="n">j</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="n">ops</span><span class="o">+</span><span class="p">[[</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">]])</span>
 </code></pre></div></div>
-
 
   </div><a class="u-url" href="/leetcode/0598.html" hidden></a>
 </article>
