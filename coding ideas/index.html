@@ -454,7 +454,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">QF</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="n">v</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">tl</span><span class="p">,</span> <span class="n">tm</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">tm</span><span class="p">)),</span> <span class="bp">self</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="n">v</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">tm</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">tr</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">tm</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">r</span><span class="p">))</span>
 </code></pre></div></div>
 
-<h4 id="binary-indexed-trees-bit">Binary Indexed Trees (BIT)</h4>
+<h4 id="binary-indexed-trees-">Binary Indexed Trees (`)</h4>
 <p>This data structure is less flexible than segment trees, but much more easier to code. Here is implemenation to have queries of sums of numbers in the form <code class="language-plaintext highlighter-rouge">[0, i]</code>, also it is easy to do ranges <code class="language-plaintext highlighter-rouge">[i, j]</code>. We can choose another function (which what properties?), such that we only can answer <code class="language-plaintext highlighter-rouge">[0, i]</code> queries, for example to evaluate <code class="language-plaintext highlighter-rouge">max</code>.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">BIT</span><span class="p">:</span>
@@ -475,6 +475,44 @@
 
     <span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h5 id="advanced-version">advanced version.</h5>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">__init__(self, x)</code> will transform list <code class="language-plaintext highlighter-rouge">x</code> to BIT in <code class="language-plaintext highlighter-rouge">O(n)</code> time.</li>
+  <li><code class="language-plaintext highlighter-rouge">update(self, idx, x)</code> will update <code class="language-plaintext highlighter-rouge">bit[idx] += x</code> in <code class="language-plaintext highlighter-rouge">O(log n)</code> time.</li>
+  <li><code class="language-plaintext highlighter-rouge">query(self, i)</code> will calculate <code class="language-plaintext highlighter-rouge">sum(bit[:i])</code>, be careful here, <code class="language-plaintext highlighter-rouge">i</code> is not included in <code class="language-plaintext highlighter-rouge">O(log n)</code> time</li>
+  <li><code class="language-plaintext highlighter-rouge">findkth(self, k)</code> find largest <code class="language-plaintext highlighter-rouge">idx</code> such that <code class="language-plaintext highlighter-rouge">sum(bit[:idx]) &lt;= k</code> in `O(log^2 n) time).</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">BIT</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">bit</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">|</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+                <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">while</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">bit</span><span class="p">):</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">bit</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">+=</span> <span class="n">x</span>
+            <span class="n">idx</span> <span class="o">|=</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">i</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">+=</span> <span class="bp">self</span><span class="p">.</span><span class="n">bit</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">i</span> <span class="o">&amp;=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">x</span>
+
+    <span class="k">def</span> <span class="nf">findkth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">bit</span><span class="p">).</span><span class="n">bit_length</span><span class="p">())):</span>
+            <span class="n">right_idx</span> <span class="o">=</span> <span class="n">idx</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">right_idx</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">bit</span><span class="p">)</span> <span class="ow">and</span> <span class="n">k</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="p">.</span><span class="n">bit</span><span class="p">[</span><span class="n">right_idx</span><span class="p">]:</span>
+                <span class="n">idx</span> <span class="o">=</span> <span class="n">right_idx</span>
+                <span class="n">k</span> <span class="o">-=</span> <span class="bp">self</span><span class="p">.</span><span class="n">bit</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span>
 </code></pre></div></div>
 
 <h4 id="manacher-algorighm-for-palindromes">Manacher algorighm for palindromes</h4>

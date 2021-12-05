@@ -1,0 +1,848 @@
+-------------------------------------------------------------------------
+### 1263F
+
+The idea is that each deleted edge will delete some contigious range of devices. We can create for every edge this range and then what we need to do is to find the most expensive cover of region `[1, n]`. In fact we can use usual dfs as well.
+
+```python
+from collections import defaultdict, Counter
+from functools import lru_cache
+from itertools import chain
+import io, os, sys
+input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
+ 
+n = int(input())
+ 
+def gen():
+    _ = int(input())
+    parents = [int(i) for i in input().split()]
+    devices = [int(i) for i in input().split()]
+
+    d = {x: i for i, x in enumerate(devices)}
+    G, segs = defaultdict(list), Counter()
+    for i, x in enumerate(parents):
+        G[x] += [i + 2]
+ 
+    def dfs(node):
+        if not G[node]:
+            ans = [d[node], d[node], 1]
+        else:
+            segments = [dfs(child) for child in G[node]]
+            ans = [min(i[0] for i in segments), max(i[1] for i in segments), sum(i[2] for i in segments) + (node != 1)]
+        
+        segs[ans[0], ans[1]] = max(segs[ans[0], ans[1]], ans[2])
+        return ans
+ 
+    dfs(1)
+    return [(x, y, segs[x, y]) for x, y in segs]
+ 
+G = defaultdict(list)
+for x, y, w in chain(gen(), gen()):
+    G[y + 2].append((x + 1, w))
+ 
+@lru_cache(None)
+def dp(node):
+    ans = 0
+    for prev, w in G[node]:
+        ans = max(ans, dp(prev) + w)
+    return ans
+ 
+print(dp(n+1))
+```
+
+
+-------------------------------------------------------------------------
+### 1263E
+
+One idea I invented is to use 2 segment trees with lazy updates. The idea is to keep cumulative sum of brackets expression and do updates: when we update element we can look at it as update of all next elements, that is we need to update elemens in suffix `[i, end]`. We can use lazy updates, but if fact no need in them: we need to answer only queries about minimum and maximum for all range, which kept in `tmax[1], tmin[1], tsum[1]`.
+
+```python
+from sys import stdin
+import math
+def input():
+    return stdin.readline()[:-1]
+
+class SegmentTree:
+    def __init__(self, n, arr=[]):
+        self.n = n
+        self.tsum = [0] * (2 * n)
+        self.tmin = [0] * (2 * n)
+        self.tmax = [0] * (2 * n)
+        if arr:
+            for i in range(len(arr)):
+                self.tsum[n + i] = arr[i];
+            for i in range(len(arr) - 1, 0, -1) :
+                self.tsum[i] = self.tsum[i << 1] + self.tsum[i << 1 | 1]
+ 
+    def update(self, p, val):
+        p += self.n
+        self.tsum[p] = val
+        self.tmin[p] = val
+        self.tmax[p] = val
+ 
+        i = p
+        while i > 1:
+            i = (i >> 1) << 1
+            self.tsum[i >> 1] = self.tsum[i] + self.tsum[i ^ 1]
+            self.tmin[i >> 1] = min(self.tmin[i], self.tmin[i ^ 1] + self.tsum[i])
+            self.tmax[i >> 1] = max(self.tmax[i], self.tmax[i ^ 1] + self.tsum[i])
+            i >>= 1
+ 
+n = int(input())
+s = input()
+
+n = 2 ** math.ceil(math.log(n, 2))
+st = SegmentTree(n)
+ 
+idx = 0
+output = []
+
+op_map = {'(': 1, ')': -1}
+
+for c in s:
+    if c == 'L':
+        idx = max(0, idx - 1)
+    elif c == 'R':
+        idx += 1
+    else:
+        st.update(idx, op_map.get(c, 0))
+ 
+    vmax = st.tmax[1]
+    vmin = st.tmin[1]
+    vsum = st.tsum[1]
+    if vmin >= 0 and vsum == 0:
+        output.append(vmax)
+    else:
+        output.append(-1)
+ 
+print(' '.join(map(str, output)))
+```
+
+Another idea is to use 6 stacks
+
+```python
+import sys
+n = int(input())
+s = list(input().rstrip())
+ 
+left_sum = [0] * (n + 2)   # for s[:i+1]
+right_sum = [0] * (n + 2)  # for s[i:][::-1]
+left_min = [0] * (n + 2)   # min - validation of bracket sequence
+right_min = [0] * (n + 2)  
+left_max = [0] * (n + 2)   # max - depth of bracket sequence
+right_max = [0] * (n + 2)
+text = [0] * (n + 2)       # entered text, letters marked as 0
+ 
+op_map = {'(': 1, ')': -1}
+ans = []
+i = 1  # cursor loc i >= 1
+for op in s:
+    if op == 'L':
+        i = max(1, i - 1)
+    elif op == 'R':
+        i += 1
+    else:
+        text[i] = op_map.get(op, 0)
+        
+    left_sum[i] = left_sum[i - 1] + text[i]
+    left_min[i] = min(left_min[i - 1], left_sum[i])
+    left_max[i] = max(left_max[i - 1], left_sum[i])
+    
+    right_sum[i] = right_sum[i + 1] - text[i]  # -text[i] cause of symmetry
+    right_min[i] = min(right_min[i + 1], right_sum[i])
+    right_max[i] = max(right_max[i + 1], right_sum[i])
+    
+    correct = left_min[i] >= 0 and right_min[i + 1] >= 0 and left_sum[i] == right_sum[i + 1]
+    status = max(left_max[i], right_max[i + 1]) if correct else -1
+    ans.append(status)
+    
+print(*ans)
+```
+
+-------------------------------------------------------------------------
+### 718E
+
+See official solution https://codeforces.com/blog/entry/47314 , however it will give TLE in python.
+
+```python
+from collections import Counter
+
+n, m = int(input()), 8
+s = input()
+s = [0] + [ord(x) - ord("a") for x in s]
+
+f = [[0]*((1<<m) + 1) for _ in range(m+1)]
+d = [[n]*(m+1) for _ in range(m+1)]
+dis = [[n]*(m+1) for _ in range(n+1)]
+masks = [0]*(n+1)
+cnt = Counter()
+
+for i in range(m):
+    d[i][i] = 0
+
+for i in range(1, n+1):
+    dis[i][s[i]] = 0
+
+# we can solve this part with bfs as well?
+for _ in range(m):
+    for i in range(1, n+1):
+        for j in range(m):
+            if i > 1: dis[i][j] = min(dis[i][j], dis[i-1][j] + 1)
+            if i < n: dis[i][j] = min(dis[i][j], dis[i+1][j] + 1)
+
+    for i in range(1, n+1):
+        for j in range(m):
+            d[s[i]][j] = min(d[s[i]][j], dis[i][j])
+
+    for i in range(1, n+1):
+        for j in range(m):
+            dis[i][j] = min(dis[i][j], d[s[i]][j] + 1)
+
+for i in range(1, n+1):
+    for j in range(m):
+        if d[s[i]][j] < dis[i][j]:
+            masks[i] += (1 << j)   #masks
+
+for i in range(1, n+1):
+    for j in range(max(i-2*m+1, 1), i):   #close points
+        mn = min(i - j, min(dis[i][k] + dis[j][k] + 1 for k in range(m)))
+        cnt[mn] += 1
+
+    if i - 2*m <= 0: continue
+
+    f[s[i-2*m]][masks[i-2*m]] += 1
+
+    for c in range(m):
+        for j in range(1<<m):
+            if f[c][j] > 0:
+                mn = min(dis[i][k] + d[c][k] + 1 + ((j>>k)&1) for k in range(m))
+                cnt[mn] += f[c][j]
+
+print(str(max(cnt)) + " " + str(cnt[max(cnt)]))
+```
+
+
+-------------------------------------------------------------------------
+### 1603D
+See oficial solution, here is python version, that barely passes with 2995/3000 ms!
+
+Ideas:
+1. Notice that in fact we need to calculate only for `k <= log2(n)`, so table will have `O(n log n)` items.
+2. We need to fast evaluate `c(l, r)`: we can do it in `O(n sqrt(n))`, using the math: Euler Phi function and the fact that among numbers `[n/1], [n/2], ..., [n/n]` will be at most `sqrt(n)` different values.
+3. Finally, we can use Knuth optimization (divide and conquer) to update dp states in `O(log n)`, not in `O(n)`, so total complexity to get table is `O(n log^2 n)`.
+4. Also notice how to evaluate `phi` for all numbers in range `[1, n]` in `O(n log n)`.
+
+```python
+from itertools import accumulate
+from collections import Counter
+from math import floor, sqrt
+import io, os, sys
+input = io.BytesIO(os.read(0,os.fstat(0).st_size)).readline
+ 
+n, n2, n3 = 100009, 320, 18
+ 
+phi = list(range(n))
+root = [0]*n
+for i in range(2, n):
+    if phi[i] == i:
+        for j in range(i, n, i):
+            phi[j] -= phi[j]//i
+ 
+a = list(accumulate(phi))
+ 
+s1 = [[0]*n2 for _ in range(n)]
+s2 = [[0]*n2 for _ in range(n)]
+dp = [[float("inf")]*n for _ in range(n3)]
+dp[0][0] = 0
+ 
+def c(l, r):
+    if l > r: return float("inf")
+    if r // l <= root[r]:
+        return s1[r][r//l] - a[r//l] * (l - 1 - r//((r//l) + 1))
+    else:
+        return s2[r][l]
+ 
+for i in range(1, n):
+    root[i] = floor(sqrt(i))
+    for j in range(1, root[i] + 1):
+        s1[i][j] = s1[i][j-1] + a[j] * (i//j - i//(j+1))
+    
+    s2[i][i//(root[i] + 1) + 1] = s1[i][root[i]]
+    for j in range(i//(root[i] + 1), 0, -1):
+        s2[i][j] = s2[i][j+1] + a[i//j]
+ 
+def solve(l, r, x, y):
+    if l > r: return
+    mid = (l + r)//2
+    val = c(x+1, mid)
+    for i in range(x, min(y, mid) + 1):
+        if dp[k-1][i] + val < dp[k][mid]:
+            dp[k][mid] = dp[k-1][i] + val
+            pos = i
+        val -= a[mid//(i+1)]
+    solve(l, mid-1, x, pos)
+    solve(mid+1, r, pos, y)
+ 
+for k in range(1, n3):
+    solve(1, n-1, 0, n-1)
+ 
+ans = []
+ 
+T = int(input())
+for _ in range(T):
+    nn, k = map(int, input().split())
+    ans += [nn] if k >= n3 else [dp[k][nn]]
+ 
+sys.stdout.write(" ".join(map(str, ans)) + "\n")
+```
+
+
+-------------------------------------------------------------------------
+### 1253A
+
+```python
+def solve(A, B):
+    if A == B: return "YES"
+    diffs = [y - x for x, y in zip(A, B) if x-y != 0]
+    idxs = [i for i in range(len(A)) if A[i] - B[i] != 0]
+    if len(set(diffs)) != 1: return "NO"
+    if diffs[-1] < 0: return "NO"
+    return "YES" if idxs[-1] - idxs[0] == len(idxs) - 1 else "NO"
+    
+T = int(input())
+for u in range(T):
+    n = int(input())
+    arr1 = [int(x) for x in input().split()]
+    arr2 = [int(x) for x in input().split()]
+    print(solve(arr1, arr2))
+```
+
+-------------------------------------------------------------------------
+#### 1253B
+
+The idea is to traverse our date and check `visited` counter is how many times we meet each person as well as `balance`.
+
+```python
+from collections import Counter
+
+def solve(arr):
+    ans = [0]
+    visited = Counter()
+    balance = set()
+    for i, elem in enumerate(arr):
+        if elem > 0:
+            visited[elem] += 1
+            balance.add(elem)
+ 
+        if elem < 0:
+            visited[-elem] += 1
+            if -elem not in balance: return [-1]
+            balance.remove(-elem)
+ 
+        if visited[abs(elem)] not in [1, 2]: return [-1]
+
+        if len(balance) == 0: 
+            ans += [i+1]
+            visited = Counter()
+
+    if ans[-1] != len(arr): return [-1]
+ 
+    return [x - y for x, y in zip(ans[1:], ans)]
+
+n = int(input())
+arr = [int(x) for x in input().split()]
+s = solve(arr)
+if s[0] != -1: print(len(s))
+print(" ".join(str(i) for i in s))
+```
+
+
+-------------------------------------------------------------------------
+### 1253C
+
+Imagine the case `n = 11` and `m = 3,` then if we sort data, we have answers (use trans-inequality)
+
+`a1`
+
+`a2 + a1`
+
+`a3 + a2 + a1`
+
+`a4 + a3 + a2 + 2a1`
+
+`a5 + a4 + a3 + 2a2 + 2a1`
+
+`a6 + a5 + a4 + 2a3 + 2a2 + 2a1`
+
+`a7 + a6 + a5 + 2a4 + 2a3 + 2a2 + 3a1`
+
+And so on. If we calculate differences, then we update them in `O(1)`.
+
+```python
+from itertools import accumulate
+
+def solve(n, m, arr):
+    arr = sorted(arr)
+    t = list(accumulate(arr[:m]))
+    diffs = arr[:m]
+    for i in range(m, n):
+        diffs.append(diffs[-m] + arr[i])
+
+    for i in range(m, n):
+        t.append(t[-1] + diffs[i])
+    
+    return t
+
+n, m = [int(x) for x in input().split()]
+arr = [int(x) for x in input().split()]
+s = solve(n, m, arr)
+print(" ".join(str(i) for i in s))
+```
+
+
+-------------------------------------------------------------------------
+### 1253D
+
+[graph, union find, connected components]
+
+The idea is to look at connected components, and merge them such that we have continous intervals. One way is to use `union find` with additional field: maximum value in this component. Time complexity is `O(n + E)`. 
+
+Another solution is similar, but we evaluate components on the flight. 
+
+#### Remark
+It is important to use fast reading from file, in the opposite way we will have TLE
+
+```python
+import sys
+input = sys.stdin.readline
+
+class DSU:
+    def __init__(self, n):
+        self.p = list(range(n))
+        self.rnk = [1] * n
+        self._max_ = list(range(n))  #check?
+ 
+    def find(self, x):
+        if self.p[x] != x:
+            self.p[x] = self.find(self.p[x])
+        return self.p[x]
+ 
+    def union(self, a, b):
+        a, b = self.find(a), self.find(b)
+        if a != b:
+            r1, r2 = self.rnk[a], self.rnk[b]
+            if r1 < r2: a, b = b, a
+            self.p[b] = a
+            if r1 == r2: self.rnk[a] += 1
+            self._max_[a] = max(self._max_[a], self._max_[b])
+ 
+    def set_max(self, a):
+        return self._max_[self.find(a)]
+ 
+def solve(n, m, edges):
+    dsu = DSU(n + 1)
+    for x, y in edges:
+        dsu.union(x, y)
+
+    ans = 0
+    for u in range(1, n+1):
+        if u < dsu.set_max(u) and dsu.find(u) != dsu.find(u+1):
+            dsu.union(u, u+1)
+            #print("!!!", u)
+            ans += 1
+
+    return ans
+ 
+n, m = [int(x) for x in input().split()]
+arr = []
+for _ in range(m):
+    arr += [[int(x) for x in input().split()]]
+
+print(solve(n, m, arr))
+```
+
+```python
+from collections import deque, defaultdict
+import sys
+input = sys.stdin.readline
+ 
+n, m = map(int, input().split())
+G = defaultdict(list)
+ 
+for i in range(m):
+	a, b = map(int, input().split())
+	G[a-1] += [b-1]
+	G[b-1] += [a-1]
+ 
+vis, m, ans = [0]*n, -1, 0
+ 
+for i in range(n):
+    if vis[i]: continue
+ 
+    if i < m: ans += 1
+    queue = deque([i])
+ 
+    while queue:
+        e = queue.popleft()
+        m = max(e, m)
+        vis[e] = 1
+        for i in G[e]:
+            if not vis[i]:
+                queue.append(i)
+                vis[i] = 1
+ 
+print(ans)
+```
+
+
+-------------------------------------------------------------------------
+### 1253E
+[greedy, dp, intervals, sort]
+
+Let `dp[pos]` be the minimum cost to cover segment `[pos, m]`. In the beginning we initialize it as `[m, m-1, ..., 0]`, because we always can extend the leftest segment. Then we can go with decreasing `x`, where we have two options:
+1. If position `pos` is already covered initially, we do `dp[pos] = dp[pos + 1]`.
+2. In the opposite case, consider all segments `[x, y]`, where `x > pos`, then if we extend this segment we will spend `x - pos - 1` cost and we have `dp[min(m, y + cost)]` subproblem to solve.
+
+#### Complexity
+Time complexity is `O(m * n)`.
+
+```python
+n, m = map(int, input().split())
+ints = []
+ 
+for i in range(n):
+	c, scope = map(int, input().split())
+	ints += [[max(0, c - scope), min(m, c + scope)]]
+ 
+dp = list(range(m, -1, -1))
+ 
+for pos in range(m-1, -1, -1):
+    for x, y in ints:
+        if x <= pos + 1 <= y:
+            dp[pos] = dp[pos + 1]
+            break
+ 
+        if pos < x:
+            cost = (x - pos - 1)
+            dp[pos] = min(dp[pos], cost + dp[min(m, y + cost)])
+ 
+print(dp[0])
+```
+
+
+-------------------------------------------------------------------------
+### 1253F
+
+
+[graph, spanning tree, heap, dijkstra, union find]
+
+Oficial solution from codeforces
+
+1. Key insight 1: Since we always end on a central, at any time our robot have to be able to reach the nearest central.
+
+2. Key insight 2: Since we always start from a central, from any node u, going to the nearest central, then going back to u can't decrease the number of energy points in the battery.
+
+-------------------
+
+Firstly, let's do a multi-source Dijkstra from all centrals. We denote $d_u$ the distance from node $u$ to the nearest central.
+
+Consider a fixed capacity $c$. Suppose that we're on node $u$ with $x$ energy points remaining in the battery. Note that $x \leqslant c - d_u$.
+
+If $x < d_u$, we can't do anything, the robot is lost because it can't reach any central anymore.
+
+Otherwise, if $x \geqslant d_u$, we can go to the nearest central, then go back to $u$, hence we can always consider than $x = c - d_u$.
+
+This is a simple but very powerful observation that allows us to delete the battery level in states explored. Hence, we can now solve the problem in $O(m\log m + qm\log n)$, doing binary search on answer and simple DFS for each query.
+
+-------------------
+
+We need to optimize this solution. Now, reaching a node $u$ will mean reaching it with $x \geqslant d_u$.
+
+During exploration of nodes, the necessary and sufficient condition for being able to reach node $v$ from $u$, through an edge of weight $w$, is that $(c - d_u) - w \geqslant d_v$, i.e. $d_u+d_v+w \leqslant c$.
+
+Hence, if we replace the weight of each edge $(u, v, w)$ by $w'=d_u+d_v+w$, the problem is reduced to find a shortest path from $a_i$ to $b_i$, in terms of maximum weight over edges used (which will be the capacity required by this path).
+
+**Solution 1 (offline)**:
+
+Sort edges by new weight. Add them progressively, maintaining connexity with DSU.
+
+As soon as two endpoints of a query become connected, we should put current capacity (i.e. new weight of the last edge added) as answer for this query.
+
+To effeciently detect this, we can put tokens on endpoints of each query, and each time we do union (of DSU), we make tokens go up to the parent. If we do union by rank, each token will move at most $O(\log n)$ times.
+
+**Solution 2 (online)**:
+
+Let's construct a MST of the new graph with Kruskal.
+
+It is well-known that in this particular MST, for every pair of nodes $(u, v)$, the only path from u to v will be a shortest path (in terms of maximum weight over the path).
+
+Hence we just have to compute the weight of paths in a tree, which can be done with binary lifting.
+
+These two solutions both run in $O(m\log m + q\log n)$. Implementation of solution 1 is a bit shorter, but solution 2 can deal with online queries.
+
+Unfortunatelly, online version will give TLE in python.
+
+```python
+from collections import defaultdict
+from heapq import *
+from math import ceil, log2
+import io, os, sys
+input = io.BytesIO(os.read(0,os.fstat(0).st_size)).readline
+ 
+n, m, k, q = map(int, input().split())
+edges, queries = [], []
+ 
+for _ in range(m):
+    u, v, w = map(int, input().split())
+    edges += [(u, v, w)]
+    
+G = defaultdict(list)
+for u, v, w in edges:
+    G[u-1] += [(v-1, w)]
+    G[v-1] += [(u-1, w)]
+ 
+heap = []
+for i in range(k):
+    heappush(heap, (0, i, i))
+ 
+closestCenter = [-1]*n
+distToClosest = [-1]*n
+ 
+while heap:
+    dist, center, v = heappop(heap)
+    if closestCenter[v] != -1: continue
+ 
+    closestCenter[v] = center
+    distToClosest[v] = dist
+    for u, w in G[v]:
+        heappush(heap, (dist + w, center, u))
+ 
+# create new graph
+edges2 = []
+for u, v, w in edges:
+    c1, c2 = closestCenter[u-1], closestCenter[v-1]
+    d1, d2 = distToClosest[u-1], distToClosest[v-1]
+    if c1 != c2:
+        edges2 += [(c1, c2, d1 + d2 + w)]
+ 
+ 
+class DSU:
+    def __init__(self, N):
+        self.p = list(range(N))
+ 
+    def find(self, x):
+        if self.p[x] != x:
+            self.p[x] = self.find(self.p[x])
+        return self.p[x]
+ 
+    def union(self, x, y):
+        xr = self.find(x)
+        yr = self.find(y)
+        self.p[xr] = yr
+ 
+ 
+bits = ceil(log2(k))
+visited = [0]*k
+MST = defaultdict(list)
+depths = [0]*k
+dsu = DSU(k)
+parents = [[-1]*bits for _ in range(k)]
+max_path = [[0]*bits for _ in range(k)]
+ 
+#kruskal
+for u, v, w in sorted(edges2, key = lambda x:x[2]):
+    if dsu.find(u) == dsu.find(v): continue
+    dsu.union(u, v)
+    MST[u].append((v, w))
+    MST[v].append((u, w))
+ 
+def dfs(u):
+    visited[u] = 1
+    for v, w in MST[u]:
+        if visited[v] == 0:
+            depths[v] = depths[u] + 1
+            parents[v][0] = u
+            max_path[v][0] = w
+            dfs(v)
+ 
+def LCA(u, v):
+    if depths[u] > depths[v]:
+        u, v = v, u
+    
+    diff = depths[v] - depths[u] 
+ 
+    weight = 0
+    places = [i for i in range(diff.bit_length()) if diff&(1<<i) != 0]
+    for index in places:
+        weight = max(weight, max_path[v][index])
+        v = parents[v][index]
+ 
+    if u == v: return weight
+    for i in range(bits - 1, -1, -1):
+        if parents[u][i] != parents[v][i]:
+            weight = max([weight, max_path[u][i], max_path[v][i]])
+            u = parents[u][i]
+            v = parents[v][i]
+ 
+    return max([weight, max_path[u][0], max_path[v][0]])
+ 
+ 
+for i in range(k):
+    if visited[i] == 0:
+        depths[i] = 1
+        dfs(i)
+        parents[i][0] = i
+ 
+for i in range(1, bits):
+    for j in range(k):
+        pp = parents[j][i-1]
+        parents[j][i] = parents[pp][i-1]
+        max_path[j][i] = max(max_path[j][i-1], max_path[pp][i-1])
+ 
+ans = []
+ 
+for i in range(q):
+    u, v = map(int, input().split())
+    ans += [LCA(u-1, v-1)]
+    
+sys.stdout.write(" ".join(map(str, ans)) + "\n")
+```
+
+
+-------------------------------------------------------------------------
+###1256G
+[generating functions, math, Number Theoretic Transform]
+
+1. First idea is that what matters is frequency of prime divisors, for example 2, 2, 2, 3, 3, 5, 5 means `[3, 2, 2]`
+2. Each divisor can be defined by triple `(i, j, k)` (or tuple in more general case). We can notice that all divisors can be separated into levels by sums `i + j + k`. Answer to the problem will be the maximum width of level.
+3. It can be reformulated as problem: find number of solutions `x1 + ... + xk = n`, where `x1 <= T1, ... xn <= Tn`. We define this as `dp(n, k)`. We can solve it in `O(n^2)`, which is too slow.
+4. To make it faster, we can use generating functions: create polynomials `(1 + x + x^2 + x^3) * (1 + x + x^2) * (1 + x + x^2)` and we need to calculate middle coefficient. To do it efficiently we can use Number Theoretic Transform: this is fast way to multiply polynomials given module. 
+
+Time complexity will be `O(n*log^2n)`.
+
+```python
+from collections import Counter
+import io, os, sys
+#input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
+
+MOD = 998244353
+MODF = float(MOD)
+ROOT = 3.0
+
+MAGIC = 6755399441055744.0
+SHRT = 65536.0
+
+MODF_INV = 1.0 / MODF
+SHRT_INV = 1.0 / SHRT
+
+fround = lambda x: (x + MAGIC) - MAGIC
+fmod = lambda a: a - MODF * fround(MODF_INV * a)
+fmul = lambda a, b, c=0.0: fmod(fmod(a * SHRT) * fround(SHRT_INV * b) + a * (b - SHRT * fround(b * SHRT_INV)) + c)
+
+
+def fpow(x, y):
+    if y == 0: return 1.0
+
+    res = 1.0
+    while y > 1:
+        if y & 1 == 1:
+            res = fmul(res, x)
+        x = fmul(x, x)
+        y >>= 1
+
+    return fmul(res, x)
+
+
+def ntt(a, inv=False):
+    n = len(a)
+    w = [1.0] * (n >> 1)
+
+    w[1] = fpow(ROOT, (MOD - 1) // n)
+    if inv:
+        w[1] = fpow(w[1], MOD - 2)
+
+    for i in range(2, (n >> 1)):
+        w[i] = fmul(w[i - 1], w[1])
+
+    rev = [0] * n
+    for i in range(n):
+        rev[i] = rev[i >> 1] >> 1
+        if i & 1 == 1:
+            rev[i] |= n >> 1
+        if i < rev[i]:
+            a[i], a[rev[i]] = a[rev[i]], a[i]
+
+    step = 2
+    while step <= n:
+        half, diff = step >> 1, n // step
+        for i in range(0, n, step):
+            pw = 0
+            for j in range(i, i + half):
+                v = fmul(w[pw], a[j + half])
+                a[j + half] = a[j] - v
+                a[j] += v
+                pw += diff
+
+        step <<= 1
+
+    if inv:
+        inv_n = fpow(n, MOD - 2)
+        for i in range(n):
+            a[i] = fmul(a[i], inv_n)
+
+
+def ntt_conv(a, b):
+    s = len(a) + len(b) - 1
+    n = 1 << s.bit_length()
+
+    a.extend([0.0] * (n - len(a)))
+    b.extend([0.0] * (n - len(b)))
+
+    ntt(a)
+    ntt(b)
+
+    for i in range(n):
+        a[i] = fmul(a[i], b[i])
+
+    ntt(a, True)
+    del a[s:]
+    return a
+
+n = int(input())
+cnt = list(Counter([int(i) for i in input().split()]).values())
+arr = [[1]*(i + 1) for i in cnt]
+arr = sorted(arr, key = lambda x: len(x))
+
+k = len(arr)
+
+def prod(l, LIM):
+    n = len(l)
+    if n == 1: return l[0][:LIM]
+    lft = prod(l[:n//2], LIM)
+    rgh = prod(l[n//2:], LIM)
+    ntt_conv(lft, rgh)
+    return lft[:LIM]
+
+
+p = prod(arr, n//2 + 2)
+print(int(p[n//2]) % MOD)
+```
+
+
+-------------------------------------------------------------------------
+
+
+
+-------------------------------------------------------------------------
+
+
+
+-------------------------------------------------------------------------
+
+
+
+-------------------------------------------------------------------------
+
+
+
+-------------------------------------------------------------------------
+

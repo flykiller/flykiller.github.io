@@ -253,7 +253,16 @@ There is also <code class="language-plaintext highlighter-rouge">np.convolve</co
     <span class="k">return</span> <span class="n">a</span>
 </code></pre></div></div>
 
-<h4 id="fast-subset-transform">Fast Subset Transform</h4>
+<h4 id="subset-manipulations">Subset manipulations</h4>
+<p>First problem is given array <code class="language-plaintext highlighter-rouge">arr</code> find sums of all subsets of given list <code class="language-plaintext highlighter-rouge">arr</code> and its length <code class="language-plaintext highlighter-rouge">n</code>.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">subset_sums</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">mask_sum</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">mask</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">mask</span><span class="p">:</span>
+            <span class="n">mask_sum</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">+=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">mask_sum</span>
+</code></pre></div></div>
+
 <p>Notation:</p>
 
 <ol>
@@ -265,57 +274,165 @@ There is also <code class="language-plaintext highlighter-rouge">np.convolve</co
 
 <p>Aim: Given functions <code class="language-plaintext highlighter-rouge">f</code> and <code class="language-plaintext highlighter-rouge">g</code> both from $[0, 2^n)$ to integers. Can be represented as arrays <code class="language-plaintext highlighter-rouge">f[]</code> and <code class="language-plaintext highlighter-rouge">g[]</code> respectively in code. We want to compute the following transformations fast:</p>
 
+<h5 id="zeta-transform">Zeta Transform</h5>
+<p>Also called SOS DP/Yate’s DP: $z(f(s)) = \sum\limits_{s’ \subseteq s} f(s’)$ for all $s \in [0,2^n)$ in $O(n\cdot 2^n)$.
+Note, that this is an extension of sum of subsets problem, where we have <code class="language-plaintext highlighter-rouge">F[2^i] = arr[i]</code>.</p>
+
+<p>Example: <code class="language-plaintext highlighter-rouge">F = [1, 2, 3, 4, 5, 6, 7, 8]</code>. Then <code class="language-plaintext highlighter-rouge">Z = zeta(3, F) = [1, 3, 4, 10, 6, 14, 16, 36]</code>, because:</p>
 <ol>
-  <li>
-    <p>Zeta Transform (aka SOS DP/Yate’s DP): $z(f(s)) = \sum\limits_{s’ \subseteq s} f(s’)$ for all $s \in [0,2^n)$ in $O(n\cdot 2^n)$.</p>
-  </li>
-  <li>
-    <p>Mobius Transform (i.e inclusion exclusion sum over subset): 
+  <li>For bitmask <code class="language-plaintext highlighter-rouge">000</code>, we have only one subset <code class="language-plaintext highlighter-rouge">000</code>, so <code class="language-plaintext highlighter-rouge">Z[0] = F[0]</code>.</li>
+  <li>For bitmask <code class="language-plaintext highlighter-rouge">001</code>, we have <code class="language-plaintext highlighter-rouge">Z[1] = F[0] + F[1] = 3</code>.</li>
+  <li>For bitmask <code class="language-plaintext highlighter-rouge">010</code>, we have <code class="language-plaintext highlighter-rouge">Z[2] = F[0] + F[2] = 4</code>.</li>
+  <li>For bitmask <code class="language-plaintext highlighter-rouge">011</code>, we have <code class="language-plaintext highlighter-rouge">Z[3] = F[0] + F[1] + F[2] + F[3] = 10</code>.</li>
+  <li>For bitmask <code class="language-plaintext highlighter-rouge">100</code>, we have <code class="language-plaintext highlighter-rouge">Z[4] = F[0] + F[4] = 6</code>.</li>
+  <li>For bitmask <code class="language-plaintext highlighter-rouge">101</code>, we have <code class="language-plaintext highlighter-rouge">Z[5] = F[0] + F[1] + F[4] + F[5] = 14</code>.</li>
+  <li>For bitmask <code class="language-plaintext highlighter-rouge">110</code>, we have <code class="language-plaintext highlighter-rouge">Z[6] = F[0] + F[2] + F[4] + F[6] = 16</code>.</li>
+  <li>For bitmask <code class="language-plaintext highlighter-rouge">111</code>, we have <code class="language-plaintext highlighter-rouge">Z[7] = F[0] + F[1] + F[2] + F[3] + F[4] + F[5] + F[6] + F[7] = 36</code>.</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">zeta</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">F</span><span class="p">):</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">F</span><span class="p">[:]</span>
+    <span class="k">for</span> <span class="n">b</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&amp;</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">b</span><span class="p">:</span>
+            <span class="n">Z</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">Z</span><span class="p">[</span><span class="n">i</span> <span class="o">^</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">b</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">Z</span>
+</code></pre></div></div>
+
+<h5 id="mobius-transform">Mobius Transform</h5>
+<p>i.e. inclusion exclusion sum over subset: 
 $\mu(f(s)) = \sum\limits_{s’ \subseteq s}(-1)^{|s\backslash s’|}f(s’)$,
 for all $s\in [0, 2^n)$ in $O(n\cdot 2^n)$. 
 Here the term $(-1)^{|s\backslash s’|}$ just looks intimidating but simply means whether we should add the term or subtract the term in Inclusion-Exclusion Logic.</p>
-  </li>
-  <li>
-    <p>Subset Sum Convolution: $f\circ g(s) = \sum\limits_{s’\subseteq s} f(s’)g(s\backslash s’)$ for all $s \in [0,2^n)$ in $O(n^2\cdot 2^n)$. In simpler words, take all possible ways to partition set s into two disjoint partitions and sum over product of f on one partition and g on the complement of that partition.</p>
-  </li>
+
+<p>Example: <code class="language-plaintext highlighter-rouge">F = [1, 3, 6, 14, 17, 23, 30, 63]</code>. Then <code class="language-plaintext highlighter-rouge">Z = mu(3, F) = [1, 2, 5, 6, 16, 4, 8, 21]</code>, because:</p>
+<ol>
+  <li>For bitmask <code class="language-plaintext highlighter-rouge">000</code>, we have only one subset <code class="language-plaintext highlighter-rouge">000</code>, so <code class="language-plaintext highlighter-rouge">Z[0] = F[0]</code>.</li>
+  <li>For bitmask <code class="language-plaintext highlighter-rouge">001</code>, we have <code class="language-plaintext highlighter-rouge">Z[1] = F[1] - F[0] = 2</code>.</li>
+  <li>For bitmask <code class="language-plaintext highlighter-rouge">010</code>, we have <code class="language-plaintext highlighter-rouge">Z[2] = F[2] - F[0] = 5</code>.</li>
+  <li>For bitmask <code class="language-plaintext highlighter-rouge">011</code>, we have <code class="language-plaintext highlighter-rouge">Z[3] = F[3] - F[1] - F[2] + F[0] = 6</code>.</li>
+  <li>For bitmask <code class="language-plaintext highlighter-rouge">100</code>, we have <code class="language-plaintext highlighter-rouge">Z[4] = F[4] - F[0] = 16</code>.</li>
+  <li>For bitmask <code class="language-plaintext highlighter-rouge">101</code>, we have <code class="language-plaintext highlighter-rouge">Z[5] = F[5] - F[1] - F[4] + F[0] = 4</code>.</li>
+  <li>For bitmask <code class="language-plaintext highlighter-rouge">110</code>, we have <code class="language-plaintext highlighter-rouge">Z[6] = F[6] - F[2] - F[4] + F[0] = 8</code>.</li>
+  <li>For bitmask <code class="language-plaintext highlighter-rouge">111</code>, we have <code class="language-plaintext highlighter-rouge">Z[7] = F[7] - F[3] - F[5] - F[6] + F[1] + F[2] + F[4] - F[0] = 21</code>.</li>
 </ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">mu</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">F</span><span class="p">):</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">F</span><span class="p">[:]</span>
+    <span class="k">for</span> <span class="n">b</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&amp;</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">b</span><span class="p">:</span>
+            <span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-=</span> <span class="n">M</span><span class="p">[</span><span class="n">i</span> <span class="o">^</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">b</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">M</span>
+</code></pre></div></div>
+
+<h5 id="subset-sum-convolution">Subset Sum Convolution</h5>
+<p>Also called Fast Subset Transform: $f\circ g(s) = \sum\limits_{s’\subseteq s} f(s’)g(s\backslash s’)$ for all $s \in [0,2^n)$ in $O(n^2\cdot 2^n)$. In simpler words, take all possible ways to partition set s into two disjoint partitions and sum over product of f on one partition and g on the complement of that partition.</p>
+
+<p>Example: <code class="language-plaintext highlighter-rouge">F = [1, 2, 3, 4, 5, 6, 7, 8]</code> and <code class="language-plaintext highlighter-rouge">G = [9, 10, 11, 12, 13, 14, 15, 16]</code>. Then <code class="language-plaintext highlighter-rouge">C = F</code> $\circ$ <code class="language-plaintext highlighter-rouge">G = [9, 28, 38, 100, 58, 144, 172, 408]</code>, because:</p>
+
+<ol>
+  <li>For bitmask <code class="language-plaintext highlighter-rouge">000</code>, we have <code class="language-plaintext highlighter-rouge">C[0] = F[0] * G[0] = 1 * 9 = 9</code>.</li>
+  <li>For bitmask <code class="language-plaintext highlighter-rouge">001</code>, we have <code class="language-plaintext highlighter-rouge">C[1] = F[0] * G[1] + F[1] * G[0] = 28</code>.</li>
+  <li>For bitmask <code class="language-plaintext highlighter-rouge">010</code>, we have <code class="language-plaintext highlighter-rouge">C[2] = F[0] * G[2] + F[2] * G[0] = 38</code>.</li>
+  <li>For bitmask <code class="language-plaintext highlighter-rouge">011</code>, we have <code class="language-plaintext highlighter-rouge">C[3] = F[0] * G[3] + F[1] * G[2] + F[2] * G[1] + F[3] * G[0] = 100</code>.</li>
+  <li>For bitmask <code class="language-plaintext highlighter-rouge">100</code>, we have <code class="language-plaintext highlighter-rouge">C[4] = F[0] * G[4] + F[4] * G[0] = 58</code>.</li>
+  <li>For bitmask <code class="language-plaintext highlighter-rouge">101</code>, we have <code class="language-plaintext highlighter-rouge">C[5] = F[0] * G[5] + F[1] * G[4] + F[4] * G[1] + F[5] * G[0] = 144</code>.</li>
+  <li>For bitmask <code class="language-plaintext highlighter-rouge">110</code>, we have <code class="language-plaintext highlighter-rouge">C[6] = F[0] * G[6] + F[2] * G[4] + F[4] * G[2] + F[6] * G[0] = 172</code>.</li>
+  <li>For bitmask <code class="language-plaintext highlighter-rouge">111</code>, we have <code class="language-plaintext highlighter-rouge">C[7] = F[0] * G[7] + F[1] * G[6] + F[2] * G[5] + F[3] * G[4] + F[4] * G[3] + F[5] * G[2] + F[6] * G[1] + F[7] * G[0] = 408</code>.</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">conv</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">G</span><span class="p">):</span>
+    <span class="n">fhat</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+    <span class="n">ghat</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">fhat</span><span class="p">[</span><span class="nb">bin</span><span class="p">(</span><span class="n">m</span><span class="p">).</span><span class="n">count</span><span class="p">(</span><span class="s">"1"</span><span class="p">)][</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">F</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>
+        <span class="n">ghat</span><span class="p">[</span><span class="nb">bin</span><span class="p">(</span><span class="n">m</span><span class="p">).</span><span class="n">count</span><span class="p">(</span><span class="s">"1"</span><span class="p">)][</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">G</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">m</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">j</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">fhat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">m</span><span class="p">]</span> <span class="o">+=</span> <span class="n">fhat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">m</span> <span class="o">^</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">j</span><span class="p">)]</span>
+                    <span class="n">ghat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">m</span><span class="p">]</span> <span class="o">+=</span> <span class="n">ghat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">m</span> <span class="o">^</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">j</span><span class="p">)]</span>
+
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">h</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">m</span><span class="p">]</span> <span class="o">+=</span> <span class="n">fhat</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">m</span><span class="p">]</span> <span class="o">*</span> <span class="n">ghat</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="p">][</span><span class="n">m</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">m</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">j</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">h</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">m</span><span class="p">]</span> <span class="o">-=</span> <span class="n">h</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">m</span> <span class="o">^</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">j</span><span class="p">)]</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">h</span><span class="p">[</span><span class="nb">bin</span><span class="p">(</span><span class="n">m</span><span class="p">).</span><span class="n">count</span><span class="p">(</span><span class="s">"1"</span><span class="p">)][</span><span class="n">m</span><span class="p">]</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">)]</span>
+</code></pre></div></div>
 
 <p>For proofs and more details look at https://codeforces.com/blog/entry/72488</p>
 
 <p>See also https://cp-algorithms.com/combinatorics/inclusion-exclusion.html for Mobius Transform</p>
 
-<p>Here is an implementation of subset sum convolution. However this function works not how I expected, need to investigate, TBD.</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">operator</span> <span class="k">as</span> <span class="n">op</span>
-
-<span class="k">def</span> <span class="nf">fst</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">oplus</span><span class="o">=</span><span class="n">op</span><span class="p">.</span><span class="n">and_</span><span class="p">,</span> <span class="n">inv</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-    <span class="n">step</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="k">while</span> <span class="n">step</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="n">step</span><span class="p">):</span>
-                <span class="k">if</span> <span class="n">oplus</span> <span class="o">==</span> <span class="n">op</span><span class="p">.</span><span class="n">and_</span><span class="p">:</span>
-                    <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="n">step</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="n">step</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="k">if</span> <span class="n">inv</span> <span class="k">else</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="n">step</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="n">step</span><span class="p">])</span>
-                <span class="k">elif</span> <span class="n">oplus</span> <span class="o">==</span> <span class="n">op</span><span class="p">.</span><span class="n">or_</span><span class="p">:</span>
-                    <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="n">step</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="n">step</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="n">step</span><span class="p">])</span> <span class="k">if</span> <span class="n">inv</span> <span class="k">else</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="n">step</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-                <span class="k">elif</span> <span class="n">oplus</span> <span class="o">==</span> <span class="n">op</span><span class="p">.</span><span class="n">xor</span><span class="p">:</span>
-                    <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="n">step</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="n">step</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="n">step</span><span class="p">]</span>
-        <span class="n">step</span> <span class="o">*=</span> <span class="mi">2</span>
-
-    <span class="k">if</span> <span class="n">inv</span> <span class="ow">and</span> <span class="n">oplus</span> <span class="o">==</span> <span class="n">op</span><span class="p">.</span><span class="n">xor</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)):</span>
-            <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">fst_conv</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-    <span class="n">fst</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">fst</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)):</span>
-        <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*=</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-    <span class="n">fst</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">inv</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">a</span>
-</code></pre></div></div>
+<p>Here is an implementation of subset sum convolution. There is also implementation here https://github.com/cheran-senthil/PyRival/blob/master/pyrival/algebra/fst.py, but I am not sure how to use it.</p>
 
 <h4 id="number-theoretic-transform">Number Theoretic Transform</h4>
-<p>Not sure what it is for</p>
+<p>This is used for fast polynomials product with complexity <code class="language-plaintext highlighter-rouge">O(n log n)</code> given module <code class="language-plaintext highlighter-rouge">MOD</code>. I modified this version for python, it works may be 5% slower than original one from Pyrival site, but it is more clean and I think it works for more prime MOD without magic constants (it still need to be equal <code class="language-plaintext highlighter-rouge">2^x*T + 1</code> and it will work only for powers <code class="language-plaintext highlighter-rouge">&lt;= 2^x</code>). However be careful for other <code class="language-plaintext highlighter-rouge">MOD</code>, you need to choose <code class="language-plaintext highlighter-rouge">ROOT</code> as well, so it is primitive root (<strong>check</strong>).</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">MOD</span><span class="p">,</span> <span class="n">ROOT</span> <span class="o">=</span> <span class="mi">998244353</span><span class="p">,</span> <span class="mi">3</span>
+ 
+<span class="k">def</span> <span class="nf">ntt</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">inv</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">ROOT</span><span class="p">,</span> <span class="p">(</span><span class="n">MOD</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="n">inv</span><span class="o">*</span><span class="p">(</span><span class="n">MOD</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">MOD</span><span class="p">)</span>
+ 
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">):</span> 
+        <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">%</span> <span class="n">MOD</span>
+ 
+    <span class="n">rev</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">rev</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">rev</span><span class="p">[</span><span class="n">i</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">rev</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">|=</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">rev</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">rev</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">rev</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+ 
+    <span class="n">step</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">while</span> <span class="n">step</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+        <span class="n">half</span><span class="p">,</span> <span class="n">diff</span> <span class="o">=</span> <span class="n">step</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">//</span> <span class="n">step</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+            <span class="n">pw</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="n">half</span><span class="p">):</span>
+                <span class="n">v</span> <span class="o">=</span> <span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="n">pw</span><span class="p">]</span> <span class="o">*</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="n">half</span><span class="p">])</span> <span class="o">%</span> <span class="n">MOD</span>
+                <span class="n">a</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="n">half</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">v</span>
+                <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">v</span>
+                <span class="n">pw</span> <span class="o">+=</span> <span class="n">diff</span>
+ 
+        <span class="n">step</span> <span class="o">&lt;&lt;=</span> <span class="mi">1</span>
+ 
+    <span class="k">if</span> <span class="n">inv</span><span class="p">:</span>
+        <span class="n">inv_n</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">MOD</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="n">MOD</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">inv_n</span><span class="p">)</span> <span class="o">%</span> <span class="n">MOD</span>
+ 
+ 
+<span class="k">def</span> <span class="nf">ntt_conv</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">l1</span><span class="p">,</span> <span class="n">l2</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">l1</span> <span class="o">+</span> <span class="n">l2</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">s</span><span class="p">.</span><span class="n">bit_length</span><span class="p">()</span>
+ 
+    <span class="n">a</span> <span class="o">+=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">l1</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">+=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">l2</span><span class="p">)</span>
+ 
+    <span class="n">ntt</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">ntt</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+ 
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">%</span> <span class="n">MOD</span>
+ 
+    <span class="n">ntt</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+    <span class="k">del</span> <span class="n">a</span><span class="p">[</span><span class="n">s</span><span class="p">:]</span>
+</code></pre></div></div>
 
 <h4 id="deterministic-miller-rabin-primality-test">Deterministic Miller-Rabin Primality Test</h4>
 <p>It helps us to test quickly (potentially in <code class="language-plaintext highlighter-rouge">O(log^4 n)</code> if number is prime or not. However I am not sure about given code, what are the limits of it, need to be checked. Also to make it work, generalized Riemann hypothesis needs to be true.</p>
@@ -463,6 +580,606 @@ $g^k\equiv a(\mod n)$.
         <span class="n">sieve</span> <span class="o">=</span> <span class="n">prime_sieve</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
         <span class="n">res</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">|</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">3</span> <span class="o">+</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">6</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">sieve</span><span class="p">[</span><span class="n">i</span> <span class="o">&gt;&gt;</span> <span class="mi">3</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="p">(</span><span class="n">i</span> <span class="o">&amp;</span> <span class="mi">7</span><span class="p">))</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">res</span>
+</code></pre></div></div>
+
+<h3 id="data-structures">Data structures</h3>
+
+<h4 id="bit-array">Bit array</h4>
+<p>Implements bitarray using bytearray. If you have a lot of 0/1 data that there is very compact way to keep it it in bitarray, which will take <code class="language-plaintext highlighter-rouge">8</code> less space than <code class="language-plaintext highlighter-rouge">bytearray</code> and <code class="language-plaintext highlighter-rouge">32</code> times less than list of integers.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">BitArray</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="nb">bytes</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">((</span><span class="n">size</span> <span class="o">&gt;&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="nb">bytes</span><span class="p">[</span><span class="n">index</span> <span class="o">&gt;&gt;</span> <span class="mi">3</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="p">(</span><span class="n">index</span> <span class="o">&amp;</span> <span class="mi">7</span><span class="p">))</span> <span class="o">&amp;</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="nb">bytes</span><span class="p">[</span><span class="n">index</span> <span class="o">&gt;&gt;</span> <span class="mi">3</span><span class="p">]</span> <span class="o">|=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">index</span> <span class="o">&amp;</span> <span class="mi">7</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="nb">bytes</span><span class="p">[</span><span class="n">index</span> <span class="o">&gt;&gt;</span> <span class="mi">3</span><span class="p">]</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">index</span> <span class="o">&amp;</span> <span class="mi">7</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h4 id="binary-indexed-tree">Binary indexed tree</h4>
+<p>See patterns 1 page, it is quite often used data structure, I put it there.</p>
+
+<h4 id="fractions">Fractions</h4>
+<p>In python there is library which works with fractions already, but is quite slow. If you want faster implementation, here it is.</p>
+
+<p>Also, there is <code class="language-plaintext highlighter-rouge">limit_denominator(frac, max_den)</code> function, which is given fraction and maximum denominator, will find the closest fraction with denominator which is less or equal to maximum denominator. Complexity I think is logarithmic.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Fraction</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">den</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">gcd</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">den</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">num</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">den</span> <span class="o">=</span> <span class="n">num</span> <span class="o">//</span> <span class="n">g</span><span class="p">,</span> <span class="n">den</span> <span class="o">//</span> <span class="n">g</span>
+
+    <span class="n">__add__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Fraction</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">num</span> <span class="o">*</span> <span class="n">other</span><span class="p">.</span><span class="n">den</span> <span class="o">+</span> <span class="n">other</span><span class="p">.</span><span class="n">num</span> <span class="o">*</span> <span class="bp">self</span><span class="p">.</span><span class="n">den</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">den</span> <span class="o">*</span> <span class="n">other</span><span class="p">.</span><span class="n">den</span><span class="p">)</span>
+    <span class="n">__sub__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Fraction</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">num</span> <span class="o">*</span> <span class="n">other</span><span class="p">.</span><span class="n">den</span> <span class="o">-</span> <span class="n">other</span><span class="p">.</span><span class="n">num</span> <span class="o">*</span> <span class="bp">self</span><span class="p">.</span><span class="n">den</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">den</span> <span class="o">*</span> <span class="n">other</span><span class="p">.</span><span class="n">den</span><span class="p">)</span>
+    <span class="n">__mul__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Fraction</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">num</span> <span class="o">*</span> <span class="n">other</span><span class="p">.</span><span class="n">num</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">den</span> <span class="o">*</span> <span class="n">other</span><span class="p">.</span><span class="n">den</span><span class="p">)</span>
+    <span class="n">__truediv__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Fraction</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">num</span> <span class="o">*</span> <span class="n">other</span><span class="p">.</span><span class="n">den</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">den</span> <span class="o">*</span> <span class="n">other</span><span class="p">.</span><span class="n">num</span><span class="p">)</span>
+    <span class="n">__floordiv__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">num</span> <span class="o">*</span> <span class="n">other</span><span class="p">.</span><span class="n">den</span><span class="p">)</span> <span class="o">//</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">den</span> <span class="o">*</span> <span class="n">other</span><span class="p">.</span><span class="n">num</span><span class="p">)</span>
+
+    <span class="n">__pow__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Fraction</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">num</span><span class="o">**</span><span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">den</span><span class="o">**</span><span class="n">other</span><span class="p">)</span>
+    <span class="n">__abs__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="bp">self</span> <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">num</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">Fraction</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="p">.</span><span class="n">num</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">den</span><span class="p">)</span>
+    <span class="n">__neg__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="n">Fraction</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="p">.</span><span class="n">num</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">den</span><span class="p">)</span>
+    <span class="n">__round__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">ndigits</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">num</span> <span class="o">/</span> <span class="bp">self</span><span class="p">.</span><span class="n">den</span><span class="p">,</span> <span class="n">ndigits</span><span class="p">)</span>
+
+    <span class="n">__bool__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">num</span><span class="p">)</span>
+    <span class="n">__int__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">num</span> <span class="o">//</span> <span class="bp">self</span><span class="p">.</span><span class="n">den</span>
+    <span class="n">__float__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">num</span> <span class="o">/</span> <span class="bp">self</span><span class="p">.</span><span class="n">den</span>
+    <span class="n">__str__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="s">"({}, {})"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">num</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">den</span><span class="p">)</span>
+
+    <span class="n">__copy__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="n">Fraction</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">num</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">den</span><span class="p">)</span>
+    <span class="n">__hash__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="p">.</span><span class="n">num</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">den</span><span class="p">))</span>
+
+    <span class="n">__eq__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">num</span> <span class="o">*</span> <span class="n">other</span><span class="p">.</span><span class="n">den</span> <span class="o">==</span> <span class="n">other</span><span class="p">.</span><span class="n">num</span> <span class="o">*</span> <span class="bp">self</span><span class="p">.</span><span class="n">den</span>
+    <span class="n">__ne__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">num</span> <span class="o">*</span> <span class="n">other</span><span class="p">.</span><span class="n">den</span> <span class="o">!=</span> <span class="n">other</span><span class="p">.</span><span class="n">num</span> <span class="o">*</span> <span class="bp">self</span><span class="p">.</span><span class="n">den</span>
+    <span class="n">__lt__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">num</span> <span class="o">*</span> <span class="n">other</span><span class="p">.</span><span class="n">den</span> <span class="o">&lt;</span> <span class="n">other</span><span class="p">.</span><span class="n">num</span> <span class="o">*</span> <span class="bp">self</span><span class="p">.</span><span class="n">den</span>
+    <span class="n">__gt__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">num</span> <span class="o">*</span> <span class="n">other</span><span class="p">.</span><span class="n">den</span> <span class="o">&gt;</span> <span class="n">other</span><span class="p">.</span><span class="n">num</span> <span class="o">*</span> <span class="bp">self</span><span class="p">.</span><span class="n">den</span>
+    <span class="n">__le__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">num</span> <span class="o">*</span> <span class="n">other</span><span class="p">.</span><span class="n">den</span> <span class="o">&lt;=</span> <span class="n">other</span><span class="p">.</span><span class="n">num</span> <span class="o">*</span> <span class="bp">self</span><span class="p">.</span><span class="n">den</span>
+    <span class="n">__ge__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">num</span> <span class="o">*</span> <span class="n">other</span><span class="p">.</span><span class="n">den</span> <span class="o">&gt;=</span> <span class="n">other</span><span class="p">.</span><span class="n">num</span> <span class="o">*</span> <span class="bp">self</span><span class="p">.</span><span class="n">den</span>
+
+    <span class="n">__repr__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="s">"Fraction({}, {})"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">num</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">den</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">limit_denominator</span><span class="p">(</span><span class="n">frac</span><span class="p">,</span> <span class="n">max_den</span><span class="o">=</span><span class="mi">1000000</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">frac</span><span class="p">.</span><span class="n">den</span> <span class="o">&lt;=</span> <span class="n">max_den</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">frac</span>
+
+    <span class="n">p0</span><span class="p">,</span> <span class="n">q0</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">q1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="n">n</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">frac</span><span class="p">.</span><span class="n">num</span><span class="p">,</span> <span class="n">frac</span><span class="p">.</span><span class="n">den</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">n</span> <span class="o">//</span> <span class="n">d</span>
+        <span class="n">q2</span> <span class="o">=</span> <span class="n">q0</span> <span class="o">+</span> <span class="n">a</span> <span class="o">*</span> <span class="n">q1</span>
+        <span class="k">if</span> <span class="n">q2</span> <span class="o">&gt;</span> <span class="n">max_den</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">p0</span><span class="p">,</span> <span class="n">q0</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">q1</span> <span class="o">=</span> <span class="n">p1</span><span class="p">,</span> <span class="n">q1</span><span class="p">,</span> <span class="n">p0</span> <span class="o">+</span> <span class="n">a</span> <span class="o">*</span> <span class="n">p1</span><span class="p">,</span> <span class="n">q2</span>
+        <span class="n">n</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">d</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">a</span> <span class="o">*</span> <span class="n">d</span>
+
+    <span class="n">k</span> <span class="o">=</span> <span class="p">(</span><span class="n">max_den</span> <span class="o">-</span> <span class="n">q0</span><span class="p">)</span> <span class="o">//</span> <span class="n">q1</span>
+    <span class="n">bound1</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="n">p0</span> <span class="o">+</span> <span class="n">k</span> <span class="o">*</span> <span class="n">p1</span><span class="p">,</span> <span class="n">q0</span> <span class="o">+</span> <span class="n">k</span> <span class="o">*</span> <span class="n">q1</span><span class="p">)</span>
+    <span class="n">bound2</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">q1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">bound2</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">bound2</span> <span class="o">-</span> <span class="n">frac</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">bound1</span> <span class="o">-</span> <span class="n">frac</span><span class="p">)</span> <span class="k">else</span> <span class="n">bound1</span>
+</code></pre></div></div>
+
+<h4 id="continuous-fractions">Continuous fractions</h4>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">CFraction(frac)</code> transforms usual franction to continuous fraction, e.g. <code class="language-plaintext highlighter-rouge">123/32 -&gt; 3, 1, 5, 2, 2</code></li>
+  <li><code class="language-plaintext highlighter-rouge">CFrac2Frac(cfrac)</code> transforms</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">CFraction</span><span class="p">(</span><span class="n">frac</span><span class="p">):</span>
+    <span class="n">num</span><span class="p">,</span> <span class="n">den</span> <span class="o">=</span> <span class="n">frac</span>
+    <span class="k">yield</span> <span class="n">num</span> <span class="o">//</span> <span class="n">den</span>
+    <span class="n">num</span> <span class="o">%=</span> <span class="n">den</span>
+    <span class="k">while</span> <span class="n">den</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">num</span><span class="p">,</span> <span class="n">den</span> <span class="o">=</span> <span class="n">den</span><span class="p">,</span> <span class="n">num</span>
+        <span class="k">yield</span> <span class="n">num</span> <span class="o">//</span> <span class="n">den</span>
+        <span class="n">num</span> <span class="o">%=</span> <span class="n">den</span>
+
+<span class="k">def</span> <span class="nf">CFrac2Frac</span><span class="p">(</span><span class="n">cfrac</span><span class="p">):</span>
+    <span class="n">num</span><span class="p">,</span> <span class="n">den</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">cfrac</span><span class="p">):</span>
+        <span class="n">num</span><span class="p">,</span> <span class="n">den</span> <span class="o">=</span> <span class="n">den</span> <span class="o">+</span> <span class="n">num</span> <span class="o">*</span> <span class="n">u</span><span class="p">,</span> <span class="n">num</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">den</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="union-find">Union find</h4>
+<p>There is already one version of DSU in patterns 1. If you need a bit more functionality, use this version: here we have also have size of each set (however we do not have ranks) and we have total number of sets.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">DisjointSetUnion</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">parent</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">size</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">num_sets</span> <span class="o">=</span> <span class="n">n</span>
+
+    <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+        <span class="n">acopy</span> <span class="o">=</span> <span class="n">a</span>
+        <span class="k">while</span> <span class="n">a</span> <span class="o">!=</span> <span class="bp">self</span><span class="p">.</span><span class="n">parent</span><span class="p">[</span><span class="n">a</span><span class="p">]:</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">parent</span><span class="p">[</span><span class="n">a</span><span class="p">]</span>
+        <span class="k">while</span> <span class="n">acopy</span> <span class="o">!=</span> <span class="n">a</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">parent</span><span class="p">[</span><span class="n">acopy</span><span class="p">],</span> <span class="n">acopy</span> <span class="o">=</span> <span class="n">a</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">parent</span><span class="p">[</span><span class="n">acopy</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">a</span>
+
+    <span class="k">def</span> <span class="nf">union</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="bp">self</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">a</span> <span class="o">!=</span> <span class="n">b</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">size</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="p">.</span><span class="n">size</span><span class="p">[</span><span class="n">b</span><span class="p">]:</span>
+                <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span>
+
+            <span class="bp">self</span><span class="p">.</span><span class="n">num_sets</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">parent</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">size</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span><span class="p">.</span><span class="n">size</span><span class="p">[</span><span class="n">b</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">set_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">size</span><span class="p">[</span><span class="bp">self</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">a</span><span class="p">)]</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">num_sets</span>
+</code></pre></div></div>
+
+<h4 id="linked-list">Linked list</h4>
+<p><code class="language-plaintext highlighter-rouge">Node</code> is just definition for double linked list node. Now, let us discuss <code class="language-plaintext highlighter-rouge">LinkedList</code> functions:</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">__init__</code> is just initialize empty double linked list, which is looped: that is last node connected to the first. Sentinel node do not have value and have <code class="language-plaintext highlighter-rouge">None</code> inside.</li>
+  <li><code class="language-plaintext highlighter-rouge">get_node(self, index)</code> will return node given <code class="language-plaintext highlighter-rouge">index</code>. Also if we reached the end it will return <code class="language-plaintext highlighter-rouge">None</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">__getitem__(self, index)</code> will return value of node given index.</li>
+  <li><code class="language-plaintext highlighter-rouge">__len__(self)</code> is length of our linked list.</li>
+  <li><code class="language-plaintext highlighter-rouge">__setitem__(self, index, value)</code> will update node at <code class="language-plaintext highlighter-rouge">index</code> with new <code class="language-plaintext highlighter-rouge">value</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">__delitem__(self, index)</code> will delete node in given index if it is possible.</li>
+  <li><code class="language-plaintext highlighter-rouge">__repr__(self)</code> is to show what is inside our list.</li>
+  <li><code class="language-plaintext highlighter-rouge">to_list(self)</code> is to transform our linked list to usual list.</li>
+  <li><code class="language-plaintext highlighter-rouge">append(self, value)</code> is to append new node to the end.</li>
+  <li><code class="language-plaintext highlighter-rouge">appendleft(self, value)</code> is to append new node to the start.</li>
+  <li><code class="language-plaintext highlighter-rouge">insert(self, index, value)</code> is to insert new value at given index.</li>
+  <li><code class="language-plaintext highlighter-rouge">insert_between(self, node, left_node, right_node)</code> is to insert new node between two nodes.</li>
+  <li><code class="language-plaintext highlighter-rouge">insert_after(self, node, value)</code> is to insert node after given node. Different with <code class="language-plaintext highlighter-rouge">insert</code> is that here we have node, not index.</li>
+  <li><code class="language-plaintext highlighter-rouge">merge_left(self, other)</code> is to concatenate new list to the left of the current list.</li>
+  <li><code class="language-plaintext highlighter-rouge">merge_right(self, other)</code>, similar but from the right.</li>
+  <li><code class="language-plaintext highlighter-rouge">pop(self, node = None)</code> is to delete node if possible and return its value.</li>
+  <li><code class="language-plaintext highlighter-rouge">before</code> is return node before if possible, if not, return cycle shift.</li>
+  <li>`after is to return node after node if possible and if not, return cycle shift.</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="bp">self</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">prev</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">"{}()"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">__class__</span><span class="p">.</span><span class="n">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s">"{}({})"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">__class__</span><span class="p">.</span><span class="n">__name__</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">value</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">LinkedList</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iterable</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span><span class="p">.</span><span class="n">prev</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">__len</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">iterable</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span> <span class="o">+=</span> <span class="n">iterable</span>
+
+    <span class="k">def</span> <span class="nf">get_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">index</span><span class="p">:</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="nb">next</span>
+            <span class="k">if</span> <span class="n">node</span> <span class="o">==</span> <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="o">==</span> <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span><span class="p">:</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span> <span class="n">node</span>
+
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">get_node</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">node</span><span class="p">.</span><span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">__len</span>
+
+    <span class="k">def</span> <span class="nf">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">get_node</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+        <span class="n">node</span><span class="p">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">get_node</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">node</span><span class="p">:</span>
+            <span class="n">node</span><span class="p">.</span><span class="n">prev</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="nb">next</span>
+            <span class="k">if</span> <span class="n">node</span><span class="p">.</span><span class="nb">next</span><span class="p">:</span>
+                <span class="n">node</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">prev</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="n">prev</span>
+            <span class="n">node</span><span class="p">.</span><span class="n">prev</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="n">node</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="n">node</span><span class="p">.</span><span class="n">value</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">__len</span> <span class="o">-=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">to_list</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="nf">to_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">elts</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">curr</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span><span class="p">.</span><span class="nb">next</span>
+        <span class="k">while</span> <span class="n">curr</span> <span class="o">!=</span> <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span><span class="p">:</span>
+            <span class="n">elts</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">curr</span><span class="p">.</span><span class="n">value</span><span class="p">)</span>
+            <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="p">.</span><span class="nb">next</span>
+        <span class="k">return</span> <span class="n">elts</span>
+
+    <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">insert_between</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span><span class="p">.</span><span class="n">prev</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">appendleft</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">insert_between</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span><span class="p">.</span><span class="nb">next</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">new_node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="n">len_</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">len_</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">insert_between</span><span class="p">(</span><span class="n">new_node</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">len_</span><span class="p">:</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">get_node</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">insert_between</span><span class="p">(</span><span class="n">new_node</span><span class="p">,</span> <span class="n">node</span><span class="p">.</span><span class="n">prev</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">index</span> <span class="o">==</span> <span class="n">len_</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">insert_between</span><span class="p">(</span><span class="n">new_node</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span><span class="p">.</span><span class="n">prev</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nb">IndexError</span>
+
+    <span class="k">def</span> <span class="nf">insert_between</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">left_node</span><span class="p">,</span> <span class="n">right_node</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">and</span> <span class="n">left_node</span> <span class="ow">and</span> <span class="n">right_node</span><span class="p">:</span>
+            <span class="n">node</span><span class="p">.</span><span class="n">prev</span> <span class="o">=</span> <span class="n">left_node</span>
+            <span class="n">node</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">right_node</span>
+            <span class="n">left_node</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">node</span>
+            <span class="n">right_node</span><span class="p">.</span><span class="n">prev</span> <span class="o">=</span> <span class="n">node</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">__len</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nb">IndexError</span>
+
+    <span class="k">def</span> <span class="nf">insert_after</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">new_node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="n">node</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">prev</span> <span class="o">=</span> <span class="n">new_node</span>
+        <span class="n">new_node</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="nb">next</span>
+        <span class="n">node</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">new_node</span>
+        <span class="n">new_node</span><span class="p">.</span><span class="n">prev</span> <span class="o">=</span> <span class="n">node</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">__len</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">merge_left</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">prev</span> <span class="o">=</span> <span class="n">other</span><span class="p">.</span><span class="n">sentinel</span><span class="p">.</span><span class="n">prev</span>
+        <span class="n">other</span><span class="p">.</span><span class="n">sentinel</span><span class="p">.</span><span class="n">prev</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span><span class="p">.</span><span class="nb">next</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">other</span><span class="p">.</span><span class="n">sentinel</span><span class="p">.</span><span class="nb">next</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">prev</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">__len</span> <span class="o">+=</span> <span class="n">other</span><span class="p">.</span><span class="n">__len</span>
+
+    <span class="k">def</span> <span class="nf">merge_right</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span><span class="p">.</span><span class="n">prev</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">other</span><span class="p">.</span><span class="n">sentinel</span><span class="p">.</span><span class="nb">next</span>
+        <span class="n">other</span><span class="p">.</span><span class="n">sentinel</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">prev</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span><span class="p">.</span><span class="n">prev</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span><span class="p">.</span><span class="n">prev</span> <span class="o">=</span> <span class="n">other</span><span class="p">.</span><span class="n">sentinel</span><span class="p">.</span><span class="n">prev</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span><span class="p">.</span><span class="n">prev</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">__len</span> <span class="o">+=</span> <span class="n">other</span><span class="p">.</span><span class="n">__len</span>
+
+    <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span> <span class="o">=</span> <span class="bp">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span><span class="p">.</span><span class="n">prev</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">__len</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nb">IndexError</span>
+        <span class="n">node</span><span class="p">.</span><span class="n">prev</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="nb">next</span>
+        <span class="n">node</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">prev</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="n">prev</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">__len</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">node</span><span class="p">.</span><span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">before</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">node</span><span class="p">.</span><span class="n">prev</span> <span class="o">==</span> <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">node</span><span class="p">.</span><span class="n">prev</span><span class="p">.</span><span class="n">prev</span>
+        <span class="k">return</span> <span class="n">node</span><span class="p">.</span><span class="n">prev</span>
+
+    <span class="k">def</span> <span class="nf">after</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">node</span><span class="p">.</span><span class="nb">next</span> <span class="o">==</span> <span class="bp">self</span><span class="p">.</span><span class="n">sentinel</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">node</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span>
+        <span class="k">return</span> <span class="n">node</span><span class="p">.</span><span class="nb">next</span>
+</code></pre></div></div>
+
+<h4 id="sparse-table">Sparse table</h4>
+<p>It is used to answer queries on range in <code class="language-plaintext highlighter-rouge">O(1)</code> given function <code class="language-plaintext highlighter-rouge">min, max</code> or another function such that <code class="language-plaintext highlighter-rouge">f(x, x) = x</code>. Time of construction is <code class="language-plaintext highlighter-rouge">O(n log n)</code>, time of query is <code class="language-plaintext highlighter-rouge">O(1)</code>.</p>
+
+<p>Notice, that Minimum Range Query problem can be solved in different ways, the best init/range complexity is <code class="language-plaintext highlighter-rouge">O(n)/O(1)</code>, but it is quite difficult to code (<strong>ADD TEMPLATE</strong>)</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">RangeQuery</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="nb">min</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">func</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">_data</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="p">)]</span>
+        <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">while</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+            <span class="n">prev</span> <span class="o">=</span> <span class="n">_data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">_data</span><span class="p">.</span><span class="n">append</span><span class="p">([</span><span class="n">func</span><span class="p">(</span><span class="n">prev</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">prev</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)])</span>
+            <span class="n">i</span> <span class="o">&lt;&lt;=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">):</span>
+        <span class="s">"""func of data[start, stop)"""</span>
+        <span class="n">depth</span> <span class="o">=</span> <span class="p">(</span><span class="n">stop</span> <span class="o">-</span> <span class="n">start</span><span class="p">).</span><span class="n">bit_length</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">_data</span><span class="p">[</span><span class="n">depth</span><span class="p">][</span><span class="n">start</span><span class="p">],</span> <span class="bp">self</span><span class="p">.</span><span class="n">_data</span><span class="p">[</span><span class="n">depth</span><span class="p">][</span><span class="n">stop</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">depth</span><span class="p">)])</span>
+
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h4 id="segment-tree-with-lazy-updates">Segment Tree with lazy updates</h4>
+<p>We already have one implementation of segment tree in patterns 1, here is iterative implementation, which is faster</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">LazySegmentTree</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="nb">max</span><span class="p">):</span>
+        <span class="s">"""initialize the lazy segment tree with data"""</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_default</span> <span class="o">=</span> <span class="n">default</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_func</span> <span class="o">=</span> <span class="n">func</span>
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_size</span> <span class="o">=</span> <span class="n">_size</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">_len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">).</span><span class="n">bit_length</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_lazy</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">_size</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">default</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">_size</span><span class="p">:</span><span class="n">_size</span> <span class="o">+</span> <span class="bp">self</span><span class="p">.</span><span class="n">_len</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">_size</span><span class="p">)):</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">i</span><span class="p">],</span> <span class="bp">self</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">_len</span>
+
+    <span class="k">def</span> <span class="nf">_push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="s">"""push query on idx to its children"""</span>
+        <span class="c1"># Let the children know of the queries
+</span>        <span class="n">q</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">_lazy</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">_lazy</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="mi">0</span>
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">_lazy</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">idx</span><span class="p">]</span> <span class="o">+=</span> <span class="n">q</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_lazy</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">q</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">idx</span><span class="p">]</span> <span class="o">+=</span> <span class="n">q</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">q</span>
+
+    <span class="k">def</span> <span class="nf">_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="s">"""updates the node idx to know of all queries applied to it via its ancestors"""</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">idx</span><span class="p">.</span><span class="n">bit_length</span><span class="p">())):</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">_push</span><span class="p">(</span><span class="n">idx</span> <span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="s">"""make the changes to idx be known to its ancestors"""</span>
+        <span class="n">idx</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">idx</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">_func</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">idx</span><span class="p">],</span> <span class="bp">self</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="bp">self</span><span class="p">.</span><span class="n">_lazy</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+            <span class="n">idx</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="s">"""lazily add value to [start, stop)"""</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">start_copy</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="bp">self</span><span class="p">.</span><span class="n">_size</span>
+        <span class="n">stop</span> <span class="o">=</span> <span class="n">stop_copy</span> <span class="o">=</span> <span class="n">stop</span> <span class="o">+</span> <span class="bp">self</span><span class="p">.</span><span class="n">_size</span>
+        <span class="k">while</span> <span class="n">start</span> <span class="o">&lt;</span> <span class="n">stop</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">start</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">_lazy</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">+=</span> <span class="n">value</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">+=</span> <span class="n">value</span>
+                <span class="n">start</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">stop</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">stop</span> <span class="o">-=</span> <span class="mi">1</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">_lazy</span><span class="p">[</span><span class="n">stop</span><span class="p">]</span> <span class="o">+=</span> <span class="n">value</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">stop</span><span class="p">]</span> <span class="o">+=</span> <span class="n">value</span>
+            <span class="n">start</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span>
+            <span class="n">stop</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span>
+
+        <span class="c1"># Tell all nodes above of the updated area of the updates
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">_build</span><span class="p">(</span><span class="n">start_copy</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_build</span><span class="p">(</span><span class="n">stop_copy</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="s">"""func of data[start, stop)"""</span>
+        <span class="n">start</span> <span class="o">+=</span> <span class="bp">self</span><span class="p">.</span><span class="n">_size</span>
+        <span class="n">stop</span> <span class="o">+=</span> <span class="bp">self</span><span class="p">.</span><span class="n">_size</span>
+
+        <span class="c1"># Apply all the lazily stored queries
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">_update</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_update</span><span class="p">(</span><span class="n">stop</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">res</span> <span class="o">=</span> <span class="n">default</span>
+        <span class="k">while</span> <span class="n">start</span> <span class="o">&lt;</span> <span class="n">stop</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">start</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">_func</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">start</span><span class="p">])</span>
+                <span class="n">start</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">stop</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">stop</span> <span class="o">-=</span> <span class="mi">1</span>
+                <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">_func</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">stop</span><span class="p">])</span>
+            <span class="n">start</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span>
+            <span class="n">stop</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">res</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">"LazySegmentTree({0})"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="persistent-segment-tree">Persistent Segment Tree</h4>
+<p>I think it is quite rare: see for code <a href="https://github.com/cheran-senthil/PyRival/blob/master/pyrival/data_structures/PersistentSegTree.py"> <font color="blue">https://github.com/cheran-senthil/PyRival/blob/master/pyrival/data_structures/PersistentSegTree.py/</font></a></p>
+
+<p>The idea of this tree that it keeps changes.</p>
+
+<h4 id="sorted-list">Sorted List</h4>
+<p>If it is allowed to import it, just import. If not, copy code from <a href="https://github.com/cheran-senthil/PyRival/blob/master/pyrival/data_structures/SortedList.py"> <font color="blue">https://github.com/cheran-senthil/PyRival/blob/master/pyrival/data_structures/SortedList.py</font></a></p>
+
+<h4 id="treap">Treap</h4>
+<p>Another data structure with the same complexities as SortedList, check <a href="https://github.com/cheran-senthil/PyRival/blob/master/pyrival/data_structures/Treap.py "> <font color="blue">https://github.com/cheran-senthil/PyRival/blob/master/pyrival/data_structures/Treap.py</font></a></p>
+
+<h4 id="trie">Trie</h4>
+<p>We already have one template in main page. Here is a bit different implementation, which potentially can be a bit faster. Sometimes it is useful for each node keep counter of how many times it is here, then functions add and delete will look more similar.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Trie</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">words</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">root</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
+        <span class="n">current_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">root</span>
+        <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
+            <span class="n">current_dict</span> <span class="o">=</span> <span class="n">current_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">letter</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span>
+        <span class="n">current_dict</span><span class="p">[</span><span class="s">"_end_"</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+
+    <span class="k">def</span> <span class="nf">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
+        <span class="n">current_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">root</span>
+        <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">letter</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">current_dict</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">False</span>
+            <span class="n">current_dict</span> <span class="o">=</span> <span class="n">current_dict</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span>
+        <span class="k">return</span> <span class="s">"_end_"</span> <span class="ow">in</span> <span class="n">current_dict</span>
+
+    <span class="k">def</span> <span class="nf">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
+        <span class="n">current_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">root</span>
+        <span class="n">nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">current_dict</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
+            <span class="n">current_dict</span> <span class="o">=</span> <span class="n">current_dict</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span>
+            <span class="n">nodes</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_dict</span><span class="p">)</span>
+        <span class="k">del</span> <span class="n">current_dict</span><span class="p">[</span><span class="s">"_end_"</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h4 id="2sat">2SAT</h4>
+<p>2SAT problem can be solved in linear time, using strong components. For more details look at https://github.com/cheran-senthil/PyRival/blob/master/pyrival/data_structures/TwoSat.py</p>
+
+<h3 id="geometry">Geometry</h3>
+<p>To find convex hull of points, it is better to use Monotone chains approach. If you need to find convex hull, use the following code.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">remove_middle</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="n">cross</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">dot</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">cross</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">cross</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">dot</span> <span class="o">&lt;=</span> <span class="mi">0</span>
+
+
+<span class="k">def</span> <span class="nf">convex_hull</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
+    <span class="n">spoints</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+    <span class="n">hull</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">spoints</span> <span class="o">+</span> <span class="n">spoints</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">hull</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">remove_middle</span><span class="p">(</span><span class="n">hull</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">hull</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">p</span><span class="p">):</span>
+            <span class="n">hull</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">hull</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">hull</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">hull</span>
+</code></pre></div></div>
+
+<p>If you need to find convex hull with all points on borders, you can use this code (<strong>TO CHECK</strong>)</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">cross</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">convex_hull</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
+    <span class="n">spoints</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">points</span><span class="p">)</span>
+    <span class="n">hull</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">spoints</span> <span class="o">+</span> <span class="n">spoints</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">hull</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">cross</span><span class="p">(</span><span class="n">hull</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">hull</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">p</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">hull</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">hull</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="n">hull</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="line-functions">Line functions</h4>
+<p>Here are some function to work with lines and points with integer coordinates.</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">get_2dline</code>: given two points, return equation of line in form <code class="language-plaintext highlighter-rouge">a*x + b*y + c = 0</code>, where <code class="language-plaintext highlighter-rouge">gcd(a, b, c) &gt; 0</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">dist</code> is distance between two points.</li>
+  <li><code class="language-plaintext highlighter-rouge">is_parallel</code> to check if two lines are paralles or equal.</li>
+  <li><code class="language-plaintext highlighter-rouge">is_same</code> to check if two lines the same.</li>
+  <li><code class="language-plaintext highlighter-rouge">collinear</code> is to check if <code class="language-plaintext highlighter-rouge">3</code> points are on the same line.</li>
+  <li><code class="language-plaintext highlighter-rouge">intersect</code> is to check if two lines have intersection and if they have, return point.</li>
+  <li><code class="language-plaintext highlighter-rouge">rotate</code> is to rotate given point <code class="language-plaintext highlighter-rouge">p</code> around point <code class="language-plaintext highlighter-rouge">origin</code> by <code class="language-plaintext highlighter-rouge">theta</code> radians.</li>
+</ol>
+
+<pre><code class="language-pyhon">def get_2dline(p1, p2):
+    if p1 == p2:
+        return (0, 0, 0)
+    _p1, _p2 = min(p1, p2), max(p1, p2)
+    a, b, c = _p2[1] - _p1[1], _p1[0] - _p2[0], _p1[1] * _p2[0] - _p1[0] * _p2[1]
+    g = gcd(gcd(a, b), c)
+    return (a // g, b // g, c // g)
+
+dist = lambda p1, p2: sum((a - b) * (a - b) for a, b in zip(p1, p2))**0.5
+
+is_parallel = lambda l1, l2: l1[0] * l2[1] == l2[0] * l1[1]
+
+is_same = lambda l1, l2: is_parallel(l1, l2) and (l1[1] * l2[2] == l2[1] * l1[2])
+
+collinear = lambda p1, p2, p3: is_same(get_2dline(p1, p2), get_2dline(p2, p3))
+
+intersect = (lambda l1, l2: None if is_parallel(l1, l2) else (
+    (l2[1] * l1[2] - l1[1] * l2[2]) / (l2[0] * l1[1] - l1[0] * l2[1]),
+    (l1[0] * l2[2] - l1[2] * l2[0]) / (l2[0] * l1[1] - l1[0] * l2[1]),
+))
+
+rotate = lambda p, theta, origin=(0, 0): (
+    origin[0] + (p[0] - origin[0]) * math.cos(theta) - (p[1] - origin[1]) * math.sin(theta),
+    origin[1] + (p[0] - origin[0]) * math.sin(theta) + (p[1] - origin[1]) * math.cos(theta),
+)
+</code></pre>
+
+<h4 id="polygon-functions">Polygon functions</h4>
+<p>Here are some function of polygons.</p>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">perimeter</code> is perimeter of polygon.</li>
+  <li><code class="language-plaintext highlighter-rouge">area</code> is area of polygon.</li>
+  <li><code class="language-plaintext highlighter-rouge">is_in_circle</code> is to ckeck if given point lies inside given circe.</li>
+  <li><code class="language-plaintext highlighter-rouge">incircle_radius</code> is radius of incircle for given triangle.</li>
+  <li><code class="language-plaintext highlighter-rouge">circumcircle_radius</code> is radius of circumcircle for given triangle.</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">perimeter</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">p</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">dist</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">p</span><span class="p">[:</span><span class="mi">1</span><span class="p">]))</span>
+
+<span class="n">area</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">p</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">j</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">j</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">p</span><span class="p">[:</span><span class="mi">1</span><span class="p">])))</span> <span class="o">/</span> <span class="mi">2</span>
+
+<span class="n">is_in_circle</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">p</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">r</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="o">-</span> <span class="n">j</span> <span class="o">*</span> <span class="n">j</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">c</span><span class="p">))</span> <span class="o">&lt;</span> <span class="n">r</span> <span class="o">*</span> <span class="n">r</span>
+
+<span class="n">incircle_radius</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="n">area</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">perimeter</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">circumcircle_radius</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="p">(</span><span class="n">dist</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">*</span> <span class="n">dist</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="o">*</span> <span class="n">dist</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">a</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">area</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h4 id="vector-functions">Vector functions</h4>
+<p>Here are some functions to work with vertors.</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">to_vec</code> is to create vector from two points.</li>
+  <li><code class="language-plaintext highlighter-rouge">scale</code> is multiply vector by number.</li>
+  <li><code class="language-plaintext highlighter-rouge">translate</code> is to translate vector by another vector.</li>
+  <li><code class="language-plaintext highlighter-rouge">dot</code> is dot product of two vectors.</li>
+  <li><code class="language-plaintext highlighter-rouge">norm_sq</code> is length of vector.</li>
+  <li><code class="language-plaintext highlighter-rouge">angle</code> is angle between two vectors.</li>
+  <li><code class="language-plaintext highlighter-rouge">cross2d</code> is length of vector product of two vectors.</li>
+  <li><code class="language-plaintext highlighter-rouge">cross3d</code> is 3d vector: vector product of two 3d vectors.</li>
+  <li><code class="language-plaintext highlighter-rouge">closest_point</code> is closest point on segment <code class="language-plaintext highlighter-rouge">a, b</code> (or line <code class="language-plaintext highlighter-rouge">a, b</code>) to given point <code class="language-plaintext highlighter-rouge">p</code>.</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">to_vec</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">:</span> <span class="p">(</span><span class="n">j</span> <span class="o">-</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">))</span>
+
+<span class="n">scale</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">v</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">s</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">v</span><span class="p">)</span>
+
+<span class="n">translate</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">p</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="p">(</span><span class="n">pi</span> <span class="o">+</span> <span class="n">vi</span> <span class="k">for</span> <span class="n">pi</span><span class="p">,</span> <span class="n">vi</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+
+<span class="n">dot</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">j</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">))</span>
+
+<span class="n">norm_sq</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">v</span><span class="p">)</span>
+
+<span class="n">angle</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">oa</span><span class="p">,</span> <span class="n">ob</span><span class="p">:</span> <span class="n">math</span><span class="p">.</span><span class="n">acos</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">oa</span><span class="p">,</span> <span class="n">ob</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">norm_sq</span><span class="p">(</span><span class="n">oa</span><span class="p">)</span> <span class="o">*</span> <span class="n">norm_sq</span><span class="p">(</span><span class="n">ob</span><span class="p">))</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">cross2d</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span> <span class="n">v1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">v2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">v1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">v2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">cross3d</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span> <span class="p">(</span><span class="n">v1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">v2</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">v1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">v2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">v1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">v2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">v1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">v2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">v1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">v2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">v1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">v2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">closest_point</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">segment</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="n">ap</span><span class="p">,</span> <span class="n">ab</span> <span class="o">=</span> <span class="n">to_vec</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">p</span><span class="p">),</span> <span class="n">to_vec</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+    <span class="n">u</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">ap</span><span class="p">,</span> <span class="n">ab</span><span class="p">)</span> <span class="o">/</span> <span class="n">norm_sq</span><span class="p">(</span><span class="n">ab</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">segment</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">u</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">a</span>
+        <span class="k">if</span> <span class="n">u</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">b</span>
+
+    <span class="k">return</span> <span class="n">translate</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">scale</span><span class="p">(</span><span class="n">ab</span><span class="p">,</span> <span class="n">u</span><span class="p">))</span>
 </code></pre></div></div>
 
   </div>
