@@ -288,33 +288,37 @@
 </code></pre></div></div>
 
 <h4 id="strongly-connected-components-kosaraju">Strongly Connected Components, Kosaraju</h4>
-<p>Here is Kosaraju algorithm to evaluate strongly connected components in graph, complexity is also $O(V + E)$.</p>
+<p>Here is Kosaraju algorithm to evaluate strongly connected components in graph, complexity is also $O(V + E)$.
+It will return two pieces of information:</p>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">SCC</code> is list of lists, where in each list we have stronlgy connected component and these components follow the topological sort of graph with components merged to point.</li>
+  <li><code class="language-plaintext highlighter-rouge">out</code> is list of length <code class="language-plaintext highlighter-rouge">n</code>, where for each node we have index of connected component.</li>
+</ol>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def kosaraju(g, n):
-    vis, l, comps = [False]*n, [0]*n, [0]*n
-    global time
-    time, transp = n, [[]] * n
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">kosaraju</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">SCC</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+    <span class="n">st</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    
+    <span class="k">while</span> <span class="n">st</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">st</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="o">~</span><span class="n">x</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">P</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">d</span><span class="p">:</span>
+                <span class="n">SCC</span> <span class="o">+=</span> <span class="p">[</span><span class="n">S</span><span class="p">[</span><span class="n">d</span><span class="p">:]]</span>
+                <span class="k">del</span> <span class="n">S</span><span class="p">[</span><span class="n">d</span><span class="p">:],</span> <span class="n">P</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">SCC</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span> <span class="n">D</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">D</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">while</span> <span class="n">P</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">D</span><span class="p">[</span><span class="n">x</span><span class="p">]:</span> <span class="n">P</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">D</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">S</span> <span class="o">+=</span> <span class="p">[</span><span class="n">x</span><span class="p">]</span>
+            <span class="n">P</span> <span class="o">+=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">S</span><span class="p">)]</span>
+            <span class="n">D</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+            <span class="n">st</span> <span class="o">+=</span> <span class="p">[</span><span class="o">~</span><span class="n">x</span><span class="p">]</span>
+            <span class="n">st</span> <span class="o">+=</span> <span class="n">G</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
 
-    def visit(u):
-        global time
-        if vis[u]: return
-        vis[u] = True
-        for v in g[u]:
-            visit(v)
-            transp[v] = transp[v] + [u]
-        time -= 1
-        l[time] = u
-
-    def assign(u, root):
-        if not vis[u]: return
-        vis[u] = False
-        comps[u] = root
-        for v in transp[u]:
-            assign(v, root)
-
-    for u in range(n): visit(u)
-    for u in l: assign(u, u)
-    return comps
+    <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">comp</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">SCC</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">comp</span><span class="p">:</span> <span class="n">out</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="k">return</span> <span class="n">SCC</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">out</span>
 </code></pre></div></div>
 
 <h4 id="prefix-function-for-kmp">Prefix function for KMP</h4>
