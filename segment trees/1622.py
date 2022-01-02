@@ -1,27 +1,51 @@
-import sys
-input = sys.stdin.readline
+MOD = 3
+INV = {1: 1, 2: 2}
 
-M = 998244353
-Q = lambda x: pow(2, x, M) - 1
-get = lambda A, i: [[y for y in A if y >> i & 1 == b] for b in (0, 1)]
+def Gauss(a):
+    n, m = len(a), len(a[0]) - 1
+    where = [-1] * m
+    row, col = 0, 0
 
-def f2(A, B, i):
-    if not A or not B or i == -1: return Q(len(A) + len(B))
-    A0, A1 = get(A, i)
-    B0, B1 = get(B, i)
-    if x >> i & 1:
-        return ((f2(A0, B1, i - 1) + 1) * (f2(A1, B0, i - 1) + 1) - 1) % M
-    else:
-        return (f2(A0, B0, i - 1) + f2(A1, B1, i - 1) + Q(len(A0)) * Q(len(A1)) + Q(len(B0)) * Q(len(B1))) % M
+    while col < m and row < n:
+        for i in range(row, n):
+            if a[i][col]:
+                a[i], a[row] = a[row], a[i]
+                break
 
-        return f(x,y,i-1)+f(w,z,i-1)+q(x)*q(y)+q(w)*q(z)
-        return (f(x, y, i - 1) + q(x) + q(y) + 1) * (f(w, z, i - 1) + q(w) + q(z) + 1) - q(a) - q(b) - 1
+        if not a[row][col]:
+            col += 1
+            continue
+        where[col] = row
 
-def f1(A, i):
-    if not A: return Q(len(A))
-    A0, A1 = get(A, i)
-    return f2(A0, A1, i - 1) if x >> i & 1 else (f1(A0, i - 1) + f1(A1, i - 1)) % M
+        for i in range(n):
+            if i != row:
+                c = a[i][col] * INV[a[row][col] % MOD]
+                for j in range(col, m + 1):
+                    a[i][j] = (a[i][j] - a[row][j] * c) % MOD
 
-n, x = [int(i) for i in input().split()]
-arr = [int(i) for i in input().split()]
-print(f1(arr, 29))
+        col, row = col + 1, row + 1
+
+    ans = [0] * m
+    for i in range(m):
+        if where[i] != -1:
+            ans[i] = (a[where[i]][m] * INV[a[where[i]][i] % MOD]) % MOD
+
+    for i in range(n):
+        sm = sum(ans[j] * a[i][j] for j in range(m))
+        if (sm - a[i][m]) % MOD: return 0, [-1] * m
+
+    if -1 in where: return 2, ans
+
+    return 1, ans
+
+from time import time
+n = 500
+from random import randint
+x1 = [[randint(0, 2) for _ in range(n)] for _ in range(n-2)]
+x2 = [t[:] for t in x1]
+#x2 = [np.array(t) for t in x2]
+
+t1 = time()
+Gauss(x1)
+t2 = time()
+print(t2 - t1)
