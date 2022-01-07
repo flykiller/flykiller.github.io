@@ -11,50 +11,52 @@ def F2(A, B, C, D):
     E = (A & C) ^ (B & D)
     return A ^ D ^ E ^ (B & C), B ^ C ^ E ^ (A & D)
 
-def get_bit(a, i):
-    return a[i // l] >> (i % l) & 1
-
-def flip_bit(a, i):
-    a[i // l] ^= (1 << (i % l))
-
 def Gauss(a, b, n, m):
     if n == 0: return 2, [0] * m
     where = [-1] * m
     row, col = 0, 0
 
     while col < m and row < n:
+        t1, t2 = divmod(col, l)
         for i in range(row, n):
-            if get_bit(a[i], col) or get_bit(b[i], col):
+            if a[i][t1] >> t2 & 1 or b[i][t1] >> t2 & 1:
                 a[i], a[row] = a[row], a[i]
                 b[i], b[row] = b[row], b[i]
                 break
 
-        if not get_bit(a[row], col) and not get_bit(b[row], col):
+        if not a[row][t1] >> t2 & 1 and not b[row][t1] >> t2 & 1:
             col += 1
             continue
         where[col] = row
 
         for i in range(n):
-            if i != row:
-                x1, x2 = get_bit(a[i], col), get_bit(b[i], col)
-                y1, y2 = get_bit(a[row], col), get_bit(b[row], col)
-                cc = ((x1 + 2*x2) * (y1 + 2*y2)) % 3
-                if cc == 0: continue
-                F = F1 if cc == 2 else F2
-                for k in range(U): a[i][k], b[i][k] = F(a[i][k], b[i][k], a[row][k], b[row][k])
+            if i == row: continue
+            x1, x2 = a[i][t1] >> t2 & 1, b[i][t1] >> t2 & 1
+            y1, y2 = a[row][t1] >> t2 & 1, b[row][t1] >> t2 & 1
+            cc = ((x1 + 2*x2) * (y1 + 2*y2)) % 3
+            if cc == 0: continue
+            F = F1 if cc == 2 else F2
+            for k in range(t1, U): a[i][k], b[i][k] = F(a[i][k], b[i][k], a[row][k], b[row][k])
 
         col, row = col + 1, row + 1
 
     ans = [0] * m
+    t1, t2 = divmod(m, l)
     for i in range(m):
-        if where[i] != -1:
-            x1, x2 = get_bit(a[where[i]], m), get_bit(b[where[i]], m)
-            y1, y2 = get_bit(a[where[i]], i), get_bit(b[where[i]], i)
+        W = where[i]
+        if W != -1:
+            t3, t4 = divmod(i, l)
+            x1, x2 = a[W][t1] >> t2 & 1, b[W][t1] >> t2 & 1
+            y1, y2 = a[W][t3] >> t4 & 1, b[W][t3] >> t4 & 1
             ans[i] = ((x1 + 2*x2) * (y1 + 2*y2)) % 3
 
     for i in range(n):
-        sm = sum((get_bit(a[i], j) + 2 * get_bit(b[i], j)) * ans[j] for j in range(m))
-        if sm % 3 != get_bit(a[i], m) + 2 * get_bit(b[i], m): return 0, [-1] * m
+        sm = 0
+        for j in range(m):
+            t3, t4 = divmod(j, l)
+            sm += ((a[i][t3] >> t4 & 1) + 2 * (b[i][t3] >> t4 & 1)) * ans[j]
+
+        if sm % 3 != (a[i][t1] >> t2 & 1) + 2 * (b[i][t1] >> t2 & 1): return 0, [-1] * m
 
     if -1 in where: return 2, ans
     return 1, ans
