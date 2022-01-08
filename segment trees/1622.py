@@ -1,20 +1,25 @@
 from itertools import combinations
 from collections import defaultdict
 import io, os, sys
+from time import time
 # input = io.BytesIO(os.read(0,os.fstat(0).st_size)).readline
 
 def F1(A, B, C, D):
-    E = (A & D) ^ (B & C)
-    return A ^ C ^ E ^ (B & D), B ^ D ^ E ^ (A & C)
+    AD = A ^ D
+    return (AD ^ B) | (A ^ C), AD & (B ^ C)
 
 def F2(A, B, C, D):
-    E = (A & C) ^ (B & D)
-    return A ^ D ^ E ^ (B & C), B ^ C ^ E ^ (A & D)
+    AC = A ^ C
+    return AC | (B ^ D), (AC ^ D) & (B ^ C)
+
+def flip_bit(a, i):
+    a[i // l] ^= (1 << (i % l))
 
 def Gauss(a, b, n, m):
     if n == 0: return 2, [0] * m
     where = [-1] * m
     row, col = 0, 0
+    S = 0
 
     while col < m and row < n:
         t1, t2 = divmod(col, l)
@@ -29,16 +34,24 @@ def Gauss(a, b, n, m):
             continue
         where[col] = row
 
+        tt1 = time()
         for i in range(n):
             if i == row: continue
             x1, x2 = a[i][t1] >> t2 & 1, b[i][t1] >> t2 & 1
             y1, y2 = a[row][t1] >> t2 & 1, b[row][t1] >> t2 & 1
-            cc = ((x1 + 2*x2) * (y1 + 2*y2)) % 3
+            cc = ((x1 + x2) * (y1 + y2)) % 3
             if cc == 0: continue
             F = F1 if cc == 2 else F2
             for k in range(t1, U): a[i][k], b[i][k] = F(a[i][k], b[i][k], a[row][k], b[row][k])
 
+        tt2 = time()
+        S += tt2 - tt1
+
         col, row = col + 1, row + 1
+
+    print(S)
+
+    tt3 = time()
 
     ans = [0] * m
     t1, t2 = divmod(m, l)
@@ -48,18 +61,22 @@ def Gauss(a, b, n, m):
             t3, t4 = divmod(i, l)
             x1, x2 = a[W][t1] >> t2 & 1, b[W][t1] >> t2 & 1
             y1, y2 = a[W][t3] >> t4 & 1, b[W][t3] >> t4 & 1
-            ans[i] = ((x1 + 2*x2) * (y1 + 2*y2)) % 3
+            ans[i] = ((x1 + x2) * (y1 + y2)) % 3
 
     for i in range(n):
         sm = 0
         for j in range(m):
             t3, t4 = divmod(j, l)
-            sm += ((a[i][t3] >> t4 & 1) + 2 * (b[i][t3] >> t4 & 1)) * ans[j]
+            sm += ((a[i][t3] >> t4 & 1) + (b[i][t3] >> t4 & 1)) * ans[j]
 
-        if sm % 3 != (a[i][t1] >> t2 & 1) + 2 * (b[i][t1] >> t2 & 1): return 0, [-1] * m
+        if (sm - (a[i][t1] >> t2 & 1) - (b[i][t1] >> t2 & 1)) % 3 != 0: return 0, [-1] * m
+
+    tt4 = time()
+    print(tt4 - tt3)
 
     if -1 in where: return 2, ans
     return 1, ans
+
 
 
 T = int(input())
@@ -97,6 +114,7 @@ for _ in range(T):
                 if last == 1:
                     flip_bit(row[0], m)
                 elif last == 2:
+                    flip_bit(row[0], m)
                     flip_bit(row[1], m)
 
                 ans.add(tuple(tuple(x) for x in row))
