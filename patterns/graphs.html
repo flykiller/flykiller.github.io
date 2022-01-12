@@ -44,7 +44,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode problems</a><a class="page-link" href="/coding%20ideas/">Patterns</a><a class="page-link" href="/performance%20tricks/">Speed up</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode problems</a><a class="page-link" href="/codeforces%20problems/">Codeforces problems</a><a class="page-link" href="/coding%20ideas/">Patterns</a><a class="page-link" href="/performance%20tricks/">Speed up</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -438,6 +438,72 @@ The idea is to start from both ends and each time choose the end with smaller si
                 <span class="n">queue1</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">steps</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cand</span><span class="p">))</span>
     <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 </code></pre></div></div>
+
+<h4 id="lca">LCA</h4>
+<p>Given tree, the goal is to answer queries: find LCA of two given nodes. There are at least two different approaches to solve this problem:</p>
+
+<p>1.1 First way is to use Eulerian traversal of graph and then use segment tree/sparse table to answer queries.
+Also we need <code class="language-plaintext highlighter-rouge">indxs</code> array\dict where for each value we keep the last occurence of this node (in fact we can keep any occurence, but it is easy to code for the last one).
+<strong>full code not tested here</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="bp">self</span><span class="p">.</span><span class="n">arr</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">dep</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>  <span class="c1">#euler path
+</span><span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">depth</span><span class="p">):</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">arr</span> <span class="o">+=</span> <span class="p">[</span><span class="n">node</span><span class="p">]</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">dep</span> <span class="o">+=</span> <span class="p">[</span><span class="n">depth</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="nb">filter</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="p">[</span><span class="n">node</span><span class="p">.</span><span class="n">left</span><span class="p">,</span> <span class="n">node</span><span class="p">.</span><span class="n">right</span><span class="p">]):</span>
+        <span class="n">dfs</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">arr</span> <span class="o">+=</span> <span class="p">[</span><span class="n">node</span><span class="p">]</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">dep</span> <span class="o">+=</span> <span class="p">[</span><span class="n">depth</span><span class="p">]</span>
+
+<span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">indxs</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">arr</span><span class="p">)}</span>
+</code></pre></div></div>
+
+<p>1.2 Another way is to use dfs, where for each node we keep the time when we extracted this node from dfs stack. I think it is more or less equivalent to the previous approach.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">RangeQuery</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="nb">min</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">func</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">_data</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="p">)]</span>
+        <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">while</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+            <span class="n">prev</span> <span class="o">=</span> <span class="n">_data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">_data</span><span class="p">.</span><span class="n">append</span><span class="p">([</span><span class="n">func</span><span class="p">(</span><span class="n">prev</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">prev</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)])</span>
+            <span class="n">i</span> <span class="o">&lt;&lt;=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+        <span class="n">depth</span> <span class="o">=</span> <span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">begin</span><span class="p">).</span><span class="n">bit_length</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">_data</span><span class="p">[</span><span class="n">depth</span><span class="p">][</span><span class="n">begin</span><span class="p">],</span> <span class="bp">self</span><span class="p">.</span><span class="n">_data</span><span class="p">[</span><span class="n">depth</span><span class="p">][</span><span class="n">end</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">depth</span><span class="p">)])</span>
+
+
+<span class="k">class</span> <span class="nc">LCA</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">time</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">path</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+        <span class="n">P</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">dfs</span> <span class="o">=</span> <span class="p">[</span><span class="n">root</span><span class="p">]</span>
+        <span class="k">while</span> <span class="n">dfs</span><span class="p">:</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">path</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="n">node</span><span class="p">]</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">time</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span> <span class="o">=</span> <span class="n">t</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">for</span> <span class="n">nei</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">node</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">time</span><span class="p">[</span><span class="n">nei</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                    <span class="n">P</span><span class="p">[</span><span class="n">nei</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span>
+                    <span class="n">dfs</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">nei</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">rmq</span> <span class="o">=</span> <span class="n">RangeQuery</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">time</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">.</span><span class="n">path</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">a</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">time</span><span class="p">[</span><span class="n">a</span><span class="p">]</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">time</span><span class="p">[</span><span class="n">b</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">:</span>
+            <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">path</span><span class="p">[</span><span class="bp">self</span><span class="p">.</span><span class="n">rmq</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)]</span>
+</code></pre></div></div>
+
+<p>2.0 Use binary lyfting, see Leetcode 1724 solution for more details.</p>
 
 
   </div>

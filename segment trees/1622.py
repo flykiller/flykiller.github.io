@@ -1,24 +1,21 @@
-def convex_hull_trick(K, M, integer=True):
-    intersect = lambda i, j: (M[j] - M[i]) / (K[i] - K[j])
+from collections import defaultdict
+#import io, os, sys
 
-    hull_i, hull_x = [], []
-    order = sorted(range(len(K)), key=K.__getitem__)
-    for i in order:
-        while True:
-            if not hull_i:
-                hull_i.append(i)
-                break
-            elif K[hull_i[-1]] == K[i]:
-                if M[hull_i[-1]] >= M[i]: break
-                hull_i.pop()
-                if hull_x: hull_x.pop()
-            else:
-                x = intersect(i, hull_i[-1])
-                if hull_x and x <= hull_x[-1]:
-                    hull_i.pop()
-                    hull_x.pop()
-                else:
-                    hull_i += [i]
-                    hull_x += [x]
-                    break
-    return hull_i, hull_x
+#input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
+
+n, l, k = [int(i) for i in input().split()]
+arr_d = [int(i) for i in input().split()] + [l]
+arr_a = [int(i) for i in input().split()] + [0]
+diff = [x - y for x, y in zip(arr_d[1:], arr_d)]
+
+dp = {(k, arr_a[0]): 0}
+
+for i in range(1, n + 1):
+    dp2 = defaultdict(lambda: float("inf"))
+    for (k1, sp), val in dp.items():
+        t, s = arr_a[i - 1], diff[i - 1]
+        dp2[k1, t] = min(dp2[k1, t], val + t * s)
+        if k1 >= 1 and t > sp: dp2[k1 - 1, sp] = min(dp2[k1 - 1, sp], val + sp * s)
+    dp = dp2
+
+print(min(dp.values()))
