@@ -1,21 +1,23 @@
-from collections import defaultdict
-#import io, os, sys
+I = lambda: [float(x) for x in input().split()]
+n, m = [int(i) for i in input().split()]
+V = [I() for _ in range(n)]
+cmp = lambda x: (x >= 0) - (x <= 0)
 
-#input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
+for _ in range(m):
+    x0, y0, x1, y1 = I()
+    p0, p1 = x1 - x0, y1 - y0
+    V3 = [((x - x0) * p0 + (y - y0) * p1, (y - y0) * p0 - (x - x0) * p1) for x, y in V]
+    res = []
 
-n, l, k = [int(i) for i in input().split()]
-arr_d = [int(i) for i in input().split()] + [l]
-arr_a = [int(i) for i in input().split()] + [0]
-diff = [x - y for x, y in zip(arr_d[1:], arr_d)]
+    for (v1x, v1y), (v2x, v2y) in zip(V3, V3[1:] + V3[:1]):
+        if cmp(v1y) != cmp(v2y):
+            res.append(((v2x * v1y - v1x * v2y) / (v1y - v2y), cmp(v2y) - cmp(v1y)))
 
-dp = {(k, arr_a[0]): 0}
+    res.sort()
 
-for i in range(1, n + 1):
-    dp2 = defaultdict(lambda: float("inf"))
-    for (k1, sp), val in dp.items():
-        t, s = arr_a[i - 1], diff[i - 1]
-        dp2[k1, t] = min(dp2[k1, t], val + t * s)
-        if k1 >= 1 and t > sp: dp2[k1 - 1, sp] = min(dp2[k1 - 1, sp], val + sp * s)
-    dp = dp2
+    t, w = 0, 0.
+    for i in range(1, len(res)):
+        t += res[i - 1][1]
+        if t: w += res[i][0] - res[i-1][0]
 
-print(min(dp.values()))
+    print(w / (p0 * p0 + p1 * p1) ** 0.5)
