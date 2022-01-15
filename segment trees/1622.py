@@ -1,23 +1,31 @@
-I = lambda: [float(x) for x in input().split()]
-n, m = [int(i) for i in input().split()]
-V = [I() for _ in range(n)]
-cmp = lambda x: (x >= 0) - (x <= 0)
+I = lambda: [int(x) for x in input().split()]
 
-for _ in range(m):
-    x0, y0, x1, y1 = I()
-    p0, p1 = x1 - x0, y1 - y0
-    V3 = [((x - x0) * p0 + (y - y0) * p1, (y - y0) * p0 - (x - x0) * p1) for x, y in V]
-    res = []
+T, INF = int(input()), float("inf")
+for _ in range(T):
+    n, m, k = I()
+    x = I()
 
-    for (v1x, v1y), (v2x, v2y) in zip(V3, V3[1:] + V3[:1]):
-        if cmp(v1y) != cmp(v2y):
-            res.append(((v2x * v1y - v1x * v2y) / (v1y - v2y), cmp(v2y) - cmp(v1y)))
+    dic = [{} for i in range(n+1)]
+    a_bcdh = [[] for i in range(n+1)]
 
-    res.sort()
+    for i in range(k):
+        a, b, c, d, h = I()
+        a_bcdh[a] += [(b, c, d, h)]
+        dic[a][b] = dic[c][d] = INF
 
-    t, w = 0, 0.
-    for i in range(1, len(res)):
-        t += res[i - 1][1]
-        if t: w += res[i][0] - res[i-1][0]
+    dic[1][1] = 0
+    dic[n][m] = INF
 
-    print(w / (p0 * p0 + p1 * p1) ** 0.5)
+    for a in range(1, n + 1):
+        level = sorted(dic[a])
+        for u, v in zip(level, level[1:]):
+            dic[a][v] = min(dic[a][v], dic[a][u] + abs(u - v) * x[a - 1])
+
+        level = level[::-1]
+        for u, v in zip(level, level[1:]):
+            dic[a][v] = min(dic[a][v], dic[a][u] + abs(u - v) * x[a - 1])
+
+        for b, c, d, h in a_bcdh[a]:
+            dic[c][d] = min(dic[c][d], dic[a][b] - h)
+
+    print("NO ESCAPE" if dic[n][m] == INF else dic[n][m])
