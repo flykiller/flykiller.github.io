@@ -51,6 +51,30 @@
       <div class="wrapper">
         <span>[
   
+    
+    <a href="/tag/string"><code class="highligher-rouge"><nobr>string</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/greedy"><code class="highligher-rouge"><nobr>greedy</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/math"><code class="highligher-rouge"><nobr>math</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/intervals"><code class="highligher-rouge"><nobr>intervals</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/sort"><code class="highligher-rouge"><nobr>sort</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/dp"><code class="highligher-rouge"><nobr>dp</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/dfs"><code class="highligher-rouge"><nobr>dfs</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/binary search"><code class="highligher-rouge"><nobr>binary search</nobr></code>&nbsp;</a>
+  
 ]</span>
 
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
@@ -198,16 +222,24 @@ Also we calculate array <code class="language-plaintext highlighter-rouge">cuts<
 </code></pre></div></div>
 
 <h4 id="problem-e-statement">Problem E statement</h4>
-<p>[dfs, dp]</p>
+<p>[dfs, dp, greedy]</p>
 
 <p><a href="https://codeforces.com/contest/1626/problem/E"> <font color="blue">https://codeforces.com/contest/1626/problem/E</font></a></p>
 
 <h4 id="solution-4">Solution</h4>
+<p>Notice, that all paths will have the following form:</p>
+<ol>
+  <li>If we start to go down the tree, we will always continue go down.</li>
+  <li>We can do several steps up, but then from some moment we will always go down.</li>
+</ol>
+
+<p>First, let us deal with paths, which go down.</p>
+
 <p>The key idea of this problem is the following: imagine we have node <code class="language-plaintext highlighter-rouge">u</code> and its children <code class="language-plaintext highlighter-rouge">v</code>. Then if we can reach black node from <code class="language-plaintext highlighter-rouge">v</code> and number of black nodes in subtree of <code class="language-plaintext highlighter-rouge">v</code> is <code class="language-plaintext highlighter-rouge">&gt;=2</code> then we can reach black node from <code class="language-plaintext highlighter-rouge">u</code> as well. Indeed, we have at least <code class="language-plaintext highlighter-rouge">2</code> choices to which of these two nodes we move (in fact we move edge <code class="language-plaintext highlighter-rouge">u -&gt; v</code>) and we can avoid repeting moving towards the same black node. However we will deal only with directions <code class="language-plaintext highlighter-rouge">parent -&gt; child</code> in this way.</p>
 
 <ol>
   <li>So, first, we use preorder dfs where we update <code class="language-plaintext highlighter-rouge">ans</code> as well as <code class="language-plaintext highlighter-rouge">cnt[u]</code> is number of black nodes in subtree of <code class="language-plaintext highlighter-rouge">u</code>.</li>
-  <li>Also we want to deal with directions <code class="language-plaintext highlighter-rouge">child -&gt; parent</code>. For this we use postorder dfs, where we start from leafs and try to move up. We allowed to move up <code class="language-plaintext highlighter-rouge">v -&gt; u</code> if <code class="language-plaintext highlighter-rouge">tot - cnt[v] &gt;= 2</code> and <code class="language-plaintext highlighter-rouge">ans[u] = 1</code>.</li>
+  <li>Also we want to deal with directions <code class="language-plaintext highlighter-rouge">child -&gt; parent</code>. For this we use postorder dfs, where we start to traverse from root and try to move up. We need to choose such order of traversal, that we visit parent of node before we visit node itself. We allowed to move up <code class="language-plaintext highlighter-rouge">v -&gt; u</code> if <code class="language-plaintext highlighter-rouge">tot - cnt[v] &gt;= 2</code> and <code class="language-plaintext highlighter-rouge">ans[u] = 1</code>.</li>
   <li>Finally, in the beginning, we need to put all neibours of black nodes to our <code class="language-plaintext highlighter-rouge">ans</code>, because we can reach them in one step.</li>
 </ol>
 
