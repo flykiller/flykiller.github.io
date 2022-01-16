@@ -51,6 +51,42 @@
       <div class="wrapper">
         <span>[
   
+    
+    <a href="/tag/string"><code class="highligher-rouge"><nobr>string</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/parser"><code class="highligher-rouge"><nobr>parser</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/graph"><code class="highligher-rouge"><nobr>graph</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/tree"><code class="highligher-rouge"><nobr>tree</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/binary search"><code class="highligher-rouge"><nobr>binary search</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/two pointers"><code class="highligher-rouge"><nobr>two pointers</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/counter"><code class="highligher-rouge"><nobr>counter</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/palindrome"><code class="highligher-rouge"><nobr>palindrome</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/geometry"><code class="highligher-rouge"><nobr>geometry</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/math"><code class="highligher-rouge"><nobr>math</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/graph algo"><code class="highligher-rouge"><nobr>graph algo</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/greedy"><code class="highligher-rouge"><nobr>greedy</nobr></code>&nbsp;</a>
+  
 ]</span>
 
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
@@ -200,17 +236,110 @@ Also if we have say </code>5<code class="language-plaintext highlighter-rouge"> 
 </code></pre></div></div>
 
 <h4 id="problem-e-statement">Problem E statement</h4>
-<p>[]</p>
+<p>[graph, tree]</p>
 
 <p><a href="https://codeforces.com/contest/600/problem/E"> <font color="blue">https://codeforces.com/contest/600/problem/E</font></a></p>
 
 <h4 id="solution-4">Solution</h4>
+<p>See Binarysearch 0507 problem, it uses the similar idea. We need to travese our tree with dfs and keep some data in each node about its subtree. When we merge two nodes, we always do it <strong>small to larger</strong>. What we keep in each node:</p>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">c_t</code> is Counter for each color.</li>
+  <li><code class="language-plaintext highlighter-rouge">t_c</code> is defaultdict, where for each frequency we keep set of nodes.</li>
+  <li><code class="language-plaintext highlighter-rouge">ans</code> is answer for this node, that is sum of all colors with the highest frequency.</li>
+  <li><code class="language-plaintext highlighter-rouge">mx</code> is the maximum frequency.</li>
+</ol>
+
+<p>Then we add new color to our structure, we can do it just in <code class="language-plaintext highlighter-rouge">O(1)</code> time! We check how may nodes with color <code class="language-plaintext highlighter-rouge">c</code> we already have and update <code class="language-plaintext highlighter-rouge">c_t</code> and <code class="language-plaintext highlighter-rouge">t_c</code>. Also if new frequency is bigger than current one, we set <code class="language-plaintext highlighter-rouge">ans = c</code>. If it is the same, we update <code class="language-plaintext highlighter-rouge">ans += c</code>.</p>
+
+<p>Also we need to use booster for dfs to get AC.</p>
 
 <h4 id="complexity-4">Complexity</h4>
+<p>It is <code class="language-plaintext highlighter-rouge">O(n log n)</code> for time and <code class="language-plaintext highlighter-rouge">O(n)</code> for space.</p>
 
 <h4 id="code-4">Code</h4>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">Counter</span>
+<span class="n">I</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">()]</span>
+<span class="kn">import</span> <span class="nn">io</span><span class="p">,</span> <span class="n">os</span><span class="p">,</span> <span class="n">sys</span>
+<span class="nb">input</span> <span class="o">=</span> <span class="n">io</span><span class="p">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">os</span><span class="p">.</span><span class="n">fstat</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="n">st_size</span><span class="p">)).</span><span class="n">readline</span>
+
+<span class="c1">################################################
+</span><span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">GeneratorType</span>
+<span class="k">def</span> <span class="nf">bootstrap</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">stack</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="k">def</span> <span class="nf">wrappedfunc</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">stack</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">to</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">to</span><span class="p">)</span> <span class="ow">is</span> <span class="n">GeneratorType</span><span class="p">:</span>
+                    <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">to</span><span class="p">)</span>
+                    <span class="n">to</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">to</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">stack</span><span class="p">:</span>
+                        <span class="k">break</span>
+                    <span class="n">to</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">send</span><span class="p">(</span><span class="n">to</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">to</span>
+    <span class="k">return</span> <span class="n">wrappedfunc</span>
+<span class="c1">################################################
+</span>
+<span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">ans</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">mx</span> <span class="o">=</span> <span class="n">c</span><span class="p">,</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">c_t</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">([</span><span class="n">c</span><span class="p">])</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">t_c</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">t_c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">other</span><span class="p">.</span><span class="n">c_t</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+        <span class="n">old_t</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">c_t</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">c_t</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_t</span> <span class="o">=</span> <span class="n">old_t</span> <span class="o">+</span> <span class="n">t</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">t_c</span><span class="p">[</span><span class="n">old_t</span><span class="p">].</span><span class="n">discard</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">t_c</span><span class="p">[</span><span class="n">new_t</span><span class="p">].</span><span class="n">add</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">new_t</span> <span class="o">==</span> <span class="bp">self</span><span class="p">.</span><span class="n">mx</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">ans</span> <span class="o">+=</span> <span class="n">c</span>
+        <span class="k">elif</span> <span class="n">new_t</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="p">.</span><span class="n">mx</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">mx</span> <span class="o">=</span> <span class="n">new_t</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">ans</span> <span class="o">=</span> <span class="n">c</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">c_t</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">ans</span><span class="p">)</span>
+
+<span class="o">@</span><span class="n">bootstrap</span>
+<span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">par</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">color</span><span class="p">[</span><span class="n">node</span><span class="p">]</span>
+    <span class="n">ans_n</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">G</span><span class="p">[</span><span class="n">node</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">child</span> <span class="o">==</span> <span class="n">par</span><span class="p">:</span> <span class="k">continue</span>
+        <span class="n">ans_c</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">dfs</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">child</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ans_n</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">ans_c</span><span class="p">):</span>
+            <span class="n">ans_n</span><span class="p">,</span> <span class="n">ans_c</span> <span class="o">=</span> <span class="n">ans_c</span><span class="p">,</span> <span class="n">ans_n</span>
+        <span class="n">ans_n</span><span class="p">.</span><span class="n">merge</span><span class="p">(</span><span class="n">ans_c</span><span class="p">)</span>
+    <span class="n">out</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">ans_n</span><span class="p">.</span><span class="n">ans</span>
+    <span class="k">yield</span> <span class="n">ans_n</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="n">color</span> <span class="o">=</span> <span class="n">I</span><span class="p">()</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">I</span><span class="p">()</span>
+    <span class="n">G</span><span class="p">[</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="p">[</span><span class="n">b</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">G</span><span class="p">[</span><span class="n">b</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="p">[</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">dfs</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">" "</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">out</span><span class="p">))</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+
 </code></pre></div></div>
+<h4 id="remark">Remark</h4>
+<p>Notice, that what we can keep instead of <code class="language-plaintext highlighter-rouge">t_c</code> is sorted list of pairs (frequency, color), but then we will have <code class="language-plaintext highlighter-rouge">O(n log^2)</code> complexity, which is too big for python.</p>
 
 <h4 id="problem-f-statement">Problem F statement</h4>
 <p>[graph, graph algo, dfs, greedy]</p>
@@ -262,7 +391,7 @@ Also if we have say </code>5<code class="language-plaintext highlighter-rouge"> 
 <span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span> <span class="o">+</span> <span class="s">" "</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">ans</span><span class="p">))</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<h4 id="remark">Remark</h4>
+<h4 id="remark-1">Remark</h4>
 <p>There are better time complexity algorithm, see wikipedia for names.</p>
 
   </div><a class="u-url" href="/codeforces/0600.html" hidden></a>
