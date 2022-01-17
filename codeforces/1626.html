@@ -75,6 +75,9 @@
     
     <a href="/tag/binary search"><code class="highligher-rouge"><nobr>binary search</nobr></code>&nbsp;</a>
   
+    
+    <a href="/tag/combinatorics"><code class="highligher-rouge"><nobr>combinatorics</nobr></code>&nbsp;</a>
+  
 ]</span>
 
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
@@ -317,17 +320,46 @@ Also we calculate array <code class="language-plaintext highlighter-rouge">cuts<
 </code></pre></div></div>
 
 <h4 id="problem-f-statement">Problem F statement</h4>
-<p>[]</p>
+<p>[dp, math, combinatorics]</p>
 
 <p><a href="https://codeforces.com/contest/1626/problem/F"> <font color="blue">https://codeforces.com/contest/1626/problem/F</font></a></p>
 
 <h4 id="solution-5">Solution</h4>
+<p>Nice and difficult problem. Let us first notice, that if we replace number <code class="language-plaintext highlighter-rouge">x</code> with number <code class="language-plaintext highlighter-rouge">y = x % 720720</code>, then we can easily recalculate answer. Why it is so? <code class="language-plaintext highlighter-rouge">N = 720270</code> is number which can be divided by <code class="language-plaintext highlighter-rouge">1, 2, 3, ..., 16</code> without reminder and it means that when we perform some operations with <code class="language-plaintext highlighter-rouge">x</code>: <code class="language-plaintext highlighter-rouge">x -= x % i</code> for all <code class="language-plaintext highlighter-rouge">i</code> in range <code class="language-plaintext highlighter-rouge">1, 2, ..., 16</code> and then apply <code class="language-plaintext highlighter-rouge">% 720702</code> it will be the same as we do this directy with <code class="language-plaintext highlighter-rouge">y</code>. Also instead of expectation we calculate it directly multiplied by <code class="language-plaintext highlighter-rouge">n^k</code> as asked. Imagine, that we have</p>
+
+<p><code class="language-plaintext highlighter-rouge">[x1, x2, ..., xi, xi+1, ..., xn]</code> and we changed it to <code class="language-plaintext highlighter-rouge">[x1, x2, ..., yi = xi % N, xi+1, ..., xn]</code>. What happen with our Expectation? There can be exaclty <code class="language-plaintext highlighter-rouge">n^k</code> options how we genereated random index. For each of these options we have <code class="language-plaintext highlighter-rouge">k</code> terms in sum. There will be <code class="language-plaintext highlighter-rouge">n^{k-1} * k</code> times we meet <code class="language-plaintext highlighter-rouge">xi</code> in this sum. So, when we go from <code class="language-plaintext highlighter-rouge">xi</code> to <code class="language-plaintext highlighter-rouge">yi</code>, we will loose <code class="language-plaintext highlighter-rouge">n^{k-1} * k * (xi - yi)</code>, which we need to add.</p>
+
+<p>No, let us look at numbers <code class="language-plaintext highlighter-rouge">p0, ..., pN</code>: this is how many of each number modulo <code class="language-plaintext highlighter-rouge">N</code> we have. Divided by <code class="language-plaintext highlighter-rouge">n</code> this numbers represent probabilities with which we can choose our numbers. (Imagine that <code class="language-plaintext highlighter-rouge">N = 4</code> and we have <code class="language-plaintext highlighter-rouge">0, 1, 1, 2, 3, 3, 3</code>, then we have probability <code class="language-plaintext highlighter-rouge">1/7, 2/7, 1/7, 3/7</code> to choose numbers <code class="language-plaintext highlighter-rouge">0, 1, 2, 3</code> if we sample uniformly). After each step probabilities will change. For every element <code class="language-plaintext highlighter-rouge">p[j]</code> with probability <code class="language-plaintext highlighter-rouge">1/n</code> it becomes equal to <code class="language-plaintext highlighter-rouge">p[j - j%i]</code> and with probability <code class="language-plaintext highlighter-rouge">(n-1)/n</code> it stays the same. So, what we need to do is to recalculate all elements in <code class="language-plaintext highlighter-rouge">p</code>. Notice, that because we going from <code class="language-plaintext highlighter-rouge">j = 0</code> to <code class="language-plaintext highlighter-rouge">N-1</code>, there will no be collistions. Because what we actually keep not probabilities but scaled ones, we need to evaluate expectation <code class="language-plaintext highlighter-rouge">tot</code> for level <code class="language-plaintext highlighter-rouge">i</code> and then multiply them by coefficient <code class="language-plaintext highlighter-rouge">n^{k-i}</code>.</p>
 
 <h4 id="complexity-5">Complexity</h4>
+<p>It is <code class="language-plaintext highlighter-rouge">O(N*k)</code> for time and <code class="language-plaintext highlighter-rouge">O(N)</code> for space. Notice that <code class="language-plaintext highlighter-rouge">N = lcm(1, ..., k)</code>.</p>
 
 <h4 id="code-5">Code</h4>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">M</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">998244353</span><span class="p">,</span> <span class="mi">720720</span><span class="p">,</span> <span class="mi">0</span>
+<span class="n">I</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">()]</span>
+<span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">N</span>
+
+<span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">U</span> <span class="o">=</span> <span class="n">I</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">p</span><span class="p">[</span><span class="n">a</span> <span class="o">%</span> <span class="n">N</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">res</span> <span class="o">+=</span> <span class="n">a</span> <span class="o">//</span> <span class="n">N</span> <span class="o">*</span> <span class="n">N</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span> <span class="o">%</span> <span class="n">U</span>
+
+<span class="n">res</span> <span class="o">=</span> <span class="p">(</span><span class="n">res</span> <span class="o">*</span> <span class="nb">pow</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span> <span class="o">*</span> <span class="n">k</span><span class="p">)</span> <span class="o">%</span> <span class="n">M</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">tot</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="n">j</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">))</span> <span class="o">%</span> <span class="n">M</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+        <span class="n">p</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">*=</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">p</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">%=</span> <span class="n">M</span>
+        <span class="n">p</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="n">j</span> <span class="o">%</span> <span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">tmp</span>
+    <span class="n">res</span> <span class="o">+=</span> <span class="p">(</span><span class="n">tot</span> <span class="o">*</span> <span class="nb">pow</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span> <span class="o">-</span> <span class="n">i</span><span class="p">,</span> <span class="n">M</span><span class="p">))</span> <span class="o">%</span> <span class="n">M</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">res</span> <span class="o">%</span> <span class="n">M</span><span class="p">)</span>
 </code></pre></div></div>
+
+<h4 id="remark">Remark</h4>
+<p>I should say that this idea is about markov chains.</p>
 
   </div><a class="u-url" href="/codeforces/1626.html" hidden></a>
 </article>
