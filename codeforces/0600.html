@@ -262,26 +262,7 @@ Also if we have say </code>5<code class="language-plaintext highlighter-rouge"> 
 <span class="kn">import</span> <span class="nn">io</span><span class="p">,</span> <span class="n">os</span><span class="p">,</span> <span class="n">sys</span>
 <span class="nb">input</span> <span class="o">=</span> <span class="n">io</span><span class="p">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">os</span><span class="p">.</span><span class="n">fstat</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="n">st_size</span><span class="p">)).</span><span class="n">readline</span>
 
-<span class="c1">################################################
-</span><span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">GeneratorType</span>
-<span class="k">def</span> <span class="nf">bootstrap</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">stack</span><span class="o">=</span><span class="p">[]):</span>
-    <span class="k">def</span> <span class="nf">wrappedfunc</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">stack</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">to</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-            <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-                <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">to</span><span class="p">)</span> <span class="ow">is</span> <span class="n">GeneratorType</span><span class="p">:</span>
-                    <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">to</span><span class="p">)</span>
-                    <span class="n">to</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">to</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
-                    <span class="k">if</span> <span class="ow">not</span> <span class="n">stack</span><span class="p">:</span>
-                        <span class="k">break</span>
-                    <span class="n">to</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">send</span><span class="p">(</span><span class="n">to</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">to</span>
-    <span class="k">return</span> <span class="n">wrappedfunc</span>
-<span class="c1">################################################
+<span class="c1">#### IMPORT BOOTSTRAP FOR RECURSION FROM TEMPLATES
 </span>
 <span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>

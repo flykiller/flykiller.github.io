@@ -73,6 +73,8 @@
 <h4 id="way-2">Way 2</h4>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">io</span><span class="p">,</span> <span class="n">os</span><span class="p">,</span> <span class="n">sys</span>
 <span class="nb">input</span> <span class="o">=</span> <span class="n">io</span><span class="p">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">os</span><span class="p">.</span><span class="n">fstat</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="n">st_size</span><span class="p">)).</span><span class="n">readline</span>
+
+<span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">" "</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="nb">list</span><span class="p">))</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h4 id="way-3">Way 3</h4>
@@ -132,6 +134,31 @@
 <span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">,</span> <span class="n">sys</span><span class="p">.</span><span class="n">stdout</span> <span class="o">=</span> <span class="n">IOWrapper</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">),</span> <span class="n">IOWrapper</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">)</span>
 <span class="nb">input</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">readline</span><span class="p">().</span><span class="n">rstrip</span><span class="p">(</span><span class="s">"</span><span class="se">\r\n</span><span class="s">"</span><span class="p">)</span>
 <span class="n">output</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="bootstrap-for-recursion">bootstrap for recursion</h4>
+<p>It is used in cases when we have recursion like dfs, which is not fast enough, this will make it almost iterative.
+To use it use <code class="language-plaintext highlighter-rouge">@bootstrap</code> word before function. Also, instead of <code class="language-plaintext highlighter-rouge">return</code> in function use <code class="language-plaintext highlighter-rouge">yield</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">GeneratorType</span>
+<span class="k">def</span> <span class="nf">bootstrap</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">stack</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="k">def</span> <span class="nf">wrappedfunc</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">stack</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">to</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">to</span><span class="p">)</span> <span class="ow">is</span> <span class="n">GeneratorType</span><span class="p">:</span>
+                    <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">to</span><span class="p">)</span>
+                    <span class="n">to</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">to</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">stack</span><span class="p">:</span>
+                        <span class="k">break</span>
+                    <span class="n">to</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">send</span><span class="p">(</span><span class="n">to</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">to</span>
+
+    <span class="k">return</span> <span class="n">wrappedfunc</span>
 </code></pre></div></div>
 
   </div>
