@@ -1,30 +1,43 @@
-from collections import Counter
+from collections import defaultdict
+from itertools import combinations, product
+import io, os, sys
+input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
+sys.setrecursionlimit(3000)
 
-def calc(a, d, m):
-    dp1 = [0]*m
-    dp2 = [1] + [0]*(m-1)
-    for i in range(len(a)):
-        dp11, dp21 = [0] * m, [0] * m
-        ai = int(a[i])
-        start = 1 if i == 0 else 0
-        c1 = [d] if i % 2 == 1 else set(range(start, 10)) - set([d])
-        c2 = set(range(start, ai)) - set([d]) if i % 2 == 0 else [d] if d < ai else []
-        c3 = set([ai]) - set([d]) if i % 2 == 0 else [d] if ai == d else []
-        for x in range(m):
-            for c in c1: dp11[(x*10 + c) % m] += dp1[x]
-            for c in c2: dp11[(x*10 + c) % m] += dp2[x]
-            for c in c3: dp21[(x*10 + c) % m] += dp2[x]
+I = lambda: [int(i) for i in input().split()]
+n = int(input())
+A = [I() for _ in range(n)]
 
-        dp1, dp2 = [i%N for i in dp11], [i%N for i in dp21]
-    return dp1[0] + dp2[0]
 
-m, d = [int(i) for i in input().split()]
-N = 10**9 + 7
-a = input().rstrip()
-b = input().rstrip()
+def check(arr, LIM):
+    if len(arr) == 1:
+        return (True, 0)
 
-t1 = calc(a, d, m)
-t2 = calc(b, d, m)
-addon = a[1::2] == str(d)*len(a[1::2]) and a[::2].count(str(d)) == 0 and int(a) % m == 0
+    d = defaultdict(list)
+    pivot = arr[0]
+    for x in arr[1:]:
+        d[A[pivot][x]] += [x]
 
-print((t2 - t1 + addon) % N)
+    vals = sorted(d.keys())
+    for x, y in combinations(vals, 2):
+        for i1, i2 in product(d[x], d[y]):
+            if A[i1][i2] != y: return (False, 0)
+
+    max_val = vals[-1]
+    for x in vals:
+        res, vl = check(d[x], x)
+        if not res: return (False, 0)
+        max_val = max(max_val, vl)
+
+    return (False, 0) if max_val > LIM else (True, max_val)
+
+
+def solve():
+    for i in range(n):
+        for j in range(i + 1, n):
+            if A[i][j] != A[j][i]: return False
+        if A[i][i] != 0: return False
+    return check(list(range(n)), float("inf"))[0]
+
+
+print("MAGIC" if solve() else "NOT MAGIC")
