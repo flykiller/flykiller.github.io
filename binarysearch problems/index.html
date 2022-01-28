@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>BinarySearch | Dmitry Babichev’s webpage</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="BinarySearch" />
+<meta name="author" content="Dmitry Babichev" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems." />
+<meta property="og:description" content="Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems." />
+<meta property="og:site_name" content="Dmitry Babichev’s webpage" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="BinarySearch" />
+<script type="application/ld+json">
+{"url":"/binarysearch%20problems/","@type":"WebPage","headline":"BinarySearch","author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
+    
+
+
+
+
+
+
+  
+  
+</head>
+
+    
+    <!-- for mathjax support -->
+    
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dmitry Babichev&#39;s webpage</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode</a><a class="page-link" href="/codeforces%20problems/">Codeforces</a><a class="page-link" href="/binarysearch%20problems/">BinarySearch</a><a class="page-link" href="/coding%20ideas/">Patterns</a><a class="page-link" href="/performance%20tricks/">Speed up</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">BinarySearch</h1>
+  </header>
+
+  <div class="post-content">
+    <style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+
+<h3 id="binarysearch-problems">BinarySearch problems</h3>
+
+<table class="tg">
+<tbody>
+  <tr>
+    <th class="tg-0lax">0001</th>
+    <th class="tg-0lax">0002</th>
+    <th class="tg-0lax">0003</th>
+    <th class="tg-0lax">0004</th>
+    <th class="tg-0lax">0005</th>
+    <th class="tg-0lax">0006</th>
+    <th class="tg-0lax">0007</th>
+    <th class="tg-0lax">0008</th>
+    <th class="tg-0lax">0009</th>
+    <th class="tg-0lax">0010</th>
+    <th class="tg-0lax">0011</th>
+    <th class="tg-0lax">0012</th>
+    <th class="tg-0lax">0013</th>
+    <th class="tg-0lax">0014</th>
+    <th class="tg-0lax">0015</th>
+    <th class="tg-0lax">0016</th>
+    <th class="tg-0lax">0017</th>
+    <th class="tg-0lax">0018</th>
+    <th class="tg-0lax">0019</th>
+    <th class="tg-0lax">0020</th>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <td class="tg-0lax">0021</td>
+    <td class="tg-0lax">0022</td>
+    <td class="tg-0lax">0023</td>
+    <td class="tg-0lax">0024</td>
+    <td class="tg-0lax">0025</td>
+    <td class="tg-0lax">0026</td>
+    <td class="tg-0lax">0027</td>
+    <td class="tg-0lax">0028</td>
+    <td class="tg-0lax">0029</td>
+    <td class="tg-0lax">0030</td>
+    <td class="tg-0lax">0031</td>
+    <td class="tg-0lax">0032</td>
+    <td class="tg-0lax">0033</td>
+    <td class="tg-0lax">0034</td>
+    <td class="tg-0lax">0035</td>
+    <td class="tg-0lax">0036</td>
+    <td class="tg-0lax">0037</td>
+    <td class="tg-0lax">0038</td>
+    <td class="tg-0lax">0039</td>
+    <td class="tg-0lax">0040</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th class="tg-0lax">0041</th>
+    <th class="tg-0lax">0042</th>
+    <th class="tg-0lax">0043</th>
+    <th class="tg-0lax">0044</th>
+    <th class="tg-0lax">0045</th>
+    <th class="tg-0lax">0046</th>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0047"> <font color="black">0047</font> </a></td>
+    <th class="tg-0lax">0048</th>
+    <th class="tg-0lax">0049</th>
+    <th class="tg-0lax">0050</th>
+    <th class="tg-0lax">0051</th>
+    <th class="tg-0lax">0052</th>
+    <th class="tg-0lax">0053</th>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0054"> <font color="black">0054</font> </a></td>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0055"> <font color="black">0055</font> </a></td>
+    <th class="tg-0lax">0056</th>
+    <th class="tg-0lax">0057</th>
+    <th class="tg-0lax">0058</th>
+    <th class="tg-0lax">0059</th>
+    <th class="tg-0lax">0060</th>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <td class="tg-0lax">0061</td>
+    <td class="tg-0lax">0062</td>
+    <td class="tg-0lax">0063</td>
+    <td class="tg-0lax">0064</td>
+    <td class="tg-0lax">0065</td>
+    <td class="tg-0lax">0066</td>
+    <td class="tg-0lax">0067</td>
+    <td class="tg-0lax">0068</td>
+    <td class="tg-0lax">0069</td>
+    <td class="tg-0lax">0070</td>
+    <td class="tg-0lax">0071</td>
+    <td class="tg-0lax">0072</td>
+    <td class="tg-0lax">0073</td>
+    <td class="tg-0lax">0074</td>
+    <td class="tg-0lax">0075</td>
+    <td class="tg-0lax">0076</td>
+    <td class="tg-0lax">0077</td>
+    <td class="tg-0lax">0078</td>
+    <td class="tg-0lax">0079</td>
+    <td class="tg-0lax">0080</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th class="tg-0lax">0081</th>
+    <th class="tg-0lax">0082</th>
+    <th class="tg-0lax">0083</th>
+    <th class="tg-0lax">0084</th>
+    <th class="tg-0lax">0085</th>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0086"> <font color="black">0086</font> </a></td>
+    <th class="tg-0lax">0087</th>
+    <th class="tg-0lax">0088</th>
+    <th class="tg-0lax">0089</th>
+    <th class="tg-0lax">0090</th>
+    <th class="tg-0lax">0091</th>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0092"> <font color="black">0092</font> </a></td>
+    <th class="tg-0lax">0093</th>
+    <th class="tg-0lax">0094</th>
+    <th class="tg-0lax">0095</th>
+    <th class="tg-0lax">0096</th>
+    <th class="tg-0lax">0097</th>
+    <th class="tg-0lax">0098</th>
+    <th class="tg-0lax">0099</th>
+    <th class="tg-0lax">0100</th>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <td class="tg-0lax">0101</td>
+    <td class="tg-0lax">0102</td>
+    <td class="tg-0lax">0103</td>
+    <td class="tg-0lax">0104</td>
+    <td class="tg-0lax">0105</td>
+    <td class="tg-0lax">0106</td>
+    <td class="tg-0lax">0107</td>
+    <td class="tg-0lax">0108</td>
+    <td class="tg-0lax">0109</td>
+    <td class="tg-0lax">0110</td>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0111"> <font color="black">0111</font> </a></td>
+    <td class="tg-0lax">0112</td>
+    <td class="tg-0lax">0113</td>
+    <td class="tg-0lax">0114</td>
+    <td class="tg-0lax">0115</td>
+    <td class="tg-0lax">0116</td>
+    <td class="tg-0lax">0117</td>
+    <td class="tg-0lax">0118</td>
+    <td class="tg-0lax">0119</td>
+    <td class="tg-0lax">0120</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th class="tg-0lax">0121</th>
+    <th class="tg-0lax">0122</th>
+    <th class="tg-0lax">0123</th>
+    <th class="tg-0lax">0124</th>
+    <th class="tg-0lax">0125</th>
+    <th class="tg-0lax">0126</th>
+    <th class="tg-0lax">0127</th>
+    <th class="tg-0lax">0128</th>
+    <th class="tg-0lax">0129</th>
+    <th class="tg-0lax">0130</th>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0131"> <font color="black">0131</font> </a></td>
+    <th class="tg-0lax">0132</th>
+    <th class="tg-0lax">0133</th>
+    <th class="tg-0lax">0134</th>
+    <th class="tg-0lax">0135</th>
+    <th class="tg-0lax">0136</th>
+    <th class="tg-0lax">0137</th>
+    <th class="tg-0lax">0138</th>
+    <th class="tg-0lax">0139</th>
+    <th class="tg-0lax">0140</th>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <td class="tg-0lax">0141</td>
+    <td class="tg-0lax">0142</td>
+    <td class="tg-0lax">0143</td>
+    <td class="tg-0lax">0144</td>
+    <td class="tg-0lax">0145</td>
+    <td class="tg-0lax">0146</td>
+    <td class="tg-0lax">0147</td>
+    <td class="tg-0lax">0148</td>
+    <td class="tg-0lax">0149</td>
+    <td class="tg-0lax">0150</td>
+    <td class="tg-0lax">0151</td>
+    <td class="tg-0lax">0152</td>
+    <td class="tg-0lax">0153</td>
+    <td class="tg-0lax">0154</td>
+    <td class="tg-0lax">0155</td>
+    <td class="tg-0lax">0156</td>
+    <td class="tg-0lax">0157</td>
+    <td class="tg-0lax">0158</td>
+    <td class="tg-0lax">0159</td>
+    <td class="tg-0lax">0160</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th class="tg-0lax">0161</th>
+    <th class="tg-0lax">0162</th>
+    <th class="tg-0lax">0163</th>
+    <th class="tg-0lax">0164</th>
+    <th class="tg-0lax">0165</th>
+    <th class="tg-0lax">0166</th>
+    <th class="tg-0lax">0167</th>
+    <th class="tg-0lax">0168</th>
+    <th class="tg-0lax">0169</th>
+    <th class="tg-0lax">0170</th>
+    <th class="tg-0lax">0171</th>
+    <th class="tg-0lax">0172</th>
+    <th class="tg-0lax">0173</th>
+    <th class="tg-0lax">0174</th>
+    <th class="tg-0lax">0175</th>
+    <th class="tg-0lax">0176</th>
+    <th class="tg-0lax">0177</th>
+    <th class="tg-0lax">0178</th>
+    <th class="tg-0lax">0179</th>
+    <th class="tg-0lax">0180</th>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <td class="tg-0lax">0181</td>
+    <td class="tg-0lax">0182</td>
+    <td class="tg-0lax">0183</td>
+    <td class="tg-0lax">0184</td>
+    <td class="tg-0lax">0185</td>
+    <td class="tg-0lax">0186</td>
+    <td class="tg-0lax">0187</td>
+    <td class="tg-0lax">0188</td>
+    <td class="tg-0lax">0189</td>
+    <td class="tg-0lax">0190</td>
+    <td class="tg-0lax">0191</td>
+    <td class="tg-0lax">0192</td>
+    <td class="tg-0lax">0193</td>
+    <td class="tg-0lax">0194</td>
+    <td class="tg-0lax">0195</td>
+    <td class="tg-0lax">0196</td>
+    <td class="tg-0lax">0197</td>
+    <td class="tg-0lax">0198</td>
+    <td class="tg-0lax">0199</td>
+    <td class="tg-0lax">0200</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th class="tg-0lax">0201</th>
+    <th class="tg-0lax">0202</th>
+    <th class="tg-0lax">0203</th>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0204"> <font color="black">0204</font> </a></td>
+    <th class="tg-0lax">0205</th>
+    <th class="tg-0lax">0206</th>
+    <th class="tg-0lax">0207</th>
+    <th class="tg-0lax">0208</th>
+    <th class="tg-0lax">0209</th>
+    <th class="tg-0lax">0210</th>
+    <th class="tg-0lax">0211</th>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0212"> <font color="black">0212</font> </a></td>
+    <th class="tg-0lax">0213</th>
+    <th class="tg-0lax">0214</th>
+    <th class="tg-0lax">0215</th>
+    <th class="tg-0lax">0216</th>
+    <th class="tg-0lax">0217</th>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0218"> <font color="black">0218</font> </a></td>
+    <th class="tg-0lax">0219</th>
+    <th class="tg-0lax">0220</th>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <td class="tg-0lax">0221</td>
+    <td class="tg-0lax">0222</td>
+    <td class="tg-0lax">0223</td>
+    <td class="tg-0lax">0224</td>
+    <td class="tg-0lax">0225</td>
+    <td class="tg-0lax">0226</td>
+    <td class="tg-0lax">0227</td>
+    <td class="tg-0lax">0228</td>
+    <td class="tg-0lax">0229</td>
+    <td class="tg-0lax">0230</td>
+    <td class="tg-0lax">0231</td>
+    <td class="tg-0lax">0232</td>
+    <td class="tg-0lax">0233</td>
+    <td class="tg-0lax">0234</td>
+    <td class="tg-0lax">0235</td>
+    <td class="tg-0lax">0236</td>
+    <td class="tg-0lax">0237</td>
+    <td class="tg-0lax">0238</td>
+    <td class="tg-0lax">0239</td>
+    <td class="tg-0lax">0240</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th class="tg-0lax">0241</th>
+    <th class="tg-0lax">0242</th>
+    <th class="tg-0lax">0243</th>
+    <th class="tg-0lax">0244</th>
+    <th class="tg-0lax">0245</th>
+    <th class="tg-0lax">0246</th>
+    <th class="tg-0lax">0247</th>
+    <th class="tg-0lax">0248</th>
+    <th class="tg-0lax">0249</th>
+    <th class="tg-0lax">0250</th>
+    <th class="tg-0lax">0251</th>
+    <th class="tg-0lax">0252</th>
+    <th class="tg-0lax">0253</th>
+    <th class="tg-0lax">0254</th>
+    <th class="tg-0lax">0255</th>
+    <th class="tg-0lax">0256</th>
+    <th class="tg-0lax">0257</th>
+    <th class="tg-0lax">0258</th>
+    <th class="tg-0lax">0259</th>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0260"> <font color="black">0260</font> </a></td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <td class="tg-0lax">0261</td>
+    <td class="tg-0lax">0262</td>
+    <td class="tg-0lax">0263</td>
+    <td class="tg-0lax">0264</td>
+    <td class="tg-0lax">0265</td>
+    <td class="tg-0lax">0266</td>
+    <td class="tg-0lax">0267</td>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0268"> <font color="black">0268</font> </a></td>
+    <td class="tg-0lax">0269</td>
+    <td class="tg-0lax">0270</td>
+    <td class="tg-0lax">0271</td>
+    <td class="tg-0lax">0272</td>
+    <td class="tg-0lax">0273</td>
+    <td class="tg-0lax">0274</td>
+    <td class="tg-0lax">0275</td>
+    <td class="tg-0lax">0276</td>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0277"> <font color="black">0277</font> </a></td>
+    <td class="tg-0lax">0278</td>
+    <td class="tg-0lax">0279</td>
+    <td class="tg-0lax">0280</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th class="tg-0lax">0281</th>
+    <th class="tg-0lax">0282</th>
+    <th class="tg-0lax">0283</th>
+    <th class="tg-0lax">0284</th>
+    <th class="tg-0lax">0285</th>
+    <th class="tg-0lax">0286</th>
+    <th class="tg-0lax">0287</th>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0288"> <font color="black">0288</font> </a></td>
+    <th class="tg-0lax">0289</th>
+    <th class="tg-0lax">0290</th>
+    <th class="tg-0lax">0291</th>
+    <th class="tg-0lax">0292</th>
+    <th class="tg-0lax">0293</th>
+    <th class="tg-0lax">0294</th>
+    <th class="tg-0lax">0295</th>
+    <th class="tg-0lax">0296</th>
+    <th class="tg-0lax">0297</th>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0298"> <font color="black">0298</font> </a></td>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0299"> <font color="black">0299</font> </a></td>
+    <th class="tg-0lax">0300</th>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <td class="tg-0lax">0301</td>
+    <td class="tg-0lax">0302</td>
+    <td class="tg-0lax">0303</td>
+    <td class="tg-0lax">0304</td>
+    <td class="tg-0lax">0305</td>
+    <td class="tg-0lax">0306</td>
+    <td class="tg-0lax">0307</td>
+    <td class="tg-0lax">0308</td>
+    <td class="tg-0lax">0309</td>
+    <td class="tg-0lax">0310</td>
+    <td class="tg-0lax">0311</td>
+    <td class="tg-0lax">0312</td>
+    <td class="tg-0lax">0313</td>
+    <td class="tg-0lax">0314</td>
+    <td class="tg-0lax">0315</td>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0316"> <font color="black">0316</font> </a></td>
+    <td class="tg-0lax">0317</td>
+    <td class="tg-0lax">0318</td>
+    <td class="tg-0lax">0319</td>
+    <td class="tg-0lax">0320</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th class="tg-0lax">0321</th>
+    <th class="tg-0lax">0322</th>
+    <th class="tg-0lax">0323</th>
+    <th class="tg-0lax">0324</th>
+    <th class="tg-0lax">0325</th>
+    <th class="tg-0lax">0326</th>
+    <th class="tg-0lax">0327</th>
+    <th class="tg-0lax">0328</th>
+    <th class="tg-0lax">0329</th>
+    <th class="tg-0lax">0330</th>
+    <th class="tg-0lax">0331</th>
+    <th class="tg-0lax">0332</th>
+    <th class="tg-0lax">0333</th>
+    <th class="tg-0lax">0334</th>
+    <th class="tg-0lax">0335</th>
+    <th class="tg-0lax">0336</th>
+    <th class="tg-0lax">0337</th>
+    <th class="tg-0lax">0338</th>
+    <th class="tg-0lax">0339</th>
+    <th class="tg-0lax">0340</th>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <td class="tg-0lax">0341</td>
+    <td class="tg-0lax">0342</td>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0343"> <font color="black">0343</font> </a></td>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0344"> <font color="black">0344</font> </a></td>
+    <td class="tg-0lax">0345</td>
+    <td class="tg-0lax">0346</td>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0347"> <font color="black">0347</font> </a></td>
+    <td class="tg-0lax">0348</td>
+    <td class="tg-0lax">0349</td>
+    <td class="tg-0lax">0350</td>
+    <td class="tg-0lax">0351</td>
+    <td class="tg-0lax">0352</td>
+    <td class="tg-0lax">0353</td>
+    <th class="tg-0lax">0354</th>
+    <td class="tg-0lax">0355</td>
+    <td class="tg-0lax">0356</td>
+    <td class="tg-0lax">0357</td>
+    <td class="tg-0lax">0358</td>
+    <td class="tg-0lax">0359</td>
+    <td class="tg-0lax">0360</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th class="tg-0lax">0361</th>
+    <th class="tg-0lax">0362</th>
+    <th class="tg-0lax">0363</th>
+    <th class="tg-0lax">0364</th>
+    <th class="tg-0lax">0365</th>
+    <th class="tg-0lax">0366</th>
+    <th class="tg-0lax">0367</th>
+    <th class="tg-0lax">0368</th>
+    <th class="tg-0lax">0369</th>
+    <th class="tg-0lax">0370</th>
+    <th class="tg-0lax">0371</th>
+    <th class="tg-0lax">0372</th>
+    <th class="tg-0lax">0373</th>
+    <th class="tg-0lax">0374</th>
+    <th class="tg-0lax">0375</th>
+    <th class="tg-0lax">0376</th>
+    <th class="tg-0lax">0377</th>
+    <th class="tg-0lax">0378</th>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0379"> <font color="black">0379</font> </a></td>
+    <th class="tg-0lax">0380</th>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <td class="tg-0lax">0381</td>
+    <td class="tg-0lax">0382</td>
+    <td class="tg-0lax">0383</td>
+    <td class="tg-0lax">0384</td>
+    <td class="tg-0lax">0385</td>
+    <td class="tg-0lax">0386</td>
+    <td class="tg-0lax">0387</td>
+    <td class="tg-0lax">0388</td>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0389"> <font color="black">0389</font> </a></td>
+    <td class="tg-0lax">0390</td>
+    <td class="tg-0lax">0391</td>
+    <td class="tg-0lax">0392</td>
+    <td class="tg-0lax">0393</td>
+    <td class="tg-0lax">0394</td>
+    <td class="tg-0lax">0395</td>
+    <td class="tg-0lax">0396</td>
+    <td class="tg-0lax">0397</td>
+    <td class="tg-0lax">0398</td>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0399"> <font color="black">0399</font> </a></td>
+    <td class="tg-0lax">0400</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th class="tg-0lax">0401</th>
+    <th class="tg-0lax">0402</th>
+    <th class="tg-0lax">0403</th>
+    <th class="tg-0lax">0404</th>
+    <th class="tg-0lax">0405</th>
+    <th class="tg-0lax">0406</th>
+    <th class="tg-0lax">0407</th>
+    <th class="tg-0lax">0408</th>
+    <th class="tg-0lax">0409</th>
+    <th class="tg-0lax">0410</th>
+    <th class="tg-0lax">0411</th>
+    <th class="tg-0lax">0412</th>
+    <th class="tg-0lax">0413</th>
+    <th class="tg-0lax">0414</th>
+    <th class="tg-0lax">0415</th>
+    <th class="tg-0lax">0416</th>
+    <th class="tg-0lax">0417</th>
+    <th class="tg-0lax">0418</th>
+    <th class="tg-0lax">0419</th>
+    <th class="tg-0lax">0420</th>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <td class="tg-0lax">0421</td>
+    <td class="tg-0lax">0422</td>
+    <td class="tg-0lax">0423</td>
+    <td class="tg-0lax">0424</td>
+    <td class="tg-0lax">0425</td>
+    <td class="tg-0lax">0426</td>
+    <td class="tg-0lax">0427</td>
+    <td class="tg-0lax">0428</td>
+    <td class="tg-0lax">0429</td>
+    <td class="tg-0lax">0430</td>
+    <td class="tg-0lax">0431</td>
+    <td class="tg-0lax">0432</td>
+    <td class="tg-0lax">0433</td>
+    <td class="tg-0lax">0434</td>
+    <td class="tg-0lax">0435</td>
+    <td class="tg-0lax">0436</td>
+    <td class="tg-0lax">0437</td>
+    <td class="tg-0lax">0438</td>
+    <td class="tg-0lax">0439</td>
+    <td class="tg-0lax">0440</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th class="tg-0lax">0441</th>
+    <th class="tg-0lax">0442</th>
+    <th class="tg-0lax">0443</th>
+    <th class="tg-0lax">0444</th>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0445"> <font color="black">0445</font> </a></td>
+    <th class="tg-0lax">0446</th>
+    <th class="tg-0lax">0447</th>
+    <th class="tg-0lax">0448</th>
+    <th class="tg-0lax">0449</th>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0450"> <font color="black">0450</font> </a></td>
+    <th class="tg-0lax">0451</th>
+    <th class="tg-0lax">0452</th>
+    <th class="tg-0lax">0453</th>
+    <th class="tg-0lax">0454</th>
+    <th class="tg-0lax">0455</th>
+    <th class="tg-0lax">0456</th>
+    <th class="tg-0lax">0457</th>
+    <th class="tg-0lax">0458</th>
+    <th class="tg-0lax">0459</th>
+    <th class="tg-0lax">0460</th>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <td class="tg-0lax">0461</td>
+    <td class="tg-0lax">0462</td>
+    <td class="tg-0lax">0463</td>
+    <td class="tg-0lax">0464</td>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0465"> <font color="black">0465</font> </a></td>
+    <td class="tg-0lax">0466</td>
+    <td class="tg-0lax">0467</td>
+    <td class="tg-0lax">0468</td>
+    <td class="tg-0lax">0469</td>
+    <td class="tg-0lax">0470</td>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0471"> <font color="black">0471</font> </a></td>
+    <td class="tg-0lax">0472</td>
+    <td class="tg-0lax">0473</td>
+    <td class="tg-0lax">0474</td>
+    <td class="tg-0lax">0475</td>
+    <td class="tg-0lax">0476</td>
+    <td class="tg-0lax">0477</td>
+    <td class="tg-0lax">0478</td>
+    <td class="tg-0lax">0479</td>
+    <td class="tg-0lax">0480</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th class="tg-0lax">0481</th>
+    <th class="tg-0lax">0482</th>
+    <th class="tg-0lax">0483</th>
+    <th class="tg-0lax">0484</th>
+    <th class="tg-0lax">0485</th>
+    <th class="tg-0lax">0486</th>
+    <th class="tg-0lax">0487</th>
+    <th class="tg-0lax">0488</th>
+    <th class="tg-0lax">0489</th>
+    <th class="tg-0lax">0490</th>
+    <th class="tg-0lax">0491</th>
+    <th class="tg-0lax">0492</th>
+    <th class="tg-0lax">0493</th>
+    <th class="tg-0lax">0494</th>
+    <th class="tg-0lax">0495</th>
+    <th class="tg-0lax">0496</th>
+    <th class="tg-0lax">0497</th>
+    <th class="tg-0lax">0498</th>
+    <th class="tg-0lax">0499</th>
+    <th class="tg-0lax">0500</th>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <td class="tg-0lax">0501</td>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0502"> <font color="black">0502</font> </a></td>
+    <td class="tg-0lax">0503</td>
+    <td class="tg-0lax">0504</td>
+    <td class="tg-0lax">0505</td>
+    <td class="tg-0lax">0506</td>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0507"> <font color="black">0507</font> </a></td>
+    <td class="tg-0lax">0508</td>
+    <td class="tg-0lax">0509</td>
+    <td class="tg-0lax">0510</td>
+    <td class="tg-0lax">0511</td>
+    <td class="tg-0lax">0512</td>
+    <td class="tg-0lax">0513</td>
+    <td class="tg-0lax">0514</td>
+    <td class="tg-0lax">0515</td>
+    <td class="tg-0lax">0516</td>
+    <td class="tg-0lax">0517</td>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0518"> <font color="black">0518</font> </a></td>
+    <td class="tg-0lax">0519</td>
+    <td class="tg-0lax">0520</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th class="tg-0lax">0521</th>
+    <th class="tg-0lax">0522</th>
+    <th class="tg-0lax">0523</th>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0524"> <font color="black">0524</font> </a></td>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0525"> <font color="black">0525</font> </a></td>
+    <th class="tg-0lax">0526</th>
+    <th class="tg-0lax">0527</th>
+    <th class="tg-0lax">0528</th>
+    <th class="tg-0lax">0529</th>
+    <th class="tg-0lax">0530</th>
+    <th class="tg-0lax">0531</th>
+    <th class="tg-0lax">0532</th>
+    <th class="tg-0lax">0533</th>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0534"> <font color="black">0534</font> </a></td>
+    <th class="tg-0lax">0535</th>
+    <th class="tg-0lax">0536</th>
+    <th class="tg-0lax">0537</th>
+    <th class="tg-0lax">0538</th>
+    <th class="tg-0lax">0539</th>
+    <th class="tg-0lax">0540</th>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <td class="tg-0lax">0541</td>
+    <td class="tg-0lax">0542</td>
+    <td class="tg-0lax">0543</td>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0544"> <font color="black">0544</font> </a></td>
+    <td class="tg-0lax">0545</td>
+    <td class="tg-0lax">0546</td>
+    <td class="tg-0lax">0547</td>
+    <td class="tg-0lax">0548</td>
+    <td class="tg-0lax">0549</td>
+    <td class="tg-0lax">0550</td>
+    <td class="tg-0lax">0551</td>
+    <td class="tg-0lax">0552</td>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0553"> <font color="black">0553</font> </a></td>
+    <td class="tg-0lax">0554</td>
+    <td class="tg-0lax">0555</td>
+    <td class="tg-0lax">0556</td>
+    <td class="tg-0lax">0557</td>
+    <td class="tg-0lax">0558</td>
+    <td class="tg-0lax">0559</td>
+    <td class="tg-0lax">0560</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th class="tg-0lax">0561</th>
+    <th class="tg-0lax">0562</th>
+    <th class="tg-0lax">0563</th>
+    <th class="tg-0lax">0564</th>
+    <th class="tg-0lax">0565</th>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0566"> <font color="black">0566</font> </a></td>
+    <th class="tg-0lax">0567</th>
+    <th class="tg-0lax">0568</th>
+    <th class="tg-0lax">0569</th>
+    <th class="tg-0lax">0570</th>
+    <th class="tg-0lax">0571</th>
+    <th class="tg-0lax">0572</th>
+    <th class="tg-0lax">0573</th>
+    <th class="tg-0lax">0574</th>
+    <th class="tg-0lax">0575</th>
+    <th class="tg-0lax">0576</th>
+    <th class="tg-0lax">0577</th>
+    <th class="tg-0lax">0578</th>
+    <th class="tg-0lax">0579</th>
+    <th class="tg-0lax">0580</th>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <td class="tg-0lax">0581</td>
+    <td class="tg-0lax">0582</td>
+    <td class="tg-0lax">0583</td>
+    <td class="tg-0lax">0584</td>
+    <td class="tg-0lax">0585</td>
+    <td class="tg-0lax">0586</td>
+    <td class="tg-0lax">0587</td>
+    <td class="tg-0lax">0588</td>
+    <td class="tg-0lax">0589</td>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0590"> <font color="black">0590</font> </a></td>
+    <td class="tg-0lax">0591</td>
+    <td class="tg-0lax">0592</td>
+    <td class="tg-0lax">0593</td>
+    <td class="tg-0lax">0594</td>
+    <td class="tg-0lax">0595</td>
+    <td class="tg-0lax">0596</td>
+    <td class="tg-0lax">0597</td>
+    <td class="tg-0lax">0598</td>
+    <td class="tg-0lax">0599</td>
+    <td class="tg-0lax">0600</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th class="tg-0lax">0601</th>
+    <th class="tg-0lax">0602</th>
+    <th class="tg-0lax">0603</th>
+    <th class="tg-0lax">0604</th>
+    <th class="tg-0lax">0605</th>
+    <th class="tg-0lax">0606</th>
+    <th class="tg-0lax">0607</th>
+    <th class="tg-0lax">0608</th>
+    <th class="tg-0lax">0609</th>
+    <th class="tg-0lax">0610</th>
+    <th class="tg-0lax">0611</th>
+    <th class="tg-0lax">0612</th>
+    <th class="tg-0lax">0613</th>
+    <th class="tg-0lax">0614</th>
+    <th class="tg-0lax">0615</th>
+    <th class="tg-0lax">0616</th>
+    <th class="tg-0lax">0617</th>
+    <th class="tg-0lax">0618</th>
+    <th class="tg-0lax">0619</th>
+    <th class="tg-0lax">0620</th>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <td class="tg-0lax">0621</td>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0622"> <font color="black">0622</font> </a></td>
+    <td class="tg-0lax">0623</td>
+    <td class="tg-0lax">0624</td>
+    <td class="tg-0lax">0625</td>
+    <td class="tg-0lax">0626</td>
+    <td class="tg-0lax">0627</td>
+    <td class="tg-0lax">0628</td>
+    <td class="tg-0lax">0629</td>
+    <td class="tg-0lax">0630</td>
+    <td class="tg-0lax">0631</td>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0632"> <font color="black">0632</font> </a></td>
+    <td class="tg-0lax">0633</td>
+    <td class="tg-0lax">0634</td>
+    <td class="tg-0lax">0635</td>
+    <td class="tg-0lax">0636</td>
+    <td class="tg-0lax">0637</td>
+    <td class="tg-0lax">0638</td>
+    <td class="tg-0lax">0639</td>
+    <td class="tg-0lax">0640</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th class="tg-0lax">0641</th>
+    <th class="tg-0lax">0642</th>
+    <th class="tg-0lax">0643</th>
+    <th class="tg-0lax">0644</th>
+    <th class="tg-0lax">0645</th>
+    <th class="tg-0lax">0646</th>
+    <th class="tg-0lax">0647</th>
+    <th class="tg-0lax">0648</th>
+    <th class="tg-0lax">0649</th>
+    <th class="tg-0lax">0650</th>
+    <th class="tg-0lax">0651</th>
+    <th class="tg-0lax">0652</th>
+    <th class="tg-0lax">0653</th>
+    <th class="tg-0lax">0654</th>
+    <th class="tg-0lax">0655</th>
+    <th class="tg-0lax">0656</th>
+    <th class="tg-0lax">0657</th>
+    <th class="tg-0lax">0658</th>
+    <th class="tg-0lax">0659</th>
+    <th class="tg-0lax">0660</th>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0661"> <font color="black">0661</font> </a></td>
+    <td class="tg-0lax">0662</td>
+    <td class="tg-0lax">0663</td>
+    <td class="tg-0lax">0664</td>
+    <td class="tg-0lax">0665</td>
+    <td class="tg-0lax">0666</td>
+    <td class="tg-0lax">0667</td>
+    <td class="tg-0lax">0668</td>
+    <td class="tg-0lax">0669</td>
+    <td class="tg-0lax">0670</td>
+    <td class="tg-0lax">0671</td>
+    <td class="tg-0lax">0672</td>
+    <td class="tg-0lax">0673</td>
+    <td class="tg-0lax">0674</td>
+    <td class="tg-0lax">0675</td>
+    <td class="tg-0lax">0676</td>
+    <td class="tg-0lax">0677</td>
+    <td class="tg-0lax">0678</td>
+    <td class="tg-0lax">0679</td>
+    <td class="tg-0lax">0680</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th class="tg-0lax">0681</th>
+    <th class="tg-0lax">0682</th>
+    <th class="tg-0lax">0683</th>
+    <th class="tg-0lax">0684</th>
+    <th class="tg-0lax">0685</th>
+    <th class="tg-0lax">0686</th>
+    <th class="tg-0lax">0687</th>
+    <th class="tg-0lax">0688</th>
+    <th class="tg-0lax">0689</th>
+    <th class="tg-0lax">0690</th>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0691"> <font color="black">0691</font> </a></td>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0692"> <font color="black">0692</font> </a></td>
+    <th class="tg-0lax">0693</th>
+    <th class="tg-0lax">0694</th>
+    <th class="tg-0lax">0695</th>
+    <th class="tg-0lax">0696</th>
+    <th class="tg-0lax">0697</th>
+    <th class="tg-0lax">0698</th>
+    <th class="tg-0lax">0699</th>
+    <th class="tg-0lax">0700</th>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <td class="tg-0lax">0701</td>
+    <td class="tg-0lax">0702</td>
+    <td class="tg-0lax">0703</td>
+    <td class="tg-0lax">0704</td>
+    <td class="tg-0lax">0705</td>
+    <td class="tg-0lax">0706</td>
+    <td class="tg-0lax">0707</td>
+    <td class="tg-0lax">0708</td>
+    <td class="tg-0lax">0709</td>
+    <td class="tg-0lax">0710</td>
+    <td class="tg-0lax">0711</td>
+    <td class="tg-0lax">0712</td>
+    <td class="tg-0lax">0713</td>
+    <td class="tg-0lax">0714</td>
+    <td class="tg-0lax">0715</td>
+    <td class="tg-0lax">0716</td>
+    <td class="tg-0lax">0717</td>
+    <td class="tg-0lax">0718</td>
+    <td class="tg-0lax">0719</td>
+    <td class="tg-0lax">0720</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th class="tg-0lax">0721</th>
+    <th class="tg-0lax">0722</th>
+    <th class="tg-0lax">0723</th>
+    <th class="tg-0lax">0724</th>
+    <th class="tg-0lax">0725</th>
+    <th class="tg-0lax">0726</th>
+    <th class="tg-0lax">0727</th>
+    <th class="tg-0lax">0728</th>
+    <th class="tg-0lax">0729</th>
+    <th class="tg-0lax">0730</th>
+    <th class="tg-0lax">0731</th>
+    <th class="tg-0lax">0732</th>
+    <th class="tg-0lax">0733</th>
+    <th class="tg-0lax">0734</th>
+    <th class="tg-0lax">0735</th>
+    <th class="tg-0lax">0736</th>
+    <th class="tg-0lax">0737</th>
+    <th class="tg-0lax">0738</th>
+    <th class="tg-0lax">0739</th>
+    <th class="tg-0lax">0740</th>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <td class="tg-0lax">0741</td>
+    <td class="tg-0lax">0742</td>
+    <td class="tg-0lax">0743</td>
+    <td class="tg-0lax">0744</td>
+    <td class="tg-0lax">0745</td>
+    <td class="tg-0lax">0746</td>
+    <td class="tg-0lax">0747</td>
+    <td class="tg-0lax">0748</td>
+    <td class="tg-0lax">0749</td>
+    <td class="tg-0lax">0750</td>
+    <td class="tg-0lax">0751</td>
+    <td class="tg-0lax">0752</td>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0753"> <font color="black">0753</font> </a></td>
+    <td class="tg-0lax">0754</td>
+    <td class="tg-0lax">0755</td>
+    <td class="tg-0lax">0756</td>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0757"> <font color="black">0757</font> </a></td>
+    <td class="tg-0lax">0758</td>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0759"> <font color="black">0759</font> </a></td>
+    <td class="tg-0lax">0760</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th class="tg-0lax">0761</th>
+    <th class="tg-0lax">0762</th>
+    <th class="tg-0lax">0763</th>
+    <th class="tg-0lax">0764</th>
+    <th class="tg-0lax">0765</th>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0766"> <font color="black">0766</font> </a></td>
+    <th class="tg-0lax">0767</th>
+    <th class="tg-0lax">0768</th>
+    <th class="tg-0lax">0769</th>
+    <th class="tg-0lax">0770</th>
+    <th class="tg-0lax">0771</th>
+    <th class="tg-0lax">0772</th>
+    <th class="tg-0lax">0773</th>
+    <th class="tg-0lax">0774</th>
+    <th class="tg-0lax">0775</th>
+    <th class="tg-0lax">0776</th>
+    <th class="tg-0lax">0777</th>
+    <th class="tg-0lax">0778</th>
+    <th class="tg-0lax">0779</th>
+    <th class="tg-0lax">0780</th>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <td class="tg-0lax">0781</td>
+    <td class="tg-0lax">0782</td>
+    <td class="tg-0lax">0783</td>
+    <td class="tg-0lax">0784</td>
+    <td class="tg-0lax">0785</td>
+    <td class="tg-0lax">0786</td>
+    <td class="tg-0lax">0787</td>
+    <td class="tg-0lax">0788</td>
+    <td class="tg-0lax">0789</td>
+    <td class="tg-0lax">0790</td>
+    <td class="tg-0lax">0791</td>
+    <td class="tg-0lax">0792</td>
+    <td class="tg-0lax">0793</td>
+    <td class="tg-0lax">0794</td>
+    <td class="tg-0lax">0795</td>
+    <td class="tg-0lax">0796</td>
+    <td class="tg-0lax">0797</td>
+    <td class="tg-0lax">0798</td>
+    <td class="tg-0lax">0799</td>
+    <td class="tg-0lax">0800</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th class="tg-0lax">0801</th>
+    <th class="tg-0lax">0802</th>
+    <th class="tg-0lax">0803</th>
+    <th class="tg-0lax">0804</th>
+    <th class="tg-0lax">0805</th>
+    <th class="tg-0lax">0806</th>
+    <th class="tg-0lax">0807</th>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0808"> <font color="black">0808</font> </a></td>
+    <th class="tg-0lax">0809</th>
+    <th class="tg-0lax">0810</th>
+    <th class="tg-0lax">0811</th>
+    <th class="tg-0lax">0812</th>
+    <th class="tg-0lax">0813</th>
+    <th class="tg-0lax">0814</th>
+    <th class="tg-0lax">0815</th>
+    <th class="tg-0lax">0816</th>
+    <th class="tg-0lax">0817</th>
+    <th class="tg-0lax">0818</th>
+    <th class="tg-0lax">0819</th>
+    <th class="tg-0lax">0820</th>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <td class="tg-0lax">0821</td>
+    <td class="tg-0lax">0822</td>
+    <td class="tg-0lax">0823</td>
+    <td class="tg-0lax">0824</td>
+    <td class="tg-0lax">0825</td>
+    <td class="tg-0lax">0826</td>
+    <td class="tg-0lax">0827</td>
+    <td class="tg-0lax">0828</td>
+    <td class="tg-0lax">0829</td>
+    <td class="tg-0lax">0830</td>
+    <td class="tg-0lax">0831</td>
+    <td class="tg-0lax">0832</td>
+    <td class="tg-0lax">0833</td>
+    <td class="tg-0lax">0834</td>
+    <td class="tg-0lax">0835</td>
+    <td class="tg-0lax">0836</td>
+    <td class="tg-0lax">0837</td>
+    <td class="tg-0lax">0838</td>
+    <td class="tg-0lax">0839</td>
+    <td class="tg-0lax">0840</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th class="tg-0lax">0841</th>
+    <th class="tg-0lax">0842</th>
+    <th class="tg-0lax">0843</th>
+    <th class="tg-0lax">0844</th>
+    <th class="tg-0lax">0845</th>
+    <th class="tg-0lax">0846</th>
+    <th class="tg-0lax">0847</th>
+    <th class="tg-0lax">0848</th>
+    <th class="tg-0lax">0849</th>
+    <th class="tg-0lax">0850</th>
+    <th class="tg-0lax">0851</th>
+    <th class="tg-0lax">0852</th>
+    <th class="tg-0lax">0853</th>
+    <th class="tg-0lax">0854</th>
+    <th class="tg-0lax">0855</th>
+    <th class="tg-0lax">0856</th>
+    <th class="tg-0lax">0857</th>
+    <th class="tg-0lax">0858</th>
+    <th class="tg-0lax">0859</th>
+    <th class="tg-0lax">0860</th>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <td class="tg-0lax">0861</td>
+    <td class="tg-0lax">0862</td>
+    <td class="tg-0lax">0863</td>
+    <td class="tg-0lax">0864</td>
+    <td class="tg-0lax">0865</td>
+    <td class="tg-0lax">0866</td>
+    <td class="tg-0lax">0867</td>
+    <td class="tg-0lax">0868</td>
+    <td class="tg-0lax">0869</td>
+    <td class="tg-0lax">0870</td>
+    <td class="tg-0lax">0871</td>
+    <td class="tg-0lax">0872</td>
+    <td class="tg-0lax">0873</td>
+    <td class="tg-0lax">0874</td>
+    <td class="tg-0lax">0875</td>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0876"> <font color="black">0876</font> </a></td>
+    <td class="tg-0lax">0877</td>
+    <td class="tg-0lax">0878</td>
+    <td class="tg-0lax">0879</td>
+    <td class="tg-0lax">0880</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th class="tg-0lax">0881</th>
+    <th class="tg-0lax">0882</th>
+    <th class="tg-0lax">0883</th>
+    <th class="tg-0lax">0884</th>
+    <th class="tg-0lax">0885</th>
+    <th class="tg-0lax">0886</th>
+    <th class="tg-0lax">0887</th>
+    <th class="tg-0lax">0888</th>
+    <th class="tg-0lax">0889</th>
+    <th class="tg-0lax">0890</th>
+    <th class="tg-0lax">0891</th>
+    <th class="tg-0lax">0892</th>
+    <th class="tg-0lax">0893</th>
+    <th class="tg-0lax">0894</th>
+    <th class="tg-0lax">0895</th>
+    <th class="tg-0lax">0896</th>
+    <th class="tg-0lax">0897</th>
+    <th class="tg-0lax">0898</th>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0899"> <font color="black">0899</font> </a></td>
+    <th class="tg-0lax">0900</th>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <td class="tg-0lax">0901</td>
+    <td class="tg-0lax">0902</td>
+    <td class="tg-0lax">0903</td>
+    <td class="tg-0lax">0904</td>
+    <td class="tg-0lax">0905</td>
+    <td class="tg-0lax">0906</td>
+    <td class="tg-0lax">0907</td>
+    <td class="tg-0lax">0908</td>
+    <td class="tg-0lax">0909</td>
+    <td class="tg-0lax">0910</td>
+    <td class="tg-0lax">0911</td>
+    <td class="tg-0lax">0912</td>
+    <td class="tg-0lax">0913</td>
+    <td class="tg-0lax">0914</td>
+    <td class="tg-0lax">0915</td>
+    <td class="tg-0lax">0916</td>
+    <td class="tg-0lax">0917</td>
+    <td class="tg-0lax">0918</td>
+    <td class="tg-0lax">0919</td>
+    <td class="tg-0lax">0920</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th class="tg-0lax">0921</th>
+    <th class="tg-0lax">0922</th>
+    <th class="tg-0lax">0923</th>
+    <th class="tg-0lax">0924</th>
+    <th class="tg-0lax">0925</th>
+    <th class="tg-0lax">0926</th>
+    <th class="tg-0lax">0927</th>
+    <th class="tg-0lax">0928</th>
+    <th class="tg-0lax">0929</th>
+    <th class="tg-0lax">0930</th>
+    <th class="tg-0lax">0931</th>
+    <th class="tg-0lax">0932</th>
+    <th class="tg-0lax">0933</th>
+    <th class="tg-0lax">0934</th>
+    <th class="tg-0lax">0935</th>
+    <th class="tg-0lax">0936</th>
+    <th class="tg-0lax">0937</th>
+    <th class="tg-0lax">0938</th>
+    <th class="tg-0lax">0939</th>
+    <th class="tg-0lax">0940</th>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <td class="tg-0lax">0941</td>
+    <td class="tg-0lax">0942</td>
+    <td class="tg-0lax">0943</td>
+    <td class="tg-0lax">0944</td>
+    <td class="tg-0lax">0945</td>
+    <td class="tg-0lax">0946</td>
+    <td class="tg-0lax">0947</td>
+    <td class="tg-0lax">0948</td>
+    <td class="tg-0lax">0949</td>
+    <td class="tg-0lax">0950</td>
+    <td class="tg-0lax">0951</td>
+    <td class="tg-0lax">0952</td>
+    <td class="tg-0lax">0953</td>
+    <td class="tg-0lax">0954</td>
+    <td class="tg-0lax">0955</td>
+    <td class="tg-0lax">0956</td>
+    <td class="tg-0lax">0957</td>
+    <td class="tg-0lax">0958</td>
+    <td class="tg-0lax">0959</td>
+    <td class="tg-0lax">0960</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th class="tg-0lax">0961</th>
+    <th class="tg-0lax">0962</th>
+    <th class="tg-0lax">0963</th>
+    <th class="tg-0lax">0964</th>
+    <th class="tg-0lax">0965</th>
+    <th class="tg-0lax">0966</th>
+    <th class="tg-0lax">0967</th>
+    <th class="tg-0lax">0968</th>
+    <th class="tg-0lax">0969</th>
+    <th class="tg-0lax">0970</th>
+    <th class="tg-0lax">0971</th>
+    <th class="tg-0lax">0972</th>
+    <th class="tg-0lax">0973</th>
+    <th class="tg-0lax">0974</th>
+    <th class="tg-0lax">0975</th>
+    <th class="tg-0lax">0976</th>
+    <th class="tg-0lax">0977</th>
+    <th class="tg-0lax">0978</th>
+    <th class="tg-0lax">0979</th>
+    <th class="tg-0lax">0980</th>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <td class="tg-0lax">0981</td>
+    <td class="tg-0lax">0982</td>
+    <td class="tg-0lax">0983</td>
+    <td class="tg-0lax">0984</td>
+    <td class="tg-0lax">0985</td>
+    <td class="tg-0lax">0986</td>
+    <td class="tg-0lax">0987</td>
+    <td class="tg-0lax">0988</td>
+    <td class="tg-0lax">0989</td>
+    <td class="tg-0lax">0990</td>
+    <td class="tg-0lax">0991</td>
+    <td class="tg-0lax">0992</td>
+    <td class="tg-0lax">0993</td>
+    <td class="tg-0lax">0994</td>
+    <td class="tg-0lax">0995</td>
+    <td bgcolor="6495ED" class="tg-0lax"> <a href="/binarysearch/0996"> <font color="black">0996</font> </a></td>
+    <td class="tg-0lax">0997</td>
+    <td class="tg-0lax">0998</td>
+    <td class="tg-0lax">0999</td>
+    <td class="tg-0lax">1000</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th class="tg-0lax">1001</th>
+    <th class="tg-0lax">1002</th>
+    <th class="tg-0lax">1003</th>
+    <th class="tg-0lax">1004</th>
+    <th class="tg-0lax">1005</th>
+    <th class="tg-0lax">1006</th>
+    <th class="tg-0lax">1007</th>
+    <th class="tg-0lax">1008</th>
+    <th class="tg-0lax">1009</th>
+    <th class="tg-0lax">1010</th>
+    <th class="tg-0lax">1011</th>
+    <th class="tg-0lax">1012</th>
+    <th class="tg-0lax">1013</th>
+    <th class="tg-0lax">1014</th>
+    <th class="tg-0lax">1015</th>
+    <th class="tg-0lax">1016</th>
+    <th class="tg-0lax">1017</th>
+    <th class="tg-0lax">1018</th>
+    <th class="tg-0lax">1019</th>
+    <th class="tg-0lax">1020</th>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <td class="tg-0lax">1021</td>
+    <td class="tg-0lax">1022</td>
+    <td class="tg-0lax">1023</td>
+    <td class="tg-0lax">1024</td>
+    <td class="tg-0lax">1025</td>
+    <td class="tg-0lax">1026</td>
+    <td class="tg-0lax">1027</td>
+    <td class="tg-0lax">1028</td>
+    <td class="tg-0lax">1029</td>
+    <td class="tg-0lax">1030</td>
+    <td class="tg-0lax">1031</td>
+    <td class="tg-0lax">1032</td>
+    <td class="tg-0lax">1033</td>
+    <td class="tg-0lax">1034</td>
+    <td class="tg-0lax">1035</td>
+    <td class="tg-0lax">1036</td>
+    <td class="tg-0lax">1037</td>
+    <td class="tg-0lax">1038</td>
+    <td class="tg-0lax">1039</td>
+    <td class="tg-0lax">1040</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th class="tg-0lax">1041</th>
+    <th class="tg-0lax">1042</th>
+    <th class="tg-0lax">1043</th>
+    <th class="tg-0lax">1044</th>
+    <th class="tg-0lax">1045</th>
+    <th class="tg-0lax">1046</th>
+    <th class="tg-0lax">1047</th>
+    <th class="tg-0lax">1048</th>
+    <th class="tg-0lax">1049</th>
+    <th class="tg-0lax">1050</th>
+    <th class="tg-0lax">1051</th>
+    <th class="tg-0lax">1052</th>
+    <th class="tg-0lax">1053</th>
+    <th class="tg-0lax">1054</th>
+    <th class="tg-0lax">1055</th>
+    <th class="tg-0lax">1056</th>
+    <th class="tg-0lax">1057</th>
+    <th class="tg-0lax">1058</th>
+    <th class="tg-0lax">1059</th>
+    <th class="tg-0lax">1060</th>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <td class="tg-0lax">1061</td>
+    <td class="tg-0lax">1062</td>
+    <td class="tg-0lax">1063</td>
+    <td class="tg-0lax">1064</td>
+    <td class="tg-0lax">1065</td>
+    <td class="tg-0lax">1066</td>
+    <td class="tg-0lax">1067</td>
+    <td class="tg-0lax">1068</td>
+    <td class="tg-0lax">1069</td>
+    <td class="tg-0lax">1070</td>
+    <td class="tg-0lax">1071</td>
+    <td class="tg-0lax">1072</td>
+    <td class="tg-0lax">1073</td>
+    <td class="tg-0lax">1074</td>
+    <td class="tg-0lax">1075</td>
+    <td class="tg-0lax">1076</td>
+    <td class="tg-0lax">1077</td>
+    <td class="tg-0lax">1078</td>
+    <td class="tg-0lax">1079</td>
+    <td class="tg-0lax">1080</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th class="tg-0lax">1081</th>
+    <th class="tg-0lax">1082</th>
+    <th class="tg-0lax">1083</th>
+    <th class="tg-0lax">1084</th>
+    <th class="tg-0lax">1085</th>
+    <th class="tg-0lax">1086</th>
+    <th class="tg-0lax">1087</th>
+    <th class="tg-0lax">1088</th>
+    <th class="tg-0lax">1089</th>
+    <th class="tg-0lax">1090</th>
+    <th class="tg-0lax">1091</th>
+    <th class="tg-0lax">1092</th>
+    <th class="tg-0lax">1093</th>
+    <th class="tg-0lax">1094</th>
+    <th class="tg-0lax">1095</th>
+    <th class="tg-0lax">1096</th>
+    <th class="tg-0lax">1097</th>
+    <th class="tg-0lax">1098</th>
+    <th class="tg-0lax">1099</th>
+    <th class="tg-0lax">1100</th>
+  </tr>
+</tbody>
+
+</table>
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">Dmitry Babichev</li>
+          <li><a class="u-email" href="mailto:dimitry008@gmail.com">dimitry008@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>

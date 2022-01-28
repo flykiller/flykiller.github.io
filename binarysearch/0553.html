@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>BinarySearch 0553 Take All | Dmitry Babichev’s webpage</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="BinarySearch 0553 Take All" />
+<meta name="author" content="Dmitry Babichev" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems." />
+<meta property="og:description" content="Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems." />
+<meta property="og:site_name" content="Dmitry Babichev’s webpage" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="BinarySearch 0553 Take All" />
+<script type="application/ld+json">
+{"url":"/binarysearch/0553.html","@type":"WebPage","headline":"BinarySearch 0553 Take All","author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
+    
+
+
+
+
+
+
+  
+  
+</head>
+
+    
+    <!-- for mathjax support -->
+    
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dmitry Babichev&#39;s webpage</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode</a><a class="page-link" href="/codeforces%20problems/">Codeforces</a><a class="page-link" href="/binarysearch%20problems/">BinarySearch</a><a class="page-link" href="/coding%20ideas/">Patterns</a><a class="page-link" href="/performance%20tricks/">Speed up</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <span>[
+  
+    
+    <a href="/tag/heap"><code class="highligher-rouge"><nobr>heap</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/binary search"><code class="highligher-rouge"><nobr>binary search</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/graph"><code class="highligher-rouge"><nobr>graph</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/line sweep"><code class="highligher-rouge"><nobr>line sweep</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/sort"><code class="highligher-rouge"><nobr>sort</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/segment tree"><code class="highligher-rouge"><nobr>segment tree</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/intervals"><code class="highligher-rouge"><nobr>intervals</nobr></code>&nbsp;</a>
+  
+]</span>
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">BinarySearch 0553 Take All</h1>
+    <p class="post-meta"><time class="dt-published" datetime="" itemprop="datePublished">
+        
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h4 id="problem-statement">Problem statement</h4>
+
+<p><a href="https://binarysearch.com/problems/Take-All/"> <font color="blue">https://binarysearch.com/problems/Take-All/</font></a></p>
+
+<h4 id="solution">Solution</h4>
+<p>First of all notice, tha what is asked in this problem is find the cheapest union of segments, such that after we remove repetitions we have segment <code class="language-plaintext highlighter-rouge">[0, N-1]</code>
+This problem have several ideas how you can solve it:</p>
+<ol>
+  <li>Let us define by <code class="language-plaintext highlighter-rouge">dp[i]</code> the minimum cost to cover <code class="language-plaintext highlighter-rouge">[0, i]</code> segment. Then how we can calculate <code class="language-plaintext highlighter-rouge">dp[i]</code>? Imagine, that current segment is <code class="language-plaintext highlighter-rouge">[s, e]</code>. Then we need to look at all segments <code class="language-plaintext highlighter-rouge">[s1, e1]</code>, such that <code class="language-plaintext highlighter-rouge">e1 &gt;= s-1</code>, that is we can connect them. How we can choose the best of them, because potentiall there can be <code class="language-plaintext highlighter-rouge">O(n)</code> candidates and this will lead to <code class="language-plaintext highlighter-rouge">O(n^2)</code> complexity?</li>
+</ol>
+
+<p>The clue idea is to keep the <strong>heap</strong> of candidates, where they are sorted by key <code class="language-plaintext highlighter-rouge">dp[e1] + prefix[e1]</code>, where <code class="language-plaintext highlighter-rouge">prexix[e1]</code> is what cost we need to pay to remove elements upty <code class="language-plaintext highlighter-rouge">e1</code>. Why we use this key? Imagine that we have two candidates <code class="language-plaintext highlighter-rouge">[s1, e1]</code> and <code class="language-plaintext highlighter-rouge">[s2, e2]</code>, which one to choose? We compare <code class="language-plaintext highlighter-rouge">dp[e1] + prefix[e1]</code> and <code class="language-plaintext highlighter-rouge">dp[e2] + prefix[e2]</code> and choose the smallest one: in the first one we have <code class="language-plaintext highlighter-rouge">prefix[s:e1]</code> term and in second we have <code class="language-plaintext highlighter-rouge">prefix[s:e2]</code> term which we pay for.</p>
+
+<h4 id="complexity">Complexity</h4>
+<p>Time complexity is <code class="language-plaintext highlighter-rouge">O(n log n)</code>, space is <code class="language-plaintext highlighter-rouge">O(n)</code>.</p>
+
+<h4 id="code">Code</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+        <span class="n">A</span><span class="p">.</span><span class="n">sort</span><span class="p">()</span>
+
+        <span class="n">acc</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">accumulate</span><span class="p">(</span><span class="n">B</span><span class="p">))</span>
+        <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s">"inf"</span><span class="p">)]</span> <span class="o">*</span> <span class="n">n</span>
+        <span class="n">pq</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+
+        <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">cost</span> <span class="ow">in</span> <span class="n">A</span><span class="p">:</span>
+            <span class="k">while</span> <span class="n">pq</span> <span class="ow">and</span> <span class="n">pq</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">s</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="n">heappop</span><span class="p">(</span><span class="n">pq</span><span class="p">)</span>  <span class="c1">#lazy deletion
+</span>            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pq</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">pq</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">dp</span><span class="p">[</span><span class="n">e</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">e</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">cost</span> <span class="o">+</span> <span class="p">(</span><span class="n">acc</span><span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">-</span> <span class="n">acc</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">+</span> <span class="n">B</span><span class="p">[</span><span class="n">s</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">s</span><span class="p">))</span>
+            <span class="n">heappush</span><span class="p">(</span><span class="n">pq</span><span class="p">,</span> <span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">e</span><span class="p">]</span> <span class="o">+</span> <span class="n">acc</span><span class="p">[</span><span class="n">e</span><span class="p">],</span> <span class="n">e</span><span class="p">,</span> <span class="n">dp</span><span class="p">[</span><span class="n">e</span><span class="p">]))</span>
+
+        <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="nb">float</span><span class="p">(</span><span class="s">"inf"</span><span class="p">)</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+</code></pre></div></div>
+
+<h4 id="solution-2">Solution 2</h4>
+<p>There is also solution, using graphs! We can see at out problem as finding the shortest path between nodes <code class="language-plaintext highlighter-rouge">0</code> and <code class="language-plaintext highlighter-rouge">n-1</code>, where we allowe to go in positive direction as well as we can make stesp backward with length <code class="language-plaintext highlighter-rouge">1</code>. Why this is true, because for every valid set of segments there will never be a point where <code class="language-plaintext highlighter-rouge">3</code> points intersect. So, we just use Dijkstra algorithm to find shortest path.</p>
+
+<h4 id="complexity-1">Complexity</h4>
+<p>Time complexity is <code class="language-plaintext highlighter-rouge">O(n log n)</code>, space complexity is <code class="language-plaintext highlighter-rouge">O(n)</code>.</p>
+
+<h4 id="code-1">Code</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+
+        <span class="n">G</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">A</span><span class="p">:</span>
+            <span class="n">G</span><span class="p">[</span><span class="n">s</span><span class="p">].</span><span class="n">append</span><span class="p">([</span><span class="n">e</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">w</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
+            <span class="n">G</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">].</span><span class="n">append</span><span class="p">([</span><span class="n">i</span><span class="p">,</span> <span class="n">r</span><span class="p">])</span>
+
+        <span class="n">dist</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s">'inf'</span><span class="p">)]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">dist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">heap</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+
+        <span class="k">while</span> <span class="n">heap</span><span class="p">:</span>
+            <span class="n">min_dist</span><span class="p">,</span> <span class="n">idx</span> <span class="o">=</span> <span class="n">heappop</span><span class="p">(</span><span class="n">heap</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">idx</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span> <span class="k">return</span> <span class="n">min_dist</span>
+            <span class="k">for</span> <span class="n">neibh</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">G</span><span class="p">[</span><span class="n">idx</span><span class="p">]:</span>
+                <span class="n">cand</span> <span class="o">=</span> <span class="n">min_dist</span> <span class="o">+</span> <span class="n">weight</span>
+                <span class="k">if</span> <span class="n">cand</span> <span class="o">&lt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">neibh</span><span class="p">]:</span>
+                    <span class="n">dist</span><span class="p">[</span><span class="n">neibh</span><span class="p">]</span> <span class="o">=</span> <span class="n">cand</span>
+                    <span class="n">heappush</span><span class="p">(</span><span class="n">heap</span><span class="p">,</span> <span class="p">(</span><span class="n">cand</span><span class="p">,</span> <span class="n">neibh</span><span class="p">))</span>
+                    
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</code></pre></div></div>
+
+<h4 id="remark">Remark</h4>
+<p>There is also solution using monotonic queue + binary search, but I am not sure how it works here. Also there is solution with segment trees, which similar to solution 1, but instead of heaps we use segment tree: we store at index <code class="language-plaintext highlighter-rouge">i</code> in our segment tree <code class="language-plaintext highlighter-rouge">dp[i] + acc[i]</code>, and then we can answer queries fast.</p>
+
+  </div><a class="u-url" href="/binarysearch/0553.html" hidden></a>
+</article>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">Dmitry Babichev</li>
+          <li><a class="u-email" href="mailto:dimitry008@gmail.com">dimitry008@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>

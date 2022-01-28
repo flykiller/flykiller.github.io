@@ -44,7 +44,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode problems</a><a class="page-link" href="/codeforces%20problems/">Codeforces problems</a><a class="page-link" href="/coding%20ideas/">Patterns</a><a class="page-link" href="/performance%20tricks/">Speed up</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/leetcode%20problems/">Leetcode</a><a class="page-link" href="/codeforces%20problems/">Codeforces</a><a class="page-link" href="/binarysearch%20problems/">BinarySearch</a><a class="page-link" href="/coding%20ideas/">Patterns</a><a class="page-link" href="/performance%20tricks/">Speed up</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -241,7 +241,7 @@ If <code class="language-plaintext highlighter-rouge">k != n - 1</code>, then we
 <h4 id="solution-4">Solution</h4>
 <p>Actually, this is problem about intervals. First of all, what is matter is the first and the last occurunces for every color, all in the middle can be made <code class="language-plaintext highlighter-rouge">1</code> without any problems. Also, let us minimize number of <code class="language-plaintext highlighter-rouge">0</code> instead of maximizing number of <code class="language-plaintext highlighter-rouge">1</code>. Let us look at our intervals, they can be separated into connected components.</p>
 
-<p>It can be shown, that for each component the answer is the smallest number of intervals which fully connect this interval + 1, however proof is not so easy.</p>
+<p>It can be shown, that for each component the answer is the smallest number of intervals which fully cover this interval + 1, however proof is not so easy.</p>
 
 <h4 id="complexity-4">Complexity</h4>
 <p>It is <code class="language-plaintext highlighter-rouge">O(n log n)</code> for time and <code class="language-plaintext highlighter-rouge">O(n)</code> for space.</p>
