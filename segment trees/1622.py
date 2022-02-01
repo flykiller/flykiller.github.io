@@ -1,6 +1,6 @@
 from bisect import bisect_left, bisect
-from collections import Counter
 import io, os, sys
+from collections import Counter
 #input = io.BytesIO(os.read(0,os.fstat(0).st_size)).readline
 I = lambda: [int(x) for x in input().split()]
 
@@ -21,7 +21,7 @@ class DSU:
 def kruskal(n, edges, XX):
     dsu, ans, sgn = DSU(n), 0, 0
     for x, y, w in edges:
-        s = -1 + 2*int(XX <= w)
+        s =  -1 + 2*int(XX <= w)
         if dsu.find(x) == dsu.find(y): continue
         dsu.union(x, y)
         ans += w*s
@@ -44,25 +44,27 @@ for i in range(m):
         w += [(E[i]+E[j])//2]
 
 w = sorted(set(w))
-for i in range(len(w)):
-    XX = w[i]
-    edges = sorted(edges, key=lambda t: abs(XX - t[2]))
-    ans += [kruskal(n, edges, XX)]
+ans = [(-1, -1)] * len(w)
+
+#for i in range(len(w)):
+#    edges = sorted(edges, key=lambda t: abs(w[i] - t[2]))
+#    ans[i] = kruskal(n, edges, w[i])
 
 p, k, a, b, c = I()
 Q = I()
 for _ in range(k - p):
     Q += [(Q[-1] * a + b) % c]
 
-Q2 = []
-cntQ = Counter(Q)
-for val in cntQ:
-    if cntQ[val] % 2 == 1:
-        Q2 += [val]
+cc = Counter(Q)
+Q = [ee for ee in cc if (cc[ee] % 2 == 1)]
+Q.sort()
 
-for x in Q2:
-    t = bisect_left(w, 2*x)
-    if t >= len(w): t -= 1
+t = 0
+for x in Q:
+    while t < len(w) - 1 and w[t] < 2*x: t += 1
+    if ans[t] == (-1, -1):
+        edges = sorted(edges, key=lambda q: abs(w[t] - q[2]))
+        ans[t] = kruskal(n, edges, w[t])
     out ^= (ans[t][0]//2 - x*ans[t][1])
 
 print(out)
