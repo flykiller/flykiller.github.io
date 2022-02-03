@@ -13,11 +13,11 @@
 <meta property="og:description" content="Problem statement" />
 <meta property="og:site_name" content="Dmitry Babichev’s webpage" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-02-02T16:20:10+03:00" />
+<meta property="article:published_time" content="2022-02-03T18:05:16+03:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0986. Interval List Intersections" />
 <script type="application/ld+json">
-{"url":"/leetcode/0986.html","@type":"BlogPosting","headline":"Leetcode 0986. Interval List Intersections","dateModified":"2022-02-02T16:20:10+03:00","datePublished":"2022-02-02T16:20:10+03:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0986.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
+{"url":"/leetcode/0986.html","@type":"BlogPosting","headline":"Leetcode 0986. Interval List Intersections","dateModified":"2022-02-03T18:05:16+03:00","datePublished":"2022-02-03T18:05:16+03:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/0986.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
     
@@ -54,10 +54,10 @@
         <span>[
   
     
-    <a href="/tag/intervals"><code class="highligher-rouge"><nobr>intervals</nobr></code>&nbsp;</a>
+    <a href="/tag/two pointers"><code class="highligher-rouge"><nobr>two pointers</nobr></code>&nbsp;</a>
   
     
-    <a href="/tag/two pointers"><code class="highligher-rouge"><nobr>two pointers</nobr></code>&nbsp;</a>
+    <a href="/tag/intervals"><code class="highligher-rouge"><nobr>intervals</nobr></code>&nbsp;</a>
   
 ]</span>
 
@@ -65,8 +65,8 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0986. Interval List Intersections</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2022-02-02T16:20:10+03:00" itemprop="datePublished">
-        Feb 2, 2022
+    <p class="post-meta"><time class="dt-published" datetime="2022-02-03T18:05:16+03:00" itemprop="datePublished">
+        Feb 3, 2022
       </time></p>
   </header>
 
@@ -76,24 +76,18 @@
 <p><a href="https://leetcode.com/problems/interval-list-intersections/"> <font color="blue">https://leetcode.com/problems/interval-list-intersections/</font></a></p>
 
 <h4 id="solution">Solution</h4>
-<p>The idea is to traverse both list of intervals one by one with two pointers approach. We can have options:</p>
-<ol>
-  <li>If we have <code class="language-plaintext highlighter-rouge">curr[0] &lt;= curr[1]</code>, it means that we have new intersection piece, add it to answer.</li>
-  <li><code class="language-plaintext highlighter-rouge">if A[i][1] &lt;= B[j][1]</code>, it means, that we need to move pointer for <code class="language-plaintext highlighter-rouge">A</code>, in the opposite case we move pointer for <code class="language-plaintext highlighter-rouge">B</code>.</li>
-</ol>
+<p>Intervals are already sorted, so what we can do is use two pointers technique: take intervals <code class="language-plaintext highlighter-rouge">i</code> and <code class="language-plaintext highlighter-rouge">j</code> and try to create intersection. If it is not empty, add it to answer. Then we decide, which interval to choose next, we move the one which ends earlier (if we move the one which starts earlier, we can loose some parts, draw some examples and make sure).</p>
 
 <h4 id="complexity">Complexity</h4>
-<p>It is <code class="language-plaintext highlighter-rouge">O(n + m)</code> for time and the same for space.</p>
 
 <h4 id="code">Code</h4>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">intervalIntersection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
         <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[]</span>
-        
         <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
             <span class="n">curr</span> <span class="o">=</span> <span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">B</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">min</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">B</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="mi">1</span><span class="p">])]</span>
             <span class="k">if</span> <span class="n">curr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">curr</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
-                <span class="n">ans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">curr</span><span class="p">)</span>
+                <span class="n">ans</span> <span class="o">+=</span> <span class="p">[</span><span class="n">curr</span><span class="p">]</span>
             <span class="k">if</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">B</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="mi">1</span><span class="p">]:</span>
                 <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="k">else</span><span class="p">:</span>
