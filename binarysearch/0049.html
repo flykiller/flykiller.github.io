@@ -13,11 +13,11 @@
 <meta property="og:description" content="Problem statement" />
 <meta property="og:site_name" content="Dmitry Babichev’s webpage" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-02-07T00:03:34+03:00" />
+<meta property="article:published_time" content="2022-02-08T13:10:18+03:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="BinarySearch 0049 Farthest Point From Water" />
 <script type="application/ld+json">
-{"url":"/binarysearch/0049.html","@type":"BlogPosting","headline":"BinarySearch 0049 Farthest Point From Water","dateModified":"2022-02-07T00:03:34+03:00","datePublished":"2022-02-07T00:03:34+03:00","mainEntityOfPage":{"@type":"WebPage","@id":"/binarysearch/0049.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
+{"url":"/binarysearch/0049.html","@type":"BlogPosting","headline":"BinarySearch 0049 Farthest Point From Water","dateModified":"2022-02-08T13:10:18+03:00","datePublished":"2022-02-08T13:10:18+03:00","mainEntityOfPage":{"@type":"WebPage","@id":"/binarysearch/0049.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
     
@@ -65,8 +65,8 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">BinarySearch 0049 Farthest Point From Water</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2022-02-07T00:03:34+03:00" itemprop="datePublished">
-        Feb 7, 2022
+    <p class="post-meta"><time class="dt-published" datetime="2022-02-08T13:10:18+03:00" itemprop="datePublished">
+        Feb 8, 2022
       </time></p>
   </header>
 
@@ -89,12 +89,14 @@
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">==</span> <span class="n">m</span> <span class="o">*</span> <span class="n">n</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
         <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span>
 
+        <span class="n">V</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
         <span class="k">while</span> <span class="n">q</span><span class="p">:</span>
             <span class="n">dist</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span>
             <span class="n">ans</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="n">ans</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
                 <span class="n">xi</span><span class="p">,</span> <span class="n">yj</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="n">i</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="n">j</span>
-                <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">xi</span> <span class="o">&lt;</span> <span class="n">m</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">yj</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="ow">and</span> <span class="n">grid</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">yj</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">xi</span> <span class="o">&lt;</span> <span class="n">m</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">yj</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="ow">and</span> <span class="n">grid</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">yj</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yj</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">V</span><span class="p">:</span>
+                    <span class="n">V</span><span class="p">.</span><span class="n">add</span><span class="p">((</span><span class="n">xi</span><span class="p">,</span> <span class="n">yj</span><span class="p">))</span>
                     <span class="n">q</span> <span class="o">+=</span> <span class="p">[(</span><span class="n">dist</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">yj</span><span class="p">)]</span>
                     <span class="n">grid</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">yj</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
