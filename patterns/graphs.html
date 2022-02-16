@@ -507,6 +507,69 @@ Also we need <code class="language-plaintext highlighter-rouge">indxs</code> arr
 
 <p>2.0 Use binary lyfting, see Leetcode 1724 solution for more details.</p>
 
+<h4 id="hungarian-algorithm">Hungarian algorithm</h4>
+<p>Given <code class="language-plaintext highlighter-rouge">n x n</code> matrix the goal is to choose such <code class="language-plaintext highlighter-rouge">n</code> cells, no two of them lies in the same line or row such that sum of given cells is <strong>maximized</strong>
+Here is so-called hungarian algorighm with time complexity <code class="language-plaintext highlighter-rouge">O(n^3)</code>. The result will be total sum and coordinates of cells.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">hungarian</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+    <span class="n">U</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">mu</span><span class="p">,</span> <span class="n">mv</span> <span class="o">=</span> <span class="p">[</span><span class="bp">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="p">[</span><span class="bp">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
+    <span class="n">lu</span> <span class="o">=</span> <span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">G</span><span class="p">]</span>
+    <span class="n">lv</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
+    <span class="k">for</span> <span class="n">root</span> <span class="ow">in</span> <span class="n">U</span><span class="p">:</span>
+        <span class="n">au</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
+        <span class="n">au</span><span class="p">[</span><span class="n">root</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">Av</span> <span class="o">=</span> <span class="p">[</span><span class="bp">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
+        <span class="n">slack</span> <span class="o">=</span> <span class="p">[(</span><span class="n">lu</span><span class="p">[</span><span class="n">root</span><span class="p">]</span> <span class="o">+</span> <span class="n">lv</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">-</span> <span class="n">G</span><span class="p">[</span><span class="n">root</span><span class="p">][</span><span class="n">v</span><span class="p">],</span> <span class="n">root</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">V</span><span class="p">]</span>
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="n">u</span><span class="p">),</span> <span class="n">v</span> <span class="o">=</span> <span class="nb">min</span><span class="p">((</span><span class="n">slack</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">V</span> <span class="k">if</span> <span class="n">Av</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">==</span> <span class="bp">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">delta</span> <span class="o">&gt;</span> <span class="n">T</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">u0</span> <span class="ow">in</span> <span class="n">U</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">au</span><span class="p">[</span><span class="n">u0</span><span class="p">]:</span> <span class="n">lu</span><span class="p">[</span><span class="n">u0</span><span class="p">]</span> <span class="o">-=</span> <span class="n">delta</span>
+                <span class="k">for</span> <span class="n">v0</span> <span class="ow">in</span> <span class="n">V</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">Av</span><span class="p">[</span><span class="n">v0</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span> <span class="n">lv</span><span class="p">[</span><span class="n">v0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">delta</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span> <span class="o">=</span> <span class="n">slack</span><span class="p">[</span><span class="n">v0</span><span class="p">]</span>
+                        <span class="n">slack</span><span class="p">[</span><span class="n">v0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">val</span> <span class="o">-</span> <span class="n">delta</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
+
+            <span class="n">Av</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span>
+            <span class="k">if</span> <span class="n">mv</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span> <span class="k">break</span>
+            <span class="n">u1</span> <span class="o">=</span> <span class="n">mv</span><span class="p">[</span><span class="n">v</span><span class="p">]</span>
+            <span class="n">au</span><span class="p">[</span><span class="n">u1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="k">for</span> <span class="n">v1</span> <span class="ow">in</span> <span class="n">V</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">Av</span><span class="p">[</span><span class="n">v1</span><span class="p">]</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="n">slack</span><span class="p">[</span><span class="n">v1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">((</span><span class="n">lu</span><span class="p">[</span><span class="n">u1</span><span class="p">]</span> <span class="o">+</span> <span class="n">lv</span><span class="p">[</span><span class="n">v1</span><span class="p">]</span> <span class="o">-</span> <span class="n">G</span><span class="p">[</span><span class="n">u1</span><span class="p">][</span><span class="n">v1</span><span class="p">],</span> <span class="n">u1</span><span class="p">),</span> <span class="n">slack</span><span class="p">[</span><span class="n">v1</span><span class="p">])</span>
+        <span class="k">while</span> <span class="n">v</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">u</span> <span class="o">=</span> <span class="n">Av</span><span class="p">[</span><span class="n">v</span><span class="p">]</span>
+            <span class="n">prec</span> <span class="o">=</span> <span class="n">mu</span><span class="p">[</span><span class="n">u</span><span class="p">]</span>
+            <span class="n">mv</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span>
+            <span class="n">mu</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">prec</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">lu</span><span class="p">)</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="n">lv</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h4 id="maximum-bipartite-matching">Maximum bipartite matching</h4>
+
+<p>Given bipartite graph <code class="language-plaintext highlighter-rouge">G</code>, the goal is to find the maximum bipartite matching. We can do it in <code class="language-plaintext highlighter-rouge">O(E * n)</code> time. Output will be list, where for each node we have <code class="language-plaintext highlighter-rouge">None</code> if it is not in partitioning and node if it is. For example for graph with parts <code class="language-plaintext highlighter-rouge">{0, 1, 2, 3}</code> and <code class="language-plaintext highlighter-rouge">{4, 5, 6}</code>, where we have edges <code class="language-plaintext highlighter-rouge">(0, 5), (1, 5), (2, 4), (2, 6), (3, 6)</code> one of the possible answers is <code class="language-plaintext highlighter-rouge">[5, None, 4, 6, 2, 0, 3]</code>, meaning that we found edges <code class="language-plaintext highlighter-rouge">(0, 5), (2, 4), (3, 6)</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">match</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">G</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">V</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>
+            <span class="n">V</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="k">if</span> <span class="n">match</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="n">dfs</span><span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">G</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">match</span><span class="p">):</span>
+                <span class="n">match</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span>
+                <span class="k">return</span> <span class="bp">True</span>
+    <span class="k">return</span> <span class="bp">False</span>
+
+<span class="k">def</span> <span class="nf">max_bipartite_matching</span><span class="p">(</span><span class="n">G</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="p">[</span><span class="bp">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
+    <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">dfs</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="p">[</span><span class="bp">False</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="n">match</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">match</span>
+</code></pre></div></div>
+
 
   </div>
 
