@@ -228,16 +228,95 @@
 </code></pre></div></div>
 
 <h4 id="problem-e-statement">Problem E statement</h4>
-<p>[]</p>
+<p>[union find, segment tree, intervals]</p>
 
 <p><a href="https://codeforces.com/contest/1642/problem/E"> <font color="blue">https://codeforces.com/contest/1642/problem/E</font></a></p>
 
 <h4 id="solution-4">Solution</h4>
+<p>The idea is to keep set of people we for sure know they are not ill in <code class="language-plaintext highlighter-rouge">DSU</code>. Imagine, that <code class="language-plaintext highlighter-rouge">n = 10</code> and we know that persons <code class="language-plaintext highlighter-rouge">1, 2, 3, 6, 7</code> are not ill. Then we keep them as <code class="language-plaintext highlighter-rouge">[1, 2, 3, 4], [5], [6, 7, 8]</code> sets. Here sets with size <code class="language-plaintext highlighter-rouge">&gt;1</code> are not ill persons and sets with size <code class="language-plaintext highlighter-rouge">1</code> are people that can be ill. We will keep the following information for every set:</p>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">lft</code> is the leftest element in set. Notice that we always will have continous subarray as our sets.</li>
+  <li><code class="language-plaintext highlighter-rouge">rgh</code> is the rightest element.</li>
+  <li><code class="language-plaintext highlighter-rouge">lst[set]</code> is the smallest right side such that range <code class="language-plaintext highlighter-rouge">[i, lst[i]], where </code>i in lst[set]` was in queries and  about which we now they have at least one ill person.</li>
+</ol>
+
+<p>Then:</p>
+
+<ol>
+  <li>When we see new query range with ill persons, update <code class="language-plaintext highlighter-rouge">dsu.lst</code>.</li>
+  <li>If we have query that all persons are not ill, we need to update some ranges. We only going to update elements which we did not update before. Imagine, that we have <code class="language-plaintext highlighter-rouge">[1, 2, 3], [4], [5], [6, 7]</code> and we have new query <code class="language-plaintext highlighter-rouge">[2, 9]</code>. Then we need to update <code class="language-plaintext highlighter-rouge">3 -&gt; 4</code>, <code class="language-plaintext highlighter-rouge">4 -&gt; 5, 5 -&gt; 6, 7 -&gt; 8, 8 -&gt; 9</code>. To efficiently union only these pairs, each time we have set of size more than one, we jump directly to its end.</li>
+  <li>If <code class="language-plaintext highlighter-rouge">find(j - 1) == find(j)</code>, then this person is not ill.</li>
+  <li>If <code class="language-plaintext highlighter-rouge">find_lft(find_lst(j - 1)) == j</code>, than this person is ill. We look at <code class="language-plaintext highlighter-rouge">set(j - 1)</code>: elements before <code class="language-plaintext highlighter-rouge">j</code> for which we know that person is not ill, so we have <code class="language-plaintext highlighter-rouge">...00...00?00...00...</code>  Then <code class="language-plaintext highlighter-rouge">find_lst(j - 1)</code> is the smallest index of the right end, where left end is from left zeroes. If it lies in the right group of zeroes, we are happy. It means that <code class="language-plaintext highlighter-rouge">find_lft(find_lst(j - 1)) = j</code>.</li>
+</ol>
 
 <h4 id="complexity-4">Complexity</h4>
+<p>It is $O(n \cdot \alpha(n))$ for time and $O(n)$ for space.</p>
 
 <h4 id="code-4">Code</h4>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">I</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">()]</span>
+<span class="kn">import</span> <span class="nn">io</span><span class="p">,</span> <span class="n">os</span><span class="p">,</span> <span class="n">sys</span>
+<span class="nb">input</span> <span class="o">=</span> <span class="n">io</span><span class="p">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="p">.</span><span class="n">fstat</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="n">st_size</span><span class="p">)).</span><span class="n">readline</span>
+
+<span class="k">class</span> <span class="nc">DSU</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">p</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">rnk</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">lft</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">rgh</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
+
+    <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">p</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">!=</span> <span class="n">x</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">p</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">p</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">p</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">union</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="bp">self</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">:</span> <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">rnk</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="p">.</span><span class="n">rnk</span><span class="p">[</span><span class="n">y</span><span class="p">]:</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">p</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">p</span><span class="p">[</span><span class="n">y</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">rnk</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="p">.</span><span class="n">rnk</span><span class="p">[</span><span class="n">y</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">rnk</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">lft</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">lft</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="bp">self</span><span class="p">.</span><span class="n">lft</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">rgh</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">rgh</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="bp">self</span><span class="p">.</span><span class="n">rgh</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">lst</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">lst</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="bp">self</span><span class="p">.</span><span class="n">lst</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
+        <span class="k">return</span> <span class="bp">True</span>
+
+    <span class="k">def</span> <span class="nf">find_lft</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">lft</span><span class="p">[</span><span class="n">dsu</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span>
+
+    <span class="k">def</span> <span class="nf">find_rgh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">rgh</span><span class="p">[</span><span class="n">dsu</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span>
+
+    <span class="k">def</span> <span class="nf">find_lst</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">lst</span><span class="p">[</span><span class="n">dsu</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span>
+
+<span class="n">n</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="n">I</span><span class="p">()</span>
+<span class="n">dsu</span><span class="p">,</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">DSU</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">2</span><span class="p">),</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">I</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="n">idx_l</span> <span class="o">=</span> <span class="n">dsu</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">l</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">idx_r</span> <span class="o">=</span> <span class="n">dsu</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">x</span><span class="p">:</span>
+            <span class="n">dsu</span><span class="p">.</span><span class="n">lst</span><span class="p">[</span><span class="n">idx_l</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dsu</span><span class="p">.</span><span class="n">lst</span><span class="p">[</span><span class="n">idx_l</span><span class="p">],</span> <span class="n">r</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">beg</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">dsu</span><span class="p">.</span><span class="n">rgh</span><span class="p">[</span><span class="n">idx_l</span><span class="p">],</span> <span class="n">dsu</span><span class="p">.</span><span class="n">lft</span><span class="p">[</span><span class="n">idx_r</span><span class="p">]</span>
+            <span class="k">while</span> <span class="n">beg</span> <span class="o">&lt;</span> <span class="n">end</span><span class="p">:</span>
+                <span class="n">dsu</span><span class="p">.</span><span class="n">union</span><span class="p">(</span><span class="n">beg</span><span class="p">,</span> <span class="n">beg</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">beg</span> <span class="o">=</span> <span class="n">dsu</span><span class="p">.</span><span class="n">find_rgh</span><span class="p">(</span><span class="n">beg</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">dsu</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">dsu</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">j</span><span class="p">):</span>
+            <span class="n">ans</span> <span class="o">+=</span> <span class="p">[</span><span class="s">"NO"</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">dsu</span><span class="p">.</span><span class="n">find_lft</span><span class="p">(</span><span class="n">dsu</span><span class="p">.</span><span class="n">find_lst</span><span class="p">(</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">==</span> <span class="n">j</span><span class="p">:</span>
+            <span class="n">ans</span> <span class="o">+=</span> <span class="p">[</span><span class="s">"YES"</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ans</span> <span class="o">+=</span> <span class="p">[</span><span class="s">"N/A"</span><span class="p">]</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">ans</span><span class="p">))</span>
 </code></pre></div></div>
 
 <h4 id="problem-f-statement">Problem F statement</h4>
