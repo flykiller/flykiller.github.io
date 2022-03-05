@@ -13,11 +13,11 @@
 <meta property="og:description" content="Problem statement" />
 <meta property="og:site_name" content="Dmitry Babichev’s webpage" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-02-25T14:27:56+03:00" />
+<meta property="article:published_time" content="2022-03-05T18:56:43+03:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="BinarySearch 0227 Dice Throw" />
 <script type="application/ld+json">
-{"url":"/binarysearch/0227.html","@type":"BlogPosting","headline":"BinarySearch 0227 Dice Throw","dateModified":"2022-02-25T14:27:56+03:00","datePublished":"2022-02-25T14:27:56+03:00","mainEntityOfPage":{"@type":"WebPage","@id":"/binarysearch/0227.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
+{"url":"/binarysearch/0227.html","@type":"BlogPosting","headline":"BinarySearch 0227 Dice Throw","dateModified":"2022-03-05T18:56:43+03:00","datePublished":"2022-03-05T18:56:43+03:00","mainEntityOfPage":{"@type":"WebPage","@id":"/binarysearch/0227.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
     
@@ -70,8 +70,8 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">BinarySearch 0227 Dice Throw</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2022-02-25T14:27:56+03:00" itemprop="datePublished">
-        Feb 25, 2022
+    <p class="post-meta"><time class="dt-published" datetime="2022-03-05T18:56:43+03:00" itemprop="datePublished">
+        Mar 5, 2022
       </time></p>
   </header>
 
@@ -81,7 +81,7 @@
 <p><a href="https://binarysearch.com/problems/Dice-Throw/"> <font color="blue">https://binarysearch.com/problems/Dice-Throw/</font></a></p>
 
 <h4 id="solution">Solution</h4>
-<p>Equal to Leetcode 1155. Number of Dice Rolls With Target Sum. The idea is to have dp with state <code class="language-plaintext highlighter-rouge">(n, total)</code> and check what we can have on the last throw of dice.</p>
+<p>Equal to Leetcode 1155. Number of Dice Rolls With Target Sum.</p>
 
 <h4 id="complexity">Complexity</h4>
 <p>It is <code class="language-plaintext highlighter-rouge">O(n * total * k)</code> for time and <code class="language-plaintext highlighter-rouge">O(n * total)</code> for space.</p>
@@ -100,44 +100,7 @@
 </code></pre></div></div>
 
 <h4 id="remark">Remark</h4>
-<p>There is also <code class="language-plaintext highlighter-rouge">(n * total)</code> time complexity solution if we precalculate prefix sums.</p>
-
-<h4 id="solution-2">Solution 2</h4>
-<p>In fact we can use some generation functions to get the direct answer:</p>
-
-\[\sum\limits_{k = 0}^{\inf} (-1)^k \cdot C_n^k \cdot C_{n - 1 + m - kf}^{n-1}.\]
-
-<h4 id="complexity-1">Complexity</h4>
-<p>It is <code class="language-plaintext highlighter-rouge">O(n + m)</code> for time and space.</p>
-
-<h4 id="code-1">Code</h4>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">MOD</span><span class="p">,</span> <span class="n">M</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">9</span> <span class="o">+</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">105</span>
-<span class="n">F</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">F</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">F</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span> <span class="o">%</span> <span class="n">MOD</span>
-
-<span class="n">I</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">M</span> <span class="o">+</span> <span class="p">[</span><span class="nb">pow</span><span class="p">(</span><span class="n">F</span><span class="p">[</span><span class="n">M</span><span class="p">],</span> <span class="n">MOD</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="n">MOD</span><span class="p">)]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">I</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">I</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">MOD</span>
-
-<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
-        <span class="k">def</span> <span class="nf">ncr</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">r</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
-            <span class="k">return</span> <span class="p">(</span><span class="n">F</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">*</span> <span class="n">I</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">*</span> <span class="n">I</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="n">r</span><span class="p">])</span> <span class="o">%</span> <span class="n">MOD</span>
-
-        <span class="n">m</span> <span class="o">-=</span> <span class="n">n</span>
-        <span class="k">if</span> <span class="n">m</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">m</span> <span class="o">&gt;</span> <span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="n">f</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span> <span class="k">return</span> <span class="mi">0</span>
-
-        <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">m</span> <span class="o">-</span> <span class="n">i</span> <span class="o">*</span> <span class="n">f</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span> <span class="k">break</span>
-            <span class="n">cur</span> <span class="o">=</span> <span class="p">(</span><span class="n">ncr</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">*</span> <span class="n">ncr</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="n">m</span> <span class="o">-</span> <span class="n">i</span> <span class="o">*</span> <span class="n">f</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">%</span> <span class="n">MOD</span>
-            <span class="n">sgn</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&amp;</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">1</span>
-            <span class="n">res</span> <span class="o">=</span> <span class="p">(</span><span class="n">res</span> <span class="o">+</span> <span class="n">cur</span> <span class="o">*</span> <span class="n">sgn</span><span class="p">)</span> <span class="o">%</span> <span class="n">MOD</span>
-
-        <span class="k">return</span> <span class="n">res</span>
-</code></pre></div></div>
+<p>There is also <code class="language-plaintext highlighter-rouge">(n * total)</code> time complexity solution if we precalculate prefix sums. There is also <code class="language-plaintext highlighter-rouge">O(n + total)</code> time complexity solution.</p>
 
   </div><a class="u-url" href="/binarysearch/0227.html" hidden></a>
 </article>

@@ -13,11 +13,11 @@
 <meta property="og:description" content="Problem statement" />
 <meta property="og:site_name" content="Dmitry Babichev’s webpage" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-02-25T14:27:56+03:00" />
+<meta property="article:published_time" content="2022-03-05T18:56:43+03:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="BinarySearch 0465 Calculator" />
 <script type="application/ld+json">
-{"url":"/binarysearch/0465.html","@type":"BlogPosting","headline":"BinarySearch 0465 Calculator","dateModified":"2022-02-25T14:27:56+03:00","datePublished":"2022-02-25T14:27:56+03:00","mainEntityOfPage":{"@type":"WebPage","@id":"/binarysearch/0465.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
+{"url":"/binarysearch/0465.html","@type":"BlogPosting","headline":"BinarySearch 0465 Calculator","dateModified":"2022-03-05T18:56:43+03:00","datePublished":"2022-03-05T18:56:43+03:00","mainEntityOfPage":{"@type":"WebPage","@id":"/binarysearch/0465.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
     
@@ -56,13 +56,13 @@
         <span>[
   
     
-    <a href="/tag/parser"><code class="highligher-rouge"><nobr>parser</nobr></code>&nbsp;</a>
-  
-    
     <a href="/tag/string"><code class="highligher-rouge"><nobr>string</nobr></code>&nbsp;</a>
   
     
-    <a href="/tag/recursion"><code class="highligher-rouge"><nobr>recursion</nobr></code>&nbsp;</a>
+    <a href="/tag/stack"><code class="highligher-rouge"><nobr>stack</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/parser"><code class="highligher-rouge"><nobr>parser</nobr></code>&nbsp;</a>
   
 ]</span>
 
@@ -70,8 +70,8 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">BinarySearch 0465 Calculator</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2022-02-25T14:27:56+03:00" itemprop="datePublished">
-        Feb 25, 2022
+    <p class="post-meta"><time class="dt-published" datetime="2022-03-05T18:56:43+03:00" itemprop="datePublished">
+        Mar 5, 2022
       </time></p>
   </header>
 
@@ -81,36 +81,37 @@
 <p><a href="https://binarysearch.com/problems/Calculator/"> <font color="blue">https://binarysearch.com/problems/Calculator/</font></a></p>
 
 <h4 id="solution">Solution</h4>
-<p>Similar to leetcode calculator problems, but here we also need to deal with <code class="language-plaintext highlighter-rouge">-3/-12</code> cases and similar. The idea is to first use regular expression to split our data into tokens: each part either <code class="language-plaintext highlighter-rouge">+number</code>, <code class="language-plaintext highlighter-rouge">-number</code> or <code class="language-plaintext highlighter-rouge">*</code> or <code class="language-plaintext highlighter-rouge">/</code> or <code class="language-plaintext highlighter-rouge">number</code>. Then we again keep stack of monomials and each time we have new element we update last element. Also we need to deal with cases <code class="language-plaintext highlighter-rouge">0-a/-b</code> and <code class="language-plaintext highlighter-rouge">-a/-b</code>, which give <strong>different results</strong>, which is very bizzare. For this we have condition <code class="language-plaintext highlighter-rouge">if first &lt; 0 and x != 1</code>.</p>
+<p>Similar to Leetcode 0772 Basic Calculator III, but here we need to deal with cases like <code class="language-plaintext highlighter-rouge">-13*-12/3</code>, so we can have <code class="language-plaintext highlighter-rouge">-12</code> without brackets. So, here I borrowed solution, where <code class="language-plaintext highlighter-rouge">redval()</code> will read the next number and <code class="language-plaintext highlighter-rouge">readterm()</code> will read the next term of multiplictoin/division.</p>
 
 <h4 id="complexity">Complexity</h4>
-<p>Time complexity is <code class="language-plaintext highlighter-rouge">O(n)</code>, space is <code class="language-plaintext highlighter-rouge">O(n)</code> as well.</p>
+<p>It is <code class="language-plaintext highlighter-rouge">O(n)</code> for time and space.</p>
 
 <h4 id="code">Code</h4>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
-        <span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">re</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="sa">r</span><span class="s">"([+-]\d+|[*/]|\d+)"</span><span class="p">),</span> <span class="n">s</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="s">""</span><span class="p">]</span>
-        <span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
 
-        <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">while</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
-            <span class="n">t</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
-            <span class="k">if</span> <span class="n">t</span> <span class="ow">not</span> <span class="ow">in</span> <span class="s">"*/"</span><span class="p">:</span>
-                <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
-                <span class="n">x</span> <span class="o">-=</span> <span class="mi">1</span>
-            <span class="k">elif</span> <span class="n">t</span> <span class="o">==</span> <span class="s">"*"</span><span class="p">:</span>
-                <span class="n">second</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
-                <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span> <span class="o">*</span> <span class="n">second</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="n">t</span> <span class="o">==</span> <span class="s">"/"</span><span class="p">:</span>
-                <span class="n">first</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
-                <span class="n">second</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
-                <span class="k">if</span> <span class="n">first</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">x</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-                    <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">first</span><span class="p">)</span> <span class="o">//</span> <span class="n">second</span><span class="p">))</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">first</span> <span class="o">//</span> <span class="n">second</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">readval</span><span class="p">():</span>
+            <span class="n">sign</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">"-"</span> <span class="k">else</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">s</span> <span class="ow">and</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">"-"</span><span class="p">:</span> <span class="n">s</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">while</span> <span class="n">s</span> <span class="ow">and</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">isdigit</span><span class="p">():</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="n">val</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">popleft</span><span class="p">())</span>
+            <span class="k">return</span> <span class="n">sign</span> <span class="o">*</span> <span class="n">val</span>
 
-            <span class="n">x</span> <span class="o">+=</span> <span class="mi">2</span>
-        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">readterm</span><span class="p">():</span>
+            <span class="n">term</span> <span class="o">=</span> <span class="n">readval</span><span class="p">()</span>
+            <span class="k">while</span> <span class="n">s</span> <span class="ow">and</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="s">"*/"</span><span class="p">:</span>
+                <span class="n">op</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="n">readval</span><span class="p">()</span>
+                <span class="n">term</span> <span class="o">=</span> <span class="n">term</span> <span class="o">*</span> <span class="n">val</span> <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s">"*"</span> <span class="k">else</span> <span class="n">floor</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">*</span> <span class="n">term</span> <span class="o">/</span> <span class="n">val</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">term</span>
+
+        <span class="n">ans</span> <span class="o">=</span> <span class="n">readterm</span><span class="p">()</span>
+        <span class="k">while</span> <span class="n">s</span><span class="p">:</span>
+            <span class="n">op</span><span class="p">,</span> <span class="n">term</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">popleft</span><span class="p">(),</span> <span class="n">readterm</span><span class="p">()</span>
+            <span class="n">ans</span> <span class="o">+=</span> <span class="n">term</span> <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s">"+"</span> <span class="k">else</span> <span class="o">-</span><span class="n">term</span>
+        <span class="k">return</span> <span class="n">ans</span>
 </code></pre></div></div>
 
   </div><a class="u-url" href="/binarysearch/0465.html" hidden></a>
