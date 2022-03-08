@@ -13,11 +13,11 @@
 <meta property="og:description" content="Problem statement" />
 <meta property="og:site_name" content="Dmitry Babichev’s webpage" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-03-05T18:56:43+03:00" />
+<meta property="article:published_time" content="2022-03-08T21:26:52+01:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 1209. Remove All Adjacent Duplicates in String II" />
 <script type="application/ld+json">
-{"url":"/leetcode/1209.html","@type":"BlogPosting","headline":"Leetcode 1209. Remove All Adjacent Duplicates in String II","dateModified":"2022-03-05T18:56:43+03:00","datePublished":"2022-03-05T18:56:43+03:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1209.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
+{"url":"/leetcode/1209.html","@type":"BlogPosting","headline":"Leetcode 1209. Remove All Adjacent Duplicates in String II","dateModified":"2022-03-08T21:26:52+01:00","datePublished":"2022-03-08T21:26:52+01:00","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/1209.html"},"author":{"@type":"Person","name":"Dmitry Babichev"},"description":"Problem statement","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Dmitry Babichev's webpage" />
     
@@ -30,6 +30,14 @@
   
 
 
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
 
 </head>
 
@@ -64,8 +72,8 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 1209. Remove All Adjacent Duplicates in String II</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2022-03-05T18:56:43+03:00" itemprop="datePublished">
-        Mar 5, 2022
+    <p class="post-meta"><time class="dt-published" datetime="2022-03-08T21:26:52+01:00" itemprop="datePublished">
+        Mar 8, 2022
       </time></p>
   </header>
 
@@ -87,20 +95,20 @@
 <p>It is just <code class="language-plaintext highlighter-rouge">O(n)</code> for time and space: we proceed every element at most twice: to put it to stack and to remove it from stack.</p>
 
 <h4 id="code">Code</h4>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Solution:
-    def removeDuplicates(self, s, k):
-        stack = [["!", 1]]
-        for elem in s:
-            if elem == stack[-1][0]:
-                stack[-1][1] += 1
-            else:
-                stack.append([elem, 1])
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">removeDuplicates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="n">stack</span> <span class="o">=</span> <span class="p">[[</span><span class="s">"!"</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+        <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">elem</span> <span class="o">==</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">([</span><span class="n">elem</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
             
-            while stack[-1][1] &gt;= k:
-                stack[-1][1] -= k
-                if stack[-1][1] == 0: stack.pop()
+            <span class="k">while</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">k</span><span class="p">:</span>
+                <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-=</span> <span class="n">k</span>
+                <span class="k">if</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
              
-        return "".join(i*j for i, j in stack[1:])
+        <span class="k">return</span> <span class="s">""</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">j</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">stack</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
 </code></pre></div></div>
 
   </div><a class="u-url" href="/leetcode/1209.html" hidden></a>
