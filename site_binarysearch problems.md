@@ -728,119 +728,119 @@ permalink: /binarysearch problems/
     <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0590"> <font color = black>0590</font> </a></td>
     <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0591"> <font color = black>0591</font> </a></td>
     <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0592"> <font color = black>0592</font> </a></td>
-    <th class="tg-0lax"><font color = lightgray> 0593</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0594</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0595</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0596</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0597</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0598</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0599</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0600</font></th>
+    <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0593"> <font color = black>0593</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0594"> <font color = black>0594</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0595"> <font color = black>0595</font> </a></td>
+    <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0596"> <font color = black>0596</font> </a></td>
+    <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0597"> <font color = black>0597</font> </a></td>
+    <td bgcolor= "6495ED" class="tg-0lax"> <a href="/binarysearch/0598"> <font color = black>0598</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0599"> <font color = black>0599</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0600"> <font color = black>0600</font> </a></td>
   </tr>
 </tbody>
 <tbody>
   <tr>
-    <th class="tg-0lax"><font color = lightgray> 0601</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0602</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0603</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0604</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0605</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0606</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0607</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0608</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0609</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0610</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0611</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0612</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0613</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0614</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0615</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0616</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0617</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0618</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0619</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0620</font></th>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0601"> <font color = black>0601</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0602"> <font color = black>0602</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0603"> <font color = black>0603</font> </a></td>
+    <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0604"> <font color = black>0604</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0605"> <font color = black>0605</font> </a></td>
+    <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0606"> <font color = black>0606</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0607"> <font color = black>0607</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0608"> <font color = black>0608</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0609"> <font color = black>0609</font> </a></td>
+    <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0610"> <font color = black>0610</font> </a></td>
+    <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0611"> <font color = black>0611</font> </a></td>
+    <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0612"> <font color = black>0612</font> </a></td>
+    <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0613"> <font color = black>0613</font> </a></td>
+    <td bgcolor= "6495ED" class="tg-0lax"> <a href="/binarysearch/0614"> <font color = black>0614</font> </a></td>
+    <td bgcolor= "6495ED" class="tg-0lax"> <a href="/binarysearch/0615"> <font color = black>0615</font> </a></td>
+    <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0616"> <font color = black>0616</font> </a></td>
+    <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0617"> <font color = black>0617</font> </a></td>
+    <td bgcolor= "6495ED" class="tg-0lax"> <a href="/binarysearch/0618"> <font color = black>0618</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0619"> <font color = black>0619</font> </a></td>
+    <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0620"> <font color = black>0620</font> </a></td>
   </tr>
 </tbody>
 <tbody>
   <tr>
-    <th class="tg-0lax"><font color = lightgray> 0621</font></th>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0621"> <font color = black>0621</font> </a></td>
     <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0622"> <font color = black>0622</font> </a></td>
-    <th class="tg-0lax"><font color = lightgray> 0623</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0624</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0625</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0626</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0627</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0628</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0629</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0630</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0631</font></th>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0623"> <font color = black>0623</font> </a></td>
+    <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0624"> <font color = black>0624</font> </a></td>
+    <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0625"> <font color = black>0625</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0626"> <font color = black>0626</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0627"> <font color = black>0627</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0628"> <font color = black>0628</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0629"> <font color = black>0629</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0630"> <font color = black>0630</font> </a></td>
+    <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0631"> <font color = black>0631</font> </a></td>
     <td bgcolor= "BF0CD7" class="tg-0lax"> <a href="/binarysearch/0632"> <font color = black>0632</font> </a></td>
-    <th class="tg-0lax"><font color = lightgray> 0633</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0634</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0635</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0636</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0637</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0638</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0639</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0640</font></th>
+    <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0633"> <font color = black>0633</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0634"> <font color = black>0634</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0635"> <font color = black>0635</font> </a></td>
+    <td bgcolor= "6495ED" class="tg-0lax"> <a href="/binarysearch/0636"> <font color = black>0636</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0637"> <font color = black>0637</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0638"> <font color = black>0638</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0639"> <font color = black>0639</font> </a></td>
+    <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0640"> <font color = black>0640</font> </a></td>
   </tr>
 </tbody>
 <tbody>
   <tr>
-    <th class="tg-0lax"><font color = lightgray> 0641</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0642</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0643</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0644</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0645</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0646</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0647</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0648</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0649</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0650</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0651</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0652</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0653</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0654</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0655</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0656</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0657</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0658</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0659</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0660</font></th>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0641"> <font color = black>0641</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0642"> <font color = black>0642</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0643"> <font color = black>0643</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0644"> <font color = black>0644</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0645"> <font color = black>0645</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0646"> <font color = black>0646</font> </a></td>
+    <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0647"> <font color = black>0647</font> </a></td>
+    <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0648"> <font color = black>0648</font> </a></td>
+    <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0649"> <font color = black>0649</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0650"> <font color = black>0650</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0651"> <font color = black>0651</font> </a></td>
+    <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0652"> <font color = black>0652</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0653"> <font color = black>0653</font> </a></td>
+    <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0654"> <font color = black>0654</font> </a></td>
+    <td bgcolor= "6495ED" class="tg-0lax"> <a href="/binarysearch/0655"> <font color = black>0655</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0656"> <font color = black>0656</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0657"> <font color = black>0657</font> </a></td>
+    <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0658"> <font color = black>0658</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0659"> <font color = black>0659</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0660"> <font color = black>0660</font> </a></td>
   </tr>
 </tbody>
 <tbody>
   <tr>
     <td bgcolor= "BF0CD7" class="tg-0lax"> <a href="/binarysearch/0661"> <font color = black>0661</font> </a></td>
-    <th class="tg-0lax"><font color = lightgray> 0662</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0663</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0664</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0665</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0666</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0667</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0668</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0669</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0670</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0671</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0672</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0673</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0674</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0675</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0676</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0677</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0678</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0679</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0680</font></th>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0662"> <font color = black>0662</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0663"> <font color = black>0663</font> </a></td>
+    <td bgcolor= "6495ED" class="tg-0lax"> <a href="/binarysearch/0664"> <font color = black>0664</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0665"> <font color = black>0665</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0666"> <font color = black>0666</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0667"> <font color = black>0667</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0668"> <font color = black>0668</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0669"> <font color = black>0669</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0670"> <font color = black>0670</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0671"> <font color = black>0671</font> </a></td>
+    <td bgcolor= "6495ED" class="tg-0lax"> <a href="/binarysearch/0672"> <font color = black>0672</font> </a></td>
+    <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0673"> <font color = black>0673</font> </a></td>
+    <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0674"> <font color = black>0674</font> </a></td>
+    <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0675"> <font color = black>0675</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0676"> <font color = black>0676</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0677"> <font color = black>0677</font> </a></td>
+    <td bgcolor= "6495ED" class="tg-0lax"> <a href="/binarysearch/0678"> <font color = black>0678</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0679"> <font color = black>0679</font> </a></td>
+    <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0680"> <font color = black>0680</font> </a></td>
   </tr>
 </tbody>
 <tbody>
   <tr>
-    <th class="tg-0lax"><font color = lightgray> 0681</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0682</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0683</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0684</font></th>
-    <th class="tg-0lax"><font color = lightgray> 0685</font></th>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0681"> <font color = black>0681</font> </a></td>
+    <td bgcolor= "C0FF3E" class="tg-0lax"> <a href="/binarysearch/0682"> <font color = black>0682</font> </a></td>
+    <td bgcolor= "FFB6C1" class="tg-0lax"> <a href="/binarysearch/0683"> <font color = black>0683</font> </a></td>
+    <td bgcolor= "6495ED" class="tg-0lax"> <a href="/binarysearch/0684"> <font color = black>0684</font> </a></td>
+    <td bgcolor= "6495ED" class="tg-0lax"> <a href="/binarysearch/0685"> <font color = black>0685</font> </a></td>
     <th class="tg-0lax"><font color = lightgray> 0686</font></th>
     <th class="tg-0lax"><font color = lightgray> 0687</font></th>
     <th class="tg-0lax"><font color = lightgray> 0688</font></th>
