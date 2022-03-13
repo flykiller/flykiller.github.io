@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Leetcode 1680. Concatenation of Consecutive Binary Numbers | Dmitry Babichev’s webpage</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Leetcode 1680. Concatenation of Consecutive Binary Numbers" />
+<meta name="author" content="Dmitry Babichev" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="https://leetcode.com/problems/concatenation-of-consecutive-binary-numbers" />
+<meta property="og:description" content="https://leetcode.com/problems/concatenation-of-consecutive-binary-numbers" />
+<link rel="canonical" href="http://localhost:4000/leetcode/1680.html" />
+<meta property="og:url" content="http://localhost:4000/leetcode/1680.html" />
+<meta property="og:site_name" content="Dmitry Babichev’s webpage" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-03-13T14:53:53+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Leetcode 1680. Concatenation of Consecutive Binary Numbers" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/leetcode/1680.html","author":{"@type":"Person","name":"Dmitry Babichev"},"@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/leetcode/1680.html"},"description":"https://leetcode.com/problems/concatenation-of-consecutive-binary-numbers","headline":"Leetcode 1680. Concatenation of Consecutive Binary Numbers","dateModified":"2022-03-13T14:53:53+01:00","datePublished":"2022-03-13T14:53:53+01:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dmitry Babichev&apos;s webpage" />
+    
+
+
+
+
+
+
+  
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+    
+    <!-- for mathjax support -->
+    
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dmitry Babichev&#39;s webpage</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/codeforces%20problems/">Codeforces</a><a class="page-link" href="/leetcode/">Leetcode</a><a class="page-link" href="/binarysearch%20problems/">BinarySearch</a><a class="page-link" href="/coding%20ideas/">Patterns</a><a class="page-link" href="/performance%20tricks/">Speed up</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <span>[
+  
+    
+    <a href="/tag/math"><code class="highligher-rouge"><nobr>math</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/bit manipulation"><code class="highligher-rouge"><nobr>bit manipulation</nobr></code>&nbsp;</a>
+  
+]</span>
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Leetcode 1680. Concatenation of Consecutive Binary Numbers</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2022-03-13T14:53:53+01:00" itemprop="datePublished">
+        Mar 13, 2022
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><a href="https://leetcode.com/problems/concatenation-of-consecutive-binary-numbers"> <font color="blue">https://leetcode.com/problems/concatenation-of-consecutive-binary-numbers</font></a></p>
+
+<p>One way to solve this problem in competition is just create very long binary string and then find result of division by <code class="language-plaintext highlighter-rouge">10**9 + 7</code> and it will work fine. However in interview setup it is not the best idea and I prefer more honest way. Let us look at first several <code class="language-plaintext highlighter-rouge">n</code> to see how it works:
+<code class="language-plaintext highlighter-rouge">1</code>
+<code class="language-plaintext highlighter-rouge">110</code>
+<code class="language-plaintext highlighter-rouge">11011</code>
+<code class="language-plaintext highlighter-rouge">11011100</code></p>
+
+<p>Let us try to find answer to <code class="language-plaintext highlighter-rouge">n</code>, using information about <code class="language-plaintext highlighter-rouge">n-1</code>. <code class="language-plaintext highlighter-rouge">110</code> = <code class="language-plaintext highlighter-rouge">1 * 100 + 10</code> (all in binary representation), <code class="language-plaintext highlighter-rouge">11011 = 110 * 100 + 11</code>, <code class="language-plaintext highlighter-rouge">11011100 = 11011 * 1000 + 100</code> and so on. We can see that on each step we need to multiply number by <strong>lenght</strong> of new number and add new number (and use <code class="language-plaintext highlighter-rouge">%M</code>) and that is all!</p>
+
+<p><strong>Complexity</strong>: time complexity is <code class="language-plaintext highlighter-rouge">O(n)</code>, space is <code class="language-plaintext highlighter-rouge">O(1)</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">concatenatedBinary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">ans</span><span class="p">,</span> <span class="n">M</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">9</span> <span class="o">+</span> <span class="mi">7</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="p">(</span><span class="n">ans</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">bin</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">-</span> <span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">M</span>
+        <span class="k">return</span> <span class="n">ans</span> 
+</code></pre></div></div>
+
+<p><strong>Further thoughts</strong> When you found <code class="language-plaintext highlighter-rouge">O(n)</code> solution, you should ask a question, can you do better? Here I had very strong intuition that you can do it faster and I came up with <code class="language-plaintext highlighter-rouge">O(log^2 n)</code> solution. Then I checked discussions and there is in fact at least two solutions with this complexity: one uses idea of geometrical progressions: idea behind is the following: we can see that in binary representation of desired number there will be <code class="language-plaintext highlighter-rouge">O(log n)</code> sequences of ones with equal gaps for each of <code class="language-plaintext highlighter-rouge">O(log n)</code> lengths of numbers. You can find this solution in discussion, I will code my own version if I have time. Another solution using matrix multiplications and I was very impressed to see it.</p>
+
+<h3 id="faster-solution-with-olog2-n-complexity">Faster solution with O(log^2 n) complexity</h3>
+
+<p>It is easier to chose some <code class="language-plaintext highlighter-rouge">n</code> and go into details about this <code class="language-plaintext highlighter-rouge">n</code>. Let us choose <code class="language-plaintext highlighter-rouge">n = 54</code> and discuss how my algorithm works:</p>
+
+<p>Function <code class="language-plaintext highlighter-rouge">bin_pow</code> will return powers of <code class="language-plaintext highlighter-rouge">2</code>, which sum to given number, for example <code class="language-plaintext highlighter-rouge">bin_pow(37) = [1, 4, 32]</code>, because <code class="language-plaintext highlighter-rouge">1 + 4 + 32 = 37</code>.</p>
+
+<p>Now, we have <code class="language-plaintext highlighter-rouge">n = 54</code>, and we have:</p>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">1</code> number with length <code class="language-plaintext highlighter-rouge">1</code>: just <code class="language-plaintext highlighter-rouge">1</code></li>
+  <li><code class="language-plaintext highlighter-rouge">2</code> numbers with length <code class="language-plaintext highlighter-rouge">2</code>: <code class="language-plaintext highlighter-rouge">10, 11</code></li>
+  <li><code class="language-plaintext highlighter-rouge">4</code> numbers with length <code class="language-plaintext highlighter-rouge">3</code>: <code class="language-plaintext highlighter-rouge">100, 101, 110, 111</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">8</code> numbers with length <code class="language-plaintext highlighter-rouge">4</code>: <code class="language-plaintext highlighter-rouge">1000, ..., 1111</code></li>
+  <li><code class="language-plaintext highlighter-rouge">16</code> numbers with length <code class="language-plaintext highlighter-rouge">5</code>: <code class="language-plaintext highlighter-rouge">10000, ..., 11111</code>.
+Now, we have 23 more numbers and we keep to split them into groups:</li>
+  <li><code class="language-plaintext highlighter-rouge">16</code> numbers with lenght <code class="language-plaintext highlighter-rouge">6</code>, which <strong>start with</strong> <code class="language-plaintext highlighter-rouge">10....</code>, that is <code class="language-plaintext highlighter-rouge">100000, 100001, ... 101111</code>. Why we choose <code class="language-plaintext highlighter-rouge">16</code> of them? Because it is the biggest group we can take such that this group is full: given start we have all possible endings.</li>
+  <li><code class="language-plaintext highlighter-rouge">4</code> numbers with length <code class="language-plaintext highlighter-rouge">6</code>, which <strong>start with</strong> <code class="language-plaintext highlighter-rouge">1100</code>, that is <code class="language-plaintext highlighter-rouge">110000, 110001, 110010, 110011</code></li>
+  <li><code class="language-plaintext highlighter-rouge">2</code> numbers with length <code class="language-plaintext highlighter-rouge">6</code>, which <strong>start with</strong> <code class="language-plaintext highlighter-rouge">11010</code>, that is <code class="language-plaintext highlighter-rouge">110100</code> and <code class="language-plaintext highlighter-rouge">110101</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">1</code> number with length <code class="language-plaintext highlighter-rouge">6</code>: <code class="language-plaintext highlighter-rouge">110110</code>, which is equal to <code class="language-plaintext highlighter-rouge">54</code>, our last number.</li>
+</ol>
+
+<p>We will keep lenghts of our groups in list <code class="language-plaintext highlighter-rouge">B</code>, so we have:
+<code class="language-plaintext highlighter-rouge">B = [1, 2, 4, 8, 16, 16, 4, 2, 1</code>]</p>
+
+<p>We will keep length of numbers in each group in list <code class="language-plaintext highlighter-rouge">C</code>, so we have:
+<code class="language-plaintext highlighter-rouge">C = [1, 2, 3, 4, 5, 6, 6, 6, 6]</code></p>
+
+<p>So far we have the following picture:</p>
+
+<p><code class="language-plaintext highlighter-rouge">[1][10 11][100 101 110 111] ...   [110000, 110001, 110010, 110011], [110100, 110101], [110110]</code></p>
+
+<p>We will keep starting places of each group in list <code class="language-plaintext highlighter-rouge">D</code>, in our case we have:
+<code class="language-plaintext highlighter-rouge">D = [266, 262, 250, 218, 138, 42, 18, 6, 0]</code>.
+Let us look from the end: last group we do not need to multiply by anything, previous group has <code class="language-plaintext highlighter-rouge">1</code> number with length <code class="language-plaintext highlighter-rouge">6</code>, so we need to multiply it by <code class="language-plaintext highlighter-rouge">2^6</code>. Next we have <code class="language-plaintext highlighter-rouge">2*6 + 1*6</code> shift, <code class="language-plaintext highlighter-rouge">4*6 + 2*6 + 1*6</code>, <code class="language-plaintext highlighter-rouge">16*6 + 4*6 + 2*6 + 1*6</code>, <code class="language-plaintext highlighter-rouge">16*5 + 16*6 + 4*6 + 2*6 + 1*6</code> and so on: it can be done efficiently, using <code class="language-plaintext highlighter-rouge">accumulate</code> function in python.</p>
+
+<p>Final step is to iterate over our groups and evaluate number modulo <code class="language-plaintext highlighter-rouge">10**9 + 7</code> in each group:</p>
+
+<p>Let us look at group <code class="language-plaintext highlighter-rouge">[110000, 110001, 110010, 110011]</code> for better underastnding. This group will be somewhere in the middle of number, like <code class="language-plaintext highlighter-rouge">...[110000, 110001, 110010, 110011]...</code> and we need to understand what impact it has on our number, we need several values:</p>
+<ol>
+  <li>Place, where this group is located, for this we use <code class="language-plaintext highlighter-rouge">D</code> list, <code class="language-plaintext highlighter-rouge">d</code> for given group.</li>
+  <li>Lenth of elements in each group, for this we use <code class="language-plaintext highlighter-rouge">C</code> list, <code class="language-plaintext highlighter-rouge">c</code> for given group.</li>
+  <li>Number of elements in our group, for this we use <code class="language-plaintext highlighter-rouge">B</code> list, <code class="language-plaintext highlighter-rouge">b</code> for given group.</li>
+  <li>Also we need to now, from which element we start, in our case it is <code class="language-plaintext highlighter-rouge">110000</code>, we can evaluate it as <code class="language-plaintext highlighter-rouge">a - b + 1</code>, where <code class="language-plaintext highlighter-rouge">a</code> is corresponding element in <code class="language-plaintext highlighter-rouge">accumulate(B)</code>: here we have <code class="language-plaintext highlighter-rouge">accumulate(B) = [1, 3, 7, 15, 31, 47, 51, 53, 54]</code> and <code class="language-plaintext highlighter-rouge">51-4 + 1 = 48</code> is current number we start with, <code class="language-plaintext highlighter-rouge">a</code> for given group</li>
+</ol>
+
+<p>Finally, we need to do some mathematics: we need to evaluate sum:
+<code class="language-plaintext highlighter-rouge">[(a-b+1) * 2^(b*c) + (a-b+2)*2^(b*(c-1)) + ... +  (a-b + c-1) * 2^(b*1) + (a-b + c) * 2^(b*0)]*2^d</code>.</p>
+
+<p>This formula can be written in closed form! It is almost like sum of geometrical progression, but in fact, sum of several of them which lead us to closed form solution. We also need to work using modular arithmetic, so we use powerful <code class="language-plaintext highlighter-rouge">pow</code> python function. In my notation <code class="language-plaintext highlighter-rouge">t1 = [2^(bc) - 1] % MOD</code> and <code class="language-plaintext highlighter-rouge">t2 = [1/(2^c - 1)] % MOD</code>. Here we use Fermat’s little theorem to evaluate inverse number in modular arithmetic.</p>
+
+<p><strong>Complexity</strong>: time complexity of evaluating <code class="language-plaintext highlighter-rouge">B, C, D</code> lists is just <code class="language-plaintext highlighter-rouge">O(log n)</code>. However when we work with <code class="language-plaintext highlighter-rouge">pow</code> function, complexity to evaluate sum in each group will be also <code class="language-plaintext highlighter-rouge">O(log n)</code>, which leasd to <code class="language-plaintext highlighter-rouge">O(log^2 n)</code> time complexity. Space complexity is <code class="language-plaintext highlighter-rouge">O(log n)</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">concatenatedBinary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">bin_pow</span><span class="p">(</span><span class="n">num</span><span class="p">):</span> <span class="k">return</span> <span class="p">[</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">bin</span><span class="p">(</span><span class="n">num</span><span class="p">)[:</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="s">"1"</span><span class="p">]</span>
+        <span class="n">ans</span><span class="p">,</span> <span class="n">MOD</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">9</span> <span class="o">+</span> <span class="mi">7</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nb">bin</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="o">-</span> <span class="mi">3</span>
+
+        <span class="n">B</span> <span class="o">=</span> <span class="n">bin_pow</span><span class="p">((</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">q</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">bin_pow</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">q</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">C</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">q</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="p">[</span><span class="n">q</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">-</span> <span class="n">q</span><span class="p">)</span>
+        <span class="n">D</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">accumulate</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">j</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">B</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">C</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])))[::</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">accumulate</span><span class="p">(</span><span class="n">B</span><span class="p">),</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">D</span><span class="p">):</span>
+            <span class="n">t1</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">b</span><span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="n">MOD</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="n">t2</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">MOD</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">MOD</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="n">MOD</span><span class="p">)</span>
+            <span class="n">ans</span> <span class="o">+=</span> <span class="n">t2</span><span class="o">*</span><span class="p">((</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="n">t2</span><span class="p">)</span><span class="o">*</span><span class="n">t1</span><span class="o">-</span><span class="n">b</span><span class="p">)</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">MOD</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">ans</span> <span class="o">%</span> <span class="n">MOD</span>
+</code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/concatenation-of-consecutive-binary-numbers/discuss/1037323/python-o(n)-solution-explained"> <font color="blue">Problem 1680</font></a></p>
+
+  </div><a class="u-url" href="/leetcode/1680.html" hidden></a>
+</article>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">Dmitry Babichev</li>
+          <li><a class="u-email" href="mailto:dimitry008@gmail.com">dimitry008@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body><script async src="https://www.googletagmanager.com/gtag/js?id=G-KR1GZKF62P"></script>
+<script>
+  window['ga-disable-G-KR1GZKF62P'] = window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1";
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KR1GZKF62P');
+</script>
+</html>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>

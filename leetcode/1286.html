@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Leetcode 1286. Iterator for Combination | Dmitry Babichev’s webpage</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Leetcode 1286. Iterator for Combination" />
+<meta name="author" content="Dmitry Babichev" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="https://leetcode.com/problems/iterator-for-combination" />
+<meta property="og:description" content="https://leetcode.com/problems/iterator-for-combination" />
+<link rel="canonical" href="http://localhost:4000/leetcode/1286.html" />
+<meta property="og:url" content="http://localhost:4000/leetcode/1286.html" />
+<meta property="og:site_name" content="Dmitry Babichev’s webpage" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-03-13T14:53:53+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Leetcode 1286. Iterator for Combination" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/leetcode/1286.html","author":{"@type":"Person","name":"Dmitry Babichev"},"@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/leetcode/1286.html"},"description":"https://leetcode.com/problems/iterator-for-combination","headline":"Leetcode 1286. Iterator for Combination","dateModified":"2022-03-13T14:53:53+01:00","datePublished":"2022-03-13T14:53:53+01:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dmitry Babichev&apos;s webpage" />
+    
+
+
+
+
+
+
+  
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+    
+    <!-- for mathjax support -->
+    
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dmitry Babichev&#39;s webpage</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/codeforces%20problems/">Codeforces</a><a class="page-link" href="/leetcode/">Leetcode</a><a class="page-link" href="/binarysearch%20problems/">BinarySearch</a><a class="page-link" href="/coding%20ideas/">Patterns</a><a class="page-link" href="/performance%20tricks/">Speed up</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <span>[
+  
+    
+    <a href="/tag/backtracking"><code class="highligher-rouge"><nobr>backtracking</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/design"><code class="highligher-rouge"><nobr>design</nobr></code>&nbsp;</a>
+  
+]</span>
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Leetcode 1286. Iterator for Combination</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2022-03-13T14:53:53+01:00" itemprop="datePublished">
+        Mar 13, 2022
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><a href="https://leetcode.com/problems/iterator-for-combination"> <font color="blue">https://leetcode.com/problems/iterator-for-combination</font></a></p>
+
+<p>There are different ways to solve this problem, one of them is to generate all possible combination and then when we asked to return next, just take the next one. Also we can use bitmasks, where we try to generate next combination and check if we choose correct number of elements or not. However I prefer to do it in a bit different way, I say it is honest iterator, where we find next permutation, given current one. Let me consider and example:</p>
+
+<p><code class="language-plaintext highlighter-rouge">acfxyz</code>, where we can use full alphabet. How can we find the next combination? We need to look at the end of our combination and try to increment it. Can we increment <code class="language-plaintext highlighter-rouge">z</code>? No, we can not, the same for <code class="language-plaintext highlighter-rouge">y</code> and <code class="language-plaintext highlighter-rouge">x</code>. What we can increment is <code class="language-plaintext highlighter-rouge">f</code>, so next combination will be <code class="language-plaintext highlighter-rouge">acghij</code>.
+This is the key remark of my method. Let us consider function <code class="language-plaintext highlighter-rouge">next()</code>:</p>
+
+<ol>
+  <li>First we check if we already have some combination before, if not, just create the first one.</li>
+  <li>Now, we need to find the longest commont suffix, like we did in our example between current state and our string. I do this, using <code class="language-plaintext highlighter-rouge">commonprefix</code> function.</li>
+  <li>Now, we need to find the place for previous symbol in our <code class="language-plaintext highlighter-rouge">characters</code>. Why? Because in our example we have alphabet <code class="language-plaintext highlighter-rouge">abc...xyz</code>, but we can have something like <code class="language-plaintext highlighter-rouge">acdehkxyz</code>, and we need to know, what is going after <code class="language-plaintext highlighter-rouge">h</code>. It is <code class="language-plaintext highlighter-rouge">i</code>? No, in this case it is <code class="language-plaintext highlighter-rouge">k</code>.</li>
+  <li>Finally, we construct new state, taking first <code class="language-plaintext highlighter-rouge">len(character) - end - 1</code> elements from previous state and adding <code class="language-plaintext highlighter-rouge">end + 1</code> elements starting from <code class="language-plaintext highlighter-rouge">place + 1</code> from our <code class="language-plaintext highlighter-rouge">characters</code>.</li>
+  <li>To implement <code class="language-plaintext highlighter-rouge">hashNext()</code> we just need to check if we reached the last state.</li>
+</ol>
+
+<p><strong>Complexity</strong> of <code class="language-plaintext highlighter-rouge">hasNext()</code> is <code class="language-plaintext highlighter-rouge">O(k)</code>, where <code class="language-plaintext highlighter-rouge">k = combinationLength</code>. Complexity of <code class="language-plaintext highlighter-rouge">next()</code> is also <code class="language-plaintext highlighter-rouge">O(k)</code>, because we need to find the longest suffix, also we need to find element in string, using <code class="language-plaintext highlighter-rouge">index()</code> (this can be reduced to <code class="language-plaintext highlighter-rouge">O(1)</code>, using hash table) and finally, we need to construct and return new state, which has length <code class="language-plaintext highlighter-rouge">k</code>, which can not be improved.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from os.path import commonprefix
+
+class CombinationIterator:
+
+    def __init__(self, characters, combinationLength):
+        self.c = characters
+        self.len = combinationLength
+        self.state = ""
+        
+    def next(self):
+        if self.state == "":
+            self.state = self.c[:self.len]
+        else:
+            end = len(commonprefix([self.c[::-1], self.state[::-1]]))
+            place = self.c.index(self.state[-end-1])
+            self.state = self.state[:-end-1] + self.c[place + 1: place + 2 + end]
+        return self.state
+
+    def hasNext(self):
+        return self.state != self.c[-self.len:]
+</code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/iterator-for-combination/discuss/790113/python-o(k)-on-the-fly-explained"> <font color="blue">Problem 1286</font></a></p>
+
+  </div><a class="u-url" href="/leetcode/1286.html" hidden></a>
+</article>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">Dmitry Babichev</li>
+          <li><a class="u-email" href="mailto:dimitry008@gmail.com">dimitry008@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body><script async src="https://www.googletagmanager.com/gtag/js?id=G-KR1GZKF62P"></script>
+<script>
+  window['ga-disable-G-KR1GZKF62P'] = window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1";
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KR1GZKF62P');
+</script>
+</html>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>

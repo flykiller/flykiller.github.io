@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Leetcode 0895. Maximum Frequency Stack | Dmitry Babichev’s webpage</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Leetcode 0895. Maximum Frequency Stack" />
+<meta name="author" content="Dmitry Babichev" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="https://leetcode.com/problems/maximum-frequency-stack" />
+<meta property="og:description" content="https://leetcode.com/problems/maximum-frequency-stack" />
+<link rel="canonical" href="http://localhost:4000/leetcode/0895.html" />
+<meta property="og:url" content="http://localhost:4000/leetcode/0895.html" />
+<meta property="og:site_name" content="Dmitry Babichev’s webpage" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-03-13T14:53:53+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Leetcode 0895. Maximum Frequency Stack" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/leetcode/0895.html","author":{"@type":"Person","name":"Dmitry Babichev"},"@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/leetcode/0895.html"},"description":"https://leetcode.com/problems/maximum-frequency-stack","headline":"Leetcode 0895. Maximum Frequency Stack","dateModified":"2022-03-13T14:53:53+01:00","datePublished":"2022-03-13T14:53:53+01:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dmitry Babichev&apos;s webpage" />
+    
+
+
+
+
+
+
+  
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+    
+    <!-- for mathjax support -->
+    
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dmitry Babichev&#39;s webpage</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/codeforces%20problems/">Codeforces</a><a class="page-link" href="/leetcode/">Leetcode</a><a class="page-link" href="/binarysearch%20problems/">BinarySearch</a><a class="page-link" href="/coding%20ideas/">Patterns</a><a class="page-link" href="/performance%20tricks/">Speed up</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <span>[
+  
+    
+    <a href="/tag/hash table"><code class="highligher-rouge"><nobr>hash table</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/stack"><code class="highligher-rouge"><nobr>stack</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/bfs"><code class="highligher-rouge"><nobr>bfs</nobr></code>&nbsp;</a>
+  
+]</span>
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Leetcode 0895. Maximum Frequency Stack</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2022-03-13T14:53:53+01:00" itemprop="datePublished">
+        Mar 13, 2022
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><a href="https://leetcode.com/problems/maximum-frequency-stack"> <font color="blue">https://leetcode.com/problems/maximum-frequency-stack</font></a></p>
+
+<h3 id="solution-1-using-sortedlist">Solution 1, using SortedList</h3>
+
+<p>There is solution with complexity <code class="language-plaintext highlighter-rouge">O( log n)</code> for pop and push. We will keep 3 pieces of information:</p>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">self.SList</code> is sorted list, where we keep tuples of <code class="language-plaintext highlighter-rouge">3</code> numbers: frequency, number itself and biggest index we have for this number.</li>
+  <li><code class="language-plaintext highlighter-rouge">self.Places</code> is defaultdict, where for each num we keep all indexes.</li>
+  <li><code class="language-plaintext highlighter-rouge">self.N</code> number of element we push into our data structure. Note, that we do not decrease this number, only increase.</li>
+</ol>
+
+<p>Now, how function will work:</p>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">push(self, x)</code>: first, we check frequency of new element and update it: we remove tuple from our sorted list and put updated frequency. We also add new index to <code class="language-plaintext highlighter-rouge">self.Places[x]</code> and update <code class="language-plaintext highlighter-rouge">self.N</code></li>
+  <li><code class="language-plaintext highlighter-rouge">pop(self)</code>: we pop last element from our sorted list: it will be what we wanted. If frequency of extracted element is <code class="language-plaintext highlighter-rouge">2</code> or more, than we need to put element with updated frequency to our sorted list. Also we remove last element from <code class="language-plaintext highlighter-rouge">self.Places</code>.</li>
+</ol>
+
+<p><strong>Complexity</strong>: all operations which we use when we work with sorted list have complexity <code class="language-plaintext highlighter-rouge">O(log n)</code>, so final complexity of both <code class="language-plaintext highlighter-rouge">push</code> and <code class="language-plaintext highlighter-rouge">pop</code> is just <code class="language-plaintext highlighter-rouge">O(log n)</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from sortedcontainers import SortedList
+
+class FreqStack:
+    def __init__(self):
+        self.SList = SortedList()   #(freq, num, last)
+        self.Places = defaultdict(list)  #num -&gt; all indexes
+        self.N = 0
+
+    def push(self, x):
+        freq_x = len(self.Places[x])
+        if freq_x &gt; 0: self.SList.remove((freq_x, self.Places[x][-1], x))
+        self.SList.add((freq_x + 1, self.N, x))
+        self.Places[x].append(self.N)
+        self.N += 1
+        
+    def pop(self):
+        freq, end, num = self.SList.pop()
+        self.Places[num].pop()
+        if freq &gt; 1: self.SList.add((freq - 1, self.Places[num][-1], num))
+        return num
+</code></pre></div></div>
+
+<h3 id="solution-2-using-stacks">Solution 2: using stacks</h3>
+
+<p>There is also <code class="language-plaintext highlighter-rouge">O(1)</code> pop/push solution: let us look at it at the following example: we push into stack numbers<code class="language-plaintext highlighter-rouge">[0, 7, 3, 7, 8, 8, 8, 3, 4, 0]</code>. Then we will keep dictionary of stacks: <code class="language-plaintext highlighter-rouge">{1: [0, 7, 3, 8, 4], 2: [7, 8, 3, 0], 3: [8]}</code>. What is logic behind this? We have 3 items to keep:</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">self.freq</code>: frequencies of each element</li>
+  <li><code class="language-plaintext highlighter-rouge">self.stacks</code>: stack for each <code class="language-plaintext highlighter-rouge">frequency</code>, note that it is not stack for each element with indexes, but something different: for each frequency we will keep elements we have with this frequency in the order like in original stack.
+<code class="language-plaintext highlighter-rouge">self.maxfreq</code> is maximal frequency.</li>
+</ol>
+
+<p>Now, how functions will work:</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">push(self, x)</code>: when we add new element, first we need to increase it frequency. If new frequency is more than maximum frequency we have, we update it. Finally, we update our <code class="language-plaintext highlighter-rouge">self.stacks</code> for new element: put it to the end of stack.</li>
+  <li><code class="language-plaintext highlighter-rouge">pop(self)</code>: first of all, element we are looking for is last element in <code class="language-plaintext highlighter-rouge">self.stacks[self.maxfreq]</code>, so we pop it. Also we need to decrease frequency of this element. Finally, if number of elements with highest frequency equal to <code class="language-plaintext highlighter-rouge">0</code>, we can remove this stack. Then we return <code class="language-plaintext highlighter-rouge">x</code>.</li>
+</ol>
+
+<p><strong>Complexity</strong>: each operation we do have just <code class="language-plaintext highlighter-rouge">O(1)</code> complexity, so both <code class="language-plaintext highlighter-rouge">push</code> and <code class="language-plaintext highlighter-rouge">pop</code> work just in <code class="language-plaintext highlighter-rouge">O(1)</code>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class FreqStack:
+    def __init__(self):
+        self.freq = Counter()
+        self.stacks = defaultdict(list)
+        self.maxfreq = 0
+
+    def push(self, x):
+        freq_x = self.freq[x] + 1
+        self.freq[x] = freq_x
+        self.maxfreq = max(self.maxfreq, freq_x)
+        self.stacks[freq_x].append(x)
+
+    def pop(self):
+        x = self.stacks[self.maxfreq].pop()
+        self.freq[x] -= 1
+        if not self.stacks[self.maxfreq]: self.maxfreq -= 1
+        return x
+</code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/maximum-frequency-stack/discuss/1086287/python-2-solutions%3a-o(log-n)-and-o(1)-explained"> <font color="blue">Problem 0895</font></a></p>
+
+  </div><a class="u-url" href="/leetcode/0895.html" hidden></a>
+</article>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">Dmitry Babichev</li>
+          <li><a class="u-email" href="mailto:dimitry008@gmail.com">dimitry008@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body><script async src="https://www.googletagmanager.com/gtag/js?id=G-KR1GZKF62P"></script>
+<script>
+  window['ga-disable-G-KR1GZKF62P'] = window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1";
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KR1GZKF62P');
+</script>
+</html>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>

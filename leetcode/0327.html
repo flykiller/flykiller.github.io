@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Leetcode 0327. Count of Range Sum | Dmitry Babichev’s webpage</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Leetcode 0327. Count of Range Sum" />
+<meta name="author" content="Dmitry Babichev" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Problem statement" />
+<meta property="og:description" content="Problem statement" />
+<link rel="canonical" href="http://localhost:4000/leetcode/0327.html" />
+<meta property="og:url" content="http://localhost:4000/leetcode/0327.html" />
+<meta property="og:site_name" content="Dmitry Babichev’s webpage" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-03-13T14:53:53+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Leetcode 0327. Count of Range Sum" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/leetcode/0327.html","author":{"@type":"Person","name":"Dmitry Babichev"},"@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/leetcode/0327.html"},"description":"Problem statement","headline":"Leetcode 0327. Count of Range Sum","dateModified":"2022-03-13T14:53:53+01:00","datePublished":"2022-03-13T14:53:53+01:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dmitry Babichev&apos;s webpage" />
+    
+
+
+
+
+
+
+  
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+    
+    <!-- for mathjax support -->
+    
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dmitry Babichev&#39;s webpage</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/codeforces%20problems/">Codeforces</a><a class="page-link" href="/leetcode/">Leetcode</a><a class="page-link" href="/binarysearch%20problems/">BinarySearch</a><a class="page-link" href="/coding%20ideas/">Patterns</a><a class="page-link" href="/performance%20tricks/">Speed up</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <span>[
+  
+    
+    <a href="/tag/bst"><code class="highligher-rouge"><nobr>bst</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/accumulate"><code class="highligher-rouge"><nobr>accumulate</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/divide and conquer"><code class="highligher-rouge"><nobr>divide and conquer</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/binary indexed tree"><code class="highligher-rouge"><nobr>binary indexed tree</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/segment tree"><code class="highligher-rouge"><nobr>segment tree</nobr></code>&nbsp;</a>
+  
+]</span>
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Leetcode 0327. Count of Range Sum</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2022-03-13T14:53:53+01:00" itemprop="datePublished">
+        Mar 13, 2022
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h4 id="problem-statement">Problem statement</h4>
+
+<p><a href="https://leetcode.com/problems/count-of-range-sum/"> <font color="blue">https://leetcode.com/problems/count-of-range-sum/</font></a></p>
+
+<h4 id="solution-1">Solution 1</h4>
+<p>There is very short solutoin using BST. Let us first evaluate all cumulative sums <code class="language-plaintext highlighter-rouge">S0, S1, ... S_{n-1}</code>. Then the algorithm is to add sums one by one to BST (SortedList) and for each new element, before we add it, do binary search in our <code class="language-plaintext highlighter-rouge">SortedList</code> of two borders.</p>
+
+<h4 id="complexity">Complexity</h4>
+<p>Overall time complexity is <code class="language-plaintext highlighter-rouge">O(n log n)</code>, space complexity is <code class="language-plaintext highlighter-rouge">O(n)</code>.</p>
+
+<h4 id="code">Code</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sortedcontainers</span> <span class="kn">import</span> <span class="n">SortedList</span>
+
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">countRangeSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">):</span>
+        <span class="n">SList</span><span class="p">,</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">SortedList</span><span class="p">([</span><span class="mi">0</span><span class="p">]),</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">accumulate</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+            <span class="n">ans</span> <span class="o">+=</span> <span class="n">SList</span><span class="p">.</span><span class="n">bisect_right</span><span class="p">(</span><span class="n">s</span> <span class="o">-</span> <span class="n">lower</span><span class="p">)</span> <span class="o">-</span> <span class="n">SList</span><span class="p">.</span><span class="n">bisect_left</span><span class="p">(</span><span class="n">s</span> <span class="o">-</span> <span class="n">upper</span><span class="p">)</span>
+            <span class="n">SList</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div></div>
+
+<h4 id="solution-2">Solution 2</h4>
+<p>Here is solution using BIT, see problem 493 for more details. The idea is to create BIT with <code class="language-plaintext highlighter-rouge">n + 1</code> elements, for example for cumulative sums <code class="language-plaintext highlighter-rouge">[2, 4, 4, 3, 6, 1]</code> when we add element by element we will have find the <strong>rank</strong> of element, so elements in our BIT will look like: <code class="language-plaintext highlighter-rouge">[0, 0, 1, 0, 0, 0, 0] -&gt; [0, 0, 1, 0, 0, 1, 0] -&gt; [0, 0, 1, 0, 0, 2, 0] -&gt; [0, 0, 1, 1, 0, 2, 0] -&gt; [0, 0, 1, 1, 0, 2, 1] -&gt; [0, 1, 1, 1, 0, 2, 1]</code> (it is not real elements, but what list this BIT represents). Then to find how many good elements we have, we need to evaluate sum in range: we need to find range using binary search, for example for number <code class="language-plaintext highlighter-rouge">5</code> we need to find where in our BIT we should end: it is just after element <code class="language-plaintext highlighter-rouge">4</code> in our cumulative sums.</p>
+
+<h4 id="complexity-1">Complexity</h4>
+<p>It is also <code class="language-plaintext highlighter-rouge">O(n log n)</code> for time and <code class="language-plaintext highlighter-rouge">O(n)</code> for space.</p>
+
+<h4 id="code-1">Code</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">bisect</span> <span class="kn">import</span> <span class="n">bisect</span><span class="p">,</span> <span class="n">bisect_left</span>
+
+<span class="k">class</span> <span class="nc">BIT</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">sums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
+        <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">sums</span><span class="p">):</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">sums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">delta</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="n">i</span> <span class="o">&amp;</span> <span class="p">(</span><span class="o">-</span><span class="n">i</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">res</span> <span class="o">+=</span> <span class="bp">self</span><span class="p">.</span><span class="n">sums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">i</span> <span class="o">-=</span> <span class="n">i</span> <span class="o">&amp;</span> <span class="p">(</span><span class="o">-</span><span class="n">i</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span>
+
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">countRangeSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">):</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+        <span class="n">acc</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">accumulate</span><span class="p">(</span><span class="n">nums</span><span class="p">))</span>
+        <span class="n">bit</span> <span class="o">=</span> <span class="n">BIT</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">acc_sorted</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">acc</span><span class="p">)</span>
+        
+        <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">acc</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">bit</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="n">bisect_left</span><span class="p">(</span><span class="n">acc_sorted</span><span class="p">,</span> <span class="n">s</span> <span class="o">-</span> <span class="n">upper</span><span class="p">))</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">bit</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="n">bisect</span><span class="p">(</span><span class="n">acc_sorted</span><span class="p">,</span> <span class="n">s</span> <span class="o">-</span> <span class="n">lower</span><span class="p">))</span>
+            <span class="n">res</span> <span class="o">+=</span> <span class="n">right</span> <span class="o">-</span> <span class="n">left</span>
+            <span class="n">bit</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">bisect</span><span class="p">(</span><span class="n">acc_sorted</span><span class="p">,</span> <span class="n">s</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span>
+</code></pre></div></div>
+
+<h4 id="remark">Remark</h4>
+<p>There is Divide and Conquer approach with <code class="language-plaintext highlighter-rouge">O(n log^2n)</code> complexity: we divide numbers into two parts, solve problem for left and right sub-problems. Now we need to solve it in the middle: range in the middle will be sum of two ranges. We can evaluate all possible values for left and right range in <code class="language-plaintext highlighter-rouge">O(n)</code>, sort them in <code class="language-plaintext highlighter-rouge">O(n log n)</code> and then evaluate number of combined ranges in <code class="language-plaintext highlighter-rouge">O(n log n)</code> also. Recurrent equation is <code class="language-plaintext highlighter-rouge">T(n) = 2T(n/2) + O(n log n)</code> which gives us <code class="language-plaintext highlighter-rouge">O(n log^2n)</code> complexity.</p>
+
+<h4 id="similar-problems">Similar problems:</h4>
+<p><strong>0315</strong> Count of Smaller Number After Self.</p>
+
+<p><strong>0493</strong> Reverse Pairs</p>
+
+  </div><a class="u-url" href="/leetcode/0327.html" hidden></a>
+</article>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">Dmitry Babichev</li>
+          <li><a class="u-email" href="mailto:dimitry008@gmail.com">dimitry008@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body><script async src="https://www.googletagmanager.com/gtag/js?id=G-KR1GZKF62P"></script>
+<script>
+  window['ga-disable-G-KR1GZKF62P'] = window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1";
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KR1GZKF62P');
+</script>
+</html>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>

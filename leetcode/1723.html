@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Leetcode 1723. Find Minimum Time to Finish All Jobs | Dmitry Babichev’s webpage</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Leetcode 1723. Find Minimum Time to Finish All Jobs" />
+<meta name="author" content="Dmitry Babichev" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs" />
+<meta property="og:description" content="https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs" />
+<link rel="canonical" href="http://localhost:4000/leetcode/1723.html" />
+<meta property="og:url" content="http://localhost:4000/leetcode/1723.html" />
+<meta property="og:site_name" content="Dmitry Babichev’s webpage" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-03-13T14:53:53+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Leetcode 1723. Find Minimum Time to Finish All Jobs" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/leetcode/1723.html","author":{"@type":"Person","name":"Dmitry Babichev"},"@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/leetcode/1723.html"},"description":"https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs","headline":"Leetcode 1723. Find Minimum Time to Finish All Jobs","dateModified":"2022-03-13T14:53:53+01:00","datePublished":"2022-03-13T14:53:53+01:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dmitry Babichev&apos;s webpage" />
+    
+
+
+
+
+
+
+  
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+    
+    <!-- for mathjax support -->
+    
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dmitry Babichev&#39;s webpage</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/codeforces%20problems/">Codeforces</a><a class="page-link" href="/leetcode/">Leetcode</a><a class="page-link" href="/binarysearch%20problems/">BinarySearch</a><a class="page-link" href="/coding%20ideas/">Patterns</a><a class="page-link" href="/performance%20tricks/">Speed up</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <span>[
+  
+    
+    <a href="/tag/dp"><code class="highligher-rouge"><nobr>dp</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/binary search"><code class="highligher-rouge"><nobr>binary search</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/bit-dp"><code class="highligher-rouge"><nobr>bit-dp</nobr></code>&nbsp;</a>
+  
+]</span>
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Leetcode 1723. Find Minimum Time to Finish All Jobs</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2022-03-13T14:53:53+01:00" itemprop="datePublished">
+        Mar 13, 2022
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><a href="https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs"> <font color="blue">https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs</font></a></p>
+
+<h4 id="solution-1">Solution 1</h4>
+<p>Not the fastest solution in python, but I think it is clean and it is easy to estimate its complexity.</p>
+
+<p>Let us try to answer the following question first: given <code class="language-plaintext highlighter-rouge">basket</code> : working time for each worker, question is if we can allocate workers in such way, that each of them spend <code class="language-plaintext highlighter-rouge">&lt;= basket</code> time. For example, if we have <code class="language-plaintext highlighter-rouge">jobs = [1, 2, 3, 5, 7]</code>, and <code class="language-plaintext highlighter-rouge">basket = 8</code>, then we can allocate workers as <code class="language-plaintext highlighter-rouge">[1, 7], [3, 5], [2]</code> and we need at least <code class="language-plaintext highlighter-rouge">3</code> workers here.</p>
+
+<p>Let <code class="language-plaintext highlighter-rouge">dfs(mask, basket)</code> be function with parameters:</p>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">mask</code> is binary mask of already used jobs</li>
+  <li><code class="language-plaintext highlighter-rouge">basket</code> is how many time each of workers can spend</li>
+  <li>Answer will be tuple of numbers: first one is <code class="language-plaintext highlighter-rouge">minimum number of workers</code> and second one is how much time last worker already spent.</li>
+</ol>
+
+<p>Let us discuss, how this function works in more details:</p>
+<ol>
+  <li>If <code class="language-plaintext highlighter-rouge">mask = 0</code>, then we can state that we need at least <code class="language-plaintext highlighter-rouge">1</code> worker and he spent <code class="language-plaintext highlighter-rouge">0</code> time.</li>
+  <li>For each <code class="language-plaintext highlighter-rouge">j in range(N)</code>, if we have this job inside bitmask, we look at all <code class="language-plaintext highlighter-rouge">dfs(mask - (1 &lt;&lt; j), basket)</code>. We need to add jub number <code class="language-plaintext highlighter-rouge">j</code> now. If it happen, that we can not allocate it to the last worker, we need to hire one more worker. If we can, we allocate job to him.</li>
+  <li>Finaly, we return <code class="language-plaintext highlighter-rouge">min</code> over all possible last jobs we can make.</li>
+</ol>
+
+<p><strong>Why this is working</strong>. It is similar to Travelling Salesman Problem (TSP). It is also similar to problem <strong>698</strong> Partition to K Equal Sum Subsets. Idea is that it is always enough to have only bitmask of already visited jobs, not order.</p>
+
+<p>So far we are able to answer question: given <code class="language-plaintext highlighter-rouge">basket</code>, how many workers we need to hire to finish all jobs. We need to find minimum value of <code class="language-plaintext highlighter-rouge">basket</code>, such that there will be <code class="language-plaintext highlighter-rouge">k</code> workers enough. Ideal choice here is binary search.</p>
+
+<p><strong>Complexity</strong>: we have <code class="language-plaintext highlighter-rouge">2^n</code> masks and <code class="language-plaintext highlighter-rouge">O(n)</code> transitions from one mask, so complexity of one run of <code class="language-plaintext highlighter-rouge">dfs</code> for given <code class="language-plaintext highlighter-rouge">basket</code> is <code class="language-plaintext highlighter-rouge">O(n*2^n)</code>. We run it <code class="language-plaintext highlighter-rouge">O(log M)</code> times, where <code class="language-plaintext highlighter-rouge">M</code> is sum of all <code class="language-plaintext highlighter-rouge">jobs</code>, so final time complexity is <code class="language-plaintext highlighter-rouge">2^n*n*log(M)</code>. Space complexity in given code is <code class="language-plaintext highlighter-rouge">2^n*log(M)</code>, which can be easily reduced to <code class="language-plaintext highlighter-rouge">2^n</code>.</p>
+
+<p><strong>Further thought</strong> As far as I aware, there is also <code class="language-plaintext highlighter-rouge">O(k*3^n)</code> complexity solution, I will code it later, but I think it will give TLE in python. There are also a lot of dfs solution with different pruning techniques, that are pretty good and working 5-50 times faster, depending on how you prune, but will you be able to explain complexity of those solution to interviewer?</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Solution:
+    def minimumTimeRequired(self, jobs, k):
+        N = len(jobs)
+        
+        @lru_cache(None)
+        def dfs(mask, basket):
+            if mask == 0: return (1, 0)
+            ans = (float("inf"), float("inf"))
+            for j in range(N):
+                if mask &amp; (1&lt;&lt;j):
+                    pieces, last = dfs(mask - (1 &lt;&lt; j), basket)
+                    full = (last + jobs[j] &gt; basket)
+                    ans = min(ans, (pieces + full, jobs[j] + (1-full)*last))  
+            return ans 
+
+        beg, end = max(jobs), sum(jobs)
+        while beg &lt; end:
+            mid = (beg + end)//2
+            if dfs((1&lt;&lt;N) - 1, mid)[0] &gt;= k + 1:
+                beg = mid + 1
+            else:
+                end = mid
+        
+        return beg
+</code></pre></div></div>
+
+<h4 id="solution-2">Solution 2</h4>
+<p>We can also work with submasks: let the state be <code class="language-plaintext highlighter-rouge">mask</code> of available jobs and <code class="language-plaintext highlighter-rouge">k</code> is index of person. Then each time when we choose new person we need to look at all possible submasks. However we need to be careful and use a bit of prunning: without it in python we will get TLE: we check <code class="language-plaintext highlighter-rouge">if cost[submask] &gt;= ret: continue</code>, that is do early stopping if cost of submask is more than score of mask, we do not consider this option.</p>
+
+<h4 id="complexity">Complexity</h4>
+<p>Time complexity is <code class="language-plaintext highlighter-rouge">O(3^n * m)</code>, space complexity is <code class="language-plaintext highlighter-rouge">O(2^n * m)</code>.</p>
+
+<h4 id="code">Code</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">minimumTimeRequired</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jobs</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">jobs</span><span class="p">)</span>
+        <span class="n">cost</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">mask</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)):</span>
+            <span class="n">cost</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">+=</span> <span class="n">jobs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="p">((</span><span class="n">mask</span> <span class="o">&gt;&gt;</span> <span class="n">j</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span>
+        
+        <span class="o">@</span><span class="n">lru_cache</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">dp</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">cost</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+            <span class="n">submask</span><span class="p">,</span> <span class="n">ret</span> <span class="o">=</span> <span class="n">mask</span><span class="p">,</span> <span class="n">cost</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">submask</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">mask</span><span class="p">:</span>
+                <span class="n">submask</span> <span class="o">=</span> <span class="p">(</span><span class="n">submask</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">mask</span>
+                <span class="k">if</span> <span class="n">cost</span><span class="p">[</span><span class="n">submask</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">ret</span><span class="p">:</span> <span class="k">continue</span>
+                <span class="n">ret</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">cost</span><span class="p">[</span><span class="n">submask</span><span class="p">],</span> <span class="n">dp</span><span class="p">(</span><span class="n">mask</span><span class="o">^</span><span class="n">submask</span><span class="p">,</span> <span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
+                
+            <span class="k">return</span> <span class="n">ret</span>
+        
+        <span class="k">return</span> <span class="n">dp</span><span class="p">((</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/discuss/1010451/python-o(2n*n*log(m))-with-complexity-analysis-explained"> <font color="blue">Problem 1723</font></a></p>
+
+  </div><a class="u-url" href="/leetcode/1723.html" hidden></a>
+</article>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">Dmitry Babichev</li>
+          <li><a class="u-email" href="mailto:dimitry008@gmail.com">dimitry008@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body><script async src="https://www.googletagmanager.com/gtag/js?id=G-KR1GZKF62P"></script>
+<script>
+  window['ga-disable-G-KR1GZKF62P'] = window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1";
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KR1GZKF62P');
+</script>
+</html>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
