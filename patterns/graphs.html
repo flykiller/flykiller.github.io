@@ -203,10 +203,7 @@ It will return two pieces of information:</p>
 
 <p>Let $n$ be number of nodes with numbers $0,1,\dots, n-1$ and <code class="language-plaintext highlighter-rouge">edges</code> be edges in form: <code class="language-plaintext highlighter-rouge">from, to, weight</code>. Let <code class="language-plaintext highlighter-rouge">start</code> and <code class="language-plaintext highlighter-rouge">end</code> be nodes between which we want to find minimal distance. Time complexity is $O((E+V)\log V)$, space complexity is $O(E+V)$.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">heapq</span> <span class="kn">import</span> <span class="n">heappop</span><span class="p">,</span> <span class="n">heappush</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
-
-<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">Dijkstra</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
         <span class="n">dist</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s">'inf'</span><span class="p">)]</span> <span class="o">*</span> <span class="n">n</span>
         <span class="n">dist</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
@@ -228,6 +225,20 @@ It will return two pieces of information:</p>
                     <span class="n">heappush</span><span class="p">(</span><span class="n">heap</span><span class="p">,</span> <span class="p">(</span><span class="n">cand</span><span class="p">,</span> <span class="n">neibh</span><span class="p">))</span>
                     
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</code></pre></div></div>
+
+<h4 id="code-2">Code 2</h4>
+<p>Here is a bit faster implementation of code.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">Dijkstra</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
+    <span class="n">q</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="n">K</span><span class="p">)],</span> <span class="p">{}</span>
+    <span class="k">while</span> <span class="n">q</span><span class="p">:</span>
+        <span class="n">time</span><span class="p">,</span> <span class="n">node</span> <span class="o">=</span> <span class="n">heappop</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
+            <span class="n">t</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">time</span>
+            <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">node</span><span class="p">]:</span>
+                <span class="n">heappush</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="p">(</span><span class="n">time</span> <span class="o">+</span> <span class="n">w</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">t</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="s">"inf"</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
 </code></pre></div></div>
 
 <h4 id="bridges">Bridges</h4>
