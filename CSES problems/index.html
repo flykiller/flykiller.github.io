@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>CSES | Dmitry Babichev’s webpage</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="CSES" />
+<meta name="author" content="Dmitry Babichev" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems." />
+<meta property="og:description" content="Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems." />
+<link rel="canonical" href="http://localhost:4000/CSES%20problems/" />
+<meta property="og:url" content="http://localhost:4000/CSES%20problems/" />
+<meta property="og:site_name" content="Dmitry Babichev’s webpage" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="CSES" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/CSES%20problems/","author":{"@type":"Person","name":"Dmitry Babichev"},"@type":"WebPage","description":"Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.","headline":"CSES","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dmitry Babichev&apos;s webpage" />
+    
+
+
+
+
+
+
+  
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+    
+    <!-- for mathjax support -->
+    
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dmitry Babichev&#39;s webpage</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/codeforces%20problems/">Codeforces</a><a class="page-link" href="/leetcode/">Leetcode</a><a class="page-link" href="/binarysearch%20problems/">BinarySearch</a><a class="page-link" href="/CSES%20problems/">CSES</a><a class="page-link" href="/coding%20ideas/">Patterns</a><a class="page-link" href="/performance%20tricks/">Speed up</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">CSES</h1>
+  </header>
+
+  <div class="post-content">
+    <style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+
+<table class="tg">
+
+<tbody>
+  <tr>
+    <td class="tg-0lax">001</td>
+    <td class="tg-0lax">002</td>
+    <td class="tg-0lax">003</td>
+    <td class="tg-0lax">004</td>
+    <td class="tg-0lax">005</td>
+    <td class="tg-0lax">006</td>
+    <td class="tg-0lax">007</td>
+    <td class="tg-0lax">008</td>
+    <td class="tg-0lax">009</td>
+    <td class="tg-0lax">010</td>
+    <td class="tg-0lax">011</td>
+    <td class="tg-0lax">012</td>
+  </tr>
+</tbody>
+
+<tbody>
+  <tr>
+    <td class="tg-0lax">013</td>
+    <td class="tg-0lax">014</td>
+    <td class="tg-0lax">015</td>
+    <td class="tg-0lax">016</td>
+    <td class="tg-0lax">017</td>
+    <td class="tg-0lax">018</td>
+    <td class="tg-0lax">019</td>
+    <td class="tg-0lax">020</td>
+    <td class="tg-0lax">021</td>
+    <td class="tg-0lax">022</td>
+    <td class="tg-0lax">023</td>
+    <td class="tg-0lax">024</td>
+  </tr>
+</tbody>
+
+<tbody>
+  <tr>
+    <td class="tg-0lax">025</td>
+    <td class="tg-0lax">026</td>
+    <td class="tg-0lax">027</td>
+    <td class="tg-0lax">028</td>
+    <td class="tg-0lax">029</td>
+    <td class="tg-0lax">030</td>
+    <td class="tg-0lax">031</td>
+    <td class="tg-0lax">032</td>
+    <td class="tg-0lax">033</td>
+    <td class="tg-0lax">034</td>
+    <td class="tg-0lax">035</td>
+    <td class="tg-0lax">036</td>
+  </tr>
+</tbody>
+
+<tbody>
+  <tr>
+    <td class="tg-0lax">037</td>
+    <td class="tg-0lax">038</td>
+    <td class="tg-0lax">039</td>
+    <td class="tg-0lax">040</td>
+    <td class="tg-0lax">041</td>
+    <td class="tg-0lax">042</td>
+    <td class="tg-0lax">043</td>
+    <td class="tg-0lax">044</td>
+    <td class="tg-0lax">045</td>
+    <td class="tg-0lax">046</td>
+    <td class="tg-0lax">047</td>
+    <td class="tg-0lax">048</td>
+  </tr>
+</tbody>
+
+<tbody>
+  <tr>
+    <td class="tg-0lax">049</td>
+    <td class="tg-0lax">050</td>
+    <td class="tg-0lax">051</td>
+    <td class="tg-0lax">052</td>
+    <td class="tg-0lax">053</td>
+    <td class="tg-0lax">054</td>
+    <td class="tg-0lax">055</td>
+    <td class="tg-0lax">056</td>
+    <td class="tg-0lax">057</td>
+    <td class="tg-0lax">058</td>
+    <td class="tg-0lax">059</td>
+    <td class="tg-0lax">060</td>
+  </tr>
+</tbody>
+
+<tbody>
+  <tr>
+    <td class="tg-0lax">061</td>
+    <td class="tg-0lax">062</td>
+    <td class="tg-0lax">063</td>
+    <td class="tg-0lax">064</td>
+    <td class="tg-0lax">065</td>
+    <td class="tg-0lax">066</td>
+    <td class="tg-0lax">067</td>
+    <td class="tg-0lax">068</td>
+    <td class="tg-0lax">069</td>
+    <td class="tg-0lax">070</td>
+    <td class="tg-0lax">071</td>
+    <td class="tg-0lax">072</td>
+  </tr>
+</tbody>
+
+<tbody>
+  <tr>
+    <td class="tg-0lax">073</td>
+    <td class="tg-0lax">074</td>
+    <td class="tg-0lax">075</td>
+    <td class="tg-0lax">076</td>
+    <td class="tg-0lax">077</td>
+    <td class="tg-0lax">078</td>
+    <td class="tg-0lax">079</td>
+    <td class="tg-0lax">080</td>
+    <td class="tg-0lax">081</td>
+    <td class="tg-0lax">082</td>
+    <td class="tg-0lax">083</td>
+    <td class="tg-0lax">084</td>
+  </tr>
+</tbody>
+
+<tbody>
+  <tr>
+    <td class="tg-0lax">085</td>
+    <td class="tg-0lax">086</td>
+    <td class="tg-0lax">087</td>
+    <td class="tg-0lax">088</td>
+    <td class="tg-0lax">089</td>
+    <td class="tg-0lax">090</td>
+    <td class="tg-0lax">091</td>
+    <td class="tg-0lax">092</td>
+    <td class="tg-0lax">093</td>
+    <td class="tg-0lax">094</td>
+    <td class="tg-0lax">095</td>
+    <td class="tg-0lax">096</td>
+  </tr>
+</tbody>
+
+<tbody>
+  <tr>
+    <td class="tg-0lax">097</td>
+    <td class="tg-0lax">098</td>
+    <td class="tg-0lax">099</td>
+    <td class="tg-0lax">100</td>
+    <td class="tg-0lax">101</td>
+    <td class="tg-0lax">102</td>
+    <td class="tg-0lax">103</td>
+    <td class="tg-0lax">104</td>
+    <td class="tg-0lax">105</td>
+    <td class="tg-0lax">106</td>
+    <td class="tg-0lax">107</td>
+    <td class="tg-0lax">108</td>
+  </tr>
+</tbody>
+
+<tbody>
+  <tr>
+    <td class="tg-0lax">109</td>
+    <td class="tg-0lax">110</td>
+    <td class="tg-0lax">111</td>
+    <td class="tg-0lax">112</td>
+    <td class="tg-0lax">113</td>
+    <td class="tg-0lax">114</td>
+    <td class="tg-0lax">115</td>
+    <td class="tg-0lax">116</td>
+    <td class="tg-0lax">117</td>
+    <td class="tg-0lax">118</td>
+    <td class="tg-0lax">119</td>
+    <td class="tg-0lax">120</td>
+  </tr>
+</tbody>
+
+<tbody>
+  <tr>
+    <td class="tg-0lax">121</td>
+    <td class="tg-0lax">122</td>
+    <td class="tg-0lax">123</td>
+    <td class="tg-0lax">124</td>
+    <td class="tg-0lax">125</td>
+    <td class="tg-0lax">126</td>
+    <td class="tg-0lax">127</td>
+    <td class="tg-0lax">128</td>
+    <td class="tg-0lax">129</td>
+    <td class="tg-0lax">130</td>
+    <td class="tg-0lax">131</td>
+    <td class="tg-0lax">132</td>
+  </tr>
+</tbody>
+
+<tbody>
+  <tr>
+    <td class="tg-0lax">133</td>
+    <td class="tg-0lax">134</td>
+    <td class="tg-0lax">135</td>
+    <td class="tg-0lax">136</td>
+    <td class="tg-0lax">137</td>
+    <td class="tg-0lax">138</td>
+    <td class="tg-0lax">139</td>
+    <td class="tg-0lax">140</td>
+    <td class="tg-0lax">141</td>
+    <td class="tg-0lax">142</td>
+    <td class="tg-0lax">143</td>
+    <td class="tg-0lax">144</td>
+  </tr>
+</tbody>
+
+<tbody>
+  <tr>
+    <td class="tg-0lax">145</td>
+    <td class="tg-0lax">146</td>
+    <td class="tg-0lax">147</td>
+    <td class="tg-0lax">148</td>
+    <td class="tg-0lax">149</td>
+    <td class="tg-0lax">150</td>
+    <td class="tg-0lax">151</td>
+    <td class="tg-0lax">152</td>
+    <td class="tg-0lax">153</td>
+    <td class="tg-0lax">154</td>
+    <td class="tg-0lax">155</td>
+    <td class="tg-0lax">156</td>
+  </tr>
+</tbody>
+
+<tbody>
+  <tr>
+    <td class="tg-0lax">157</td>
+    <td class="tg-0lax">158</td>
+    <td class="tg-0lax">159</td>
+    <td class="tg-0lax">160</td>
+    <td class="tg-0lax">161</td>
+    <td class="tg-0lax">162</td>
+    <td class="tg-0lax">163</td>
+    <td class="tg-0lax">164</td>
+    <td class="tg-0lax">165</td>
+    <td class="tg-0lax">166</td>
+    <td class="tg-0lax">167</td>
+    <td class="tg-0lax">168</td>
+  </tr>
+</tbody>
+
+<tbody>
+  <tr>
+    <td class="tg-0lax">169</td>
+    <td class="tg-0lax">170</td>
+    <td class="tg-0lax">171</td>
+    <td class="tg-0lax">172</td>
+    <td class="tg-0lax">173</td>
+    <td class="tg-0lax">174</td>
+    <td class="tg-0lax">175</td>
+    <td class="tg-0lax">176</td>
+    <td class="tg-0lax">177</td>
+    <td class="tg-0lax">178</td>
+    <td class="tg-0lax">179</td>
+    <td class="tg-0lax">180</td>
+  </tr>
+</tbody>
+
+<tbody>
+  <tr>
+    <td class="tg-0lax">181</td>
+    <td class="tg-0lax">182</td>
+    <td class="tg-0lax">183</td>
+    <td class="tg-0lax">184</td>
+    <td class="tg-0lax">185</td>
+    <td class="tg-0lax">186</td>
+    <td class="tg-0lax">187</td>
+    <td class="tg-0lax">188</td>
+    <td class="tg-0lax">189</td>
+    <td class="tg-0lax">190</td>
+    <td class="tg-0lax">191</td>
+    <td class="tg-0lax">192</td>
+  </tr>
+</tbody>
+
+<tbody>
+  <tr>
+    <td class="tg-0lax">193</td>
+    <td class="tg-0lax">194</td>
+    <td class="tg-0lax">195</td>
+    <td class="tg-0lax">196</td>
+    <td class="tg-0lax">197</td>
+    <td class="tg-0lax">198</td>
+    <td class="tg-0lax">199</td>
+    <td class="tg-0lax">200</td>
+    <td class="tg-0lax">201</td>
+    <td class="tg-0lax">202</td>
+    <td class="tg-0lax">203</td>
+    <td class="tg-0lax">204</td>
+  </tr>
+</tbody>
+
+<tbody>
+  <tr>
+    <td class="tg-0lax">205</td>
+    <td class="tg-0lax">206</td>
+    <td class="tg-0lax">207</td>
+    <td class="tg-0lax">208</td>
+    <td class="tg-0lax">209</td>
+    <td class="tg-0lax">210</td>
+    <td class="tg-0lax">211</td>
+    <td class="tg-0lax">212</td>
+    <td class="tg-0lax">213</td>
+    <td class="tg-0lax">214</td>
+    <td class="tg-0lax">215</td>
+    <td class="tg-0lax">216</td>
+  </tr>
+</tbody>
+
+<tbody>
+  <tr>
+    <td class="tg-0lax">217</td>
+    <td class="tg-0lax">218</td>
+    <td class="tg-0lax">219</td>
+    <td class="tg-0lax">220</td>
+    <td class="tg-0lax">221</td>
+    <td class="tg-0lax">222</td>
+    <td class="tg-0lax">223</td>
+    <td class="tg-0lax">224</td>
+    <td class="tg-0lax">225</td>
+    <td class="tg-0lax">226</td>
+    <td class="tg-0lax">227</td>
+    <td class="tg-0lax">228</td>
+  </tr>
+</tbody>
+
+<tbody>
+  <tr>
+    <td class="tg-0lax">229</td>
+    <td class="tg-0lax">230</td>
+    <td class="tg-0lax">231</td>
+    <td class="tg-0lax">232</td>
+    <td class="tg-0lax">233</td>
+    <td class="tg-0lax">234</td>
+    <td class="tg-0lax">235</td>
+    <td class="tg-0lax">236</td>
+    <td class="tg-0lax">237</td>
+    <td class="tg-0lax">238</td>
+    <td class="tg-0lax">239</td>
+    <td class="tg-0lax">240</td>
+  </tr>
+</tbody>
+
+<tbody>
+  <tr>
+    <td class="tg-0lax">241</td>
+    <td class="tg-0lax">242</td>
+    <td class="tg-0lax">243</td>
+    <td class="tg-0lax">244</td>
+    <td class="tg-0lax">245</td>
+    <td class="tg-0lax">246</td>
+    <td class="tg-0lax">247</td>
+    <td class="tg-0lax">248</td>
+    <td class="tg-0lax">249</td>
+    <td class="tg-0lax">250</td>
+    <td class="tg-0lax">251</td>
+    <td class="tg-0lax">252</td>
+  </tr>
+</tbody>
+
+<tbody>
+  <tr>
+    <td class="tg-0lax">253</td>
+    <td class="tg-0lax">254</td>
+    <td class="tg-0lax">255</td>
+    <td class="tg-0lax">256</td>
+    <td class="tg-0lax">257</td>
+    <td class="tg-0lax">258</td>
+    <td class="tg-0lax">259</td>
+    <td class="tg-0lax">260</td>
+    <td class="tg-0lax">261</td>
+    <td class="tg-0lax">262</td>
+    <td class="tg-0lax">263</td>
+    <td class="tg-0lax">264</td>
+  </tr>
+</tbody>
+
+<tbody>
+  <tr>
+    <td class="tg-0lax">265</td>
+    <td class="tg-0lax">266</td>
+    <td class="tg-0lax">267</td>
+    <td class="tg-0lax">268</td>
+    <td class="tg-0lax">269</td>
+    <td class="tg-0lax">270</td>
+    <td class="tg-0lax">271</td>
+    <td class="tg-0lax">272</td>
+    <td class="tg-0lax">273</td>
+    <td class="tg-0lax">274</td>
+    <td class="tg-0lax">275</td>
+    <td class="tg-0lax">276</td>
+  </tr>
+</tbody>
+
+<tbody>
+  <tr>
+    <td class="tg-0lax">277</td>
+    <td class="tg-0lax">278</td>
+    <td class="tg-0lax">279</td>
+    <td class="tg-0lax">280</td>
+    <td class="tg-0lax">281</td>
+    <td class="tg-0lax">282</td>
+    <td class="tg-0lax">283</td>
+    <td class="tg-0lax">284</td>
+    <td class="tg-0lax">285</td>
+    <td class="tg-0lax">286</td>
+    <td class="tg-0lax">287</td>
+    <td class="tg-0lax">288</td>
+  </tr>
+</tbody>
+
+<tbody>
+  <tr>
+    <td class="tg-0lax">289</td>
+    <td class="tg-0lax">290</td>
+    <td class="tg-0lax">291</td>
+    <td class="tg-0lax">292</td>
+    <td class="tg-0lax">293</td>
+    <td class="tg-0lax">294</td>
+    <td class="tg-0lax">295</td>
+    <td class="tg-0lax">296</td>
+    <td class="tg-0lax">297</td>
+    <td class="tg-0lax">298</td>
+    <td class="tg-0lax">299</td>
+    <td class="tg-0lax">300</td>
+  </tr>
+</tbody>
+
+
+</table>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">Dmitry Babichev</li>
+          <li><a class="u-email" href="mailto:dimitry008@gmail.com">dimitry008@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>Here you can find solution to some algorithmic problems, at the moment it is mainly leetcode problems.
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body><script async src="https://www.googletagmanager.com/gtag/js?id=G-KR1GZKF62P"></script>
+<script>
+  window['ga-disable-G-KR1GZKF62P'] = window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1";
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KR1GZKF62P');
+</script>
+</html>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>

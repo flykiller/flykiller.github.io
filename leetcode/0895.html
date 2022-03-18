@@ -15,11 +15,11 @@
 <meta property="og:url" content="http://localhost:4000/leetcode/0895.html" />
 <meta property="og:site_name" content="Dmitry Babichev’s webpage" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-03-13T19:42:05+01:00" />
+<meta property="article:published_time" content="2022-03-18T15:56:01+01:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Leetcode 0895. Maximum Frequency Stack" />
 <script type="application/ld+json">
-{"url":"http://localhost:4000/leetcode/0895.html","author":{"@type":"Person","name":"Dmitry Babichev"},"@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/leetcode/0895.html"},"description":"https://leetcode.com/problems/maximum-frequency-stack","headline":"Leetcode 0895. Maximum Frequency Stack","dateModified":"2022-03-13T19:42:05+01:00","datePublished":"2022-03-13T19:42:05+01:00","@context":"https://schema.org"}</script>
+{"url":"http://localhost:4000/leetcode/0895.html","author":{"@type":"Person","name":"Dmitry Babichev"},"@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/leetcode/0895.html"},"description":"https://leetcode.com/problems/maximum-frequency-stack","headline":"Leetcode 0895. Maximum Frequency Stack","dateModified":"2022-03-18T15:56:01+01:00","datePublished":"2022-03-18T15:56:01+01:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dmitry Babichev&apos;s webpage" />
     
@@ -58,7 +58,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/codeforces%20problems/">Codeforces</a><a class="page-link" href="/leetcode/">Leetcode</a><a class="page-link" href="/binarysearch%20problems/">BinarySearch</a><a class="page-link" href="/coding%20ideas/">Patterns</a><a class="page-link" href="/performance%20tricks/">Speed up</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/codeforces%20problems/">Codeforces</a><a class="page-link" href="/leetcode/">Leetcode</a><a class="page-link" href="/binarysearch%20problems/">BinarySearch</a><a class="page-link" href="/CSES%20problems/">CSES</a><a class="page-link" href="/coding%20ideas/">Patterns</a><a class="page-link" href="/performance%20tricks/">Speed up</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -80,8 +80,8 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Leetcode 0895. Maximum Frequency Stack</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2022-03-13T19:42:05+01:00" itemprop="datePublished">
-        Mar 13, 2022
+    <p class="post-meta"><time class="dt-published" datetime="2022-03-18T15:56:01+01:00" itemprop="datePublished">
+        Mar 18, 2022
       </time></p>
   </header>
 
@@ -105,26 +105,26 @@
 
 <p><strong>Complexity</strong>: all operations which we use when we work with sorted list have complexity <code class="language-plaintext highlighter-rouge">O(log n)</code>, so final complexity of both <code class="language-plaintext highlighter-rouge">push</code> and <code class="language-plaintext highlighter-rouge">pop</code> is just <code class="language-plaintext highlighter-rouge">O(log n)</code></p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from sortedcontainers import SortedList
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sortedcontainers</span> <span class="kn">import</span> <span class="n">SortedList</span>
 
-class FreqStack:
-    def __init__(self):
-        self.SList = SortedList()   #(freq, num, last)
-        self.Places = defaultdict(list)  #num -&gt; all indexes
-        self.N = 0
+<span class="k">class</span> <span class="nc">FreqStack</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">SList</span> <span class="o">=</span> <span class="n">SortedList</span><span class="p">()</span>   <span class="c1">#(freq, num, last)
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">Places</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>  <span class="c1">#num -&gt; all indexes
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">N</span> <span class="o">=</span> <span class="mi">0</span>
 
-    def push(self, x):
-        freq_x = len(self.Places[x])
-        if freq_x &gt; 0: self.SList.remove((freq_x, self.Places[x][-1], x))
-        self.SList.add((freq_x + 1, self.N, x))
-        self.Places[x].append(self.N)
-        self.N += 1
+    <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">freq_x</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">Places</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">freq_x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">SList</span><span class="p">.</span><span class="n">remove</span><span class="p">((</span><span class="n">freq_x</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">Places</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">SList</span><span class="p">.</span><span class="n">add</span><span class="p">((</span><span class="n">freq_x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">N</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">Places</span><span class="p">[</span><span class="n">x</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">N</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">N</span> <span class="o">+=</span> <span class="mi">1</span>
         
-    def pop(self):
-        freq, end, num = self.SList.pop()
-        self.Places[num].pop()
-        if freq &gt; 1: self.SList.add((freq - 1, self.Places[num][-1], num))
-        return num
+    <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">freq</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">num</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">SList</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">Places</span><span class="p">[</span><span class="n">num</span><span class="p">].</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">freq</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">SList</span><span class="p">.</span><span class="n">add</span><span class="p">((</span><span class="n">freq</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">Places</span><span class="p">[</span><span class="n">num</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">num</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">num</span>
 </code></pre></div></div>
 
 <h3 id="solution-2-using-stacks">Solution 2: using stacks</h3>
@@ -146,23 +146,23 @@ class FreqStack:
 
 <p><strong>Complexity</strong>: each operation we do have just <code class="language-plaintext highlighter-rouge">O(1)</code> complexity, so both <code class="language-plaintext highlighter-rouge">push</code> and <code class="language-plaintext highlighter-rouge">pop</code> work just in <code class="language-plaintext highlighter-rouge">O(1)</code>.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class FreqStack:
-    def __init__(self):
-        self.freq = Counter()
-        self.stacks = defaultdict(list)
-        self.maxfreq = 0
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">FreqStack</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">freq</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">stacks</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">maxfreq</span> <span class="o">=</span> <span class="mi">0</span>
 
-    def push(self, x):
-        freq_x = self.freq[x] + 1
-        self.freq[x] = freq_x
-        self.maxfreq = max(self.maxfreq, freq_x)
-        self.stacks[freq_x].append(x)
+    <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">freq_x</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">freq</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">freq</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">freq_x</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">maxfreq</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">maxfreq</span><span class="p">,</span> <span class="n">freq_x</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">stacks</span><span class="p">[</span><span class="n">freq_x</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-    def pop(self):
-        x = self.stacks[self.maxfreq].pop()
-        self.freq[x] -= 1
-        if not self.stacks[self.maxfreq]: self.maxfreq -= 1
-        return x
+    <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">stacks</span><span class="p">[</span><span class="bp">self</span><span class="p">.</span><span class="n">maxfreq</span><span class="p">].</span><span class="n">pop</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">freq</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="p">.</span><span class="n">stacks</span><span class="p">[</span><span class="bp">self</span><span class="p">.</span><span class="n">maxfreq</span><span class="p">]:</span> <span class="bp">self</span><span class="p">.</span><span class="n">maxfreq</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">x</span>
 </code></pre></div></div>
 
 <p>If you like the solution, you can <strong>upvote</strong> it on leetcode discussion section:<a href="https://leetcode.com/problems/maximum-frequency-stack/discuss/1086287/python-2-solutions%3a-o(log-n)-and-o(1)-explained"> <font color="blue">Problem 0895</font></a></p>
