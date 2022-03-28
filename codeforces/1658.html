@@ -250,7 +250,18 @@
 
 <h4 id="solution-4">Solution</h4>
 <p>High level idea is to use the idea of winning and loosing positions, here you need to use a bit of game theory.
-Also we use the idea of rotation of grid by <code class="language-plaintext highlighter-rouge">45</code> degrees. The position with the biggest value is winning. Also we keep rectangle <code class="language-plaintext highlighter-rouge">[mi1, ma1] x [mi2, ma2]</code>. where all winning position will be inside. Notice, that we have the following property: there will always be winning position for each of <code class="language-plaintext highlighter-rouge">4</code> sides of rectangle. When traverse new cell and it have distance <code class="language-plaintext highlighter-rouge">&lt;= k</code> for all winning positions, we can say that this position is winning as well, because from this position we can only reach loosing positions.</p>
+Also we use the idea of rotation of grid by <code class="language-plaintext highlighter-rouge">45</code> degrees. The position with the biggest value is winning. Let us maintain a set $S$ that stores the pairs $(i′,j′)$ of winning positions, then our operations are:</p>
+
+<ol>
+  <li>Adding point $(i, j)$ to $S$</li>
+  <li>Given $(i, j)$, check if for all $(i′, j′)$ in $S$, $ abs(i-i′) + abs(j-j′) \leqslant k$.</li>
+</ol>
+
+<p>Key notion here is that that</p>
+
+\[|i-i′|+|j-j′| \leqslant k \Leftrightarrow \max(|(i+j)-(i′+j′)|,|(i-j)-(i′-j′)|)\leqslant k,\]
+
+<p>so we only need to store the minimum and maximum of all $(i+j)$ and $(i-j)$.</p>
 
 <h4 id="complexity-4">Complexity</h4>
 <p>It is <code class="language-plaintext highlighter-rouge">O(n^2)</code> for time and space.</p>
